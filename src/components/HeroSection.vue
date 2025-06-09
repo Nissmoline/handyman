@@ -53,7 +53,7 @@ const showPopup = ref(false)
 
 <style scoped>
 .hero-root {
-  width: 100vw;
+  width: 100%;
   background: #fff;
   min-height: 100vh;
   position: relative;
@@ -113,7 +113,7 @@ const showPopup = ref(false)
   vertical-align: middle;
   text-decoration: none;
   min-width: 180px;
-  padding: 12px 0;
+  padding: 12px 10px;
   border-radius: 5px;
   font-size: 1.07rem;
   border: 2px solid #fff;

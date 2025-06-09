@@ -39,17 +39,17 @@ const services = [
 </script>
 
 <template>
-  <section class="services-section">
-    <h2 class="services-heading">ΟΙ ΥΠΗΡΕΣΙΕΣ ΜΑΣ</h2>
-    <ul class="services-list">
-      <ServiceItem
-        v-for="(service, i) in services"
-        :key="i"
-        v-bind="service"
-      />
-    </ul>
-  </section>
-</template>
+    <section class="services-section" id="services">
+      <h2 class="services-heading">ΟΙ ΥΠΗΡΕΣΙΕΣ ΜΑΣ</h2>
+      <ul class="services-list">
+        <ServiceItem
+          v-for="(service, i) in services"
+          :key="i"
+          v-bind="service"
+        />
+      </ul>
+    </section>
+  </template>
 
 <style scoped>
 .services-section {

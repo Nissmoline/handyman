@@ -106,7 +106,7 @@ const submitForm = async () => {
             </label>
           <div class="popup-actions">
             <button type="submit" class="btn btn-outline" :disabled="loading">
-              Επιβεβαίωση
+              Αποστολή
             </button>
             <button type="button" class="btn btn-outline" @click="isOpen = false">Ακύρωση</button>
           </div>
