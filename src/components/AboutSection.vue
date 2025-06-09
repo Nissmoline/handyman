@@ -20,7 +20,7 @@
           <li>Ανακαινίσεις και ολοκληρωμένες λύσεις</li>
         </ul>
         <p class="about-seo">
-          Καλέστε μας όλο το 24ωρο στο <a href="tel:+306973858321">+30 697 385 8321</a> για άμεση εξυπηρέτηση και προσφορά στις καλύτερες τιμές!
+          Εξυπηρέτηση όλο το 24ωρο με τις καλύτερες τιμές της αγοράς!
         </p>
       </div>
     </div>
@@ -33,27 +33,34 @@
   padding: 68px 0 44px 0;
   width: 100vw;
 }
+
 .about-container {
   max-width: 940px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 40px; /* Увеличен боковой padding */
 }
+
 .about-title {
   font-size: 2.12rem;
   font-weight: 800;
   margin-bottom: 30px;
   color: #044877;
   letter-spacing: 0.02em;
+  text-align: center;
 }
+
 .about-content {
   font-size: 1.14rem;
   color: #243648;
   font-weight: 400;
   line-height: 1.65;
+  text-align: justify; /* Выровнять по ширине */
 }
+
 .about-content p {
   margin-bottom: 18px;
 }
+
 .about-list {
   list-style: disc inside;
   margin-bottom: 22px;
@@ -62,25 +69,21 @@
   padding-left: 0;
   line-height: 1.45;
 }
+
 .about-list li {
   margin-bottom: 6px;
   padding-left: 4px;
   font-weight: 500;
 }
+
 .about-seo {
   font-size: 1.08rem;
   margin-top: 12px;
   color: #e92127;
   font-weight: 600;
+  text-align: center;
 }
-.about-seo a {
-  color: #044877;
-  text-decoration: underline;
-  transition: color 0.2s;
-}
-.about-seo a:hover {
-  color: #e92127;
-}
+
 @media (max-width: 750px) {
   .about-container {
     padding: 0 6vw;
@@ -99,9 +102,10 @@
     font-size: 1rem;
   }
 }
+
 @media (max-width: 480px) {
   .about-container {
-    padding: 0 2vw;
+    padding: 0 7vw;
   }
   .about-root {
     padding: 30px 0 10px 0;

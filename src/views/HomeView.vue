@@ -8,8 +8,8 @@ import AppFooter from '@/components/AppFooter.vue'
 <template>
   <main>
     <HeroSection />
-    <AboutSection /> 
+    <AboutSection />
     <ServicesSection />
-    <AppFooter />
+    
   </main>
 </template>

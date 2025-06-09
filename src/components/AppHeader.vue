@@ -1,10 +1,15 @@
 <script setup>
 import logoUrl from "@/assets/logoico.svg";
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { Menu as LucideMenu, X as LucideX } from "lucide-vue-next";
+import { useRouter, useRoute } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
 
 const menuOpen = ref(false);
 const isMobile = ref(window.innerWidth <= 1024);
+
 const resizeHandler = () => (isMobile.value = window.innerWidth <= 1024);
 onMounted(() => window.addEventListener("resize", resizeHandler));
 onUnmounted(() => window.removeEventListener("resize", resizeHandler));
@@ -15,17 +20,22 @@ function toggleMenu() {
 function closeMenu() {
   menuOpen.value = false;
 }
-function menuNav(section) {
-  closeMenu();
-  scrollTo(section);
+
+function isActiveHash(hash) {
+  return route.path === "/" && route.hash === hash;
 }
-function scrollTo(section) {
-  const target = document.getElementById(section);
-  if (target) target.scrollIntoView({ behavior: "smooth" });
-}
-function goHome() {
+
+function goToHash(id) {
   closeMenu();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (route.path !== "/") {
+    router.push({ path: "/", hash: `#${id}` });
+  } else {
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    window.location.hash = `#${id}`;
+  }
 }
 </script>
 
@@ -33,11 +43,11 @@ function goHome() {
   <header class="app-header">
     <div class="header-row">
       <!-- Логотип -->
-      <a
-        href="#"
+      <router-link
+        to="/"
         class="logo-link"
         aria-label="Handyman Home"
-        @click.prevent="goHome"
+        @click.native="closeMenu"
       >
         <img
           :src="logoUrl"
@@ -46,15 +56,28 @@ function goHome() {
           width="42"
           height="42"
         />
-      </a>
+      </router-link>
+
       <!-- Desktop menu -->
       <nav class="nav-desktop" v-if="!isMobile">
-        <a href="#services" @click.prevent="scrollTo('services')">Υπηρεσίες</a>
-        <a href="#about" @click.prevent="scrollTo('about')">Σχετικά με εμάς</a>
-        <router-link to="/offers">Οι προσφορές μας</router-link>
-        <a href="#contact" @click.prevent="scrollTo('contact')">Επικοινωνία</a>
+        <a
+          href="#about"
+          :class="{ 'router-link-active': isActiveHash('#about') }"
+          @click.prevent="goToHash('about')"
+        >Σχετικά με εμάς</a>
+        <a
+          href="#services"
+          :class="{ 'router-link-active': isActiveHash('#services') }"
+          @click.prevent="goToHash('services')"
+        >Υπηρεσίες</a>
+        <router-link
+          to="/offers"
+          :class="{ 'router-link-active': route.path === '/offers' }"
+          @click.native="closeMenu"
+        >Οι προσφορές μας</router-link>
       </nav>
-      <!-- Бургер -->
+
+      <!-- Burger menu -->
       <button
         class="burger"
         @click="toggleMenu"
@@ -64,15 +87,18 @@ function goHome() {
         <LucideMenu :size="30" />
       </button>
     </div>
-    
+
     <!-- Mobile drawer -->
     <transition name="slide-fade">
       <div v-if="menuOpen && isMobile">
         <div class="menu-overlay" @click="closeMenu"></div>
         <nav class="mobile-drawer" @click.stop>
-
           <div class="drawer-logo-row">
-            <a href="#" class="drawer-logo-link" @click.prevent="goHome">
+            <router-link
+              to="/"
+              class="drawer-logo-link"
+              @click.native="closeMenu"
+            >
               <img
                 :src="logoUrl"
                 alt="Handyman logo"
@@ -80,23 +106,34 @@ function goHome() {
                 width="36"
                 height="36"
               />
-            </a>
+            </router-link>
             <button class="close" @click="closeMenu">
               <LucideX :size="32" />
             </button>
           </div>
-
-          <a @click="menuNav('services')">Υπηρεσίες</a>
-          <a @click="menuNav('about')">Σχετικά με εμάς</a>
-          <router-link to="/offers" @click.native="closeMenu"
-            >Οι προσφορές μας</router-link
-          >
-          <a @click="menuNav('contact')">Επικοινωνία</a>
+          <a
+            href="#about"
+            :class="{ 'router-link-active': isActiveHash('#about') }"
+            @click.prevent="goToHash('about')"
+          >Σχετικά με εμάς</a>
+          <a
+            href="#services"
+            :class="{ 'router-link-active': isActiveHash('#services') }"
+            @click.prevent="goToHash('services')"
+          >Υπηρεσίες</a>
+          <router-link
+            to="/offers"
+            :class="{ 'router-link-active': route.path === '/offers' }"
+            @click.native="closeMenu"
+          >Οι προσφορές μας</router-link>
         </nav>
       </div>
     </transition>
   </header>
 </template>
+
+
+
 
 <style>
 .app-header {
