@@ -14,6 +14,17 @@ const resizeHandler = () => (isMobile.value = window.innerWidth <= 1024);
 onMounted(() => window.addEventListener("resize", resizeHandler));
 onUnmounted(() => window.removeEventListener("resize", resizeHandler));
 
+function handleLogoClick(e) {
+  closeMenu();
+  if (route.path === "/") {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.location.hash) {
+      history.replaceState(null, "", "/");
+    }
+  }
+}
+
 function toggleMenu() {
   menuOpen.value = !menuOpen.value;
 }
@@ -47,7 +58,7 @@ function goToHash(id) {
         to="/"
         class="logo-link"
         aria-label="Handyman Home"
-        @click.native="closeMenu"
+        @click="handleLogoClick"
       >
         <img
           :src="logoUrl"
@@ -64,17 +75,20 @@ function goToHash(id) {
           href="#about"
           :class="{ 'router-link-active': isActiveHash('#about') }"
           @click.prevent="goToHash('about')"
-        >Σχετικά με εμάς</a>
+          >Σχετικά με εμάς</a
+        >
         <a
           href="#services"
           :class="{ 'router-link-active': isActiveHash('#services') }"
           @click.prevent="goToHash('services')"
-        >Υπηρεσίες</a>
+          >Υπηρεσίες</a
+        >
         <router-link
           to="/offers"
           :class="{ 'router-link-active': route.path === '/offers' }"
           @click.native="closeMenu"
-        >Οι προσφορές μας</router-link>
+          >Οι προσφορές μας</router-link
+        >
       </nav>
 
       <!-- Burger menu -->
@@ -115,25 +129,25 @@ function goToHash(id) {
             href="#about"
             :class="{ 'router-link-active': isActiveHash('#about') }"
             @click.prevent="goToHash('about')"
-          >Σχετικά με εμάς</a>
+            >Σχετικά με εμάς</a
+          >
           <a
             href="#services"
             :class="{ 'router-link-active': isActiveHash('#services') }"
             @click.prevent="goToHash('services')"
-          >Υπηρεσίες</a>
+            >Υπηρεσίες</a
+          >
           <router-link
             to="/offers"
             :class="{ 'router-link-active': route.path === '/offers' }"
             @click.native="closeMenu"
-          >Οι προσφορές μας</router-link>
+            >Οι προσφορές μας</router-link
+          >
         </nav>
       </div>
     </transition>
   </header>
 </template>
-
-
-
 
 <style>
 .app-header {

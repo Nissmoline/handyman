@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import emailjs from "@emailjs/browser";
+import Multiselect from "@vueform/multiselect";
+import "@vueform/multiselect/themes/default.css";
 
 const isOpen = defineModel("isOpen");
 const name = ref("");
@@ -10,6 +12,25 @@ const datetime = ref("");
 const submitted = ref(false);
 const loading = ref(false);
 const error = ref(null);
+const selectedServices = ref([]);
+const multipleLabel = (values) => `${values.length} επιλεγμένες υπηρεσίες`;
+
+const services = [
+  "ΗΛΕΚΤΡΟΛΟΓΙΚΕΣ ΕΡΓΑΣΙΕΣ",
+  "ΥΔΡΑΥΛΙΚΕΣ ΕΡΓΑΣΙΕΣ",
+  "ΥΠΗΡΕΣΙΕΣ ΠΛΑΚΑΚΙΩΝ",
+  "ΒΑΨΙΜΟ & ΧΡΩΜΑΤΙΣΜΟΙ",
+  "ΥΠΗΡΕΣΙΕΣ ΞΥΛΟΥΡΓΟΥ",
+  "ΚΑΤΑΣΚΕΥΕΣ & ΑΝΑΚΑΙΝΙΣΕΙΣ",
+  "ΓΕΝΙΚΕΣ ΕΡΓΑΣΙΕΣ ΣΥΝΤΗΡΗΣΗΣ",
+];
+
+const multiselect = ref(null);
+const handleChange = () => {
+  setTimeout(() => {
+    if (multiselect.value) multiselect.value.close();
+  }, 1000);
+};
 
 const resetForm = () => {
   name.value = "";
@@ -19,6 +40,7 @@ const resetForm = () => {
   submitted.value = false;
   loading.value = false;
   error.value = null;
+  selectedServices.value = [];
 };
 
 const formatDate = (isoString) => {
@@ -54,6 +76,7 @@ const submitForm = async () => {
         email: email.value,
         phone: phone.value,
         datetime: formatDate(datetime.value),
+        services: selectedServices.value.join(", "),
       },
       "nOz5l7-e5eiIR9lpu"
     );
@@ -74,14 +97,20 @@ const submitForm = async () => {
         <h2>Το αίτημά σας εστάλη</h2>
 
         <div v-if="submitted" class="popup-success">
-
           <!-- Animated green check mark -->
           <svg class="success-check" viewBox="0 0 52 52">
-            <circle class="success-check-circle" cx="26" cy="26" r="25" fill="none"/>
-            <path class="success-check-mark" fill="none" d="M14 27l7 7 17-17"/>
+            <circle
+              class="success-check-circle"
+              cx="26"
+              cy="26"
+              r="25"
+              fill="none"
+            />
+            <path class="success-check-mark" fill="none" d="M14 27l7 7 17-17" />
           </svg>
           <p>
-            Σύντομα θα επικοινωνήσουμε μαζί σας για να επιβεβαιώσουμε το ραντεβού.
+            Σύντομα θα επικοινωνήσουμε μαζί σας για να επιβεβαιώσουμε το
+            ραντεβού.
           </p>
           <button class="btn btn-outline" @click="isOpen = false">
             Κλείσιμο
@@ -101,13 +130,22 @@ const submitForm = async () => {
             Τηλέφωνο:
             <input v-model="phone" type="tel" required />
           </label>
+
+          <label>
+            Επιλέξτε τις υπηρεσίες που σας ενδιαφέρουν:
+            <Multiselect
+              v-model="selectedServices"
+              :options="services"
+              mode="multiple"
+              placeholder="Επιλογή υπηρεσιών"
+              :multiple-label="multipleLabel"
+              @change="handleChange"
+            />
+          </label>
+
           <label>
             Επιθυμητή ημερομηνία ραντεβού:
-            <input
-              v-model="datetime"
-              type="date"
-              required
-            />
+            <input v-model="datetime" type="date" required />
           </label>
           <div class="popup-actions">
             <button type="submit" class="btn btn-outline" :disabled="loading">
@@ -133,7 +171,6 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s;
@@ -203,13 +240,17 @@ const submitForm = async () => {
   stroke-linecap: round;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: checkmark-draw 0.4s 0.5s cubic-bezier(0.65,0,0.45,1) forwards;
+  animation: checkmark-draw 0.4s 0.5s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 @keyframes checkmark-circle {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 @keyframes checkmark-draw {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .popup-window label {
@@ -277,7 +318,9 @@ const submitForm = async () => {
   vertical-align: middle;
 }
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error {
