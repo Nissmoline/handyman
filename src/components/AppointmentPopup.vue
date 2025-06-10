@@ -97,7 +97,6 @@ const submitForm = async () => {
         <h2>Το αίτημά σας εστάλη</h2>
 
         <div v-if="submitted" class="popup-success">
-          
           <!-- Animated green check mark -->
           <svg class="success-check" viewBox="0 0 52 52">
             <circle
@@ -133,7 +132,8 @@ const submitForm = async () => {
           </label>
 
           <label>
-            Επιλέξτε τις υπηρεσίες που σας ενδιαφέρουν:
+            <!-- Επιλέξτε τις -->
+            Υπηρεσίες που σας ενδιαφέρουν:
             <Multiselect
               v-model="selectedServices"
               :options="services"
@@ -341,4 +341,18 @@ const submitForm = async () => {
     width: 100%;
   }
 }
+@media (max-width: 400px) {
+  .popup-window {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    min-height: 480px;
+    padding: 36px 4vw 32px 4vw;
+    font-size: 1.07rem;
+  }
+  .popup-window h2 {
+    font-size: 1rem;
+  }
+}
+
 </style>
