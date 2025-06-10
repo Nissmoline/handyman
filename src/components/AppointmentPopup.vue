@@ -97,6 +97,7 @@ const submitForm = async () => {
         <h2>Το αίτημά σας εστάλη</h2>
 
         <div v-if="submitted" class="popup-success">
+          
           <!-- Animated green check mark -->
           <svg class="success-check" viewBox="0 0 52 52">
             <circle

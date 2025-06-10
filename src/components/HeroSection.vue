@@ -36,7 +36,7 @@ const showPopup = ref(false)
       </div>
       <div class="offer-title">
         ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ &amp; ΗΛΕΚΤΡΙΚΗΣ ΕΣΤΙΑΣ €37,99
-        <span class="offer-note">(ΜΕ ΗΛΕΚΤΡΟΛΟΓΟ ΕΓΚΑΤΑΣΤΑΤΗ)</span>
+        <span class="offer-note">(ΑΠΟ ΗΛΕΚΤΡΟΛΟΓΟ ΕΓΚΑΤΑΣΤΑΤΗ)</span>
       </div>
       <div class="offer-icons">
         <span class="offer-check">✔</span>

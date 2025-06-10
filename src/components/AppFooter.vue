@@ -1,82 +1,117 @@
 <script setup lang="ts">
-import logoUrl from '@/assets/logo.svg'
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-vue-next'
+import logoUrl from "@/assets/logo.svg";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-vue-next";
+import { useRoute, useRouter } from 'vue-router'
+import { inject } from 'vue'
+
+const router = useRouter()
+const route = useRoute()
+const openAppointmentPopup = inject('openAppointmentPopup') as () => void
 
 const linkGroups = [
   {
     title: 'Εταιρεία',
     links: [
-      { label: 'Σχετικά με εμάς', href: '/about' },
-      { label: 'Υπηρεσίες', href: '/ServicesSection' },
+      { label: 'Σχετικά με εμάς', hash: '#about' },
+      { label: 'Υπηρεσίες', hash: '#services' },
     ],
   },
   {
     title: 'Πληροφορίες',
     links: [
-      { label: 'Επικοινωνήστε μαζί μας', href: '/contacts' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'Επικοινωνήστε μαζί μας', action: 'appointment' },
+      { label: 'FAQ', hash: '#faq' },
     ],
   },
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-]
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+];
 
-const year = new Date().getFullYear()
+const year = new Date().getFullYear();
+
+function handleLogoClick(e: MouseEvent) {
+  if (route.path === '/') {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (window.location.hash) {
+      history.replaceState(null, '', '/')
+    }
+  }
+}
+
+function goToHash(id: string) {
+  if (route.path !== '/') {
+    router.push({ path: '/', hash: `#${id}` })
+  } else {
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+    window.location.hash = `#${id}`
+  }
+}
 </script>
 
+
 <template>
-  <footer class="footer">
-    <div class="footer__container">
-      
-        <!-- logo -->
-        <div class="footer__brand">
-    <img
-      :src="logoUrl"
-      alt="Handyman logo"
-      class="footer__logo"
-      width="122"
-      height="59"
-      loading="lazy"
-    />
-    <span class="footer__brand-name"></span>
+ <footer class="footer">
+  <div class="footer__container">
+    <div class="footer__brand">
+      <router-link to="/" class="footer__logo-link" @click="handleLogoClick">
+        <img
+          :src="logoUrl"
+          alt="Handyman logo"
+          class="footer__logo"
+          width="122"
+          height="59"
+          loading="lazy"
+        />
+      </router-link>
+    </div>
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <ul v-for="(group, idx) in linkGroups" :key="idx" class="footer__nav-group">
+        <li class="footer__nav-title">{{ group.title }}</li>
+        <li v-for="(link, li) in group.links" :key="li">
+          <a
+            v-if="link.hash"
+            href="javascript:void(0)"
+            @click.prevent="goToHash(link.hash.slice(1))"
+          >{{ link.label }}</a>
+          <a
+            v-else-if="link.action === 'appointment'"
+            href="javascript:void(0)"
+            @click.prevent="openAppointmentPopup"
+          >{{ link.label }}</a>
+          <a
+            v-else
+            href="#"
+          >{{ link.label }}</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- соцсети как раньше -->
+    <div class="footer__social">
+      <a
+        v-for="(soc, i) in socialLinks"
+        :key="i"
+        :href="soc.href"
+        target="_blank"
+        rel="noopener"
+        :aria-label="soc.label"
+      >
+        <component :is="soc.icon" :size="22" />
+      </a>
+    </div>
   </div>
-      
-      <nav class="footer__nav" aria-label="Footer navigation">
-        <ul
-          v-for="(group, idx) in linkGroups"
-          :key="idx"
-          class="footer__nav-group"
-        >
-          <li class="footer__nav-title">{{ group.title }}</li>
-          <li v-for="(link, li) in group.links" :key="li">
-            <a :href="link.href">{{ link.label }}</a>
-          </li>
-        </ul>
-      </nav>
-      
-      <!-- Social media -->
-      <div class="footer__social">
-        <a
-          v-for="(soc, i) in socialLinks"
-          :key="i"
-          :href="soc.href"
-          target="_blank"
-          rel="noopener"
-          :aria-label="soc.label"
-        >
-          <component :is="soc.icon" :size="22" />
-        </a>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      © {{ year }} Handyman. All rights reserved.
-    </div>
-  </footer>
+  <div class="footer__bottom">
+    © {{ year }} Handyman. All rights reserved.
+  </div>
+</footer>
 </template>
 
 <style scoped>
@@ -108,16 +143,12 @@ const year = new Date().getFullYear()
 }
 .footer__logo {
   border-radius: 12px;
-  box-shadow:
-    0 0 12px 2px #fff,
-    0 6px 24px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 0 12px 2px #fff, 0 6px 24px 0 rgba(0, 0, 0, 0.18);
   background: #044877;
   transition: box-shadow 0.18s;
 }
 .footer__logo:hover {
-  box-shadow:
-    0 0 20px 4px #fff,
-    0 8px 28px 0 rgba(0,0,0,0.22);
+  box-shadow: 0 0 20px 4px #fff, 0 8px 28px 0 rgba(0, 0, 0, 0.22);
   transform: scale(1.03);
 }
 
