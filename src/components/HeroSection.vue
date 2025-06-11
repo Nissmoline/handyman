@@ -8,27 +8,29 @@ const showPopup = ref(false)
 <template>
   <section class="hero-root">
     <div class="hero-main">
-      <div class="hero-content">
-        <div class="hero-left">
-          <h1>
-            HANDY MAN<br /><span>24/7</span>
-          </h1>
-          <div class="hero-desc">
-          ΗΛΕΚΤΡΟΛΟΓΙΚΕΣ & ΥΔΡΑΥΛΙΚΕΣ ΕΡΓΑΣΙΕΣ<br />
-          ΒΑΦΕΣ, ΓΥΨΟΣΑΝΙΔΕΣ, ΞΥΛΟΥΡΓΙΚΕΣ ΚΑΤΑΣΚΕΥΕΣ<br />
-          ΓΕΝΙΚΕΣ ΕΠΙΣΚΕΥΕΣ ΓΙΑ ΚΑΤΟΙΚΙΕΣ & ΕΠΑΓΓΕΛΜΑΤΙΚΟΥΣ ΧΩΡΟΥΣ
-        </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1>
+        Άμεση Τεχνική Υποστήριξη<br /><span>στο χώρο σας!</span>
+      </h1>
+      <div class="hero-desc">
+        Ηλεκτρολογικά – Υδραυλικά – Βαφές – Γυψοσανίδες – Ξυλουργικές Κατασκευές – Γενικές Επισκευές.<br />
+        Αναλαμβάνουμε κατοικίες & επαγγελματικούς χώρους.<br /><br />
+        • Εμπειρία – Συνέπεια – Άμεση εξυπηρέτηση<br />
+        • Μικρές και μεγάλες εργασίες χωρίς καθυστερήσεις
+      </div>
 
-          <div class="hero-buttons">
-            <a href="tel:+306973858321" class="btn btn-outline">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
-            <button class="btn btn-outline" @click="showPopup = true">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
-          </div>
-        </div>
-        <div class="hero-right">
-          <img src="@/assets/heromain.png" alt="Handyman" />
-        </div>
+      <div class="hero-buttons">
+        <a href="tel:+306973858321" class="btn btn-outline">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
+        <button class="btn btn-outline" @click="showPopup = true">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
       </div>
     </div>
+    <div class="hero-right">
+      <img src="@/assets/heromain.png" alt="Handyman" />
+    </div>
+  </div>
+</div>
+
 
     <div class="hero-offer">
       <div class="offer-main">
@@ -40,7 +42,7 @@ const showPopup = ref(false)
       </div>
       <div class="offer-icons">
         <span class="offer-check">✔</span>
-        ΑΜΕΣΑ - ΑΣΦΑΛΩΣ - ΕΠΑΓΓΕΛΜΑΤΙΚΑ
+        ΑΜΕΣΑ - ΜΕ ΑΣΦΑΛΕΙΣ - ΕΠΑΓΓΕΛΜΑΤΙΚΑ
       </div>
       <div class="offer-bottom">
         <!-- <span class="offer-strong">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</span> -->
@@ -159,7 +161,7 @@ const showPopup = ref(false)
   z-index: 2;
   max-width: 770px;
   width: 88vw;
-  margin: -68px auto 0 auto;
+  margin: -60px auto 0 auto;
   background: #e92127;
   border-radius: 18px;
   box-shadow: 0 6px 30px 0 rgba(233,33,39,0.14);
@@ -223,7 +225,7 @@ const showPopup = ref(false)
 @media (max-width: 1060px) {
   .hero-content {
     max-width: 99vw;
-    padding: 36px 6vw 72px 6vw;
+    padding: 36px 6vw 80px 6vw;
   }
   .hero-offer {
     width: 80vw;
