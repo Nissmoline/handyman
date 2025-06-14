@@ -42,7 +42,7 @@ const showPopup = ref(false)
       </div>
       <div class="offer-icons">
         <span class="offer-check">✔</span>
-        ΑΜΕΣΑ - ΜΕ ΑΣΦΑΛΕΙΣ &amp; ΕΠΑΓΓΕΛΜΑΤΙΚΑ
+        ΑΜΕΣΑ - ΜΕ ΑΣΦΑΛΕΙA &amp; ΕΠΑΓΓΕΛΜΑΤΙΚΑ
       </div>
       <div class="offer-bottom">
         <!-- <span class="offer-strong">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</span> -->

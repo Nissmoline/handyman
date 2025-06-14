@@ -164,7 +164,7 @@ const expanded = ref(false);
             </p>
             <div style="text-align: center">
               <button
-                class="btn btn-outline"
+                class="btn btn-outline btn-collapse"
                 @click="expanded = false"
                 type="button"
               >
@@ -313,9 +313,13 @@ const expanded = ref(false);
 @media (max-width: 425px) {
   .btn {
     min-width: 0;
-    width: 100%;
+    width: 75%;
     font-size: 1rem;
     padding: 12px 0;
   }
+  .btn.btn-collapse {
+  min-width: 0;
+  width: 50%;
+}
 }
 </style>
