@@ -7,21 +7,22 @@ import { CheckCircle } from 'lucide-vue-next'
     <h2 class="offers-title">Οι προσφορές μας</h2>
     <div class="offers-container">
 
-      <!-- Блок 1 -->
+      <!-- Block 1 -->
       <section class="offers-section">
         <h3 class="offers-section-title">Εντοιχιζόμενες κουζίνες &amp; εστίες</h3>
         <div class="offers-cards-row">
-          <!-- Карточка 1 -->
+
+          <!-- card 1 -->
           <div class="offer-card">
             <h4>Σύνδεση εντοιχιζόμενης κουζίνας</h4>
             <div class="offer-price">από <b>27,99€</b></div>
             <ul class="offer-features">
               <li><CheckCircle :size="18" class="icon-check" /> Άμεση τοποθέτηση &amp; σύνδεση</li>
-              <li><CheckCircle :size="18" class="icon-check" /> Έλεγχος καλής λειτουργίας</li>
-              <li><CheckCircle :size="18" class="icon-check" /> Τεχνικός με άδεια ηλεκτρολόγου</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Έλεγχος &amp; δοκιμή λειτουργίας</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Έμπειρος ηλεκτρολόγος</li>
             </ul>
           </div>
-          <!-- Карточка 2 -->
+          <!-- Card 2 -->
           <div class="offer-card">
             <h4>Σύνδεση εντοιχιζόμενης εστίας</h4>
             <div class="offer-price">από <b>27,99€</b></div>
@@ -33,42 +34,44 @@ import { CheckCircle } from 'lucide-vue-next'
           </div>
         </div>
 
-        <!-- Преимущества -->
+        <!-- Advantages -->
         <ul class="offer-advantages">
           <li>⚡ Εγγυημένη ασφάλεια και λειτουργικότητα</li>
-          <li>✔ Επίσημο παραστατικό εργασιών</li>
+         <!--  <li>✔ Επίσημο παραστατικό εργασιών</li> -->
           <li>🚗 Άμεση εξυπηρέτηση σε όλη την Αττική</li>
         </ul>
 
-        <!-- Комбинированная карточка -->
+        <!-- combi card -->
         <div class="offer-card offer-set">
           <h4>Σύνδεση κουζίνας &amp; εστίας (σετ)</h4>
           <div class="offer-price-set">μόνο <b>37,99€</b></div>
           <div class="offer-set-desc">
-            <b>Συμφέρει!</b> Περιλαμβάνει σύνδεση κουζίνας και εστίας στην ίδια επίσκεψη, με όλες τις παροχές &amp; τελικό έλεγχο από αδειούχο ηλεκτρολόγο.
+            <b>Συμφέρει!</b> Περιλαμβάνει σύνδεση κουζίνας και εστίας στην ίδια επίσκεψη, με όλες τις παροχές &amp; τελικό έλεγχο από έμπειρο ηλεκτρολόγο.
           </div>
         </div>
       </section>
 
-      <!-- Блок 2 -->
+      <!-- block 2 -->
       <section class="offers-section">
         <h3 class="offers-section-title">Εντοιχιζόμενες απορροφητήρες (εξαερισμός)</h3>
         <div class="offers-cards-row">
           <div class="offer-card">
             <h4>Τοποθέτηση &amp; σύνδεση απορροφητήρα</h4>
-            <div class="offer-price">από <b>24,99€</b></div>
+            <div class="offer-price">από <b>27,99€</b></div>
             <ul class="offer-features">
               <li><CheckCircle :size="18" class="icon-check" /> Τοποθέτηση όλων των τύπων</li>
-              <li><CheckCircle :size="18" class="icon-check" /> Βέλτιστη σύνδεση εξαερισμού</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Σύνδεση εξαερισμού</li>
               <li><CheckCircle :size="18" class="icon-check" /> Έλεγχος λειτουργίας</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Εξειδικευμένοι τεχνίτες</li>
             </ul>
           </div>
           <div class="offer-card">
             <h4>Αντικατάσταση παλιού απορροφητήρα</h4>
-            <div class="offer-price">από <b>24,99€</b></div>
+            <div class="offer-price">από <b>34,99€</b></div>
             <ul class="offer-features">
-              <li><CheckCircle :size="18" class="icon-check" /> Αφαίρεση παλιού &amp; εγκατάσταση νέου</li>
-              <li><CheckCircle :size="18" class="icon-check" /> Πλήρης δοκιμή</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Αφαίρεση παλιού &amp; εγκατάσταση νέου (όλων των τύπων)</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Σύνδεση εξαερισμού</li>
+              <li><CheckCircle :size="18" class="icon-check" /> Έλεγχος λειτουργίας</li>
               <li><CheckCircle :size="18" class="icon-check" /> Εξειδικευμένοι τεχνίτες</li>
             </ul>
           </div>
@@ -78,7 +81,7 @@ import { CheckCircle } from 'lucide-vue-next'
       <!-- Disclaimer -->
       <div class="offers-disclaimer">
         * Οι τιμές αφορούν στάνταρ εγκαταστάσεις εντός Αττικής. Σε εξειδικευμένες περιπτώσεις, ενδέχεται να υπάρξει επιπλέον χρέωση κατόπιν συνεννόησης.<br>
-        Οι τιμές περιλαμβάνουν ΦΠΑ &amp; έκδοση απόδειξης.
+        Οι τιμές δεν περιλαμβάνουν ΦΠΑ.
       </div>
     </div>
   </main>

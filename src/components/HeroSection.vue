@@ -34,15 +34,15 @@ const showPopup = ref(false)
 
     <div class="hero-offer">
       <div class="offer-main">
-        ΕΙΔΙΚΗ ΠΡΟΣΦΟΡΑ: <span> <br>ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ €27,99</span>
+        ΕΙΔΙΚΗ ΠΡΟΣΦΟΡΑ: <span> <br>ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ ΑΠΟ 27,99€</span>
       </div>
       <div class="offer-title">
-        ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ &amp; ΗΛΕΚΤΡΙΚΗΣ ΕΣΤΙΑΣ €37,99
+        ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ &amp; ΗΛΕΚΤΡΙΚΗΣ ΕΣΤΙΑΣ ΑΠΟ 37,99€
         <span class="offer-note">(ΑΠΟ ΗΛΕΚΤΡΟΛΟΓΟ ΕΓΚΑΤΑΣΤΑΤΗ)</span>
       </div>
       <div class="offer-icons">
         <span class="offer-check">✔</span>
-        ΑΜΕΣΑ - ΜΕ ΑΣΦΑΛΕΙΣ - ΕΠΑΓΓΕΛΜΑΤΙΚΑ
+        ΑΜΕΣΑ - ΜΕ ΑΣΦΑΛΕΙΣ &amp; ΕΠΑΓΓΕΛΜΑΤΙΚΑ
       </div>
       <div class="offer-bottom">
         <!-- <span class="offer-strong">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</span> -->
@@ -78,7 +78,7 @@ const showPopup = ref(false)
   box-sizing: border-box;
 }
 .hero-left {
-  flex: 1.12;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
