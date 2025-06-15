@@ -1,14 +1,11 @@
 <template>
     <nav class="bottom-bar">
-      <a :href="telLink" class="bar-btn" aria-label="Позвонить">
+      <a :href="telLink" class="bar-btn" aria-label="Κλήση">
         <lucide-phone :size="28"/>
       </a>
-      <button class="bar-btn" @click="openAppointment" aria-label="Связаться">
+      <button class="bar-btn" @click="openAppointment" aria-label="Επαφή">
         <lucide-message-square :size="28"/>
       </button>
-
-      <!-- <button class="bottom-bar-btn" @click="emit('contact')">
-      </button> -->
 
     </nav>
   </template>

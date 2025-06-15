@@ -19,3 +19,10 @@ provide('openAppointmentPopup', openPopup)
   <AppFooter />
   <AppointmentPopup v-model:isOpen="popupOpen" />
 </template>
+
+<style>
+.app-main {
+  min-height: 100vh;
+  padding-bottom: 56px;
+}
+</style>
