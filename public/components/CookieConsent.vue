@@ -4,7 +4,10 @@ import { ref, onMounted } from 'vue'
 const visible = ref(false)
 
 onMounted(() => {
-  const hasConsent = document.cookie.split('; ').find(row => row.startsWith('cookie_consent='))
+  // handle cookies with or without spaces after semicolons
+  const hasConsent = document.cookie
+    .split(';')
+    .some(c => c.trim().startsWith('cookie_consent='))
   if (!hasConsent) visible.value = true
 })
 
