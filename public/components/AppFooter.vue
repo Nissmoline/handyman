@@ -12,15 +12,15 @@ const linkGroups = [
   {
     title: 'Εταιρεία',
     links: [
-      { label: 'Σχετικά με εμάς', hash: '#about' },
-      { label: 'Υπηρεσίες', hash: '#services' },
+      { label: 'Σχετικά με εμάς', to: { path: '/', hash: '#about' } },
+      { label: 'Υπηρεσίες',        to: { path: '/', hash: '#services' } },
     ],
   },
   {
     title: 'Πληροφορίες',
     links: [
       { label: 'Επικοινωνήστε μαζί μας', action: 'appointment' },
-      { label: 'FAQ', hash: '#faq' },
+      { label: 'FAQ',                   to: { path: '/', hash: '#faq' } },
     ],
   },
 ]
@@ -73,28 +73,31 @@ function goToHash(id: string) {
         />
       </router-link>
     </div>
-    <nav class="footer__nav" aria-label="Footer navigation">
-      <ul v-for="(group, idx) in linkGroups" :key="idx" class="footer__nav-group">
-        <li class="footer__nav-title">{{ group.title }}</li>
-        <li v-for="(link, li) in group.links" :key="li">
-          <a
-            v-if="link.hash"
-            href="javascript:void(0)"
-            @click.prevent="goToHash(link.hash.slice(1))"
-          >{{ link.label }}</a>
-          <a
-            v-else-if="link.action === 'appointment'"
-            href="javascript:void(0)"
-            @click.prevent="openAppointmentPopup"
-          >{{ link.label }}</a>
-          <a
-            v-else
-            href="#"
-          >{{ link.label }}</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- соцсети как раньше -->
+    <nav class="footer__nav">
+    <ul v-for="group in linkGroups" :key="group.title">
+      <li class="footer__nav-title">{{ group.title }}</li>
+
+      <li v-for="link in group.links" :key="link.label">
+        <router-link
+          v-if="link.to"
+          :to="link.to"
+          class="footer__link"
+        >
+          {{ link.label }}
+        </router-link>
+
+        <button
+          v-else-if="link.action==='appointment'"
+          type="button"
+          class="footer__link"
+          @click="openAppointmentPopup"
+        >
+          {{ link.label }}
+        </button>
+      </li>
+    </ul>
+  </nav>
+
     <div class="footer__social">
       <a
         v-for="(soc, i) in socialLinks"
