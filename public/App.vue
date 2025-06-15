@@ -4,6 +4,7 @@ import AppHeader from '@/components/AppHeader.vue'
 import AppBottomBar from '@/components/AppBottomBar.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import AppointmentPopup from '@/components/AppointmentPopup.vue'
+import CookieConsent from '@/components/CookieConsent.vue'
 
 const popupOpen = ref(false)
 function openPopup() { popupOpen.value = true }
@@ -17,6 +18,7 @@ provide('openAppointmentPopup', openPopup)
   <router-view />
   <AppBottomBar @contact="openPopup" />
   <AppFooter />
+  <CookieConsent />
   <AppointmentPopup v-model:isOpen="popupOpen" />
 </template>
 
