@@ -178,7 +178,7 @@ function goToHash(id: string) {
 .footer__nav-title {
   font-weight: 600;
   margin-bottom: 3px;
-  color: var(--color-accent, #20ba7c);
+  color: #34d399;
   font-size: 1em;
 }
 .footer__nav-group a {

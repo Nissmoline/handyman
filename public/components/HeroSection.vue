@@ -162,7 +162,7 @@ const showPopup = ref(false)
   max-width: 770px;
   width: 88vw;
   margin: -60px auto 0 auto;
-  background: #e92127;
+  background: #c1121c; 
   border-radius: 18px;
   box-shadow: 0 6px 30px 0 rgba(233,33,39,0.14);
   padding: 36px 32px 22px 32px;
