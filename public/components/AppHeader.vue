@@ -53,6 +53,7 @@ function goToHash(id) {
 <template>
   <header class="app-header">
     <div class="header-row">
+      
       <!-- Логотип -->
       <router-link
         to="/"

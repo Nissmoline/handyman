@@ -2,7 +2,6 @@
 import ServiceItem from './ServiceItem.vue'
 import { Wrench, SwatchBook, InspectionPanel, Hammer, BrickWall, House } from 'lucide-vue-next'
 
-
 const services = [
   {
     icon: Wrench,
