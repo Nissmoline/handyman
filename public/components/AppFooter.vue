@@ -79,18 +79,14 @@ function goToHash(id: string) {
         <li v-for="(link, li) in group.links" :key="li">
           <a
             v-if="link.hash"
-            href="javascript:void(0)"
+            :href="link.hash"
             @click.prevent="goToHash(link.hash.slice(1))"
           >{{ link.label }}</a>
-          <a
+          <button
             v-else-if="link.action === 'appointment'"
-            href="javascript:void(0)"
+            type="button"
             @click.prevent="openAppointmentPopup"
-          >{{ link.label }}</a>
-          <a
-            v-else
-            href="#"
-          >{{ link.label }}</a>
+          >{{ link.label }}</button>
         </li>
       </ul>
     </nav>
@@ -178,13 +174,20 @@ function goToHash(id: string) {
   color: var(--color-accent, #20ba7c);
   font-size: 1em;
 }
-.footer__nav-group a {
+.footer__nav-group a,
+.footer__nav-group button {
   color: inherit;
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
   opacity: 0.88;
   transition: opacity 0.18s;
 }
-.footer__nav-group a:hover {
+.footer__nav-group a:hover,
+.footer__nav-group button:hover {
   opacity: 1;
   text-decoration: underline;
 }
