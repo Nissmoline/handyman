@@ -21,7 +21,7 @@ const showPopup = ref(false)
       </div>
 
       <div class="hero-buttons">
-        <a href="tel:+306973858321" class="btn btn-outline">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
+        <a href="tel:+306949214461" class="btn btn-outline">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
         <button class="btn btn-outline" @click="showPopup = true">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
       </div>
     </div>

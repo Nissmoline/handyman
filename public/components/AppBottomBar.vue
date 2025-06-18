@@ -3,7 +3,7 @@
   import { ref, onMounted, onBeforeUnmount } from 'vue'
   import { Phone as LucidePhone, MessageSquare as LucideMessageSquare } from 'lucide-vue-next'
   
-  const telLink = 'tel:+306973858321'
+  const telLink = 'tel:+306949214461'
   const emit = defineEmits(['contact'])
   
   function openAppointment() { emit('contact') }
