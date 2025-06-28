@@ -5,6 +5,35 @@ import { Menu as LucideMenu, X as LucideX } from "lucide-vue-next";
 import { Phone } from "lucide-vue-next";
 import logoUrl from "@/assets/logoico.svg";
 
+// Массив соцсетей для мобильного меню
+const socialLinksMobile = [
+  {
+    href: "https://www.facebook.com/share/1FyUjq1AGd/",
+    icon: ["fab", "facebook"],
+    label: "Facebook",
+  },
+  {
+    href: "https://instagram.com/ВАШ_АККАУНТ",
+    icon: ["fab", "instagram"],
+    label: "Instagram",
+  },
+  {
+    href: "viber://chat?number=+306949214461",
+    icon: ["fab", "viber"],
+    label: "Viber",
+  },
+  {
+    href: "https://wa.me/+306949214461",
+    icon: ["fab", "whatsapp"],
+    label: "WhatsApp",
+  },
+  {
+    href: "https://t.me/ВАШ_АККАУНТ",
+    icon: ["fab", "telegram"],
+    label: "Telegram",
+  },
+];
+
 const tel = "+30 694 921 4461";
 const telLink = "tel:+306949214461";
 
@@ -47,13 +76,11 @@ const closeMenu = () => (menuOpen.value = false);
           :class="{ active: isActiveHash('#about') }"
           >Σχετικά με εμάς</router-link
         >
-
         <router-link
           :to="{ path: '/', hash: '#services' }"
           :class="{ active: isActiveHash('#services') }"
           >Υπηρεσίες</router-link
         >
-
         <router-link to="/offers" :class="{ active: route.path === '/offers' }"
           >Οι προσφορές μας</router-link
         >
@@ -80,7 +107,6 @@ const closeMenu = () => (menuOpen.value = false);
     <transition name="slide-fade">
       <aside v-if="isMobile && menuOpen" class="drawer-wrapper">
         <div class="menu-overlay" @click="closeMenu" />
-
         <nav class="mobile-drawer">
           <div class="drawer-header">
             <router-link to="/" class="drawer-logo-link" @click="closeMenu">
@@ -103,14 +129,12 @@ const closeMenu = () => (menuOpen.value = false);
             @click="closeMenu"
             >Σχετικά με εμάς</router-link
           >
-
           <router-link
             :to="{ path: '/', hash: '#services' }"
             class="drawer-link"
             @click="closeMenu"
             >Υπηρεσίες</router-link
           >
-
           <router-link to="/offers" class="drawer-link" @click="closeMenu"
             >Οι προσφορές μας</router-link
           >
@@ -125,6 +149,21 @@ const closeMenu = () => (menuOpen.value = false);
             <Phone :size="20" class="phone-svg" />
             <span class="phone-text">{{ tel }}</span>
           </a>
+
+          <!-- Соц. иконки -->
+          <div class="mobile-socials">
+            <a
+              v-for="soc in socialLinksMobile"
+              :key="soc.label"
+              :href="soc.href"
+              target="_blank"
+              rel="noopener"
+              :aria-label="soc.label"
+              class="mobile-social-link"
+            >
+              <font-awesome-icon :icon="soc.icon" :size="26" />
+            </a>
+          </div>
         </nav>
       </aside>
     </transition>
@@ -322,6 +361,26 @@ const closeMenu = () => (menuOpen.value = false);
 }
 .phone-link-drawer i {
   font-size: 1.14em;
+}
+
+.mobile-socials {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 22px;
+  margin-bottom: 2px;
+}
+
+.mobile-social-link {
+  color: #1179bf;
+  font-size: 1.45em;
+  transition: color 0.18s, transform 0.18s;
+  display: flex;
+  align-items: center;
+}
+.mobile-social-link:hover {
+  color: #25d366; /* WhatsApp/Viber зеленый, либо свой акцент */
+  transform: scale(1.13);
 }
 
 @media (max-width: 1024px) {

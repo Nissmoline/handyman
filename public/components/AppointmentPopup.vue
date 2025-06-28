@@ -56,7 +56,7 @@ const submitForm = async () => {
   try {
     // 1. Auto-reply to the client
     await emailjs.send(
-      "service_9cknxdr",
+      "service_4iwmnq9",
       "template_h7kwe4j",
       {
         name: name.value,
@@ -69,7 +69,7 @@ const submitForm = async () => {
 
     // 2. Auto-reply to owner
     await emailjs.send(
-      "service_9cknxdr",
+      "service_4iwmnq9",
       "template_dhmfdmy",
       {
         name: name.value,

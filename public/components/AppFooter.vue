@@ -1,113 +1,140 @@
 <script setup lang="ts">
 import logoUrl from "@/assets/logo.svg";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-vue-next";
-import { useRoute, useRouter } from 'vue-router'
-import { inject } from 'vue'
+import { useRoute, useRouter } from "vue-router";
+import { inject } from "vue";
 
-const router = useRouter()
-const route = useRoute()
-const openAppointmentPopup = inject('openAppointmentPopup') as () => void
+const router = useRouter();
+const route = useRoute();
+const openAppointmentPopup = inject("openAppointmentPopup") as () => void;
 
 const linkGroups = [
   {
-    title: 'Εταιρεία',
+    title: "Εταιρεία",
     links: [
-      { label: 'Σχετικά με εμάς', hash: '#about' },
-      { label: 'Υπηρεσίες', hash: '#services' },
+      { label: "Σχετικά με εμάς", hash: "#about" },
+      { label: "Υπηρεσίες", hash: "#services" },
     ],
   },
   {
-    title: 'Πληροφορίες',
+    title: "Πληροφορίες",
     links: [
-      { label: 'Επικοινωνήστε μαζί μας', action: 'appointment' },
-      { label: 'FAQ', hash: '#faq' },
+      { label: "Επικοινωνήστε μαζί μας", action: "appointment" },
+      { label: "FAQ", hash: "#faq" },
     ],
   },
-]
+];
 
+// Массив соцсетей через FontAwesome
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  {
+    href: "https://www.facebook.com/share/1FyUjq1AGd/",
+    icon: ["fab", "facebook"],
+    label: "Facebook",
+  },
+  {
+    href: "https://instagram.com/ВАШ_АККАУНТ",
+    icon: ["fab", "instagram"],
+    label: "Instagram",
+  },
+  {
+    href: "viber://chat?number=+306949214461",
+    icon: ["fab", "viber"],
+    label: "Viber",
+  },
+  {
+    href: "https://wa.me/+306949214461",
+    icon: ["fab", "whatsapp"],
+    label: "WhatsApp",
+  },
+  {
+    href: "https://t.me/ВАШ_АККАУНТ",
+    icon: ["fab", "telegram"],
+    label: "Telegram",
+  },
 ];
 
 const year = new Date().getFullYear();
 
 function handleLogoClick(e: MouseEvent) {
-  if (route.path === '/') {
-    e.preventDefault()
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (route.path === "/") {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (window.location.hash) {
-      history.replaceState(null, '', '/')
+      history.replaceState(null, "", "/");
     }
   }
 }
 
 function goToHash(id: string) {
-  if (route.path !== '/') {
-    router.push({ path: '/', hash: `#${id}` })
+  if (route.path !== "/") {
+    router.push({ path: "/", hash: `#${id}` });
   } else {
-    const target = document.getElementById(id)
+    const target = document.getElementById(id);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
+      target.scrollIntoView({ behavior: "smooth" });
     }
-    window.location.hash = `#${id}`
+    window.location.hash = `#${id}`;
   }
 }
 </script>
 
-
 <template>
- <footer class="footer">
-  <div class="footer__container">
-    <div class="footer__brand">
-      <router-link to="/" class="footer__logo-link" @click="handleLogoClick">
-        <img
-          :src="logoUrl"
-          alt="Handyman logo"
-          class="footer__logo"
-          width="122"
-          height="59"
-          loading="lazy"
-        />
-      </router-link>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__brand">
+        <router-link to="/" class="footer__logo-link" @click="handleLogoClick">
+          <img
+            :src="logoUrl"
+            alt="Handyman logo"
+            class="footer__logo"
+            width="122"
+            height="59"
+            loading="lazy"
+          />
+        </router-link>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <ul
+          v-for="(group, idx) in linkGroups"
+          :key="idx"
+          class="footer__nav-group"
+        >
+          <li class="footer__nav-title">{{ group.title }}</li>
+          <li v-for="(link, li) in group.links" :key="li">
+            <a
+              v-if="link.hash"
+              :href="link.hash"
+              @click.prevent="goToHash(link.hash.slice(1))"
+              >{{ link.label }}</a
+            >
+            <button
+              v-else-if="link.action === 'appointment'"
+              type="button"
+              @click.prevent="openAppointmentPopup"
+            >
+              {{ link.label }}
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <!-- соцсети теперь через FontAwesome -->
+      <div class="footer__social">
+        <a
+          v-for="(soc, i) in socialLinks"
+          :key="i"
+          :href="soc.href"
+          target="_blank"
+          rel="noopener"
+          :aria-label="soc.label"
+        >
+          <font-awesome-icon :icon="soc.icon" :size="22" />
+        </a>
+      </div>
     </div>
-    <nav class="footer__nav" aria-label="Footer navigation">
-      <ul v-for="(group, idx) in linkGroups" :key="idx" class="footer__nav-group">
-        <li class="footer__nav-title">{{ group.title }}</li>
-        <li v-for="(link, li) in group.links" :key="li">
-          <a
-            v-if="link.hash"
-            :href="link.hash"
-            @click.prevent="goToHash(link.hash.slice(1))"
-          >{{ link.label }}</a>
-          <button
-            v-else-if="link.action === 'appointment'"
-            type="button"
-            @click.prevent="openAppointmentPopup"
-          >{{ link.label }}</button>
-        </li>
-      </ul>
-    </nav>
-    <!-- соцсети как раньше -->
-    <div class="footer__social">
-      <a
-        v-for="(soc, i) in socialLinks"
-        :key="i"
-        :href="soc.href"
-        target="_blank"
-        rel="noopener"
-        :aria-label="soc.label"
-      >
-        <component :is="soc.icon" :size="22" />
-      </a>
+    <div class="footer__bottom">
+      © {{ year }} Handyman. All rights reserved.
     </div>
-  </div>
-  <div class="footer__bottom">
-    © {{ year }} Handyman. All rights reserved.
-  </div>
-</footer>
+  </footer>
 </template>
 
 <style scoped>
