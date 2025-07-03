@@ -5,6 +5,7 @@ import AppBottomBar from '@/components/AppBottomBar.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import AppointmentPopup from '@/components/AppointmentPopup.vue'
 import CookieConsent from '@/components/CookieConsent.vue'
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 const popupOpen = ref(false)
 function openPopup() { popupOpen.value = true }
@@ -20,6 +21,7 @@ provide('openAppointmentPopup', openPopup)
   <AppFooter />
   <CookieConsent />
   <AppointmentPopup v-model:isOpen="popupOpen" />
+  <SpeedInsights />
 </template>
 
 <style>
