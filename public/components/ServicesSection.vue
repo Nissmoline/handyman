@@ -1,37 +1,50 @@
 <script setup>
 import ServiceItem from './ServiceItem.vue'
-import { Wrench, SwatchBook, InspectionPanel, Hammer, BrickWall, House } from 'lucide-vue-next'
+import { RouterLink } from 'vue-router'
+import { Wrench, SwatchBook, InspectionPanel, Hammer, BrickWall, House, Plug, Droplets } from 'lucide-vue-next'
 
 const services = [
   {
-    icon: Wrench,
-    title: 'ΗΛΕΚΤΡΟΛΟΓΙΚΕΣ & ΥΔΡΑΥΛΙΚΕΣ ΕΡΓΑΣΙΕΣ',
-    description: 'Ηλεκτρικές εγκαταστάσεις, επισκευές σωληνώσεων, υδραυλικές βλάβες.'
+    icon: Plug,
+    title: 'ΗΛΕΚΤΡΟΛΟΓΙΚΕΣ ΕΡΓΑΣΙΕΣ',
+    description: 'Εγκαταστάσεις, βλάβες, πιστοποιητικά. Άμεση εξυπηρέτηση όλο το 24ωρο.',
+    link: '/electrician'
+  },
+  {
+    icon: Droplets,
+    title: 'ΥΔΡΑΥΛΙΚΕΣ ΕΡΓΑΣΙΕΣ',
+    description: 'Διαρροές, αποφράξεις, εγκαταστάσεις. Εξειδικευμένοι τεχνικοί στη διάθεσή σας.',
+    link: '/plumber'
   },
   {
     icon: InspectionPanel,
     title: 'ΥΠΗΡΕΣΙΕΣ ΠΛΑΚΑΚΙΩΝ',
-    description: 'Τοποθέτηση, επισκευή, αντικατάσταση πλακιδίων για κάθε χώρο.'
+    description: 'Τοποθέτηση, επισκευή, αντικατάσταση πλακιδίων για κάθε χώρο.',
+    link: '/tiling'
   },
   {
     icon: SwatchBook ,
     title: 'ΒΑΨΙΜΟ & ΧΡΩΜΑΤΙΣΜΟΙ',
-    description: 'Εσωτερικοί και εξωτερικοί χρωματισμοί, σοβάτισμα και τεχνοτροπίες.'
+    description: 'Εσωτερικοί και εξωτερικοί χρωματισμοί, σοβάτισμα και τεχνοτροπίες.',
+    link: '/painting'
   },
   {
     icon: Hammer,
     title: 'ΥΠΗΡΕΣΙΕΣ ΞΥΛΟΥΡΓΟΥ',
-    description: 'Κατασκευή και επισκευή επίπλων, ντουλαπιών, κουφωμάτων και ξυλοκατασκευών.'
+    description: 'Κατασκευή και επισκευή επίπλων, ντουλαπιών, κουφωμάτων και ξυλοκατασκευών.',
+    link: '/carpentry'
   },
   {
     icon: BrickWall,
     title: 'ΚΑΤΑΣΚΕΥΕΣ & ΑΝΑΚΑΙΝΙΣΕΙΣ',
-    description: 'Πλήρης ανακαίνιση χώρων από μηδενική βάση, οικοδομικές εργασίες μέχρι παράδοση κλειδιών στο χέρι.'
+    description: 'Πλήρης ανακαίνιση χώρων από μηδενική βάση, οικοδομικές εργασίες μέχρι παράδοση κλειδιών στο χέρι.',
+    link: '/renovations'
   },
   {
     icon: House,
     title: 'ΓΕΝΙΚΕΣ ΕΡΓΑΣΙΕΣ ΣΥΝΤΗΡΗΣΗΣ',
-    description: 'Συντήρηση κτιρίων, γενικές επισκευές και περιοδική συντήρηση εγκαταστάσεων.'
+    description: 'Συντήρηση κτιρίων, γενικές επισκευές και περιοδική συντήρηση εγκαταστάσεων.',
+    link: '/maintenance'
   }
 ]
 

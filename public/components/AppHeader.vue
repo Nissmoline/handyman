@@ -1,9 +1,19 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
-import { Menu as LucideMenu, X as LucideX } from "lucide-vue-next";
+import { Menu as LucideMenu, X as LucideX, ChevronDown } from "lucide-vue-next";
 import { Phone } from "lucide-vue-next";
 import logoUrl from "@/assets/logoico.svg";
+
+const services = [
+  { name: "Ηλεκτρολόγος", path: "/electrician" },
+  { name: "Υδραυλικός", path: "/plumber" },
+  { name: "Τοποθέτηση Πλακιδίων", path: "/tiling" },
+  { name: "Βαψίματα", path: "/painting" },
+  { name: "Ξυλουργικές Εργασίες", path: "/carpentry" },
+  { name: "Ανακαινίσεις", path: "/renovations" },
+  { name: "Συντηρήσεις", path: "/maintenance" },
+];
 
 // Массив соцсетей для мобильного меню
 const socialLinksMobile = [
@@ -39,15 +49,22 @@ const telLink = "tel:+306949214461";
 
 const menuOpen = ref(false);
 const isMobile = ref(window.innerWidth <= 1024);
+const servicesMenuOpen = ref(false);
 
 const onResize = () => (isMobile.value = window.innerWidth <= 1024);
-onMounted(() => window.addEventListener("resize", onResize));
+onMounted(() => {
+  window.addEventListener("resize", onResize);
+  onResize(); // Call on mount to set initial state
+});
 onUnmounted(() => window.removeEventListener("resize", onResize));
 
 const route = useRoute();
 const isActiveHash = (hash) => route.path === "/" && route.hash === hash;
 
-const closeMenu = () => (menuOpen.value = false);
+const closeMenu = () => {
+  menuOpen.value = false;
+  servicesMenuOpen.value = false; // Close submenu as well
+};
 </script>
 
 <template>
@@ -76,11 +93,18 @@ const closeMenu = () => (menuOpen.value = false);
           :class="{ active: isActiveHash('#about') }"
           >Σχετικά με εμάς</router-link
         >
-        <router-link
-          :to="{ path: '/', hash: '#services' }"
-          :class="{ active: isActiveHash('#services') }"
-          >Υπηρεσίες</router-link
-        >
+        <div class="dropdown" @mouseenter="servicesMenuOpen = true" @mouseleave="servicesMenuOpen = false">
+          <button class="dropdown-toggle">
+            Υπηρεσίες <ChevronDown size="16" />
+          </button>
+          <transition name="fade">
+            <div v-if="servicesMenuOpen" class="dropdown-menu">
+              <router-link v-for="service in services" :key="service.path" :to="service.path" class="dropdown-item">
+                {{ service.name }}
+              </router-link>
+            </div>
+          </transition>
+        </div>
         <router-link to="/offers" :class="{ active: route.path === '/offers' }"
           >Οι προσφορές μας</router-link
         >
@@ -129,12 +153,16 @@ const closeMenu = () => (menuOpen.value = false);
             @click="closeMenu"
             >Σχετικά με εμάς</router-link
           >
-          <router-link
-            :to="{ path: '/', hash: '#services' }"
-            class="drawer-link"
-            @click="closeMenu"
-            >Υπηρεσίες</router-link
-          >
+          <div class="drawer-link" @click="servicesMenuOpen = !servicesMenuOpen">
+            Υπηρεσίες <ChevronDown :class="{ 'rotate-180': servicesMenuOpen }" size="16" />
+          </div>
+          <transition name="fade">
+            <div v-if="servicesMenuOpen" class="mobile-submenu">
+              <router-link v-for="service in services" :key="service.path" :to="service.path" class="drawer-link submenu-item" @click="closeMenu">
+                {{ service.name }}
+              </router-link>
+            </div>
+          </transition>
           <router-link to="/offers" class="drawer-link" @click="closeMenu"
             >Οι προσφορές μας</router-link
           >
@@ -209,6 +237,7 @@ const closeMenu = () => (menuOpen.value = false);
 .nav-desktop {
   display: flex;
   gap: 32px;
+  align-items: center;
 }
 .nav-desktop a,
 .nav-desktop .active {
@@ -225,6 +254,48 @@ const closeMenu = () => (menuOpen.value = false);
 .nav-desktop .active {
   background: #eaf3f7;
   color: #0c385e;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1.11rem;
+  font-weight: 600;
+  color: #044877;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 8px 0;
+  min-width: 220px;
+  z-index: 10;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: #044877;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.dropdown-item:hover {
+  background: #eaf3f7;
 }
 
 .burger {
@@ -311,6 +382,20 @@ const closeMenu = () => (menuOpen.value = false);
   color: #0c385e;
 }
 
+.mobile-submenu {
+  padding-left: 20px;
+}
+
+.submenu-item {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
 /* --- Телефон на десктопе и планшете --- */
 .phone-link {
   display: flex;
@@ -381,6 +466,13 @@ const closeMenu = () => (menuOpen.value = false);
 .mobile-social-link:hover {
   color: #25d366; /* WhatsApp/Viber зеленый, либо свой акцент */
   transform: scale(1.13);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media (max-width: 1024px) {
