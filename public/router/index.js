@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import OffersView from '@/views/OffersView.vue';
 import ElectricianView from '@/views/ElectricianView.vue';
+import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
+import ElectricianReviews from '@/views/ElectricianReviews.vue';
 import PlumberView from '@/views/PlumberView.vue';
 import TilingView from '@/views/TilingView.vue';
 import PaintingView from '@/views/PaintingView.vue';
@@ -34,8 +36,26 @@ const routes = [
     name: 'electrician',
     component: ElectricianView,
     meta: {
-      title: 'Ηλεκτρολόγος Αθήνα 24/7 – Άμεση Εξυπηρέτηση | Handyman24.gr',
-      description: 'Έμπειρος ηλεκτρολόγος στην Αθήνα διαθέσιμος 24/7. Αναλαμβάνουμε ηλεκτρολογικές βλάβες, εγκαταστάσεις, πιστοποιητικά ΔΕΗ και επισκευές. Καλέστε μας για άμεση επέμβαση.'
+      title: 'Ηλεκτρολόγος Αθήνα 24/7 – Επείγων Ηλεκτρολόγος Κοντά Μου | Άμεση Εξυπηρέτηση Ηλεκτρολόγου',
+      description: 'Ηλεκτρολόγος Αθήνα 24/7 - Επείγων ηλεκτρολόγος κοντά μου. Αναζήτηση ηλεκτρολόγου, διαθέσιμος ηλεκτρολόγος 24/7, ηλεκτρολογικές κατασκευές. Άμεση εξυπηρέτηση ηλεκτρολόγου σε όλη την Αττική.'
+    }
+  },
+  {
+    path: '/electrician-faq',
+    name: 'electrician-faq',
+    component: ElectricianFAQ,
+    meta: {
+      title: 'Συχνές Ερωτήσεις - Ηλεκτρολόγος Αθήνα 24/7 | FAQ',
+      description: 'Απαντάμε στις πιο συχνές ερωτήσεις για ηλεκτρολόγο Αθήνα 24/7. Επείγων ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7, άμεση εξυπηρέτηση ηλεκτρολόγου.'
+    }
+  },
+  {
+    path: '/electrician-reviews',
+    name: 'electrician-reviews',
+    component: ElectricianReviews,
+    meta: {
+      title: 'Κριτικές Πελατών - Ηλεκτρολόγος Αθήνα 24/7 | Αξιολογήσεις',
+      description: 'Δείτε τις κριτικές πελατών για ηλεκτρολόγο Αθήνα 24/7. Επείγων ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7, άμεση εξυπηρέτηση ηλεκτρολόγου.'
     }
   },
   {

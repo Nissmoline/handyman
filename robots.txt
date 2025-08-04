@@ -1,5 +1,23 @@
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://handyman24.gr/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow all important pages
+Allow: /electrician
+Allow: /plumber
+Allow: /tiling
+Allow: /painting
+Allow: /carpentry
+Allow: /renovations
+Allow: /maintenance
+Allow: /offers
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
 
