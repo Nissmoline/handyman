@@ -1,0 +1,381 @@
+/* Mobile Enhancements - Final Polish */
+
+/* ===== TOUCH OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  /* Better touch targets */
+  button, a, input, textarea, select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improved touch feedback */
+  .btn:active,
+  .service-item:active,
+  .area-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Better scrolling */
+  .mobile-drawer {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  /* Hardware acceleration for animations */
+  .service-item,
+  .area-item,
+  .btn,
+  .mobile-drawer,
+  .popup-window {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Optimize images */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Reduce repaints */
+  .app-header {
+    transform: translateZ(0);
+  }
+  
+  /* Smooth animations */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+  /* Better focus indicators */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #1179bf;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* High contrast support */
+  @media (prefers-contrast: high) {
+    .service-item,
+    .area-item,
+    .btn {
+      border: 2px solid currentColor;
+    }
+    
+    .mobile-drawer,
+    .popup-window {
+      border: 2px solid currentColor;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ===== LANDSCAPE OPTIMIZATIONS ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-content {
+    padding: 12px 16px 20px;
+  }
+  
+  .hero-left h1 {
+    font-size: 1.4rem;
+  }
+  
+  .hero-left h1 span {
+    font-size: 1.2rem;
+  }
+  
+  .hero-desc {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  
+  .hero-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .hero-right img {
+    max-width: 200px;
+  }
+  
+  .hero-offer {
+    margin: -25px 16px 0;
+    padding: 14px 12px;
+  }
+  
+  .offer-main {
+    font-size: 1rem;
+  }
+  
+  .offer-title {
+    font-size: 0.9rem;
+  }
+  
+  .offer-note {
+    font-size: 0.8rem;
+  }
+  
+  .offer-icons {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== LOADING STATES ===== */
+@media (max-width: 768px) {
+  .loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite;
+  }
+  
+  @keyframes loading-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  .service-item.loading {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-item.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: loading-shimmer 1.5s infinite;
+  }
+}
+
+/* ===== ERROR STATES ===== */
+@media (max-width: 768px) {
+  .error-message {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c33;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+  
+  .success-message {
+    background: #efe;
+    border: 1px solid #cfc;
+    color: #3c3;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== NETWORK OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  /* Optimize for slow connections */
+  @media (prefers-reduced-data: reduce) {
+    .hero-right img {
+      display: none;
+    }
+    
+    .service-icon {
+      background: #eaf3f7;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #164087;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+/* ===== BATTERY OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  /* Reduce animations for better battery life */
+  @media (prefers-reduced-motion: reduce) {
+    .service-item:hover,
+    .area-item:hover,
+    .btn:hover {
+      transform: none;
+    }
+    
+    .mobile-drawer {
+      animation: none;
+    }
+    
+    .popup-window {
+      animation: none;
+    }
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .app-header,
+  .app-bottom-bar,
+  .mobile-drawer,
+  .popup-backdrop,
+  .burger {
+    display: none !important;
+  }
+  
+  .hero-root,
+  .services-section,
+  .about-root,
+  .serviced-areas {
+    page-break-inside: avoid;
+  }
+  
+  .service-item {
+    page-break-inside: avoid;
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+  
+  .btn {
+    border: 1px solid #000;
+    background: none !important;
+    color: #000 !important;
+  }
+  
+  .hero-offer {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000;
+  }
+}
+
+/* ===== DARK MODE ENHANCEMENTS ===== */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .service-item {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-title {
+    color: #e2e8f0;
+  }
+  
+  .service-description {
+    color: #a0aec0;
+  }
+  
+  .mobile-drawer {
+    background: linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
+  }
+  
+  .drawer-link {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .drawer-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .popup-window {
+    background: #1a202c;
+    color: #e2e8f0;
+  }
+  
+  .popup-window input,
+  .popup-window textarea {
+    background: #2d3748;
+    border: 1px solid #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .btn {
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .btn:hover {
+    background: #4a5568;
+  }
+}
+
+/* ===== FINAL POLISH ===== */
+@media (max-width: 768px) {
+  /* Ensure proper spacing */
+  section {
+    scroll-margin-top: 80px;
+  }
+  
+  /* Better visual hierarchy */
+  h1, h2, h3 {
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+  
+  /* Improved button states */
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Better form styling */
+  input:invalid,
+  textarea:invalid {
+    border-color: #e53e3e;
+  }
+  
+  input:valid,
+  textarea:valid {
+    border-color: #38a169;
+  }
+  
+  /* Smooth transitions */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+} 

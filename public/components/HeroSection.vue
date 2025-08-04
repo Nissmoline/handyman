@@ -1,8 +1,7 @@
 <script setup>
-import { ref } from 'vue'
-import AppointmentPopup from './AppointmentPopup.vue'
+import { ref, inject } from 'vue'
 
-const showPopup = ref(false)
+const openAppointmentPopup = inject('openAppointmentPopup')
 </script>
 
 <template>
@@ -22,7 +21,7 @@ const showPopup = ref(false)
 
       <div class="hero-buttons">
         <a href="tel:+306949214461" class="btn btn-outline">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
-        <button class="btn btn-outline" @click="showPopup = true">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
+        <button class="btn btn-outline" @click="openAppointmentPopup()">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
       </div>
     </div>
     <div class="hero-right">
@@ -46,10 +45,9 @@ const showPopup = ref(false)
       </div>
       <div class="offer-bottom">
         <!-- <span class="offer-strong">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</span> -->
-        <button class="btn btn-outline" @click="showPopup = true">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</button>
+        <button class="btn btn-outline" @click="openAppointmentPopup()">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</button>
       </div>
     </div>
-    <AppointmentPopup v-model:isOpen="showPopup" />
   </section>
 </template>
 
@@ -169,7 +167,7 @@ const showPopup = ref(false)
   color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
 }
 
@@ -217,6 +215,9 @@ const showPopup = ref(false)
   margin-top: 6px;
   font-weight: 400;
   letter-spacing: 0.01em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .offer-strong {
   font-weight: 700;
@@ -243,53 +244,214 @@ const showPopup = ref(false)
 @media (max-width: 750px) {
   .hero-content {
     flex-direction: column;
-    padding: 24px 2vw 42px 2vw;
-    align-items: center; 
+    padding: 20px 16px 40px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    min-height: auto;
   }
   .hero-left {
     padding-top: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-left h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hero-left h1 span {
+    font-size: 1.6rem;
+    margin-top: 0.2em;
+    text-align: center;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    text-align: center;
   }
   .hero-right {
     justify-content: center;
-    align-items: flex-end;
-    margin-top: 26px;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    min-width: auto;
   }
   .hero-right img {
-    max-width: 80vw;
+    max-width: 280px;
+    width: 100%;
     margin-left: 0;
     margin-bottom: 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
   .hero-offer {
-    margin-top: -85px;
-    padding: 13px 2vw 11px 2vw;
+    margin: -40px 16px 0;
+    padding: 20px 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #c1121c 0%, #a50f17 100%);
+    box-shadow: 0 8px 24px rgba(193, 18, 28, 0.3);
+    width: calc(100% - 32px);
+    max-width: 100%;
+    align-items: center;
   }
   .hero-buttons {
-    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 14px 18px;
     margin: 0 auto;
     width: 100%;
     padding-top: 10px;
   }
   .btn {
-    width: auto;
-    min-width: 140px;
-    padding: 12px 12px;
-    font-size: 1.04rem;
-    margin: 0;
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  .offer-main {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .offer-title {
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .offer-note {
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  .offer-icons {
+    font-size: 0.95rem;
+    margin: 12px 0;
+    text-align: center;
+  }
+  .offer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .offer-bottom .btn {
+    width: 100%;
+    margin-top: 8px;
   }
 }
 @media (max-width: 500px) {
   .hero-content {
-    padding: 12px 6vw 32px 6vw;
+    padding: 16px 12px 32px;
+    text-align: center;
+  }
+  .hero-left {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-left h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  .hero-left h1 span {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .btn {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-right img {
+    max-width: 240px;
   }
   .hero-offer {
-    margin: -60px auto 0 auto;
-    width: 90vw;
-    padding: 7vw 7vw 7vw 7vw;
+    margin: -30px 12px 0;
+    padding: 16px 12px;
     border-radius: 12px;
+    width: calc(100% - 24px);
+    align-items: center;
   }
+  .offer-main {
+    text-align: center;
+  }
+  .offer-title {
+    text-align: center;
+  }
+  .offer-icons {
+    text-align: center;
+  }
+  .offer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
 
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 12px 8px 24px;
+    text-align: center;
+  }
+  .hero-left {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-left h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  .hero-left h1 span {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .hero-desc {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-right img {
+    max-width: 200px;
+  }
+  .hero-offer {
+    margin: -25px 8px 0;
+    padding: 14px 10px;
+    width: calc(100% - 16px);
+    align-items: center;
+  }
+  .offer-main {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .offer-title {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .offer-note {
+    font-size: 0.8rem;
+  }
+  .offer-icons {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .offer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>

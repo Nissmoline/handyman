@@ -9,8 +9,14 @@ import CookieConsent from '@/components/CookieConsent.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 const popupOpen = ref(false)
-function openPopup() { popupOpen.value = true }
-function closePopup() { popupOpen.value = false }
+function openPopup() { 
+  popupOpen.value = true 
+  console.log('App: popupOpen set to true')
+}
+function closePopup() { 
+  popupOpen.value = false 
+  console.log('App: popupOpen set to false')
+}
 
 provide('openAppointmentPopup', openPopup)
 
@@ -18,7 +24,7 @@ provide('openAppointmentPopup', openPopup)
 const route = useRoute();
 
 const defaultTitle = 'Ηλεκτρολόγος & Υδραυλικός 24/7 Αθήνα – Handyman24';
-const defaultDescription = '24ωρες ηλεκτρολογικές & υδραυλικές υπηρεσίες σε Αθήνα-Πειραιά. Πιστοποιημένοι τεχνικοί для βλάβες, εγκαταστάσεις, επισκευές.';
+const defaultDescription = '24ωρες ηλεκτρολογικές & υδραυλικές υπηρεσίες σε Αθήνα-Πειραιά. Πιστοποιημένοι τεχνικοί για βλάβες, εγκαταστάσεις, επισκευές.';
 const defaultOgImage = 'https://handyman24.gr/metaimg.jpg';
 
 const seoMeta = {
@@ -184,7 +190,7 @@ watch(
 <template>
   <AppHeader @contact="openPopup" />
   <router-view />
-  <AppBottomBar @contact="openPopup" />
+  <AppBottomBar @contact="openPopup" :popup-open="popupOpen" />
   <AppFooter />
   <CookieConsent />
   <AppointmentPopup v-model:isOpen="popupOpen" />

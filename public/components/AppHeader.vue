@@ -50,13 +50,35 @@ const telLink = "tel:+306949214461";
 const menuOpen = ref(false);
 const isMobile = ref(window.innerWidth <= 1024);
 const servicesMenuOpen = ref(false);
+const isHeaderVisible = ref(true);
+const lastScrollY = ref(0);
 
 const onResize = () => (isMobile.value = window.innerWidth <= 1024);
+
+const handleScroll = () => {
+  const currentScrollY = window.scrollY;
+  
+  // Показываем header при прокрутке вверх или в самом верху
+  if (currentScrollY <= 100 || currentScrollY < lastScrollY.value) {
+    isHeaderVisible.value = true;
+  } else {
+    // Скрываем header при прокрутке вниз (но не в самом верху)
+    isHeaderVisible.value = false;
+  }
+  
+  lastScrollY.value = currentScrollY;
+};
+
 onMounted(() => {
   window.addEventListener("resize", onResize);
+  window.addEventListener("scroll", handleScroll);
   onResize(); // Call on mount to set initial state
 });
-onUnmounted(() => window.removeEventListener("resize", onResize));
+
+onUnmounted(() => {
+  window.removeEventListener("resize", onResize);
+  window.removeEventListener("scroll", handleScroll);
+});
 
 const route = useRoute();
 const isActiveHash = (hash) => route.path === "/" && route.hash === hash;
@@ -68,7 +90,7 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <header class="app-header">
+  <header class="app-header" :class="{ 'header-hidden': !isHeaderVisible }">
     <div class="header-row">
       <!-- Logo -->
       <router-link
@@ -200,17 +222,27 @@ const closeMenu = () => {
 
 <style scoped>
 .app-header {
-  position: sticky;
-  top: 0;
+  position: fixed !important;
+  top: 0 !important;
   left: 0;
-  z-index: 3000;
+  z-index: 3000 !important;
   width: 100%;
   min-height: 66px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 16px rgba(19, 40, 56, 0.07);
   padding: 0 48px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 .header-row {
@@ -480,7 +512,7 @@ const closeMenu = () => {
     display: none;
   }
   .app-header {
-    padding: 0 10px;
+    padding: 0 16px;
   }
   .logo-link {
     height: 54px;
@@ -495,19 +527,51 @@ const closeMenu = () => {
   }
   .phone-link {
     margin-left: auto;
-    padding: 7px 9px 7px 10px;
-    font-size: 1.06rem;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f4fcff 0%, #e3f2fc 100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 12px;
+    min-height: 60px;
+  }
+  
+  .header-row {
+    min-height: 60px;
+  }
+  
+  .logo-link {
+    height: 50px;
+  }
+  
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .phone-link {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+  
+  .burger {
+    padding: 8px;
+    border-radius: 8px;
   }
 }
 
 @media (max-width: 400px) {
   .mobile-drawer {
-    max-width: 99vw;
-    padding: 28px 5vw 18px;
+    max-width: 95vw;
+    padding: 24px 20px 20px;
   }
   .phone-link-drawer {
-    font-size: 0.99rem;
-    padding: 10px 3px;
+    font-size: 0.95rem;
+    padding: 12px 16px;
   }
 }
 </style>

@@ -62,5 +62,65 @@ p {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.areas-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .serviced-areas {
+    padding: 2rem 1rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .areas-list {
+    gap: 12px;
+  }
+  
+  .areas-list li {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .serviced-areas {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .areas-list {
+    gap: 8px;
+  }
+  
+  .areas-list li {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
 }
 </style>

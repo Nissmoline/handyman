@@ -246,58 +246,106 @@ function goToHash(id: string) {
   padding-top: 14px;
 }
 
-@media (max-width: 900px) {
-  .footer__container {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding: 0 20px;
-  }
-  .footer__nav {
-    gap: 26px;
-    margin-bottom: 8px;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .footer {
-    padding: 30px 0 8px 0;
+    padding: 2rem 0 1rem 0;
   }
+  
   .footer__container {
     flex-direction: column;
     align-items: center;
-    gap: 26px;
-    padding: 10px 10px;
-    max-width: 100%;
+    gap: 1.5rem;
+    padding: 0 1rem;
   }
+  
   .footer__brand {
     justify-content: center;
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
+  
   .footer__logo {
-    width: 92px !important;
+    width: 100px !important;
     height: auto !important;
-    margin-bottom: 6px;
   }
+  
   .footer__nav {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 1rem;
     width: 100%;
-    min-width: 0;
-    margin-bottom: 2px;
+    text-align: center;
   }
+  
   .footer__nav-group {
     align-items: center;
-    gap: 6px;
-    margin-bottom: 12px;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
   }
+  
+  .footer__nav-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer__nav-group a,
+  .footer__nav-group button {
+    font-size: 0.95rem;
+    padding: 0.25rem 0;
+  }
+  
   .footer__social {
     justify-content: center;
     width: 100%;
-    gap: 22px;
-    margin: 10px 0 0 0;
+    gap: 1.5rem;
+    margin: 0.5rem 0 0 0;
+  }
+  
+  .footer__social a {
+    font-size: 1.3em;
+  }
+  
+  .footer__bottom {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.5rem 0 0.75rem 0;
+  }
+  
+  .footer__container {
+    padding: 0 0.75rem;
+    gap: 1rem;
+  }
+  
+  .footer__logo {
+    width: 90px !important;
+  }
+  
+  .footer__nav-title {
+    font-size: 1rem;
+  }
+  
+  .footer__nav-group a,
+  .footer__nav-group button {
+    font-size: 0.9rem;
+  }
+  
+  .footer__social {
+    gap: 1.25rem;
+  }
+  
+  .footer__social a {
+    font-size: 1.2em;
+  }
+  
+  .footer__bottom {
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
   }
 }
 </style>

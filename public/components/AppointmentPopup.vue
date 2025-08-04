@@ -331,6 +331,90 @@ const submitForm = async () => {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .popup-backdrop {
+    padding: 16px;
+  }
+  
+  .popup-window {
+    width: 100%;
+    max-width: 400px;
+    padding: 24px 20px;
+    border-radius: 16px;
+    font-size: 1rem;
+  }
+  
+  .popup-window h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  .popup-window label {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  
+  .popup-window input {
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #c9d6e1;
+  }
+  
+  .popup-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .popup-actions .btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  
+  .success-check {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-backdrop {
+    padding: 12px;
+  }
+  
+  .popup-window {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+  
+  .popup-window h2 {
+    font-size: 1.3rem;
+  }
+  
+  .popup-window label {
+    font-size: 0.9rem;
+  }
+  
+  .popup-window input {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+  
+  .popup-actions .btn {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .success-check {
+    width: 70px;
+    height: 70px;
+  }
+}
+
 @media (max-width: 425px) {
   .popup-actions {
     flex-direction: column;
@@ -341,6 +425,7 @@ const submitForm = async () => {
     width: 100%;
   }
 }
+
 @media (max-width: 400px) {
   .popup-window {
     width: 100vw;

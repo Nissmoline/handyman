@@ -1,0 +1,480 @@
+/* Small Screen Optimizations (320px - 480px) */
+
+@media (max-width: 480px) {
+  /* Header optimizations */
+  .app-header {
+    padding: 0 8px;
+    min-height: 56px;
+    /* Fixed positioning is handled in component styles */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  /* Add padding for fixed header on small screens */
+  body {
+    padding-top: 56px;
+  }
+  
+  .header-row {
+    min-height: 56px;
+  }
+  
+  .logo-link {
+    height: 48px;
+  }
+  
+  .logo {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .phone-link {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+  
+  /* Hero section optimizations */
+  .hero-content {
+    padding: 12px 8px 24px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-left {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .hero-left h1 {
+    font-size: 1.5rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+  
+  .hero-left h1 span {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .hero-desc {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .hero-buttons {
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+  
+  .hero-right img {
+    max-width: 180px;
+  }
+  
+  .hero-offer {
+    margin: -20px 8px 0;
+    padding: 12px 10px;
+    align-items: center;
+  }
+  
+  .offer-main {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .offer-title {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  
+  .offer-note {
+    font-size: 0.75rem;
+  }
+  
+  .offer-icons {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  .offer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Services optimizations */
+  .services-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .services-heading {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .service-item {
+    padding: 12px 10px;
+  }
+  
+  .service-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .service-title {
+    font-size: 0.9rem;
+  }
+  
+  .service-description {
+    font-size: 0.8rem;
+  }
+  
+  /* About section optimizations */
+  .about-container {
+    padding: 0 8px;
+  }
+  
+  .about-title {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  
+  .about-content {
+    font-size: 0.85rem;
+  }
+  
+  .about-list {
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  
+  /* Serviced areas optimizations */
+  .serviced-areas {
+    padding: 1rem 0.5rem;
+  }
+  
+  .serviced-areas h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .serviced-areas p {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .areas-list {
+    gap: 6px;
+  }
+  
+  .areas-list li {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+  
+  /* Footer optimizations */
+  .footer {
+    padding: 1rem 0 0.5rem 0;
+  }
+  
+  .footer__container {
+    padding: 0 0.5rem;
+    gap: 0.75rem;
+  }
+  
+  .footer__logo {
+    width: 80px !important;
+  }
+  
+  .footer__nav-title {
+    font-size: 0.9rem;
+  }
+  
+  .footer__nav-group a,
+  .footer__nav-group button {
+    font-size: 0.8rem;
+  }
+  
+  .footer__social {
+    gap: 1rem;
+  }
+  
+  .footer__social a {
+    font-size: 1.1em;
+  }
+  
+  .footer__bottom {
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+  }
+  
+  /* Bottom bar optimizations */
+  .bottom-bar {
+    height: 56px;
+    padding: 0 8px;
+  }
+  
+  .bar-btn {
+    font-size: 1.2rem;
+  }
+  
+  /* Popup optimizations */
+  .popup-backdrop {
+    padding: 8px;
+  }
+  
+  .popup-window {
+    padding: 16px 12px;
+    border-radius: 10px;
+  }
+  
+  .popup-window h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  
+  .popup-window label {
+    font-size: 0.85rem;
+  }
+  
+  .popup-window input {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .popup-actions .btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .success-check {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Extra small screens (320px - 360px) */
+@media (max-width: 360px) {
+  .hero-left h1 {
+    font-size: 1.3rem;
+  }
+  
+  .hero-left h1 span {
+    font-size: 1.1rem;
+  }
+  
+  .hero-desc {
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+  
+  .hero-right img {
+    max-width: 160px;
+  }
+  
+  .services-heading {
+    font-size: 1.2rem;
+  }
+  
+  .service-item {
+    padding: 10px 8px;
+  }
+  
+  .service-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .service-title {
+    font-size: 0.85rem;
+  }
+  
+  .service-description {
+    font-size: 0.75rem;
+  }
+  
+  .about-title {
+    font-size: 1.2rem;
+  }
+  
+  .about-content {
+    font-size: 0.8rem;
+  }
+  
+  .serviced-areas h2 {
+    font-size: 1.2rem;
+  }
+  
+  .serviced-areas p {
+    font-size: 0.8rem;
+  }
+  
+  .areas-list li {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .footer__logo {
+    width: 70px !important;
+  }
+  
+  .footer__nav-title {
+    font-size: 0.85rem;
+  }
+  
+  .footer__nav-group a,
+  .footer__nav-group button {
+    font-size: 0.75rem;
+  }
+  
+  .footer__social a {
+    font-size: 1em;
+  }
+  
+  .footer__bottom {
+    font-size: 0.75rem;
+  }
+  
+  .bottom-bar {
+    height: 52px;
+  }
+  
+  .bar-btn {
+    font-size: 1.1rem;
+  }
+  
+  .popup-window h2 {
+    font-size: 1.1rem;
+  }
+  
+  .popup-window label {
+    font-size: 0.8rem;
+  }
+  
+  .popup-window input {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .popup-actions .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .success-check {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Landscape orientation for small screens */
+@media (max-width: 480px) and (orientation: landscape) {
+  .hero-content {
+    padding: 8px 8px 16px;
+  }
+  
+  .hero-left h1 {
+    font-size: 1.2rem;
+  }
+  
+  .hero-left h1 span {
+    font-size: 1rem;
+  }
+  
+  .hero-desc {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  
+  .hero-buttons {
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .hero-right img {
+    max-width: 140px;
+  }
+  
+  .hero-offer {
+    margin: -15px 8px 0;
+    padding: 10px 8px;
+    align-items: center;
+  }
+  
+  .offer-main {
+    font-size: 0.8rem;
+  }
+  
+  .offer-title {
+    font-size: 0.75rem;
+  }
+  
+  .offer-note {
+    font-size: 0.7rem;
+  }
+  
+  .offer-icons {
+    font-size: 0.75rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .service-item,
+  .area-item,
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .mobile-drawer {
+    border: 2px solid currentColor;
+  }
+  
+  .popup-window {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Print styles for mobile */
+@media print {
+  .app-header,
+  .app-bottom-bar,
+  .mobile-drawer,
+  .popup-backdrop {
+    display: none !important;
+  }
+  
+  .hero-root,
+  .services-section,
+  .about-root,
+  .serviced-areas {
+    page-break-inside: avoid;
+  }
+  
+  .service-item {
+    page-break-inside: avoid;
+    border: 1px solid #000;
+  }
+} 
