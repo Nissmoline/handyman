@@ -2,22 +2,22 @@
   <div class="electrician-links">
     <h2>🔗 Σχετικές Σελίδες - Ηλεκτρολόγος Αθήνα</h2>
     <div class="links-grid">
-      <a href="/electrician" class="link-card">
+      <router-link to="/electrician" class="link-card">
         <h3>Ηλεκτρολόγος Αθήνα 24/7</h3>
         <p>Επείγων ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7</p>
-      </a>
-      <a href="/electrician-faq" class="link-card">
+      </router-link>
+      <router-link to="/electrician-faq" class="link-card">
         <h3>Συχνές Ερωτήσεις</h3>
         <p>FAQ για ηλεκτρολόγο Αθήνα, άμεση εξυπηρέτηση ηλεκτρολόγου</p>
-      </a>
-      <a href="/electrician-reviews" class="link-card">
+      </router-link>
+      <router-link to="/electrician-reviews" class="link-card">
         <h3>Κριτικές Πελατών</h3>
         <p>Αξιολογήσεις για ηλεκτρολόγο Αθήνα, επείγων ηλεκτρολόγος κοντά μου</p>
-      </a>
-      <a href="/offers" class="link-card">
+      </router-link>
+      <router-link to="/offers" class="link-card">
         <h3>Προσφορές Ηλεκτρολόγου</h3>
         <p>Ειδικές προσφορές για ηλεκτρολογικές εργασίες</p>
-      </a>
+      </router-link>
       <!-- <a href="/plumber" class="link-card">
         <h3>Υδραυλικός Αθήνα</h3>
         <p>Συμπληρωματικές υπηρεσίες υδραυλικού</p>
@@ -57,6 +57,7 @@ h2 {
   border: 2px solid transparent;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: block;
 }
 .link-card:hover {
   border-color: #044877;
