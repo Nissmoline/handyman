@@ -1,106 +1,97 @@
 <template>
-  <div class="reviews-page">
-    <div class="reviews-container">
-      <h1>Κριτικές Πελατών - Ηλεκτρολόγος Αθήνα 24/7</h1>
+  <div class="service-page">
+    <div class="service-container">
+      <h1>Κριτικές Πελατών - Ηλεκτρολόγος Αθήνα 24/7 | Αξιολογήσεις</h1>
       
-      <div class="reviews-intro">
+      <div class="service-intro">
         <p>
           Δείτε τι λένε οι πελάτες μας για τις <strong>ηλεκτρολογικές υπηρεσίες</strong> μας. 
-          Ως <strong>επείγων ηλεκτρολόγος κοντά μου</strong>, είμαστε περήφανοι για την εμπιστοσύνη των πελατών μας.
+          Ως <strong>επείγον ηλεκτρολόγος κοντά μου</strong>, είμαστε περήφανοι για την εμπιστοσύνη των πελατών μας.
         </p>
       </div>
-
+      
       <div class="reviews-section">
-        <h2>⭐ Κριτικές για Ηλεκτρολόγο Αθήνα</h2>
+        <div class="review-item">
+          <div class="review-header">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-author">Μαρία Κ.</div>
+            <div class="review-date">2 ημέρες πριν</div>
+          </div>
+          <div class="review-content">
+            <p>
+              "Αναζήτηση ηλεκτρολόγου τελείωσε εδώ! Επαγγελματικές <strong>ηλεκτρολογικές κατασκευές</strong> 
+              και διαφανείς τιμές. Ο <strong>επείγον ηλεκτρολόγος</strong> μας έλυσε το πρόβλημα σε λίγες ώρες."
+            </p>
+          </div>
+        </div>
         
         <div class="review-item">
           <div class="review-header">
-            <h3>Μαρία Κ. - Κέντρο Αθήνας</h3>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-author">Γιώργος Π.</div>
+            <div class="review-date">1 εβδομάδα πριν</div>
           </div>
-          <p>
-            "Εξαιρετικός <strong>ηλεκτρολόγος Αθήνα</strong>! Άμεση εξυπηρέτηση και επαγγελματική δουλειά. 
-            Ο <strong>διαθέσιμος ηλεκτρολόγος 24/7</strong> μας έσωσε από επείγουσα βλάβη. Πολύ ευχαριστημένη!"
-          </p>
+          <div class="review-content">
+            <p>
+              "Διαθέσιμος ηλεκτρολόγος 24/7 που πραγματικά αξίζει! Επείγον ηλεκτρολόγος κοντά μου 
+              με άμεση εξυπηρέτηση ηλεκτρολόγου. Πολύ ευχαριστημένη από την ποιότητα της δουλειάς."
+            </p>
+          </div>
         </div>
-
+        
         <div class="review-item">
           <div class="review-header">
-            <h3>Γιώργος Π. - Πειραιάς</h3>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-author">Ελένη Μ.</div>
+            <div class="review-date">2 εβδομάδες πριν</div>
           </div>
-          <p>
-            "Ο καλύτερος <strong>ηλεκτρολόγος κοντά μου</strong>! Φτάνει γρήγορα και κάνει άψογη δουλειά. 
-            Η <strong>άμεση εξυπηρέτηση ηλεκτρολόγου</strong> είναι πραγματικά 24/7. Συνιστώ ανεπιφύλακτα!"
-          </p>
+          <div class="review-content">
+            <p>
+              "Άψογη εξυπηρέτηση! Ο <strong>ηλεκτρολόγος κοντά</strong> μας έλυσε το πρόβλημα 
+              με το ηλεκτρολογικό πίνακα σε λιγότερο από μία ώρα. Σίγουρα θα τους καλέσω ξανά."
+            </p>
+          </div>
         </div>
-
+        
         <div class="review-item">
           <div class="review-header">
-            <h3>Ελένη Μ. - Ανατολική Αττική</h3>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-author">Νίκος Α.</div>
+            <div class="review-date">3 εβδομάδες πριν</div>
           </div>
-          <p>
-            "Αναζήτηση ηλεκτρολόγου τελείωσε εδώ! Επαγγελματικές <strong>ηλεκτρολογικές κατασκευές</strong> 
-            και διαφανείς τιμές. Ο <strong>επείγων ηλεκτρολόγος</strong> μας έλυσε το πρόβλημα σε λίγες ώρες."
-          </p>
+          <div class="review-content">
+            <p>
+              "Εξαιρετική εμπειρία! Οι <strong>ηλεκτρολογικές εργασίες</strong> έγιναν με ποιότητα 
+              και σε σύντομο χρόνο. Προτείνω ανεπιφύλακτα για κάθε ηλεκτρολογική ανάγκη."
+            </p>
+          </div>
         </div>
-
+        
         <div class="review-item">
           <div class="review-header">
-            <h3>Νίκος Α. - Δυτική Αττική</h3>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-author">Αννα Δ.</div>
+            <div class="review-date">1 μήνα πριν</div>
           </div>
-          <p>
-            "Εμπειροι τεχνικοί με χρόνια εμπειρία. Η <strong>αναζήτηση ηλεκτρολόγου</strong> μου οδήγησε 
-            στον καλύτερο <strong>ηλεκτρολόγο κοντά</strong>. Εγγύηση ποιότητας και άμεση εξυπηρέτηση."
-          </p>
-        </div>
-
-        <div class="review-item">
-          <div class="review-header">
-            <h3>Αννα Κ. - Περιφέρεια Αττικής</h3>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-          </div>
-          <p>
-            "Διαθέσιμος ηλεκτρολόγος 24/7 που πραγματικά αξίζει! Επείγων ηλεκτρολόγος κοντά μου 
-            με άμεση εξυπηρέτηση ηλεκτρολόγου. Πολύ ευχαριστημένη από την ποιότητα της δουλειάς."
-          </p>
-        </div>
-      </div>
-
-      <div class="stats-section">
-        <h2>📊 Στατιστικά Εξυπηρέτησης</h2>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h3>4.8/5</h3>
-            <p>Μέση Βαθμολογία</p>
-          </div>
-          <div class="stat-item">
-            <h3>127+</h3>
-            <p>Ευχαριστημένοι Πελάτες</p>
-          </div>
-          <div class="stat-item">
-            <h3>30-60'</h3>
-            <p>Χρόνος Άφιξης</p>
-          </div>
-          <div class="stat-item">
-            <h3>24/7</h3>
-            <p>Διαθεσιμότητα</p>
+          <div class="review-content">
+            <p>
+              "Πολύ επαγγελματική ομάδα! Ο <strong>διαθέσιμος ηλεκτρολόγος 24/7</strong> 
+              μας έλυσε επείγουσα βλάβη σε λίγες ώρες. Τιμές και ποιότητα υπερβολικές!"
+            </p>
           </div>
         </div>
       </div>
-
+      
       <div class="contact-section">
         <h2>📞 Καλέστε τον Ηλεκτρολόγο μας</h2>
         <p>
-          Χρειάζεστε <strong>επείγων ηλεκτρολόγος κοντά μου</strong>; Καλέστε μας άμεσα για 
+          Χρειάζεστε <strong>επείγον ηλεκτρολόγος κοντά μου</strong>; Καλέστε μας άμεσα για 
           <strong>άμεση εξυπηρέτηση ηλεκτρολόγου</strong> σε όλη την Αθήνα.
         </p>
         
         <div class="contact-buttons">
-          <a href="tel:+306949214461" class="btn btn-primary">Καλέστε Τώρα</a>
-          <a href="https://wa.me/306949214461" class="btn btn-secondary">WhatsApp</a>
+          <a href="tel:+306949214461" class="btn btn-primary">Καλέστε Ηλεκτρολόγο Άμεσα</a>
+          <a href="https://wa.me/306949214461" class="btn btn-secondary">WhatsApp Ηλεκτρολόγος</a>
         </div>
       </div>
     </div>
@@ -111,142 +102,100 @@
 </script>
 
 <style scoped>
-.reviews-page {
-  padding: 40px 20px;
-  background: #f8fafb;
-}
-.reviews-container {
-  max-width: 900px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-h1 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #044877;
-  margin-bottom: 20px;
-  text-align: center;
-}
-h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #164087;
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 10px;
-}
-p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #333;
-  margin-bottom: 15px;
-}
-.reviews-intro {
-  text-align: center;
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
+@import '@/assets/service-pages.css';
+
 .reviews-section {
-  margin-bottom: 40px;
+  margin: 40px 0;
 }
+
 .review-item {
+  margin-bottom: 30px;
+  padding: 25px;
   background: #f8f9fa;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 15px;
+  border-radius: 12px;
   border-left: 4px solid #044877;
 }
+
 .review-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-}
-.stars {
-  font-size: 1.2rem;
-  color: #ffc107;
-}
-.stats-section {
-  background: #e8f5e8;
-  border-radius: 8px;
-  padding: 25px;
-  margin: 30px 0;
-}
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.stat-item {
-  text-align: center;
-  padding: 15px;
-  background: #fff;
-  border-radius: 8px;
-}
-.stat-item h3 {
-  font-size: 2rem;
-  color: #044877;
-  margin-bottom: 5px;
-}
-.stat-item p {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 0;
-}
-.contact-section {
-  background: #e8f5e8;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  margin-top: 30px;
-}
-.contact-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
+  margin-bottom: 15px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  gap: 10px;
 }
-.btn {
-  display: inline-block;
-  padding: 15px 30px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 700;
-  transition: background-color 0.3s;
+
+.review-stars {
+  font-size: 1.2rem;
 }
-.btn-primary {
-  background-color: #e92127;
-  color: #fff;
+
+.review-author {
+  font-weight: 600;
+  color: #044877;
 }
-.btn-primary:hover {
-  background-color: #c1121c;
+
+.review-date {
+  color: #666;
+  font-size: 0.9rem;
 }
-.btn-secondary {
-  background-color: #25d366;
-  color: #fff;
+
+.review-content p {
+  margin-bottom: 0;
+  line-height: 1.5;
+  font-style: italic;
 }
-.btn-secondary:hover {
-  background-color: #128c7e;
+
+.contact-section {
+  margin-top: 40px;
+  padding: 30px;
+  background: #e8f5e8;
+  border-radius: 12px;
+  border-left: 4px solid #28a745;
+  text-align: center;
 }
+
+.contact-section h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.contact-section p {
+  margin-bottom: 25px;
+}
+
 @media (max-width: 768px) {
+  .review-item {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
   .review-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  
+  .contact-section {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-item {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .review-header {
+    gap: 6px;
+  }
+  
+  .review-stars {
+    font-size: 1rem;
+  }
+  
+  .contact-section {
+    padding: 20px 15px;
   }
 }
 </style> 

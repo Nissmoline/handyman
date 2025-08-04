@@ -4,7 +4,7 @@
     <div class="links-grid">
       <router-link to="/electrician" class="link-card">
         <h3>Ηλεκτρολόγος Αθήνα 24/7</h3>
-        <p>Επείγων ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7</p>
+        <p>Επείγον ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7</p>
       </router-link>
       <router-link to="/electrician-faq" class="link-card">
         <h3>Συχνές Ερωτήσεις</h3>
@@ -12,7 +12,7 @@
       </router-link>
       <router-link to="/electrician-reviews" class="link-card">
         <h3>Κριτικές Πελατών</h3>
-        <p>Αξιολογήσεις για ηλεκτρολόγο Αθήνα, επείγων ηλεκτρολόγος κοντά μου</p>
+        <p>Αξιολογήσεις για ηλεκτρολόγο Αθήνα, επείγον ηλεκτρολόγος κοντά μου</p>
       </router-link>
       <router-link to="/offers" class="link-card">
         <h3>Προσφορές Ηλεκτρολόγου</h3>

@@ -10,10 +10,10 @@ const openAppointmentPopup = inject('openAppointmentPopup')
   <div class="hero-content">
     <div class="hero-left">
       <h1>
-        Ηλεκτρολόγος Αθήνα 24/7<br /><span>Επείγων Ηλεκτρολόγος Κοντά Μου</span>
+        Ηλεκτρολόγος Αθήνα 24/7<br /><span>Επείγον Ηλεκτρολόγος Κοντά Μου</span>
       </h1>
       <div class="hero-desc">
-        <strong>Ηλεκτρολόγος Αθήνα 24/7</strong> - Επείγων ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7.<br />
+        <strong>Ηλεκτρολόγος Αθήνα 24/7</strong> - Επείγον ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7.<br />
         Αναζήτηση ηλεκτρολόγου, ηλεκτρολογικές κατασκευές, άμεση εξυπηρέτηση ηλεκτρολόγου.<br /><br />
         • Εμπειρία – Συνέπεια – Άμεση εξυπηρέτηση ηλεκτρολόγου<br />
         • Μικρές και μεγάλες εργασίες χωρίς καθυστερήσεις
@@ -288,7 +288,7 @@ const openAppointmentPopup = inject('openAppointmentPopup')
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
   .hero-offer {
-    margin: -40px 16px 0;
+    margin: -50px 16px 0;
     padding: 20px 16px;
     border-radius: 12px;
     background: linear-gradient(135deg, #c1121c 0%, #a50f17 100%);
