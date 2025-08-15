@@ -112,7 +112,7 @@ const submitForm = async () => {
             Σύντομα θα επικοινωνήσουμε μαζί σας για να επιβεβαιώσουμε το
             ραντεβού.
           </p>
-          <button class="btn btn-outline" @click="isOpen = false">
+          <button class="btn btn-outline" @click="isOpen = false" aria-label="Κλείσιμο">
             Κλείσιμο
           </button>
         </div>
@@ -160,6 +160,7 @@ const submitForm = async () => {
               class="btn btn-outline"
               @click="isOpen = false"
               :disabled="loading"
+              aria-label="Ακύρωση"
             >
               Ακύρωση
             </button>

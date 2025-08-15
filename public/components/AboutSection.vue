@@ -29,6 +29,7 @@ const expanded = ref(false);
             class="btn btn-outline"
             @click="expanded = true"
             type="button"
+            aria-label="Διαβάστε περισσότερα"
           >
             Διαβάστε περισσότερα
           </button>
@@ -116,6 +117,7 @@ const expanded = ref(false);
                 class="btn btn-outline btn-collapse"
                 @click="expanded = false"
                 type="button"
+                aria-label="Σύμπτυξη περιεχομένου"
               >
                 Σύμπτυξη
               </button>

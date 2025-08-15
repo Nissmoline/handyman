@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import logoUrl from "@/assets/logo.svg";
 import { useRoute, useRouter } from "vue-router";
-import { inject } from "vue";
+import { inject, ref } from "vue";
+import CookieSettings from './CookieSettings.vue';
 
 const router = useRouter();
 const route = useRoute();
 const openAppointmentPopup = inject("openAppointmentPopup") as () => void;
+const cookieSettingsRef = ref(null);
 
 const linkGroups = [
   {
@@ -19,10 +21,12 @@ const linkGroups = [
     title: "Πληροφορίες",
     links: [
       { label: "Επικοινωνήστε μαζί μας", action: "appointment" },
-      { label: "FAQ", hash: "#faq" },
+      { label: "FAQ", route: "/electrician-faq" },
+      { label: "Πολιτική Απορρήτου", route: "/privacy-policy" },
+      { label: "Ρυθμίσεις Cookies", action: "cookies" },
     ],
   },
-];
+] as const;
 
 // Массив соцсетей через FontAwesome
 const socialLinks = [
@@ -73,7 +77,14 @@ function goToHash(id: string) {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
-    window.location.hash = `#${id}`;
+    // Обновляем hash без перезагрузки страницы
+    history.replaceState(null, "", `#${id}`);
+  }
+}
+
+function openCookieSettings() {
+  if (cookieSettingsRef.value) {
+    cookieSettingsRef.value.openSettings();
   }
 }
 </script>
@@ -102,15 +113,28 @@ function goToHash(id: string) {
           <li class="footer__nav-title">{{ group.title }}</li>
           <li v-for="(link, li) in group.links" :key="li">
             <a
-              v-if="link.hash"
+              v-if="'hash' in link"
               :href="link.hash"
               @click.prevent="goToHash(link.hash.slice(1))"
               >{{ link.label }}</a
             >
+            <router-link
+              v-else-if="'route' in link"
+              :to="link.route"
+            >
+              {{ link.label }}
+            </router-link>
             <button
-              v-else-if="link.action === 'appointment'"
+              v-else-if="'action' in link && link.action === 'appointment'"
               type="button"
               @click.prevent="openAppointmentPopup"
+            >
+              {{ link.label }}
+            </button>
+            <button
+              v-else-if="'action' in link && link.action === 'cookies'"
+              type="button"
+              @click.prevent="openCookieSettings"
             >
               {{ link.label }}
             </button>
@@ -135,6 +159,8 @@ function goToHash(id: string) {
       © {{ year }} Handyman. All rights reserved.
     </div>
   </footer>
+  
+  <CookieSettings ref="cookieSettingsRef" />
 </template>
 
 <style scoped>

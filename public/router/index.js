@@ -5,6 +5,7 @@ import OffersView from '@/views/OffersView.vue';
 import ElectricianView from '@/views/ElectricianView.vue';
 import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
 import ElectricianReviews from '@/views/ElectricianReviews.vue';
+import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
 import PlumberView from '@/views/PlumberView.vue';
 import TilingView from '@/views/TilingView.vue';
 import PaintingView from '@/views/PaintingView.vue';
@@ -56,6 +57,15 @@ const routes = [
     meta: {
       title: 'Κριτικές Πελατών - Ηλεκτρολόγος Αθήνα 24/7 | Αξιολογήσεις',
               description: 'Δείτε τις κριτικές πελατών για ηλεκτρολόγο Αθήνα 24/7. Επείγον ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7, άμεση εξυπηρέτηση ηλεκτρολόγου.'
+    }
+  },
+  {
+    path: '/privacy-policy',
+    name: 'privacy-policy',
+    component: PrivacyPolicy,
+    meta: {
+      title: 'Πολιτική Απορρήτου - Cookies | Handyman24.gr',
+      description: 'Πολιτική απορρήτου και διαχείριση cookies για το Handyman24.gr. Μάθετε πώς προστατεύουμε τα προσωπικά σας δεδομένα και διαχειριζόμαστε τα cookies.'
     }
   },
   {

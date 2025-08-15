@@ -17,7 +17,24 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-L1M82F3KQR');
+  // Проверяем согласие на cookies перед загрузкой аналитики
+  const cookieConsent = localStorage.getItem('cookie_consent');
+  if (cookieConsent === 'all') {
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted'
+    });
+    gtag('config', 'G-L1M82F3KQR');
+  } else {
+    // По умолчанию отключаем аналитику до получения согласия
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    gtag('config', 'G-L1M82F3KQR', {
+      'anonymize_ip': true
+    });
+  }
 </script>
 
   <meta charset="UTF-8">
@@ -51,7 +68,7 @@
       <meta property="og:title" content="Ηλεκτρολόγος Αθήνα 24/7 - Επείγον Ηλεκτρολόγος Κοντά Μου">
       <meta property="og:description" content="Ηλεκτρολόγος Αθήνα 24/7 - Επείγον ηλεκτρολόγος κοντά μου. Αναζήτηση ηλεκτρολόγου, διαθέσιμος ηλεκτρολόγος 24/7, ηλεκτρολογικές κατασκευές. Άμεση εξυπηρέτηση ηλεκτρολόγου σε όλη την Αττική.">
   <meta property="og:url" content="https://handyman24.gr/">
-  <meta property="og:image" content="https://handyman24.gr/assets/logo.png">
+  <meta property="og:image" content="https://handyman24.gr/assets/logoico.svg">
   <meta property="og:site_name" content="Handyman24 - Ηλεκτρολόγος Αθήνα">
   <meta property="og:locale" content="el_GR">
 

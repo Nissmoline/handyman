@@ -25,7 +25,7 @@ const route = useRoute();
 
 const defaultTitle = 'Ηλεκτρολόγος & Υδραυλικός 24/7 Αθήνα – Handyman24';
 const defaultDescription = '24ωρες ηλεκτρολογικές & υδραυλικές υπηρεσίες σε Αθήνα-Πειραιά. Πιστοποιημένοι τεχνικοί για βλάβες, εγκαταστάσεις, επισκευές.';
-const defaultOgImage = 'https://handyman24.gr/metaimg.jpg';
+const defaultOgImage = 'https://handyman24.gr/assets/logoico.svg';
 
 const seoMeta = {
   '/': {
@@ -42,7 +42,7 @@ const seoMeta = {
   },
   '/electrician': {
     title: 'Ηλεκτρολόγος Αθήνα 24/7 | Άμεση Εξυπηρέτηση - Handyman24',
-    description: 'Εξειδικευμένος ηλεκτρολόγος στην Αθήνα διαθέσιμος 24/7. Αναλαμβάνουμε βλάβες, εγκαταστάσεις, πιστοποιητικά ΔΕΗ. Καλέστε μας τώρα.',
+    description: 'Εξειδικευμένος ηλεκτρολόγος στην Αθήνα διαθέσιμος 24/7. Αναλαμβάνουμε βλάβες, εγκαταστάσεις και επισκευές. Καλέστε μας τώρα.',
     ogImage: defaultOgImage,
     twitterImage: defaultOgImage
   },

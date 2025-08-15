@@ -10,15 +10,12 @@
     }
   })
   
-  // Debug logging
-  watch(() => props.popupOpen, (newVal) => {
-    console.log('AppBottomBar popupOpen changed:', newVal)
-  })
-  
   const telLink = 'tel:+306949214461'
   const emit = defineEmits(['contact'])
   
-  function openAppointment() { emit('contact') }
+  function openAppointment() { 
+    emit('contact') 
+  }
   
   const isFooterVisible = ref(false)
   

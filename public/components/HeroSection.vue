@@ -20,8 +20,8 @@ const openAppointmentPopup = inject('openAppointmentPopup')
       </div>
 
       <div class="hero-buttons">
-        <a href="tel:+306949214461" class="btn btn-outline">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
-        <button class="btn btn-outline" @click="openAppointmentPopup()">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
+        <a href="tel:+306949214461" class="btn btn-outline" aria-label="Καλέστε μας τώρα">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
+        <button class="btn btn-outline" @click="openAppointmentPopup()" aria-label="Κλείστε ραντεβού">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
       </div>
     </div>
     <div class="hero-right">
@@ -45,7 +45,7 @@ const openAppointmentPopup = inject('openAppointmentPopup')
       </div>
       <div class="offer-bottom">
         <!-- <span class="offer-strong">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</span> -->
-        <button class="btn btn-outline" @click="openAppointmentPopup()">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</button>
+        <button class="btn btn-outline" @click="openAppointmentPopup()" aria-label="Κλείστε ραντεβού τώρα">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</button>
       </div>
     </div>
   </section>
