@@ -23,7 +23,7 @@ provide('openAppointmentPopup', openPopup)
 // --- SEO Meta Tags Management ---
 const route = useRoute();
 
-const defaultTitle = 'Ηλεκτρολόγος & Υδραυλικός 24/7 Αθήνα – Handyman24';
+const defaultTitle = 'Ηλεκτρολόγος 24/7 Αθήνα – Handyman24';
 const defaultDescription = '24ωρες ηλεκτρολογικές & υδραυλικές υπηρεσίες σε Αθήνα-Πειραιά. Πιστοποιημένοι τεχνικοί για βλάβες, εγκαταστάσεις, επισκευές.';
 const defaultOgImage = 'https://handyman24.gr/assets/logoico.svg';
 
