@@ -217,7 +217,7 @@ const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
   background: #c1121c; 
   border-radius: 18px;
   box-shadow: 0 6px 30px 0 rgba(233,33,39,0.14);
-  padding: 36px 32px 22px 32px;
+  padding: 36px 32px 36px 32px;
   color: #fff;
   display: flex;
   flex-direction: column;

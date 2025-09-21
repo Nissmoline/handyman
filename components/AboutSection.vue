@@ -39,8 +39,7 @@ const closingParagraphs = computed(() => toStringArray(tm('about.expanded.closin
         <transition name="fade">
           <div v-if="expanded">
             <ul class="about-list">
-              <li v-for="(item, index) in bulletPoints" :key="'list-' + index">
-                {{ item }}
+              <li v-for="(item, index) in bulletPoints" :key="'list-' + index" v-html="item">
               </li>
             </ul>
             <h2>{{ t('about.expanded.heading') }}</h2>
@@ -51,7 +50,7 @@ const closingParagraphs = computed(() => toStringArray(tm('about.expanded.closin
             />
             <ul>
               <li v-for="feature in featureItems" :key="feature.title">
-                <strong>{{ feature.title }}</strong> {{ feature.description }}
+                <strong>{{ feature.title }}</strong> <span v-html="feature.description"></span>
               </li>
             </ul>
             <p

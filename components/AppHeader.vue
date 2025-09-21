@@ -22,7 +22,7 @@ const socialLinksMobile = [
   { href: 'https://instagram.com/handyman24.gr', icon: ['fab', 'instagram'], label: 'Instagram' },
   { href: 'viber://chat?number=+306949214461', icon: ['fab', 'viber'], label: 'Viber' },
   { href: 'https://wa.me/+306949214461', icon: ['fab', 'whatsapp'], label: 'WhatsApp' },
-  { href: 'https://t.me/handyman24gr', icon: ['fab', 'telegram'], label: 'Telegram' },
+  { href: 'https://t.me/+306949214461', icon: ['fab', 'telegram'], label: 'Telegram' },
 ]
 
 const tel = '+30 694 921 4461'
@@ -570,7 +570,7 @@ watch(menuOpen, (open) => {
   font-size: 1.17rem;
   font-weight: 600;
   color: #163d63;
-  padding: 7px 0;
+  padding: 12px 16px;
   text-decoration: none;
   border-radius: 8px;
   letter-spacing: 0.01em;
@@ -587,7 +587,7 @@ watch(menuOpen, (open) => {
 .drawer-link.submenu-item {
   font-size: 1.05rem;
   font-weight: 500;
-  padding-left: 12px;
+  padding: 10px 16px 10px 28px;
 }
 .mobile-submenu {
   display: flex;

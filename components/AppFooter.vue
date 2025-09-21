@@ -45,7 +45,7 @@ const socialLinks = [
   { href: "https://instagram.com/handyman24.gr", icon: ["fab", "instagram"] as const, label: "Instagram" },
   { href: "viber://chat?number=+306949214461", icon: ["fab", "viber"] as const, label: "Viber" },
   { href: "https://wa.me/+306949214461", icon: ["fab", "whatsapp"] as const, label: "WhatsApp" },
-  { href: "https://t.me/handyman24gr", icon: ["fab", "telegram"] as const, label: "Telegram" },
+  { href: "https://t.me/+306949214461", icon: ["fab", "telegram"] as const, label: "Telegram" },
 ];
 
 const year = new Date().getFullYear();

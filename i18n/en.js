@@ -84,53 +84,53 @@
   },  about: {
     title: 'About us',
     intro: [
-      'The <strong>Handyman 24/7</strong> team delivers complete maintenance and renovation services across Athens and its suburbs. With many years of experience we specialise in <strong>electrical and plumbing works</strong>, painting, tiling, carpentry, and general repairs.',
-      'Reliability, swift service, and quality workmanship are our priorities. We handle both small jobs and major projects for homes and businesses, offering turnkey solutions. Our specialists take care of every detail with professionalism and diligence.'
+      'The <strong>Handyman 24/7</strong> team delivers complete technical solutions across Athens and the suburbs, specialising in <strong>electrical works</strong>, <strong>carpentry services</strong> and <strong>general maintenance</strong>. For urgent requests we provide an <strong>electrician in Athens 24 hours</strong> and a <strong>24/7 electrician</strong> with rapid response.',
+      'If you are searching for an <strong>electrician Athens</strong>, <strong>electricians Athens</strong>, an <strong>electrician Athens 24 hours</strong>, an <strong>emergency electrician</strong>, an <strong>electrician immediately</strong> or an <strong>electrician near me</strong> (Nikea, Piraeus, Glyfada, Chalandri, Kifissia, Peristeri, etc.), Handyman 24/7 is the reliable choice for <strong>immediate electrician service</strong> with transparent <strong>electrician Athens prices</strong> and <strong>electrician prices</strong>.',
     ],
     cta: {
       readMore: 'Read more',
       readMoreAria: 'Expand about section',
       collapse: 'Show less',
-      collapseAria: 'Collapse about section'
+      collapseAria: 'Collapse about section',
     },
     expanded: {
       list: [
-        'Electrical & plumbing jobs',
-        'General repairs and maintenance',
-        'Tiling and painting projects',
-        'Carpentry and bespoke joinery',
-        'Renovations and full-service solutions'
+        'Electrical works 24/7 (installations, faults, restorations)',
+        'Carpentry services (repairs, builds, fittings)',
+        'General maintenance (upkeep, small repairs)',
       ],
-      heading: 'Technician in Athens 24/7 – Every trade solution with one call',
+      heading: 'Electrician Athens 24/7 – Urgent electrical solutions with one call',
       lead: [
-        'Need a trustworthy technician for your home or business right away? <strong>Handyman 24/7</strong> provides full technical services across Athens and Attica with experts for every trade. From a certified <strong>electrician in Athens</strong> and a 24-hour <strong>plumber in Athens</strong> to renovation crews, we cover every request <strong>24 hours a day</strong>, seven days a week. <strong>Call us now</strong> for instant support wherever you are—city centre or <strong>suburbs</strong>!'
+        'Need an <strong>electrician Athens</strong> right now? We provide <strong>electrician call 24 hours</strong> and <strong>electrician contact 24/7</strong> for every need: <strong>emergency electrician</strong>, <strong>urgent electrician</strong>, <strong>available electrician 24/7</strong>, <strong>electrician around the clock</strong>, <strong>24-hour electrician</strong>, <strong>night electrician</strong> and <strong>after-midnight electrician</strong>. We promptly serve homes and commercial spaces in the centre and the suburbs.',
+        'We undertake <strong>electrical installations</strong> and <strong>electrical systems</strong>, <strong>electrical renovation</strong>, <strong>electrical faults</strong> and <strong>electrical fault repair</strong>. If you need an <strong>electrician near me immediately</strong> or an <strong>electrician Athens nearby</strong>, call us now.',
       ],
       features: [
         {
-          title: '24/7 rapid response:',
-          description: 'We are on call day and night, including Sundays and holidays. Our team tackles emergencies in no time because every minute counts.'
+          title: '24/7 Immediate Response',
+          description: 'Rapid intervention for <strong>power outage</strong>, <strong>power outage restoration</strong>, <strong>short circuit</strong> and <strong>short-circuit repair</strong>, as well as any <strong>fault restoration</strong>—safely and professionally.',
         },
         {
-          title: 'Experienced & certified technicians:',
-          description: 'Every member of our crew is trained, licensed, and highly experienced. The right specialist (electrician, plumber, etc.) will solve your issue with professionalism and care.'
+          title: 'Certified & Experienced',
+          description: 'Our crew includes a <strong>certified electrician</strong>, an <strong>electrician technician</strong> and a <strong>master electrician</strong> delivering dependable work with a quality guarantee.',
         },
         {
-          title: 'Coverage across Athens & Attica:',
-          description: 'We serve the city centre as well as every suburb. Wherever you are—north, south, east, or west—we have the right technician ready to visit you.'
+          title: 'Coverage Across Attica',
+          description: 'Service in Athens, Nikea, Piraeus, Glyfada, Chalandri, Kifissia, Peristeri and more. We find an <strong>electrician near you</strong> for fast arrival.',
         },
         {
-          title: 'Guaranteed quality:',
-          description: 'We focus on detail and use quality materials. Each project comes with a workmanship guarantee so you can rest easy.'
+          title: 'Transparent & Affordable Prices',
+          description: 'Clear pricing: <strong>cheap electrician Athens</strong>, <strong>economical electrician Athens</strong> and <strong>electrician 24 hours price</strong>—always confirmed before work begins.',
         },
         {
-          title: 'Fair pricing & free estimates:',
-          description: 'We offer competitive rates with no hidden fees. Request a free cost estimate today and know the price in advance with zero obligation.'
-        }
+          title: 'Complete Technical Services',
+          description: 'Beyond electrical work, we also provide <strong>carpentry services</strong> and <strong>general maintenance</strong> for full care of your property.',
+        },
       ],
       closing: [
-        'With <strong>Handyman 24/7</strong> you easily find the specialist you need: <strong>electrician in Athens</strong>, <strong>plumber in Athens</strong>, tradespeople for <strong>tiling in Athens</strong> or <strong>house painting in Athens</strong>, a skilled <strong>carpenter in Athens</strong>, complete <strong>home renovations in Athens</strong>, and <strong>building maintenance in Athens</strong>. Whatever your space requires, we are your trusted partner for every trade with a single call!'
-      ]
-    }
+        'Sample electrical tasks: <strong>electrical panel installation / repair</strong>, <strong>fuse replacement</strong>, <strong>RCD/relay repair</strong>, <strong>socket replacement</strong>, <strong>socket installation</strong> and <strong>socket change</strong>, <strong>light fixture installation</strong> and <strong>ceiling light connection</strong>, <strong>water-heater repair</strong>, <strong>water-heater connection</strong> and <strong>water-heater element replacement</strong>, <strong>electric cooker connection</strong>, <strong>intercom repair</strong>, <strong>TV antenna installation</strong> and <strong>antenna repair</strong>, plus <strong>electrical installation maintenance</strong> and <strong>minor electrician repairs</strong>.',
+        'Available on <strong>Sundays</strong>, <strong>holidays</strong>, <strong>weekends</strong> and at <strong>night</strong> – <strong>electrician 365 days</strong>. We are the safe choice for an <strong>electrician for home renovation</strong> and an <strong>electrician for commercial spaces</strong>, as well as for <strong>emergency electrical services</strong>. For an <strong>electrician search</strong> with availability right now, call <strong>Handyman 24/7</strong>.',
+      ],
+    },
   },
   services: {
     heading: 'Our Services',
@@ -218,275 +218,6 @@ servicedAreas: {
   carpentry: {},
   renovations: {},
   maintenance: {},
-  electricianPage: {
-    title: 'Electrician Athens 24/7 – Emergency Electrician Near Me | Immediate Electrician Service',
-    intro: {
-      paragraph1: 'Need an <strong>experienced electrician in Athens</strong> for an urgent fault or new installation? The Handyman24.gr team is available <strong>24/7</strong> for immediate service throughout Attica. We are the <strong>available electrician 24/7</strong> you are looking for for every <strong>electrical fault</strong>.',
-      paragraph2: 'As an <strong>emergency electrician near me</strong>, we provide immediate intervention for every type of electrical fault - from simple short circuits to complex installations. The <strong>search for an electrician</strong> ends here - we are the <strong>electrician nearby</strong> who will serve you immediately.',
-      paragraph3: '<strong>Electrician Athens prices</strong> - We provide <strong>cheap electrician Athens</strong> with <strong>economical electrician Athens</strong> services. <strong>Electrician 24 hours price</strong> competitive for every <strong>electrical installations</strong> and <strong>electrical installations</strong>.'
-    },
-    emergency: {
-      title: '🚨 Emergency Electrician 24/7 - Immediate Electrician Service',
-      description: 'In case of an urgent electrical fault, we are available <strong>24 hours a day</strong>. As an <strong>available electrician 24/7</strong>, we arrive at your location within 30-60 minutes for immediate intervention. <strong>Immediate electrician service</strong> is our priority.'
-    },
-    services: {
-      title: 'Our electrical services cover:',
-      list: [
-        '<strong>Emergency electrician:</strong> Repair and handling for every <strong>electrical faults</strong> (<strong>short circuit</strong>, <strong>short circuit repair</strong>, voltage drop, <strong>power outage</strong>, <strong>power outage restoration</strong>)',
-        '<strong>Electrical constructions:</strong> <strong>Panel installation</strong>, <strong>fuse replacement</strong>, <strong>relay repair</strong> and electrical panel repair',
-        '<strong>Electrical appliance connection:</strong> <strong>Kitchen electrical connection</strong>, oven and stovetops',
-        '<strong>Lighting and installations:</strong> <strong>Light fixture installation</strong>, <strong>ceiling light connection</strong> and light fixture repair',
-        '<strong>Outlet repairs:</strong> <strong>Outlet replacement</strong>, <strong>outlet installation</strong>, <strong>outlet replacement</strong> and switch repair',
-        '<strong>Water heaters and appliances:</strong> <strong>Water heater repair</strong>, <strong>water heater connection</strong>, <strong>water heater element replacement</strong>',
-        '<strong>Emergency services:</strong> <strong>Intercom repair</strong>, <strong>TV antenna installation</strong>, <strong>antenna repair</strong>',
-        '<strong>Commercial spaces:</strong> <strong>Electrician for commercial spaces</strong>, shops, offices',
-        '<strong>Renovations:</strong> <strong>Electrician for home renovation</strong>, <strong>electrical renovation</strong>'
-      ]
-    },
-    serviceAreas: {
-      title: '🏠 Electrician Near Me - Service Areas',
-      intro: 'We serve all of Attica with <strong>electrician nearby</strong> in every area. As an <strong>available electrician 24/7</strong>, we provide <strong>immediate electrician service</strong> in:',
-      areas: [
-        '<strong>Electrician Athens nearby</strong> - Athens City Center',
-        '<strong>Electrician Piraeus</strong> - Piraeus and surrounding areas',
-        '<strong>Electrician Nikea</strong> - Nikea and western suburbs',
-        '<strong>Electrician Glyfada</strong> - Glyfada and southern suburbs',
-        '<strong>Electrician Chalandri</strong> - Chalandri and northern suburbs',
-        '<strong>Electrician Kifissia</strong> - Kifissia and northern areas',
-        '<strong>Electrician Peristeri</strong> - Peristeri and western suburbs',
-        '<strong>Electrician Marousi</strong> - Marousi and northern areas',
-        '<strong>Electrician Zografou</strong> - Zografou and southeastern areas',
-        '<strong>Electrician Kallithea</strong> - Kallithea and southern areas'
-      ],
-      availability: '<strong>Electrician Sunday</strong>, <strong>electrician holidays</strong>, <strong>electrician weekends</strong>, <strong>electrician night</strong>, <strong>electrician midnight</strong> - <strong>night electrician</strong> available <strong>electrician 365 days</strong> and <strong>24-hour electrician</strong>.'
-    },
-    whyChoose: {
-      title: '✅ Why choose our electrician?',
-      reasons: [
-        '<strong>24/7 availability:</strong> <strong>Emergency electrician</strong> available <strong>around the clock</strong>',
-        '<strong>Immediate service:</strong> <strong>Electrician near me immediately</strong> - we arrive within 30-60 minutes',
-        '<strong>Experience and certification:</strong> <strong>Certified electrician</strong>, <strong>master electrician</strong>, <strong>electrician technician</strong>',
-        '<strong>Quality guarantee:</strong> All <strong>minor electrician repairs</strong> and <strong>electrical installation maintenance</strong> with warranty',
-        '<strong>Transparent prices:</strong> <strong>Electrician prices</strong> competitive without hidden costs',
-        '<strong>Emergency services:</strong> <strong>Emergency electrical services</strong> 24/7'
-      ]
-    },
-    contact: {
-      callNow: 'Call Electrician Immediately',
-      whatsapp: 'WhatsApp Electrician'
-    },
-    emergencyInfo: {
-      title: '🚨 Emergency Electrician - Immediate Call',
-      description: '<strong>Electrician call 24 hours</strong> - <strong>Electrician communication 24/7</strong> for every urgent need. <strong>Emergency electrician</strong> and <strong>electrician immediately</strong> available for:',
-      services: [
-        '<strong>Electrical fault repair</strong> - <strong>Fault restoration</strong>',
-        '<strong>Short circuit</strong> - <strong>Short circuit repair</strong>',
-        '<strong>Power outage</strong> - <strong>Power outage restoration</strong>',
-        '<strong>Emergency electrician</strong> for every type of fault'
-      ]
-    },
-    pricing: {
-      title: '💰 Electrician Athens Prices - Economical Services',
-      description: '<strong>Electrician prices</strong> competitive for all services. <strong>Cheap electrician Athens</strong> with <strong>economical electrician Athens</strong> offer. <strong>Electrician 24 hours price</strong> transparent without hidden costs.'
-    }
-  },
-  electricianFaq: {
-    title: 'Frequently Asked Questions - Electrician Athens 24/7 | FAQ',
-    intro: 'We answer the most common questions about our <strong>electrical services</strong>. As an <strong>emergency electrician near me</strong>, we are here to serve you.',
-    faqs: [
-      {
-        question: 'How quickly does the emergency electrician arrive?',
-        answer: 'Our <strong>available electrician 24/7</strong> arrives at your location within 30-60 minutes for emergency faults. For scheduled work, we adapt the schedule to your needs.'
-      },
-      {
-        question: 'What are the charges for an emergency fault?',
-        answer: 'Charges depend on the type of work and time. We provide a <strong>preliminary estimate</strong> before starting work, without hidden costs.'
-      },
-      {
-        question: 'Do you serve all of Attica?',
-        answer: 'Yes, we serve all of Attica, including Athens city center, Piraeus and all surrounding areas. We are the <strong>electrician nearby</strong> in every area.'
-      },
-      {
-        question: 'Do you offer warranty on work?',
-        answer: 'All our work comes with a quality warranty. We also use only <strong>quality materials</strong> and tools.'
-      },
-      {
-        question: 'Can you do electrical constructions?',
-        answer: 'Yes, we undertake complete <strong>electrical constructions</strong>, from installing a new panel to complex installations for commercial spaces.'
-      }
-    ],
-    contact: {
-      title: '📞 Contact our Electrician',
-      description: 'Need an <strong>emergency electrician near me</strong>? Call us immediately for <strong>immediate electrician service</strong> throughout Athens.',
-      callNow: 'Call Electrician Immediately',
-      whatsapp: 'WhatsApp Electrician'
-    }
-  },
-  electricianReviews: {
-    title: 'Customer Reviews - Electrician Athens 24/7 | Testimonials',
-    intro: 'See what our customers say about our <strong>electrical services</strong>. As an <strong>emergency electrician near me</strong>, we are proud of our customers\' trust.',
-    reviews: [
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Maria K.',
-        date: '2 days ago',
-        content: '"Electrician search ended here! Professional <strong>electrical constructions</strong> and transparent prices. The <strong>emergency electrician</strong> solved our problem in a few hours."'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'George P.',
-        date: '1 week ago',
-        content: '"Available electrician 24/7 who is really worth it! Emergency electrician near me with immediate electrician service. Very satisfied with the quality of work."'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Eleni M.',
-        date: '2 weeks ago',
-        content: '"Perfect service! The <strong>electrician nearby</strong> solved our electrical panel problem in less than an hour. I will definitely call them again."'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Nikos A.',
-        date: '3 weeks ago',
-        content: '"Excellent experience! The <strong>electrical works</strong> were done with quality and in a short time. I highly recommend for any electrical need."'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Anna D.',
-        date: '1 month ago',
-        content: '"Very professional team! The <strong>available electrician 24/7</strong> solved our emergency fault in a few hours. Prices and quality are excellent!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Kostas L.',
-        date: '1 month ago',
-        content: '"Electrician search ended here! The <strong>emergency electrician</strong> solved the short circuit in half an hour. Incredible professionalism and speed!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Dimitra S.',
-        date: '6 weeks ago',
-        content: '"Electrician Athens competitive prices! The <strong>electrician nearby</strong> did <strong>electrical constructions</strong> at our home. Very satisfied!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Alexandros M.',
-        date: '2 months ago',
-        content: '"Emergency electrician near me who is really worth it! <strong>Immediate electrician service</strong> and excellent quality. I will recommend them to everyone!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Sofia G.',
-        date: '2 months ago',
-        content: '"Available electrician 24/7 with excellent service! The <strong>electrical works</strong> were done with care and warranty. Very satisfied!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Pavlos N.',
-        date: '3 months ago',
-        content: '"Electrician search ended here! The <strong>electrician nearby</strong> solved the water heater problem in a few hours. Incredible professionalism!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Christina P.',
-        date: '3 months ago',
-        content: '"Electrician Athens transparent prices! The <strong>emergency electrician</strong> did <strong>electrical constructions</strong> with quality. I will definitely call them again!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Michalis K.',
-        date: '4 months ago',
-        content: '"Emergency electrician near me with immediate service! The <strong>available electrician 24/7</strong> solved the short circuit in half an hour. Very satisfied!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Angeliki T.',
-        date: '4 months ago',
-        content: '"Immediate electrician service that is really worth it! The <strong>electrical works</strong> were done with care and warranty. I will recommend them!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Dimitris R.',
-        date: '5 months ago',
-        content: '"Electrician nearby with excellent quality! The <strong>emergency electrician</strong> solved the panel problem in a few hours. Incredible professionalism!"'
-      },
-      {
-        stars: '⭐⭐⭐⭐⭐',
-        author: 'Evangelia D.',
-        date: '5 months ago',
-        content: '"Electrician search ended here! The <strong>available electrician 24/7</strong> did <strong>electrical constructions</strong> with quality. Very satisfied!"'
-      }
-    ],
-    contact: {
-      title: '📞 Call our Electrician',
-      description: 'Need an <strong>emergency electrician near me</strong>? Call us immediately for <strong>immediate electrician service</strong> throughout Athens.',
-      callNow: 'Call Electrician Immediately',
-      whatsapp: 'WhatsApp Electrician'
-    }
-  },
-  offersPage: {
-    title: 'Our Offers',
-    sections: {
-      kitchenHood: {
-        title: 'Built-in Kitchens & Cooktops',
-        cards: {
-          kitchenConnection: {
-            title: 'Built-in Kitchen Connection',
-            price: 'from <b>€27.99</b>',
-            features: [
-              'Immediate installation & connection',
-              'Function check & testing',
-              'Experienced electrician'
-            ]
-          },
-          hoodConnection: {
-            title: 'Built-in Cooktop Connection',
-            price: 'from <b>€27.99</b>',
-            features: [
-              'Connection of ceramic or induction cooktops',
-              'Function check & testing',
-              'Experienced electrician'
-            ]
-          },
-          comboSet: {
-            title: 'Kitchen & Cooktop Connection (Set)',
-            price: 'only <b>€37.99</b>',
-            description: '<b>Great deal!</b> Includes kitchen and cooktop connection in the same visit, with all benefits & final check by an experienced electrician.'
-          }
-        },
-        advantages: [
-          '⚡ Guaranteed safety and functionality',
-          '🚗 Immediate service throughout Attica'
-        ]
-      },
-      hoodVentilation: {
-        title: 'Built-in Hoods (Ventilation)',
-        cards: {
-          hoodInstallation: {
-            title: 'Hood Installation & Connection',
-            price: 'from <b>€27.99</b>',
-            features: [
-              'Installation of all types',
-              'Ventilation connection',
-              'Function check',
-              'Specialized technicians'
-            ]
-          },
-          hoodReplacement: {
-            title: 'Old Hood Replacement',
-            price: 'from <b>€34.99</b>',
-            features: [
-              'Removal of old & installation of new (all types)',
-              'Ventilation connection',
-              'Function check',
-              'Specialized technicians'
-            ]
-          }
-        }
-      }
-    },
-    disclaimer: '* Prices refer to standard installations within Attica. In specialized cases, there may be additional charges after consultation.<br>Prices do not include VAT.'
-  },
   privacy: {},
   cookie: {
     banner: {
