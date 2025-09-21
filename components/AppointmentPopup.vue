@@ -1,168 +1,185 @@
-<script setup>
-import { ref } from "vue";
-import emailjs from "@emailjs/browser";
-import Multiselect from "@vueform/multiselect";
-import "@vueform/multiselect/themes/default.css";
+﻿<script setup>
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import emailjs from '@emailjs/browser'
+import Multiselect from '@vueform/multiselect'
+import '@vueform/multiselect/themes/default.css'
 
-const isOpen = defineModel("isOpen");
-const name = ref("");
-const email = ref("");
-const phone = ref("");
-const datetime = ref("");
-const submitted = ref(false);
-const loading = ref(false);
-const error = ref(null);
-const selectedServices = ref([]);
-const multipleLabel = (values) => `${values.length} επιλεγμένες υπηρεσίες`;
+const isOpen = defineModel('isOpen')
+const name = ref('')
+const email = ref('')
+const phone = ref('')
+const datetime = ref('')
+const submitted = ref(false)
+const loading = ref(false)
+const error = ref('')
+const selectedServices = ref([])
+const multiselect = ref(null)
 
-const services = [
-  "ΗΛΕΚΤΡΟΛΟΓΙΚΕΣ ΕΡΓΑΣΙΕΣ",
-  "ΥΔΡΑΥΛΙΚΕΣ ΕΡΓΑΣΙΕΣ",
-  "ΥΠΗΡΕΣΙΕΣ ΠΛΑΚΑΚΙΩΝ",
-  "ΒΑΨΙΜΟ & ΧΡΩΜΑΤΙΣΜΟΙ",
-  "ΥΠΗΡΕΣΙΕΣ ΞΥΛΟΥΡΓΟΥ",
-  "ΚΑΤΑΣΚΕΥΕΣ & ΑΝΑΚΑΙΝΙΣΕΙΣ",
-  "ΓΕΝΙΚΕΣ ΕΡΓΑΣΙΕΣ ΣΥΝΤΗΡΗΣΗΣ",
-];
+const { t } = useI18n()
 
-const multiselect = ref(null);
+const serviceDefinitions = [
+  { value: 'electrician', labelKey: 'services.list.electrician.title' },
+  /* { value: 'plumber', labelKey: 'services.list.plumber.title' },
+  { value: 'tiling', labelKey: 'services.list.tiling.title' },
+  { value: 'painting', labelKey: 'services.list.painting.title' }, */
+  { value: 'carpentry', labelKey: 'services.list.carpentry.title' },
+  /* { value: 'renovations', labelKey: 'services.list.renovations.title' }, */
+  { value: 'maintenance', labelKey: 'services.list.maintenance.title' }
+]
+
+const serviceOptions = computed(() =>
+  serviceDefinitions.map((item) => ({
+    value: item.value,
+    label: t(item.labelKey),
+    labelKey: item.labelKey
+  }))
+)
+
+const multipleLabel = (values) => {
+  const count = Array.isArray(values) ? values.length : 0
+  if (!count) return ''
+  return t('appointment.form.multipleSelected', { count })
+}
+
 const handleChange = () => {
   setTimeout(() => {
-    if (multiselect.value) multiselect.value.close();
-  }, 1000);
-};
+    if (multiselect.value) {
+      multiselect.value.close()
+    }
+  }, 1000)
+}
 
 const resetForm = () => {
-  name.value = "";
-  email.value = "";
-  phone.value = "";
-  datetime.value = "";
-  submitted.value = false;
-  loading.value = false;
-  error.value = null;
-  selectedServices.value = [];
-};
+  name.value = ''
+  email.value = ''
+  phone.value = ''
+  datetime.value = ''
+  submitted.value = false
+  loading.value = false
+  error.value = ''
+  selectedServices.value = []
+}
+
+const closePopup = () => {
+  isOpen.value = false
+  resetForm()
+}
 
 const formatDate = (isoString) => {
-  if (!isoString) return "";
-  const [year, month, day] = isoString.split("-");
-  return `${day}.${month}.${year}`;
-};
+  if (!isoString) return ''
+  const [year, month, day] = isoString.split('-')
+  return `${day}.${month}.${year}`
+}
+
+const resolveServiceLabel = (value) => {
+  const match = serviceDefinitions.find((item) => item.value === value)
+  return match ? t(match.labelKey) : value
+}
 
 const submitForm = async () => {
-  loading.value = true;
-  error.value = null;
+  loading.value = true
+  error.value = ''
 
   try {
-    // 1. Auto-reply to the client
     await emailjs.send(
-      "service_4iwmnq9",
-      "template_h7kwe4j",
+      'service_4iwmnq9',
+      'template_h7kwe4j',
+      {
+        name: name.value,
+        email: email.value,
+        phone: phone.value,
+        datetime: formatDate(datetime.value)
+      },
+      'nOz5l7-e5eiIR9lpu'
+    )
+
+    await emailjs.send(
+      'service_4iwmnq9',
+      'template_dhmfdmy',
       {
         name: name.value,
         email: email.value,
         phone: phone.value,
         datetime: formatDate(datetime.value),
+        services: selectedServices.value.map(resolveServiceLabel).join(', ')
       },
-      "nOz5l7-e5eiIR9lpu"
-    );
+      'nOz5l7-e5eiIR9lpu'
+    )
 
-    // 2. Auto-reply to owner
-    await emailjs.send(
-      "service_4iwmnq9",
-      "template_dhmfdmy",
-      {
-        name: name.value,
-        email: email.value,
-        phone: phone.value,
-        datetime: formatDate(datetime.value),
-        services: selectedServices.value.join(", "),
-      },
-      "nOz5l7-e5eiIR9lpu"
-    );
-
-    submitted.value = true;
+    submitted.value = true
   } catch (e) {
-    error.value = "Προέκυψε σφάλμα. Δοκιμάστε ξανά.";
+    error.value = t('appointment.errors.generic')
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 </script>
 
 <template>
   <transition name="fade">
-    <div v-if="isOpen" class="popup-backdrop" @click.self="isOpen = false">
+    <div v-if="isOpen" class="popup-backdrop" @click.self="closePopup">
       <div class="popup-window">
-        <h2>Το αίτημά σας εστάλη</h2>
+        <h2>{{ submitted ? t('appointment.success.title') : t('appointment.form.title') }}</h2>
 
         <div v-if="submitted" class="popup-success">
-          <!-- Animated green check mark -->
           <svg class="success-check" viewBox="0 0 52 52">
-            <circle
-              class="success-check-circle"
-              cx="26"
-              cy="26"
-              r="25"
-              fill="none"
-            />
+            <circle class="success-check-circle" cx="26" cy="26" r="25" fill="none" />
             <path class="success-check-mark" fill="none" d="M14 27l7 7 17-17" />
           </svg>
-          <p>
-            Σύντομα θα επικοινωνήσουμε μαζί σας για να επιβεβαιώσουμε το
-            ραντεβού.
-          </p>
-          <button class="btn btn-outline" @click="isOpen = false" aria-label="Κλείσιμο">
-            Κλείσιμο
+          <p>{{ t('appointment.success.message') }}</p>
+          <button class="btn btn-outline" @click="closePopup" :aria-label="t('appointment.success.close')">
+            {{ t('appointment.success.close') }}
           </button>
         </div>
 
         <form v-else @submit.prevent="submitForm" autocomplete="off">
           <label>
-            Ονοματεπώνυμο:
-            <input v-model="name" type="text" required />
+            {{ t('appointment.form.nameLabel') }}
+            <input v-model="name" type="text" :placeholder="t('appointment.form.namePlaceholder')" required />
           </label>
           <label>
-            Email:
-            <input v-model="email" type="email" required />
+            {{ t('appointment.form.emailLabel') }}
+            <input v-model="email" type="email" :placeholder="t('appointment.form.emailPlaceholder')" required />
           </label>
           <label>
-            Τηλέφωνο:
-            <input v-model="phone" type="tel" required />
+            {{ t('appointment.form.phoneLabel') }}
+            <input v-model="phone" type="tel" :placeholder="t('appointment.form.phonePlaceholder')" required />
           </label>
 
           <label>
-            <!-- Επιλέξτε τις -->
-            Υπηρεσίες που σας ενδιαφέρουν:
+            {{ t('appointment.form.servicesLabel') }}
             <Multiselect
+              ref="multiselect"
               v-model="selectedServices"
-              :options="services"
+              :options="serviceOptions"
               mode="multiple"
-              placeholder="Επιλογή υπηρεσιών"
+              :placeholder="t('appointment.form.servicesPlaceholder')"
               :multiple-label="multipleLabel"
               @change="handleChange"
             />
           </label>
 
           <label>
-            Επιθυμητή ημερομηνία ραντεβού:
+            {{ t('appointment.form.dateLabel') }}
             <input v-model="datetime" type="date" required />
           </label>
+
           <div class="popup-actions">
             <button type="submit" class="btn btn-outline" :disabled="loading">
               <template v-if="loading">
-                <span class="spinner"></span> Αποστολή...
+                <span class="spinner"></span> {{ t('appointment.form.submitting') }}
               </template>
-              <template v-else> Αποστολή </template>
+              <template v-else>{{ t('appointment.form.submit') }}</template>
             </button>
             <button
               type="button"
               class="btn btn-outline"
-              @click="isOpen = false"
+              @click="closePopup"
               :disabled="loading"
-              aria-label="Ακύρωση"
+              :aria-label="t('appointment.form.cancel')"
             >
-              Ακύρωση
+              {{ t('appointment.form.cancel') }}
             </button>
           </div>
           <div v-if="error" class="error">{{ error }}</div>
@@ -171,7 +188,6 @@ const submitForm = async () => {
     </div>
   </transition>
 </template>
-
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
@@ -442,3 +458,4 @@ const submitForm = async () => {
 }
 
 </style>
+

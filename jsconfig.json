@@ -2,8 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./public/*"]
-    }
+      "@/*": ["./*"]
+    },
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "checkJs": false
   },
+  "include": ["**/*", "vite-env.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

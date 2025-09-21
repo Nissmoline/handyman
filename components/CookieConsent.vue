@@ -1,16 +1,16 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import CookieManager from '@/utils/cookies.js'
 import CookieSettings from './CookieSettings.vue'
 
 const visible = ref(false)
 const showDetails = ref(false)
 const cookieSettingsRef = ref(null)
+const { t } = useI18n()
 
 onMounted(() => {
-  // Проверяем, нужно ли показать баннер согласия
   if (CookieManager.shouldShowBanner()) {
-    // Небольшая задержка для лучшего UX
     setTimeout(() => {
       visible.value = true
     }, 1000)
@@ -32,9 +32,7 @@ function toggleDetails() {
 }
 
 function openSettings() {
-  if (cookieSettingsRef.value) {
-    cookieSettingsRef.value.openSettings()
-  }
+  cookieSettingsRef.value?.openSettings()
 }
 </script>
 
@@ -43,66 +41,67 @@ function openSettings() {
     <div v-if="visible" class="cookie-consent">
       <div class="cookie-content">
         <div class="cookie-header">
-          <h3>🍪 Χρήση Cookies</h3>
-          <p>
-            Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία σας, να αναλύσουμε την κίνηση και να παρέχουμε εξατομικευμένο περιεχόμενο. 
-            Κάποια cookies είναι απαραίτητα για τη λειτουργία του ιστότοπου.
-          </p>
+          <h3>{{ t('cookie.banner.title') }}</h3>
+          <p>{{ t('cookie.banner.description') }}</p>
         </div>
-        
+
         <div v-if="showDetails" class="cookie-details">
           <div class="cookie-type">
-            <h4>Απαραίτητα Cookies</h4>
-            <p>Απαραίτητα για τη βασική λειτουργία του ιστότοπου. Δεν μπορούν να απενεργοποιηθούν.</p>
+            <h4>{{ t('cookie.banner.sections.essential.title') }}</h4>
+            <p>{{ t('cookie.banner.sections.essential.description') }}</p>
           </div>
           <div class="cookie-type">
-            <h4>Αναλυτικά Cookies</h4>
-            <p>Βοηθούν στην κατανόηση του τρόπου που οι επισκέπτες χρησιμοποιούν τον ιστότοπο (Google Analytics).</p>
+            <h4>{{ t('cookie.banner.sections.analytics.title') }}</h4>
+            <p>{{ t('cookie.banner.sections.analytics.description') }}</p>
           </div>
           <div class="cookie-type">
-            <h4>Λειτουργικά Cookies</h4>
-            <p>Βελτιώνουν την λειτουργικότητα και την απόδοση του ιστότοπου.</p>
+            <h4>{{ t('cookie.banner.sections.functional.title') }}</h4>
+            <p>{{ t('cookie.banner.sections.functional.description') }}</p>
           </div>
         </div>
-        
+
         <div class="cookie-actions">
-          <button 
-            v-if="!showDetails" 
-            class="cookie-btn cookie-btn-secondary" 
+          <button
+            v-if="!showDetails"
+            class="cookie-btn cookie-btn-secondary"
             @click="toggleDetails"
           >
-            Περισσότερες πληροφορίες
+            {{ t('cookie.banner.actions.more') }}
           </button>
-          <button 
-            v-else 
-            class="cookie-btn cookie-btn-secondary" 
+          <button
+            v-else
+            class="cookie-btn cookie-btn-secondary"
             @click="toggleDetails"
           >
-            Λιγότερες πληροφορίες
+            {{ t('cookie.banner.actions.less') }}
           </button>
-          
+
           <div class="cookie-buttons">
             <button class="cookie-btn cookie-btn-essential" @click="acceptEssentialCookies">
-              Απαραίτητα μόνο
+              {{ t('cookie.banner.actions.acceptEssential') }}
             </button>
             <button class="cookie-btn cookie-btn-accept" @click="acceptAllCookies">
-              Αποδοχή όλων
+              {{ t('cookie.banner.actions.acceptAll') }}
             </button>
           </div>
-          
+
           <div class="cookie-footer">
-            <a href="#" @click.prevent="openSettings" class="cookie-settings-link">
-              Ρυθμίσεις Cookies
+            <a
+              href="#"
+              @click.prevent="openSettings"
+              class="cookie-settings-link"
+              :aria-label="t('cookie.banner.actions.settings')"
+            >
+              {{ t('cookie.banner.actions.settings') }}
             </a>
           </div>
         </div>
       </div>
     </div>
   </transition>
-  
+
   <CookieSettings ref="cookieSettingsRef" />
 </template>
-
 <style scoped>
 .cookie-consent {
   position: fixed;
@@ -318,3 +317,4 @@ function openSettings() {
   }
 }
 </style>
+

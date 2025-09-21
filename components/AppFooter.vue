@@ -1,60 +1,51 @@
-<script setup lang="ts">
-import logoUrl from "@/assets/logo.svg";
+﻿<script setup lang="ts">
+import logoUrl from "/logo.svg";
 import { useRoute, useRouter } from "vue-router";
 import { inject, ref } from "vue";
+import { useI18n } from "vue-i18n";
 import CookieSettings from './CookieSettings.vue';
+
+type FooterLink =
+  | { type: "hash"; value: string; labelKey: string }
+  | { type: "route"; route: string; labelKey: string }
+  | { type: "action"; action: "appointment" | "cookies"; labelKey: string };
+
+type FooterGroup = {
+  titleKey: string;
+  links: FooterLink[];
+};
 
 const router = useRouter();
 const route = useRoute();
 const openAppointmentPopup = inject("openAppointmentPopup") as () => void;
-const cookieSettingsRef = ref(null);
+const cookieSettingsRef = ref<InstanceType<typeof CookieSettings> | null>(null);
+const { t } = useI18n();
 
-const linkGroups = [
+const linkGroups: readonly FooterGroup[] = [
   {
-    title: "Εταιρεία",
+    titleKey: "footer.company.title",
     links: [
-      { label: "Σχετικά με εμάς", hash: "#about" },
-      { label: "Υπηρεσίες", hash: "#services" },
+      { type: "hash", value: "about", labelKey: "footer.company.about" },
+      { type: "hash", value: "services", labelKey: "footer.company.services" },
     ],
   },
   {
-    title: "Πληροφορίες",
+    titleKey: "footer.info.title",
     links: [
-      { label: "Επικοινωνήστε μαζί μας", action: "appointment" },
-      { label: "FAQ", route: "/electrician-faq" },
-      { label: "Πολιτική Απορρήτου", route: "/privacy-policy" },
-      { label: "Ρυθμίσεις Cookies", action: "cookies" },
+      { type: "action", action: "appointment", labelKey: "footer.info.contact" },
+      { type: "route", route: "/electrician-faq", labelKey: "footer.info.faq" },
+      { type: "route", route: "/privacy-policy", labelKey: "footer.info.privacy" },
+      { type: "action", action: "cookies", labelKey: "footer.info.cookies" },
     ],
   },
-] as const;
+];
 
-// Массив соцсетей через FontAwesome
 const socialLinks = [
-  {
-    href: "https://www.facebook.com/share/1FyUjq1AGd/",
-    icon: ["fab", "facebook"],
-    label: "Facebook",
-  },
-  {
-    href: "https://instagram.com/ВАШ_АККАУНТ",
-    icon: ["fab", "instagram"],
-    label: "Instagram",
-  },
-  {
-    href: "viber://chat?number=+306949214461",
-    icon: ["fab", "viber"],
-    label: "Viber",
-  },
-  {
-    href: "https://wa.me/+306949214461",
-    icon: ["fab", "whatsapp"],
-    label: "WhatsApp",
-  },
-  {
-    href: "https://t.me/ВАШ_АККАУНТ",
-    icon: ["fab", "telegram"],
-    label: "Telegram",
-  },
+  { href: "https://www.facebook.com/share/1FyUjq1AGd/", icon: ["fab", "facebook"] as const, label: "Facebook" },
+  { href: "https://instagram.com/handyman24.gr", icon: ["fab", "instagram"] as const, label: "Instagram" },
+  { href: "viber://chat?number=+306949214461", icon: ["fab", "viber"] as const, label: "Viber" },
+  { href: "https://wa.me/+306949214461", icon: ["fab", "whatsapp"] as const, label: "WhatsApp" },
+  { href: "https://t.me/handyman24gr", icon: ["fab", "telegram"] as const, label: "Telegram" },
 ];
 
 const year = new Date().getFullYear();
@@ -77,15 +68,12 @@ function goToHash(id: string) {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
-    // Обновляем hash без перезагрузки страницы
     history.replaceState(null, "", `#${id}`);
   }
 }
 
 function openCookieSettings() {
-  if (cookieSettingsRef.value) {
-    cookieSettingsRef.value.openSettings();
-  }
+  cookieSettingsRef.value?.openSettings();
 }
 </script>
 
@@ -104,45 +92,45 @@ function openCookieSettings() {
           />
         </router-link>
       </div>
-      <nav class="footer__nav" aria-label="Footer navigation">
+            <nav class="footer__nav" aria-label="Footer navigation">
         <ul
           v-for="(group, idx) in linkGroups"
-          :key="idx"
+          :key="group.titleKey ?? idx"
           class="footer__nav-group"
         >
-          <li class="footer__nav-title">{{ group.title }}</li>
-          <li v-for="(link, li) in group.links" :key="li">
+          <li class="footer__nav-title">{{ t(group.titleKey) }}</li>
+          <li v-for="link in group.links" :key="link.labelKey">
             <a
-              v-if="'hash' in link"
-              :href="link.hash"
-              @click.prevent="goToHash(link.hash.slice(1))"
-              >{{ link.label }}</a
+              v-if="link.type === 'hash'"
+              :href="'#' + link.value"
+              @click.prevent="goToHash(link.value)"
             >
+              {{ t(link.labelKey) }}
+            </a>
             <router-link
-              v-else-if="'route' in link"
+              v-else-if="link.type === 'route'"
               :to="link.route"
             >
-              {{ link.label }}
+              {{ t(link.labelKey) }}
             </router-link>
             <button
-              v-else-if="'action' in link && link.action === 'appointment'"
+              v-else-if="link.type === 'action' && link.action === 'appointment'"
               type="button"
               @click.prevent="openAppointmentPopup"
             >
-              {{ link.label }}
+              {{ t(link.labelKey) }}
             </button>
             <button
-              v-else-if="'action' in link && link.action === 'cookies'"
+              v-else-if="link.type === 'action' && link.action === 'cookies'"
               type="button"
               @click.prevent="openCookieSettings"
             >
-              {{ link.label }}
+              {{ t(link.labelKey) }}
             </button>
           </li>
         </ul>
       </nav>
-      <!-- соцсети теперь через FontAwesome -->
-      <div class="footer__social">
+<div class="footer__social">
         <a
           v-for="(soc, i) in socialLinks"
           :key="i"
@@ -156,7 +144,7 @@ function openCookieSettings() {
       </div>
     </div>
     <div class="footer__bottom">
-      © {{ year }} Handyman. All rights reserved.
+      {{ t('footer.bottom', { year }) }}
     </div>
   </footer>
   

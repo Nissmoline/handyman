@@ -1,30 +1,25 @@
-<template>
-  <div class="serviced-areas">
-    <h2>Περιοχές Εξυπηρέτησης στην Αθήνα</h2>
-    <p>Εξυπηρετούμε όλες τις περιοχές στο κέντρο της Αθήνας και τα προάστια. Ενδεικτικά, αναλαμβάνουμε εργασίες σε:</p>
-    <ul class="areas-list">
-      <li>Κέντρο Αθήνας</li>
-      <li>Αιγάλεω</li>
-      <li>Νέα Ιωνία</li>
-      <li>Ηράκλειο</li>
-      <li>Ζωγράφου</li>
-      <li>Γαλάτσι</li>
-      <li>Περιστέρι</li>
-      <li>Χαλάνδρι</li>
-      <li>Μαρούσι</li>
-      <li>Κηφισιά</li>
-      <li>Γλυφάδα</li>
-      <li>Πειραιάς</li>
-      <li>Ίλιον</li>
-      <li>Καλλιθέα</li>
-    </ul>
-    <p>Ο Ηλεκτρολόγος 24 παρέχει αξιόπιστες ηλεκτρολογικές υπηρεσίες και καλύπτει το 80% των περιοχών του Νομού Αττικής. Αν ψάχνετε έμπειρο ηλεκτρολόγο στην Αττική για άμεση εξυπηρέτηση και οικονομικές τιμές, καλέστε μας τώρα για περισσότερες πληροφορίες!</p>
-  </div>
-</template>
-<script setup>
-</script>
+﻿<script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-<style scoped>
+const { t, tm } = useI18n()
+
+const areas = computed(() => {
+  const value = tm('servicedAreas.areas')
+  return Array.isArray(value) ? value : []
+})
+</script>\n<template>
+  <div class="serviced-areas">
+    <h2>{{ t('servicedAreas.title') }}</h2>
+    <p v-html="t('servicedAreas.intro')" />
+    <ul class="areas-list">
+      <li v-for="(area, index) in areas" :key="area">
+        {{ area }}
+      </li>
+    </ul>
+    <p v-html="t('servicedAreas.outro')" />
+  </div>
+</template>\n<style scoped>
 .serviced-areas {
   padding: 40px 20px;
   background: #f1f5f9;
@@ -126,3 +121,4 @@ p {
   }
 }
 </style>
+

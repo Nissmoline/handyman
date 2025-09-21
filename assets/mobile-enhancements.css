@@ -1,4 +1,4 @@
-/* Mobile Enhancements - Final Polish */
+﻿/* Mobile Enhancements - Final Polish */
 
 /* ===== TOUCH OPTIMIZATIONS ===== */
 @media (max-width: 768px) {
@@ -337,7 +337,7 @@
 @media (max-width: 768px) {
   /* Ensure proper spacing */
   section {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 24px;
   }
   
   /* Better visual hierarchy */

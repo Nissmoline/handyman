@@ -1,20 +1,18 @@
-/* Small Screen Optimizations (320px - 480px) */
+﻿/* Small Screen Optimizations (320px - 480px) */
 
 @media (max-width: 480px) {
   /* Header optimizations */
   .app-header {
+    position: sticky !important;
+    top: 0 !important;
     padding: 0 8px;
     min-height: 56px;
-    /* Fixed positioning is handled in component styles */
+    /* Keep header translucent */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
   
-  /* Add padding for fixed header on small screens */
-  body {
-    padding-top: 56px;
-  }
   
   .header-row {
     min-height: 56px;
@@ -478,3 +476,5 @@
     border: 1px solid #000;
   }
 } 
+
+

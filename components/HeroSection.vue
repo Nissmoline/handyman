@@ -1,56 +1,92 @@
-<script setup>
-import { ref, inject } from 'vue'
+﻿<script setup>
+import { inject, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const openAppointmentPopup = inject('openAppointmentPopup')
+const { t, tm } = useI18n()
+
+const toStringArray = (value) => (Array.isArray(value) ? value : [])
+
+const descriptionParagraphs = computed(() => toStringArray(tm('hero.description')))
+const bulletPoints = computed(() => toStringArray(tm('hero.bullets')))
+const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
 </script>
 
 <template>
   <section class="hero-root">
     <div class="hero-main">
-  <div class="hero-content">
-    <div class="hero-left">
-      <h1>
-        Ηλεκτρολόγος Αθήνα 24/7<br /><span>Επείγον Ηλεκτρολόγος Κοντά Μου</span>
-      </h1>
-      <div class="hero-desc">
-        <strong>Ηλεκτρολόγος Αθήνα 24/7</strong> - Επείγον ηλεκτρολόγος κοντά μου, διαθέσιμος ηλεκτρολόγος 24/7.<br />
-        Αναζήτηση ηλεκτρολόγου, ηλεκτρολογικές κατασκευές, άμεση εξυπηρέτηση ηλεκτρολόγου.<br /><br />
-        • Εμπειρία – Συνέπεια – Άμεση εξυπηρέτηση ηλεκτρολόγου<br />
-        • Μικρές και μεγάλες εργασίες χωρίς καθυστερήσεις
-      </div>
+      <div class="hero-content">
+        <div class="hero-left">
+          <h1>
+            {{ t('hero.title.main') }}<br /><span>{{ t('hero.title.highlight') }}</span>
+          </h1>
+          <div class="hero-desc">
+            <p
+              v-for="(paragraph, index) in descriptionParagraphs"
+              :key="'hero-desc-' + index"
+              v-html="paragraph"
+            />
+            <ul v-if="bulletPoints.length" class="hero-desc-list">
+              <li v-for="(point, index) in bulletPoints" :key="'hero-point-' + index">
+                {{ point }}
+              </li>
+            </ul>
+          </div>
 
-      <div class="hero-buttons">
-        <a href="tel:+306949214461" class="btn btn-outline" aria-label="Καλέστε μας τώρα">ΚΑΛΕΣΤΕ ΜΑΣ ΤΩΡΑ</a>
-        <button class="btn btn-outline" @click="openAppointmentPopup()" aria-label="Κλείστε ραντεβού">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</button>
+          <div class="hero-buttons">
+            <a
+              href="tel:+306949214461"
+              class="btn btn-outline"
+              :aria-label="t('hero.buttons.callAria')"
+            >
+              {{ t('hero.buttons.call') }}
+            </a>
+            <button
+              class="btn btn-outline"
+              @click="openAppointmentPopup && openAppointmentPopup()"
+              type="button"
+              :aria-label="t('hero.buttons.bookAria')"
+            >
+              {{ t('hero.buttons.book') }}
+            </button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <img src="/heromain.png" alt="Handyman" />
+        </div>
       </div>
     </div>
-    <div class="hero-right">
-      <img src="@/assets/heromain.png" alt="Handyman" />
-    </div>
-  </div>
-</div>
-
 
     <div class="hero-offer">
       <div class="offer-main">
-        ΕΙΔΙΚΗ ΠΡΟΣΦΟΡΑ: <span> <br>ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ ΑΠΟ 27,99€</span>
+        {{ t('hero.offer.badge') }}
+        <span><br />{{ t('hero.offer.highlight') }}</span>
       </div>
       <div class="offer-title">
-        ΣΥΝΔΕΣΗ ΦΟΥΡΝΟΥ &amp; ΗΛΕΚΤΡΙΚΗΣ ΕΣΤΙΑΣ ΑΠΟ 37,99€
-        <span class="offer-note">(ΑΠΟ ΗΛΕΚΤΡΟΛΟΓΟ ΕΓΚΑΤΑΣΤΑΤΗ)</span>
+        {{ t('hero.offer.title') }}
+        <span class="offer-note">{{ t('hero.offer.note') }}</span>
       </div>
-      <div class="offer-icons">
+      <div
+        v-for="(feature, index) in offerFeatures"
+        :key="'offer-feature-' + index"
+        class="offer-icons"
+      >
         <span class="offer-check">✔</span>
-        ΑΜΕΣΑ - ΜΕ ΑΣΦΑΛΕΙA &amp; ΕΠΑΓΓΕΛΜΑΤΙΚΑ
+        {{ feature }}
       </div>
       <div class="offer-bottom">
-        <!-- <span class="offer-strong">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</span> -->
-        <button class="btn btn-outline" @click="openAppointmentPopup()" aria-label="Κλείστε ραντεβού τώρα">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ ΤΩΡΑ</button>
+        <button
+          class="btn btn-outline"
+          @click="openAppointmentPopup && openAppointmentPopup()"
+          type="button"
+          :aria-label="t('hero.offer.ctaAria')"
+        >
+          {{ t('hero.offer.cta') }}
+        </button>
       </div>
     </div>
   </section>
 </template>
-
 <style scoped>
 .hero-root {
   width: 100%;
@@ -101,6 +137,24 @@ const openAppointmentPopup = inject('openAppointmentPopup')
   line-height: 1.43;
   font-weight: 400;
   letter-spacing: 0.005em;
+}
+.hero-desc-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+.hero-desc-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+}
+.hero-desc-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #fff;
+  font-size: 1.1em;
+  line-height: 1;
 }
 .hero-buttons {
   display: flex;
@@ -267,37 +321,31 @@ const openAppointmentPopup = inject('openAppointmentPopup')
     text-align: center;
   }
   .hero-desc {
-    font-size: 1rem;
-    margin-bottom: 24px;
-    line-height: 1.5;
-    text-align: center;
-  }
-  .hero-right {
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    width: 100%;
-    min-width: auto;
-  }
-  .hero-right img {
-    max-width: 280px;
-    width: 100%;
-    margin-left: 0;
-    margin-bottom: 0;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  }
-  .hero-offer {
-    margin: -50px 16px 0;
-    padding: 20px 16px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #c1121c 0%, #a50f17 100%);
-    box-shadow: 0 8px 24px rgba(193, 18, 28, 0.3);
-    width: calc(100% - 32px);
-    max-width: 100%;
-    align-items: center;
-  }
-  .hero-buttons {
+  font-size: 1.13rem;
+  margin-bottom: 34px;
+  line-height: 1.43;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+.hero-desc-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+.hero-desc-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+}
+.hero-desc-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #fff;
+  font-size: 1.1em;
+  line-height: 1;
+}
+.hero-buttons {
     flex-direction: column;
     gap: 12px;
     align-items: center;
@@ -455,3 +503,6 @@ const openAppointmentPopup = inject('openAppointmentPopup')
   }
 }
 </style>
+
+
+

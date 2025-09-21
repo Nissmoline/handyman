@@ -1,4 +1,4 @@
-/* Mobile-First Responsive Styles for Handyman24 */
+﻿/* Mobile-First Responsive Styles for Handyman24 */
 
 /* ===== GLOBAL MOBILE STYLES ===== */
 * {
@@ -15,8 +15,6 @@ body {
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  /* Add padding for fixed header on mobile */
-  padding-top: 60px;
 }
 
 /* Global mobile centering */
@@ -37,12 +35,20 @@ body {
 /* ===== HEADER MOBILE OPTIMIZATION ===== */
 @media (max-width: 768px) {
   .app-header {
+    position: fixed !important;
+    top: 0 !important;
     padding: 0 16px;
     min-height: 60px;
-    /* Fixed positioning is handled in component styles */
+    /* Maintain translucent background */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .header-hidden {
+    transform: translateY(-100%);
   }
   
   .header-row {
@@ -706,7 +712,7 @@ body {
   
   /* Better spacing for mobile */
   section {
-    scroll-margin-top: 80px; /* Account for fixed header */
+    scroll-margin-top: 24px;
   }
   
   /* Prevent horizontal overflow */
@@ -755,3 +761,4 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 } 
+

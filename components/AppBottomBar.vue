@@ -1,36 +1,40 @@
-  
+﻿  
   <script setup>
-  import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-  import { Phone as LucidePhone, MessageSquare as LucideMessageSquare } from 'lucide-vue-next'
-  
-  const props = defineProps({
-    popupOpen: {
-      type: Boolean,
-      default: false
-    }
-  })
-  
-  const telLink = 'tel:+306949214461'
-  const emit = defineEmits(['contact'])
-  
-  function openAppointment() { 
-    emit('contact') 
-  }
-  
-  const isFooterVisible = ref(false)
-  
-  onMounted(() => {
-    const footer = document.querySelector('footer')
-    if (!footer) return
-    const observer = new window.IntersectionObserver(
-      ([entry]) => { isFooterVisible.value = entry.isIntersecting },
-      { threshold: 0.1 }
-    )
-    observer.observe(footer)
-    onBeforeUnmount(() => observer.disconnect())
-  })
-  
-  </script>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { Phone as LucidePhone, MessageSquare as LucideMessageSquare } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+
+const props = defineProps({
+  popupOpen: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+const { t } = useI18n()
+
+const telLink = 'tel:+306949214461'
+const emit = defineEmits(['contact'])
+
+const openAppointment = () => {
+  emit('contact')
+}
+
+const isFooterVisible = ref(false)
+
+onMounted(() => {
+  const footer = document.querySelector('footer')
+  if (!footer) return
+  const observer = new window.IntersectionObserver(
+    ([entry]) => {
+      isFooterVisible.value = entry.isIntersecting
+    },
+    { threshold: 0.1 }
+  )
+  observer.observe(footer)
+  onBeforeUnmount(() => observer.disconnect())
+})
+</script>
 
 <template>
   <nav
@@ -38,11 +42,11 @@
     class="bottom-bar"
     :style="{ transform: isFooterVisible ? 'translateY(100%)' : 'translateY(0)' }"
   >
-    <a :href="telLink" class="bar-btn" aria-label="Κλήση">
-      <lucide-phone :size="28"/>
+    <a :href="telLink" class="bar-btn" :aria-label="t('header.aria.call')">
+      <LucidePhone :size="28" />
     </a>
-    <button class="bar-btn" @click="openAppointment" aria-label="Επαφή">
-      <lucide-message-square :size="28"/>
+    <button class="bar-btn" @click="openAppointment" :aria-label="t('common.buttons.requestAppointment')">
+      <LucideMessageSquare :size="28" />
     </button>
   </nav>
 </template>

@@ -1,13 +1,14 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import CookieManager from '@/utils/cookies.js'
 
 const visible = ref(false)
 const analyticsEnabled = ref(false)
-const essentialEnabled = ref(true) // Всегда включены
+const essentialEnabled = ref(true)
+const { t } = useI18n()
 
 onMounted(() => {
-  // Загружаем текущие настройки
   const consent = localStorage.getItem('cookie_consent')
   analyticsEnabled.value = consent === 'all'
 })
@@ -29,7 +30,6 @@ function closeSettings() {
   visible.value = false
 }
 
-// Экспортируем функцию для использования в других компонентах
 defineExpose({ openSettings })
 </script>
 
@@ -39,22 +39,22 @@ defineExpose({ openSettings })
       <div class="settings-backdrop" @click="closeSettings"></div>
       <div class="settings-modal">
         <div class="settings-header">
-          <h3>🍪 Ρυθμίσεις Cookies</h3>
-          <button @click="closeSettings" class="close-btn" aria-label="Κλείσιμο">
+          <h3>{{ t('cookie.settings.title') }}</h3>
+          <button @click="closeSettings" class="close-btn" :aria-label="t('common.aria.close')">
             ×
           </button>
         </div>
-        
+
         <div class="settings-content">
           <div class="cookie-type">
             <div class="cookie-info">
-              <h4>Απαραίτητα Cookies</h4>
-              <p>Απαραίτητα για τη βασική λειτουργία του ιστότοπου. Δεν μπορούν να απενεργοποιηθούν.</p>
+              <h4>{{ t('cookie.settings.essentialTitle') }}</h4>
+              <p>{{ t('cookie.settings.essentialDescription') }}</p>
             </div>
             <div class="cookie-toggle">
-              <input 
-                type="checkbox" 
-                :checked="essentialEnabled" 
+              <input
+                type="checkbox"
+                :checked="essentialEnabled"
                 disabled
                 id="essential-cookies"
               >
@@ -63,15 +63,15 @@ defineExpose({ openSettings })
               </label>
             </div>
           </div>
-          
+
           <div class="cookie-type">
             <div class="cookie-info">
-              <h4>Αναλυτικά Cookies</h4>
-              <p>Βοηθούν στην κατανόηση του τρόπου που οι επισκέπτες χρησιμοποιούν τον ιστότοπο (Google Analytics).</p>
+              <h4>{{ t('cookie.settings.analyticsTitle') }}</h4>
+              <p>{{ t('cookie.settings.analyticsDescription') }}</p>
             </div>
             <div class="cookie-toggle">
-              <input 
-                type="checkbox" 
+              <input
+                type="checkbox"
                 v-model="analyticsEnabled"
                 id="analytics-cookies"
               >
@@ -81,20 +81,19 @@ defineExpose({ openSettings })
             </div>
           </div>
         </div>
-        
+
         <div class="settings-actions">
           <button @click="closeSettings" class="btn btn-secondary">
-            Ακύρωση
+            {{ t('common.buttons.cancel') }}
           </button>
           <button @click="saveSettings" class="btn btn-primary">
-            Αποθήκευση
+            {{ t('common.buttons.save') }}
           </button>
         </div>
       </div>
     </div>
   </transition>
 </template>
-
 <style scoped>
 .cookie-settings {
   position: fixed;
