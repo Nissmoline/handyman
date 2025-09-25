@@ -52,7 +52,7 @@ const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
           </div>
         </div>
         <div class="hero-right">
-          <img src="/heromain.png" alt="Handyman" />
+          <img src="/heromain.png" :alt="t('hero.alt')" />
         </div>
       </div>
     </div>

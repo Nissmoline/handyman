@@ -81,7 +81,9 @@
       cta: 'BOOK NOW',
       ctaAria: 'Book an appointment now',
     },
-  },  about: {
+    alt: 'Handyman24 electrician Athens - electrician 24 hours in Attica',
+  },
+  about: {
     title: 'About us',
     intro: [
       'The <strong>Handyman 24/7</strong> team delivers complete technical solutions across Athens and the suburbs, specialising in <strong>electrical works</strong>, <strong>carpentry services</strong> and <strong>general maintenance</strong>. For urgent requests we provide an <strong>electrician in Athens 24 hours</strong> and a <strong>24/7 electrician</strong> with rapid response.',
@@ -333,8 +335,6 @@ servicedAreas: {
     },
   },
 };
-
-
 
 
 
