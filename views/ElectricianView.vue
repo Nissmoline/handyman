@@ -61,18 +61,116 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import ElectricianLinks from '@/components/ElectricianLinks.vue'
 
 const { t, tm } = useI18n()
 
-// Helper function to convert to array
 const toStringArray = (value) => (Array.isArray(value) ? value : [])
+const stripTags = (value = '') => value.toString().replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
 
-// Computed properties for arrays
 const servicesList = computed(() => toStringArray(tm('electricianPage.services.list')))
 const serviceAreasList = computed(() => toStringArray(tm('electricianPage.serviceAreas.areas')))
 const whyChooseReasons = computed(() => toStringArray(tm('electricianPage.whyChoose.reasons')))
 const emergencyServicesList = computed(() => toStringArray(tm('electricianPage.emergencyInfo.services')))
+
+const structuredData = computed(() => {
+  const description = [
+    t('electricianPage.intro.paragraph1'),
+    t('electricianPage.intro.paragraph2'),
+    t('electricianPage.intro.paragraph3'),
+  ]
+    .map(stripTags)
+    .join(' ')
+
+  const areas = serviceAreasList.value.map(stripTags).filter(Boolean)
+  const services = servicesList.value.map(stripTags).filter(Boolean)
+
+  const localBusiness = {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'Electrician', 'ProfessionalService'],
+    name: 'HandyMan 24 – Ηλεκτρολόγος Αθήνα & Πειραιάς',
+    image: 'https://handyman24.gr/logoico.svg',
+    url: 'https://handyman24.gr/electrician',
+    telephone: '+30-694-9214461',
+    email: 'handyman24gr@gmail.com',
+    description,
+    priceRange: '€€',
+    areaServed: areas,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Πλ. Ιπποδαμείας 8, Γραφείο Δ8',
+      postalCode: '18531',
+      addressLocality: 'Πειραιάς',
+      addressRegion: 'Αττική',
+      addressCountry: 'GR',
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      },
+    ],
+    sameAs: [
+      'https://www.facebook.com/share/1FyUjq1AGd/',
+      'https://instagram.com/handyman24.gr',
+      'https://wa.me/306949214461',
+    ],
+  }
+
+  const electricianService = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Emergency electrician Athens & Piraeus 24/7',
+    serviceType: 'Electrician',
+    areaServed: areas,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'HandyMan 24',
+      telephone: '+30-694-9214461',
+      address: localBusiness.address,
+    },
+    description,
+    offers: {
+      '@type': 'Offer',
+      url: 'https://handyman24.gr/electrician',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        priceCurrency: 'EUR',
+        description: 'Διαφανείς τιμές ηλεκτρολόγου Αθήνα & Πειραιάς – ενημέρωση πριν την εργασία',
+      },
+    },
+    hasOfferCatalog: services.length
+      ? {
+          '@type': 'OfferCatalog',
+          name: 'Υπηρεσίες Ηλεκτρολόγου',
+          itemListElement: services.map((service) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: service,
+            },
+          })),
+        }
+      : undefined,
+  }
+
+  return [localBusiness, electricianService]
+})
+
+useHead(() => ({
+  script: [
+    {
+      key: 'electrician-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(structuredData.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>

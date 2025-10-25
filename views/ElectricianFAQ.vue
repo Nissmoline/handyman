@@ -30,14 +30,39 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 
 const { t, tm } = useI18n()
 
-// Get FAQ list from translations
 const faqsList = computed(() => {
   const faqs = tm('electricianFaq.faqs')
   return Array.isArray(faqs) ? faqs : []
 })
+
+const stripTags = (value = '') => value.toString().replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+
+const faqSchema = computed(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqsList.value.map((faq) => ({
+    '@type': 'Question',
+    name: stripTags(faq.question),
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: stripTags(faq.answer),
+    },
+  })),
+}))
+
+useHead(() => ({
+  script: [
+    {
+      key: 'electrician-faq-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(faqSchema.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>
