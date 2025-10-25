@@ -124,14 +124,31 @@
       </div>
       
       <div class="contact-section">
-        <h2>📞 Επικοινωνήστε μαζί μας</h2>
-        <p>
-          Έχετε ερωτήσεις για την πολιτική απορρήτου; Επικοινωνήστε μαζί μας για άμεση εξυπηρέτηση.
-        </p>
-        
-        <div class="contact-buttons">
-          <a href="tel:+306949214461" class="btn btn-primary">Καλέστε Άμεσα</a>
-          <a href="https://wa.me/306949214461" class="btn btn-secondary">WhatsApp</a>
+        <div>
+          <h2>📞 Επικοινωνήστε μαζί μας</h2>
+          <p>
+            Έχετε ερωτήσεις για την πολιτική απορρήτου; Επικοινωνήστε μαζί μας για άμεση εξυπηρέτηση.
+          </p>
+        </div>
+
+        <div class="contact-actions">
+          <a
+            href="tel:+306949214461"
+            class="contact-link contact-link--primary"
+            rel="nofollow"
+          >
+            <span>Τηλεφωνική γραμμή</span>
+            <strong>+30 694 921 4461</strong>
+          </a>
+          <a
+            href="https://wa.me/306949214461"
+            class="contact-link contact-link--secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>WhatsApp</span>
+            <strong>Chat στο WhatsApp</strong>
+          </a>
         </div>
       </div>
     </div>
@@ -230,20 +247,78 @@
 
 .contact-section {
   margin-top: 40px;
-  padding: 30px;
-  background: #e8f5e8;
-  border-radius: 12px;
-  border-left: 4px solid #28a745;
-  text-align: center;
+  padding: 32px;
+  background: #f3fcf9;
+  border-radius: 18px;
+  border: 1px solid #d0f1e4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
 }
 
 .contact-section h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
+  margin: 8px 0;
+  color: #04385f;
 }
 
 .contact-section p {
-  margin-bottom: 25px;
+  margin: 0;
+  max-width: 460px;
+  line-height: 1.5;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 20px;
+  border-radius: 12px;
+  min-width: 220px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-link span {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: inherit;
+}
+
+.contact-link strong {
+  font-size: 1.2rem;
+  margin-top: 6px;
+  color: inherit;
+}
+
+.contact-link--primary {
+  background: linear-gradient(120deg, #0b74c2, #04548c);
+  color: #fff;
+  box-shadow: 0 15px 35px rgba(11, 116, 194, 0.35);
+}
+
+.contact-link--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(11, 116, 194, 0.45);
+}
+
+.contact-link--secondary {
+  border-color: #0b74c2;
+  color: #0b74c2;
+  background: #fff;
+}
+
+.contact-link--secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(4, 72, 119, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -267,6 +342,14 @@
   
   .contact-section {
     padding: 25px 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-link {
+    min-width: 0;
+    width: 100%;
+    align-items: center;
   }
 }
 
@@ -286,6 +369,10 @@
   
   .contact-section {
     padding: 20px 15px;
+  }
+
+  .contact-link {
+    padding: 12px 16px;
   }
 }
 </style>

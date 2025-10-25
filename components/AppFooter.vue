@@ -35,6 +35,7 @@ const linkGroups: readonly FooterGroup[] = [
       { type: "action", action: "appointment", labelKey: "footer.info.contact" },
       { type: "route", route: "/electrician-faq", labelKey: "footer.info.faq" },
       { type: "route", route: "/privacy-policy", labelKey: "footer.info.privacy" },
+      { type: "route", route: "/impressum", labelKey: "footer.info.impressum" },
       { type: "action", action: "cookies", labelKey: "footer.info.cookies" },
     ],
   },

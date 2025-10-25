@@ -6,6 +6,7 @@ import ElectricianView from '@/views/ElectricianView.vue';
 import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
 import ElectricianReviews from '@/views/ElectricianReviews.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
+import ImpressumView from '@/views/ImpressumView.vue';
 // import PlumberView from '@/views/PlumberView.vue';
 // import TilingView from '@/views/TilingView.vue';
 // import PaintingView from '@/views/PaintingView.vue';
@@ -120,6 +121,15 @@ const routes = [
     meta: {
       titleKey: 'seo.maintenance.title',
       descriptionKey: 'seo.maintenance.description',
+    },
+  },
+  {
+    path: '/impressum',
+    name: 'impressum',
+    component: ImpressumView,
+    meta: {
+      titleKey: 'seo.impressum.title',
+      descriptionKey: 'seo.impressum.description',
     },
   },
   {

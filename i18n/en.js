@@ -49,6 +49,7 @@
       contact: 'Contact us',
       faq: 'FAQ',
       privacy: 'Privacy Policy',
+      impressum: 'Impressum',
       cookies: 'Cookie Settings',
     },
     bottom: '© {year} Handyman24. All rights reserved.',
@@ -255,6 +256,107 @@ servicedAreas: {
       analyticsDescription: 'Help us understand how visitors use the site (Google Analytics).',
     },
   },
+  impressum: {
+    hero: {
+      eyebrow: 'Official details',
+      title: 'Legal Notice (Impressum)',
+      subtitle: 'Statutory business information for HandyMan 24 and how our coordination service operates.',
+      highlights: [
+        'Registered office: Pl. Ippodameias 8, Office D8, 18531 Piraeus',
+        'Owner: Konstantinos Kolpaxidis – VAT 146264597',
+      ],
+    },
+    lastUpdated: 'Last updated: 11 August 2025',
+    cards: [
+      {
+        title: 'Business information',
+        rows: [
+          { label: 'Trading name', value: 'HandyMan 24' },
+          { label: 'Legal form', value: 'Sole proprietorship' },
+          { label: 'Registered office', value: 'Pl. Ippodameias 8, Office D8, 18531 Piraeus, Attica, Greece' },
+          { label: 'Telephone', value: '+30 694 921 4461', type: 'phone', href: 'tel:+306949214461' },
+          { label: 'Email', value: 'handyman24gr@gmail.com', type: 'email', href: 'mailto:handyman24gr@gmail.com' },
+          { label: 'Website', value: 'www.handyman24.gr', type: 'link', href: 'https://www.handyman24.gr', target: '_blank', rel: 'noopener noreferrer' },
+          { label: 'Service hours', value: '24/7' },
+        ],
+      },
+      {
+        title: 'Ownership & registers',
+        rows: [
+          { label: 'Owner / Legal representative', value: 'Konstantinos Kolpaxidis' },
+          { label: 'VAT (Α.Φ.Μ.)', value: '146264597' },
+          { label: 'GEMI no.', value: '188182109000' },
+          { label: 'Chamber registration', value: 'Piraeus Chamber of Trades – Reg. 135274, Services Department' },
+        ],
+        note: 'Registry information is updated whenever licences or listings change.',
+      },
+    ],
+    sections: [
+      {
+        title: 'Who we are & what we do',
+        paragraphs: [
+          'HandyMan 24 operates as a dispatch hub and coordination/intermediation service for technical works in homes and businesses. We receive customer requests by phone or via the website and immediately connect them with the most suitable collaborating professionals (electricians, plumbers, locksmiths, HVAC technicians, appliance engineers, painters, IT technicians, etc.).',
+          'We handle appointment scheduling, confirmations, and customer updates until the work is completed. The jobs are executed by independent partners who hold the required licences/certifications, bear full responsibility for their work, and issue the lawful tax documents. HandyMan 24 provides customer service and coordination.',
+        ],
+      },
+      {
+        title: 'Pricing & payments',
+        paragraphs: [
+          'Before assigning a job we inform clients about any call-out fee and provide an indicative budget or a written offer.',
+          'Payment is made either directly to the collaborating professional or to HandyMan 24, depending on the service type and as communicated in advance.',
+        ],
+      },
+      {
+        title: 'Customer service – Complaints',
+        paragraphs: [
+          'For questions or complaints please contact +30 694 921 4461 or handyman24gr@gmail.com. Our aim is to resolve every issue promptly and amicably.',
+        ],
+      },
+      {
+        title: 'Data protection (GDPR)',
+        paragraphs: [
+          'Data Controller: Konstantinos Kolpaxidis (HandyMan 24, sole proprietorship).',
+          'Personal data is processed in line with the GDPR and Greek legislation. Privacy Policy: <a href="https://www.handyman24.gr/privacy-policy" target="_blank" rel="noopener noreferrer">https://www.handyman24.gr/privacy-policy</a>.',
+        ],
+      },
+      {
+        title: 'Disclaimer',
+        paragraphs: [
+          'HandyMan 24 provides mediation and coordination services. The service contract is formed exclusively between the Customer and the independent Professional.',
+          'Therefore HandyMan 24 is not liable for unsatisfactory workmanship, delays, cancellations, omissions, lack of response, technical errors, damages, or force majeure incidents. The company does not guarantee the accuracy, completeness, or suitability of website information nor the uninterrupted availability of the platform.',
+          'HandyMan 24 is not part of any transaction or dispute between Customer and Professional and is not obliged to mediate or resolve such disputes. Customers must verify the Professional’s credentials, licences, and suitability and address warranty or compensation claims directly to them. Any supportive assistance by HandyMan 24 does not constitute acceptance of liability or guarantee of results. Within the maximum extent permitted by law, the company disclaims liability for direct or indirect, special, incidental, or consequential damages, including loss of profit, reputation, data, or time, even if advised of their possibility. Nothing herein limits liability for intent or gross negligence or affects mandatory consumer rights.',
+        ],
+      },
+      {
+        title: 'Intellectual property',
+        paragraphs: [
+          'All website content (texts, logos, images, code) is protected by applicable legislation. Reproduction is prohibited without prior written permission unless stated otherwise.',
+        ],
+      },
+    ],
+    legal: {
+      title: 'Key reminders',
+      paragraphs: [
+        'HandyMan 24 acts as an intermediary; collaborating professionals are solely responsible for the execution of works and lawful invoicing.',
+      ],
+      bullets: [
+        'Service agreements exist between customers and independent professionals.',
+        'Customers should review licences, certifications, and warranty obligations before work begins.',
+        'Support from HandyMan 24 does not replace the professional’s contractual duties or statutory liabilities.',
+      ],
+    },
+    contact: {
+      eyebrow: 'Need clarification?',
+      title: 'Customer support',
+      subtitle: 'Reach us for any legal, billing, or coordination questions related to this notice.',
+      phoneLabel: 'Phone',
+      phoneValue: '+30 694 921 4461',
+      phoneHref: 'tel:+306949214461',
+      emailLabel: 'Email',
+      emailValue: 'handyman24gr@gmail.com',
+      emailHref: 'mailto:handyman24gr@gmail.com',
+    },
+  },
   appointment: {
     form: {
       title: 'Book an appointment',
@@ -333,12 +435,12 @@ servicedAreas: {
       title: 'Privacy policy & cookies | Handyman24',
       description: 'Understand how Handyman24 handles your personal data and cookies and protects your privacy.',
     },
+    impressum: {
+      title: 'Impressum & legal notice | Handyman24',
+      description: 'Legal disclosure, registered contact details, and responsibilities for Handyman24 in Athens and Attica.',
+    },
   },
 };
-
-
-
-
 
 
 
