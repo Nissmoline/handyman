@@ -9,11 +9,7 @@ import { setLocale, supportedLocales } from '@/i18n'
 
 const services = [
   { labelKey: 'header.servicesMenu.electrician', path: '/electrician' },
-  // { labelKey: 'header.servicesMenu.plumber', path: '/plumber' },
-  // { labelKey: 'header.servicesMenu.tiling', path: '/tiling' },
-  // { labelKey: 'header.servicesMenu.painting', path: '/painting' },
   { labelKey: 'header.servicesMenu.carpentry', path: '/carpentry' },
-  // { labelKey: 'header.servicesMenu.renovations', path: '/renovations' },
   { labelKey: 'header.servicesMenu.maintenance', path: '/maintenance' },
 ]
 

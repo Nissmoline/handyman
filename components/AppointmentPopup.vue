@@ -20,12 +20,8 @@ const { t } = useI18n()
 
 const serviceDefinitions = [
   { value: 'electrician', labelKey: 'services.list.electrician.title' },
-  /* { value: 'plumber', labelKey: 'services.list.plumber.title' },
-  { value: 'tiling', labelKey: 'services.list.tiling.title' },
-  { value: 'painting', labelKey: 'services.list.painting.title' }, */
   { value: 'carpentry', labelKey: 'services.list.carpentry.title' },
-  /* { value: 'renovations', labelKey: 'services.list.renovations.title' }, */
-  { value: 'maintenance', labelKey: 'services.list.maintenance.title' }
+  { value: 'maintenance', labelKey: 'services.list.maintenance.title' },
 ]
 
 const serviceOptions = computed(() =>

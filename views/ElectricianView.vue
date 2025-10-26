@@ -9,17 +9,19 @@
         <p v-html="t('electricianPage.intro.paragraph3')"></p>
       </div>
 
-      <div class="emergency-section">
+      <div class="emergency-section" id="emergency">
         <h2>{{ t('electricianPage.emergency.title') }}</h2>
         <p v-html="t('electricianPage.emergency.description')"></p>
       </div>
       
-      <h2>{{ t('electricianPage.services.title') }}</h2>
-      <ul>
-        <li v-for="service in servicesList" :key="service" v-html="service"></li>
-      </ul>
+      <section id="installations">
+        <h2>{{ t('electricianPage.services.title') }}</h2>
+        <ul>
+          <li v-for="service in servicesList" :key="service" v-html="service"></li>
+        </ul>
+      </section>
 
-      <div class="service-areas">
+      <div class="service-areas" id="business">
         <h2>{{ t('electricianPage.serviceAreas.title') }}</h2>
         <p v-html="t('electricianPage.serviceAreas.intro')"></p>
         <ul>
@@ -40,7 +42,7 @@
         <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('electricianPage.contact.whatsapp') }}</a>
       </div>
 
-      <div class="emergency-info">
+      <div class="emergency-info" id="safety">
         <h2>{{ t('electricianPage.emergencyInfo.title') }}</h2>
         <p v-html="t('electricianPage.emergencyInfo.description')"></p>
         <ul>

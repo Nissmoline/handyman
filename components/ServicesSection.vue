@@ -2,16 +2,12 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ServiceItem from './ServiceItem.vue'
-import { SwatchBook, InspectionPanel, Hammer, BrickWall, House, Plug, Droplets } from 'lucide-vue-next'
+import { Plug, Hammer, House } from 'lucide-vue-next'
 
 const serviceDefinitions = [
   { icon: Plug, titleKey: 'services.list.electrician.title', descriptionKey: 'services.list.electrician.description', link: '/electrician' },
-  // { icon: Droplets, titleKey: 'services.list.plumber.title', descriptionKey: 'services.list.plumber.description', link: '/plumber' },
-  // { icon: InspectionPanel, titleKey: 'services.list.tiling.title', descriptionKey: 'services.list.tiling.description', link: '/tiling' },
-  // { icon: SwatchBook, titleKey: 'services.list.painting.title', descriptionKey: 'services.list.painting.description', link: '/painting' },
   { icon: Hammer, titleKey: 'services.list.carpentry.title', descriptionKey: 'services.list.carpentry.description', link: '/carpentry' },
-  // { icon: BrickWall, titleKey: 'services.list.renovations.title', descriptionKey: 'services.list.renovations.description', link: '/renovations' },
-  { icon: House, titleKey: 'services.list.maintenance.title', descriptionKey: 'services.list.maintenance.description', link: '/maintenance' }
+  { icon: House, titleKey: 'services.list.maintenance.title', descriptionKey: 'services.list.maintenance.description', link: '/maintenance' },
 ]
 
 const { t } = useI18n()

@@ -23,13 +23,11 @@
       services: 'Services',
       offers: 'Our Offers',
     },
-    servicesMenu: {electrician: 'Electrician',
-      plumber: 'Plumber',
-      tiling: 'Tiling & Flooring',
-      painting: 'Painting',
-      carpentry: 'Carpentry',
-      renovations: 'Renovations',
-      maintenance: 'Maintenance',
+    servicesMenu: {
+      emergency: 'Emergency electrician 24/7',
+      installations: 'Installations & upgrades',
+      business: 'Business & property support',
+      faq: 'FAQ & guides',
     },
     languageLabel: 'Language selection',
     aria: {
@@ -87,8 +85,8 @@
   about: {
     title: 'About us',
     intro: [
-      'The <strong>Handyman 24/7</strong> team delivers complete technical solutions across Athens and the suburbs, specialising in <strong>electrical works</strong>, <strong>carpentry services</strong> and <strong>general maintenance</strong>. For urgent requests we provide an <strong>electrician in Athens 24 hours</strong> and a <strong>24/7 electrician</strong> with rapid response.',
-      'If you are searching for an <strong>electrician Athens</strong>, <strong>electricians Athens</strong>, an <strong>electrician Athens 24 hours</strong>, an <strong>emergency electrician</strong>, an <strong>electrician immediately</strong> or an <strong>electrician near me</strong> (Nikea, Piraeus, Glyfada, Chalandri, Kifissia, Peristeri, etc.), Handyman 24/7 is the reliable choice for <strong>immediate electrician service</strong> with transparent <strong>electrician Athens prices</strong> and <strong>electrician prices</strong>.',
+      'Handyman 24/7 is a team of certified <strong>electricians in Athens & Piraeus</strong> with one goal: restore power and deliver safe installations any hour of the day. We specialise exclusively in <strong>electrical diagnostics, installations, upgrades, and preventive maintenance</strong>.',
+      'Searching for an <strong>electrician Athens 24 hours</strong>, an <strong>emergency electrician</strong> after midnight, or an <strong>electrician near me</strong> for a renovation? From Nikea to Glyfada and from Kifissia to Piraeus we respond within 30-60 minutes with transparent pricing.',
     ],
     cta: {
       readMore: 'Read more',
@@ -98,9 +96,9 @@
     },
     expanded: {
       list: [
-        'Electrical works 24/7 (installations, faults, restorations)',
-        'Carpentry services (repairs, builds, fittings)',
-        'General maintenance (upkeep, small repairs)',
+        'Emergency electrical repairs 24/7 (power failures, burnt cables, short circuits)',
+        'Installations & upgrades (new wiring, panels, EV chargers, smart home automation)',
+        'Preventive maintenance & inspections for homes, offices, stores, and HOAs',
       ],
       heading: 'Electrician Athens 24/7 – Urgent electrical solutions with one call',
       lead: [
@@ -125,8 +123,8 @@
           description: 'Clear pricing: <strong>cheap electrician Athens</strong>, <strong>economical electrician Athens</strong> and <strong>electrician 24 hours price</strong>—always confirmed before work begins.',
         },
         {
-          title: 'Complete Technical Services',
-          description: 'Beyond electrical work, we also provide <strong>carpentry services</strong> and <strong>general maintenance</strong> for full care of your property.',
+          title: 'Advanced electrical solutions',
+          description: 'From surge protection and load balancing to automation, EV charging, and business SLAs, we cover every electrical scenario with specialised crews.',
         },
       ],
       closing: [
@@ -137,33 +135,18 @@
   },
   services: {
     heading: 'Our Services',
-    list: {electrician: {
-        title: 'Electrical Services',
-        description: 'Fault finding, wiring, and installations by certified electricians available 24/7.',
-      },
-      plumber: {
-        title: 'Plumbing Services',
-        description: 'Leaks, blockages, and plumbing upgrades with rapid response across Athens.',
-      },
-      tiling: {
-        title: 'Tiling & Flooring',
-        description: 'Tiling installation and repairs for bathrooms, kitchens, and interior or exterior surfaces.',
-      },
-      painting: {
-        title: 'Painting & Decorating',
-        description: 'Interior and exterior painting with premium finishes and experienced crews.',
+    list: {
+      electrician: {
+        title: 'Electrical services',
+        description: 'Installations, troubleshooting, and upgrades handled by certified electricians 24/7.',
       },
       carpentry: {
-        title: 'Carpentry & Joinery',
-        description: 'Custom furniture, cabinetry, and timber repairs tailored to your space.',
-      },
-      renovations: {
-        title: 'Renovations & Fit-outs',
-        description: 'Full and partial refurbishments for homes and businesses, managed end-to-end.',
+        title: 'Carpentry services',
+        description: 'Construction and repair of furniture, wardrobes, and custom wood projects.',
       },
       maintenance: {
-        title: 'Property Maintenance',
-        description: 'Building upkeep, repairs, and scheduled handyman visits for lasting results.',
+        title: 'General maintenance',
+        description: 'Building upkeep, general repairs, and scheduled technical visits.',
       },
     },
   },
@@ -295,8 +278,8 @@ servicedAreas: {
       {
         title: 'Who we are & what we do',
         paragraphs: [
-          'HandyMan 24 operates as a dispatch hub and coordination/intermediation service for technical works in homes and businesses. We receive customer requests by phone or via the website and immediately connect them with the most suitable collaborating professionals (electricians, plumbers, locksmiths, HVAC technicians, appliance engineers, painters, IT technicians, etc.).',
-          'We handle appointment scheduling, confirmations, and customer updates until the work is completed. The jobs are executed by independent partners who hold the required licences/certifications, bear full responsibility for their work, and issue the lawful tax documents. HandyMan 24 provides customer service and coordination.',
+          'HandyMan 24 operates as a dispatch hub dedicated to electrical services. We receive customer requests by phone or via the website and immediately connect them with the most suitable collaborating electricians for emergencies, installations, upgrades, and preventive maintenance in homes and businesses.',
+          'We handle appointment scheduling, confirmations, and customer updates until the work is completed. The jobs are executed by independent licensed electricians who bear full responsibility for their work and issue the lawful tax documents. HandyMan 24 provides customer service and coordination.',
         ],
       },
       {
@@ -385,17 +368,18 @@ servicedAreas: {
   },
   seo: {
     default: {
-      title: '24/7 Tradespeople in Athens - Handyman24',
-      description: '24-hour technical support and emergency repairs in Athens. Electricians, plumbers, renovations, and building maintenance.',
+      title: 'Electrician Athens & Piraeus 24/7 | Handyman24',
+      description: 'Certified emergency electricians in Athens and Piraeus for faults, installations, upgrades, and preventive maintenance 24 hours a day.',
     },
     home: {
-      title: 'Handyman24.gr - Anytime technicians in Athens 24/7',
-      description: 'Electricians, plumbers, and multi-skilled trades across Athens with rapid response around the clock.',
+      title: 'Handyman24.gr - Emergency electrician Athens 24/7',
+      description: 'Electrician Athens & Piraeus with immediate response, transparent pricing, EV charger installs, panel upgrades, and smart home solutions.',
     },
     offers: {
-      title: 'Service offers & bundles - Handyman24.gr',
-      description: 'Browse discounted service bundles for electrical, plumbing, and handyman work for your home or business.',
-    },electrician: {
+      title: 'Electrician offers & packages - Handyman24.gr',
+      description: 'Special prices for oven connections, panel upgrades, EV chargers, and business maintenance plans from licensed electricians.',
+    },
+    electrician: {
       title: 'Electrician in Athens 24/7 - Fast fault repair',
       description: 'Certified electricians in Athens for faults, installations, and renovations with 24/7 availability.',
     },
@@ -441,12 +425,5 @@ servicedAreas: {
     },
   },
 };
-
-
-
-
-
-
-
 
 

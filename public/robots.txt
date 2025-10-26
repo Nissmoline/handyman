@@ -7,15 +7,15 @@ Sitemap: https://handyman24.gr/sitemap.xml
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Allow all important pages
+# Allow key electrician pages
 Allow: /electrician
-Allow: /plumber
-Allow: /tiling
-Allow: /painting
 Allow: /carpentry
-Allow: /renovations
 Allow: /maintenance
+Allow: /electrician-faq
+Allow: /electrician-reviews
 Allow: /offers
+Allow: /privacy-policy
+Allow: /impressum
 
 # Disallow admin or private areas (if any)
 Disallow: /admin/
