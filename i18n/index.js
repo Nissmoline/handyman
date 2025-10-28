@@ -6,10 +6,30 @@ const STORAGE_KEY = 'handyman:locale';
 export const supportedLocales = ['el', 'en'];
 
 const detectBrowserLocale = () => {
-  if (typeof navigator === 'undefined') return 'el';
-  const preferred = (navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language || 'el').toLowerCase();
-  if (preferred.startsWith('en')) return 'en';
-  if (preferred.startsWith('el')) return 'el';
+  if (typeof window === 'undefined') return 'el';
+
+  if (typeof window.location === 'object' && typeof window.location.search === 'string' && typeof URLSearchParams !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const queryLocale = params.get('lang');
+    if (queryLocale && supportedLocales.includes(queryLocale)) {
+      return queryLocale;
+    }
+  }
+
+  if (typeof window.location === 'object' && typeof window.location.pathname === 'string') {
+    const [pathLocale] = window.location.pathname.split('/').filter(Boolean);
+    if (pathLocale && supportedLocales.includes(pathLocale)) {
+      return pathLocale;
+    }
+  }
+
+  if (typeof document !== 'undefined') {
+    const documentLang = document.documentElement.getAttribute('lang');
+    if (documentLang && supportedLocales.includes(documentLang)) {
+      return documentLang;
+    }
+  }
+
   return 'el';
 };
 
@@ -49,3 +69,4 @@ export const setLocale = (locale) => {
 };
 
 export default i18n;
+

@@ -37,6 +37,23 @@
   }
 </script>
 
+  <!-- Google Ads event helper -->
+<script>
+  function gtagSendEvent(url) {
+    var callback = function () {
+      if (typeof url === 'string') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'click', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+      'send_to': 'AW-17574862149/oWs3CJH1yLUbEMW6rLxB'
+    });
+    return false;
+  }
+</script>
+
   <!-- Google Ads conversion tracking -->
 <script>
 function gtag_report_conversion(url) {
@@ -136,8 +153,8 @@ function gtag_report_conversion(url) {
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Emergency electrician Athens 24/7",
-    "serviceType": "Electrician",
+    "name": "Επείγον Ηλεκτρολόγος Αθήνα 24/7",
+    "serviceType": "Ηλεκτρολογικές υπηρεσίες",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Handyman24",
@@ -151,7 +168,7 @@ function gtag_report_conversion(url) {
         "addressCountry": "GR"
       }
     },
-    "areaServed": "Athens & Piraeus",
+    "areaServed": "Αθήνα & Πειραιάς",
     "description": "Επείγουσες ηλεκτρολογικές βλάβες, εγκαταστάσεις και αναβαθμίσεις με άφιξη σε 30-60 λεπτά.",
     "offers": {
       "@type": "Offer",
@@ -239,3 +256,4 @@ function gtag_report_conversion(url) {
 </body>
 
 </html>
+

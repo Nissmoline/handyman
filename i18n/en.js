@@ -204,6 +204,15 @@ servicedAreas: {
   carpentry: {},
   renovations: {},
   maintenance: {},
+  electricianPage: {
+    schema: {
+      businessName: 'HandyMan 24 – Electrician Athens & Piraeus',
+      serviceName: 'Emergency electrician Athens & Piraeus 24/7',
+      serviceType: 'Electrician services',
+      priceDescription: 'Transparent electrician pricing in Athens & Piraeus – confirmed before work begins.',
+      catalogName: 'Electrician services',
+    },
+  },
   privacy: {},
   cookie: {
     banner: {
@@ -425,5 +434,4 @@ servicedAreas: {
     },
   },
 };
-
 

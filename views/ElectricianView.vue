@@ -76,6 +76,14 @@ const serviceAreasList = computed(() => toStringArray(tm('electricianPage.servic
 const whyChooseReasons = computed(() => toStringArray(tm('electricianPage.whyChoose.reasons')))
 const emergencyServicesList = computed(() => toStringArray(tm('electricianPage.emergencyInfo.services')))
 
+const schemaStrings = computed(() => ({
+  businessName: t('electricianPage.schema.businessName'),
+  serviceName: t('electricianPage.schema.serviceName'),
+  serviceType: t('electricianPage.schema.serviceType'),
+  priceDescription: t('electricianPage.schema.priceDescription'),
+  catalogName: t('electricianPage.schema.catalogName'),
+}))
+
 const structuredData = computed(() => {
   const description = [
     t('electricianPage.intro.paragraph1'),
@@ -87,11 +95,12 @@ const structuredData = computed(() => {
 
   const areas = serviceAreasList.value.map(stripTags).filter(Boolean)
   const services = servicesList.value.map(stripTags).filter(Boolean)
+  const schema = schemaStrings.value
 
   const localBusiness = {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Electrician', 'ProfessionalService'],
-    name: 'HandyMan 24 – Ηλεκτρολόγος Αθήνα & Πειραιάς',
+    name: schema.businessName || 'HandyMan 24 – Ηλεκτρολόγος Αθήνα & Πειραιάς',
     image: 'https://handyman24.gr/logoico.svg',
     url: 'https://handyman24.gr/electrician',
     telephone: '+30-694-9214461',
@@ -125,8 +134,8 @@ const structuredData = computed(() => {
   const electricianService = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Emergency electrician Athens & Piraeus 24/7',
-    serviceType: 'Electrician',
+    name: schema.serviceName || 'Επείγον Ηλεκτρολόγος Αθήνα & Πειραιάς 24/7',
+    serviceType: schema.serviceType || 'Ηλεκτρολογικές υπηρεσίες',
     areaServed: areas,
     provider: {
       '@type': 'LocalBusiness',
@@ -143,13 +152,13 @@ const structuredData = computed(() => {
       priceSpecification: {
         '@type': 'UnitPriceSpecification',
         priceCurrency: 'EUR',
-        description: 'Διαφανείς τιμές ηλεκτρολόγου Αθήνα & Πειραιάς – ενημέρωση πριν την εργασία',
+        description: schema.priceDescription || 'Διαφανείς τιμές ηλεκτρολόγου Αθήνα & Πειραιάς – ενημέρωση πριν την εργασία',
       },
     },
     hasOfferCatalog: services.length
       ? {
           '@type': 'OfferCatalog',
-          name: 'Υπηρεσίες Ηλεκτρολόγου',
+          name: schema.catalogName || 'Υπηρεσίες Ηλεκτρολόγου',
           itemListElement: services.map((service) => ({
             '@type': 'Offer',
             itemOffered: {
@@ -178,3 +187,4 @@ useHead(() => ({
 <style scoped>
 @import '@/assets/service-pages.css';
 </style>
+

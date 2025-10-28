@@ -70,6 +70,8 @@ const updateSeoMeta = () => {
   ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
   ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
   ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
+  ensureMeta('meta[name="language"]', { name: 'language', content: locale.value })
+  ensureMeta('meta[property="og:locale"]', { property: 'og:locale', content: locale.value === 'el' ? 'el_GR' : 'en_US' })
 
   if (ogImage) {
     ensureMeta('meta[property="og:image"]', { property: 'og:image', content: ogImage })
@@ -103,3 +105,4 @@ watch(
   padding-bottom: 56px;
 }
 </style>
+

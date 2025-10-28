@@ -17,15 +17,25 @@ const triggerConversion = (url) => {
   if (typeof window === 'undefined') {
     return
   }
+  let navigationHandled = false
+
+  const eventFn = window.gtagSendEvent
+  if (typeof eventFn === 'function') {
+    const eventResult = eventFn(url)
+    if (eventResult === false) {
+      navigationHandled = true
+    }
+  }
+
   const conversionFn = window.gtag_report_conversion
   if (typeof conversionFn === 'function') {
-    const result = conversionFn(url)
-    if (result !== false && url) {
-      window.location = url
+    const conversionResult = conversionFn(url)
+    if (conversionResult === false) {
+      navigationHandled = true
     }
-    return
   }
-  if (url) {
+
+  if (!navigationHandled && typeof url === 'string') {
     window.location = url
   }
 }
