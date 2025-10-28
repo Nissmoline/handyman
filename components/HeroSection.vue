@@ -10,6 +10,36 @@ const toStringArray = (value) => (Array.isArray(value) ? value : [])
 const descriptionParagraphs = computed(() => toStringArray(tm('hero.description')))
 const bulletPoints = computed(() => toStringArray(tm('hero.bullets')))
 const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
+
+const phoneNumberUrl = 'tel:+306949214461'
+
+const triggerConversion = (url) => {
+  if (typeof window === 'undefined') {
+    return
+  }
+  const conversionFn = window.gtag_report_conversion
+  if (typeof conversionFn === 'function') {
+    const result = conversionFn(url)
+    if (result !== false && url) {
+      window.location = url
+    }
+    return
+  }
+  if (url) {
+    window.location = url
+  }
+}
+
+const handleCallClick = () => {
+  triggerConversion(phoneNumberUrl)
+}
+
+const handleBookClick = () => {
+  triggerConversion()
+  if (typeof openAppointmentPopup === 'function') {
+    openAppointmentPopup()
+  }
+}
 </script>
 
 <template>
@@ -38,12 +68,13 @@ const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
               href="tel:+306949214461"
               class="btn btn-outline"
               :aria-label="t('hero.buttons.callAria')"
+              @click.prevent="handleCallClick"
             >
               {{ t('hero.buttons.call') }}
             </a>
             <button
               class="btn btn-outline"
-              @click="openAppointmentPopup && openAppointmentPopup()"
+              @click="handleBookClick"
               type="button"
               :aria-label="t('hero.buttons.bookAria')"
             >
@@ -77,7 +108,7 @@ const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
       <div class="offer-bottom">
         <button
           class="btn btn-outline"
-          @click="openAppointmentPopup && openAppointmentPopup()"
+          @click="handleBookClick"
           type="button"
           :aria-label="t('hero.offer.ctaAria')"
         >
