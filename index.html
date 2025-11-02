@@ -47,10 +47,10 @@
         window.location = url;
       }
     };
-    gtag('event', 'click', {
+  gtag('event', 'click', {
       'event_callback': callback,
       'event_timeout': 2000,
-      'send_to': 'AW-17574862149/veCxCKrLmbYbEMW6rLxB'
+      'send_to': 'AW-17574862149/vQ_2CJGIwbgbEMW6rLxB'
     });
     return false;
   }
@@ -65,7 +65,9 @@ function gtag_report_conversion(url) {
     }
   };
   gtag('event', 'conversion', {
-      'send_to': 'AW-17574862149/veCxCKrLmbYbEMW6rLxB',
+      'send_to': 'AW-17574862149/vQ_2CJGIwbgbEMW6rLxB',
+      'value': 1.0,
+      'currency': 'EUR',
       'event_callback': callback
   });
   return false;
@@ -258,4 +260,3 @@ function gtag_report_conversion(url) {
 </body>
 
 </html>
-
