@@ -24,10 +24,9 @@
       offers: 'Our Offers',
     },
     servicesMenu: {
-      emergency: 'Emergency electrician 24/7',
-      installations: 'Installations & upgrades',
-      business: 'Business & property support',
-      faq: 'FAQ & guides',
+      electrician: 'Electrician',
+      carpentry: 'Carpentry',
+      maintenance: 'Maintenance',
     },
     languageLabel: 'Language selection',
     aria: {
