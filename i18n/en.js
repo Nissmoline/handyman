@@ -286,8 +286,8 @@ servicedAreas: {
       {
         title: 'Who we are & what we do',
         paragraphs: [
-          'HandyMan 24 operates as a dispatch hub dedicated to electrical services. We receive customer requests by phone or via the website and immediately connect them with the most suitable collaborating electricians for emergencies, installations, upgrades, and preventive maintenance in homes and businesses.',
-          'We handle appointment scheduling, confirmations, and customer updates until the work is completed. The jobs are executed by independent licensed electricians who bear full responsibility for their work and issue the lawful tax documents. HandyMan 24 provides customer service and coordination.',
+          'HandyMan 24 operates as a call center for professional technicians. We receive requests by phone or online and forward them to the appropriate collaborating technician for repairs, installations, upgrades, and preventive maintenance in homes and businesses.',
+          'We undertake the scheduling, confirmation, and customer updates until the work is completed. All tasks are carried out by independent, licensed technicians, who bear full responsibility and issue the required legal documents. HandyMan 24 provides coordination and customer service.',
         ],
       },
       {
