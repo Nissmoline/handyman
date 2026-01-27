@@ -2,6 +2,19 @@
 <html lang="el">
 
 <head>
+  <!-- Consent Mode defaults for GTM/Ads -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  const initialConsent = localStorage.getItem('cookie_consent');
+  const consentState = initialConsent === 'all' ? 'granted' : 'denied';
+  gtag('consent', 'default', {
+    'analytics_storage': consentState,
+    'ad_storage': consentState,
+    'ad_user_data': consentState,
+    'ad_personalization': consentState
+  });
+</script>
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -13,30 +26,19 @@
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1M82F3KQR"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   // Проверяем согласие на cookies перед загрузкой аналитики
-  const cookieConsent = localStorage.getItem('cookie_consent');
-  if (cookieConsent === 'all') {
-    gtag('consent', 'update', {
-      'analytics_storage': 'granted',
-      'ad_storage': 'granted'
-    });
+  const runtimeConsent = localStorage.getItem('cookie_consent');
+  if (runtimeConsent === 'all') {
     gtag('config', 'G-L1M82F3KQR');
-    gtag('config', 'AW-17574862149');
   } else {
     // По умолчанию отключаем аналитику до получения согласия
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied'
-    });
     gtag('config', 'G-L1M82F3KQR', {
       'anonymize_ip': true
     });
-    gtag('config', 'AW-17574862149');
   }
+  gtag('config', 'AW-17574862149');
 </script>
 
   <!-- Google Ads event helper -->

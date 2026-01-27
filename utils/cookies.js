@@ -20,6 +20,8 @@ export const CookieManager = {
     // Включаем аналитику если пользователь согласился на все
     if (type === 'all') {
       this.enableAnalytics()
+    } else {
+      this.disableAnalytics()
     }
   },
 
@@ -28,7 +30,9 @@ export const CookieManager = {
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'granted',
-        'ad_storage': 'granted'
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted'
       })
     }
     
@@ -44,7 +48,9 @@ export const CookieManager = {
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'denied',
-        'ad_storage': 'denied'
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
       })
     }
   },
