@@ -1,5 +1,5 @@
-﻿<script setup>
-import { ref, onMounted } from 'vue'
+<script setup>
+import { ref, onMounted, watch, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import CookieManager from '@/utils/cookies.js'
 import CookieSettings from './CookieSettings.vue'
@@ -14,6 +14,17 @@ onMounted(() => {
     setTimeout(() => {
       visible.value = true
     }, 1000)
+  }
+})
+
+watch(visible, (value) => {
+  if (typeof document === 'undefined') return
+  document.body.style.overflow = value ? 'hidden' : ''
+})
+
+onBeforeUnmount(() => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
   }
 })
 
@@ -37,7 +48,7 @@ function openSettings() {
 </script>
 
 <template>
-  <transition name="slide-up">
+  <transition name="fade">
     <div v-if="visible" class="cookie-consent">
       <div class="cookie-content">
         <div class="cookie-header">
@@ -105,15 +116,13 @@ function openSettings() {
 <style scoped>
 .cookie-consent {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  border: 1px solid #e6e8eb;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  max-width: 90vw;
-  width: 480px;
+  inset: 0;
+  background: rgba(4, 72, 119, 0.35);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
   z-index: 10000;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -121,6 +130,14 @@ function openSettings() {
 
 .cookie-content {
   padding: 20px;
+  background: #fff;
+  border: 1px solid #e6e8eb;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  max-width: 560px;
+  width: min(92vw, 560px);
+  max-height: 90vh;
+  overflow: auto;
 }
 
 .cookie-header h3 {
@@ -244,29 +261,29 @@ function openSettings() {
   border-bottom-color: #044877;
 }
 
-.slide-up-enter-active, 
-.slide-up-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
 }
 
-.slide-up-enter-from, 
-.slide-up-leave-to {
-  transform: translateX(-50%) translateY(100%);
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
+}
+
+.fade-enter-from .cookie-content,
+.fade-leave-to .cookie-content {
+  transform: scale(0.98);
 }
 
 @media (max-width: 768px) {
   .cookie-consent {
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    transform: none;
-    width: auto;
-    max-width: none;
+    padding: 16px;
   }
   
   .cookie-content {
     padding: 16px;
+    width: 100%;
   }
   
   .cookie-header h3 {
@@ -295,9 +312,7 @@ function openSettings() {
 
 @media (max-width: 480px) {
   .cookie-consent {
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
+    padding: 12px;
   }
   
   .cookie-content {
