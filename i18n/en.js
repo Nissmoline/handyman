@@ -47,7 +47,7 @@
       faq: 'FAQ',
       privacy: 'Privacy Policy',
       impressum: 'Impressum',
-      cookies: 'Cookie Settings',
+      cookies: 'Cookie information',
     },
     bottom: '© {year} Handyman24. All rights reserved.',
   },
@@ -216,35 +216,37 @@ servicedAreas: {
   cookie: {
     banner: {
       title: '🍪 Cookie usage',
-      description: 'We use cookies to improve your experience, analyse traffic, and deliver tailored content. Some cookies are essential for the site to function.',
+      description: 'We use mandatory cookies for core site functionality and traffic analytics (Google Analytics). By selecting "OK" you confirm that you have been informed.',
       sections: {
         essential: {
           title: 'Essential cookies',
-          description: 'Required for the basic operation of the website. These cannot be disabled.',
+          description: 'Required for core site functionality and security. They are always active.',
         },
         analytics: {
-          title: 'Analytics cookies',
-          description: 'Help us understand how visitors use the site (Google Analytics).',
+          title: 'Analytics cookies (Google Analytics)',
+          description: 'Used to measure traffic and improve our services. They are always active.',
         },
         functional: {
           title: 'Functional cookies',
-          description: 'Improve site functionality and overall performance.',
+          description: 'Support core features and improve the overall experience. They are always active.',
         },
       },
       actions: {
         more: 'More information',
         less: 'Less information',
-        acceptEssential: 'Essential only',
-        acceptAll: 'Accept all',
-        settings: 'Cookie settings',
+        ok: 'OK',
+        settings: 'Cookie information',
       },
     },
     settings: {
-      title: '🍪 Cookie settings',
+      title: '🍪 Cookie information',
+      notice: 'All cookies we use are mandatory and always active.',
       essentialTitle: 'Essential cookies',
-      essentialDescription: 'Required for the basic operation of the website. These cannot be disabled.',
-      analyticsTitle: 'Analytics cookies',
-      analyticsDescription: 'Help us understand how visitors use the site (Google Analytics).',
+      essentialDescription: 'Required for core site functionality and security. They are always active.',
+      analyticsTitle: 'Analytics cookies (Google Analytics)',
+      analyticsDescription: 'Used for traffic analysis and service improvement. They are always active.',
+      functionalTitle: 'Functional cookies',
+      functionalDescription: 'Support core features and improve the overall experience. They are always active.',
     },
   },
   impressum: {

@@ -6,8 +6,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  const initialConsent = localStorage.getItem('cookie_consent');
-  const consentState = initialConsent === 'all' ? 'granted' : 'denied';
+  const consentState = 'granted';
   gtag('consent', 'default', {
     'analytics_storage': consentState,
     'ad_storage': consentState,
@@ -28,16 +27,7 @@
 <script>
   gtag('js', new Date());
 
-  // Проверяем согласие на cookies перед загрузкой аналитики
-  const runtimeConsent = localStorage.getItem('cookie_consent');
-  if (runtimeConsent === 'all') {
-    gtag('config', 'G-L1M82F3KQR');
-  } else {
-    // По умолчанию отключаем аналитику до получения согласия
-    gtag('config', 'G-L1M82F3KQR', {
-      'anonymize_ip': true
-    });
-  }
+  gtag('config', 'G-L1M82F3KQR');
   gtag('config', 'AW-17574862149');
 </script>
 

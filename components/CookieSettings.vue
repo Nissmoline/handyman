@@ -1,26 +1,9 @@
-﻿<script setup>
-import { ref, onMounted } from 'vue'
+<script setup>
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import CookieManager from '@/utils/cookies.js'
 
 const visible = ref(false)
-const analyticsEnabled = ref(false)
-const essentialEnabled = ref(true)
 const { t } = useI18n()
-
-onMounted(() => {
-  const consent = localStorage.getItem('cookie_consent')
-  analyticsEnabled.value = consent === 'all'
-})
-
-function saveSettings() {
-  if (analyticsEnabled.value) {
-    CookieManager.setConsent('all')
-  } else {
-    CookieManager.setConsent('essential')
-  }
-  visible.value = false
-}
 
 function openSettings() {
   visible.value = true
@@ -46,21 +29,11 @@ defineExpose({ openSettings })
         </div>
 
         <div class="settings-content">
+          <p class="settings-note">{{ t('cookie.settings.notice') }}</p>
           <div class="cookie-type">
             <div class="cookie-info">
               <h4>{{ t('cookie.settings.essentialTitle') }}</h4>
               <p>{{ t('cookie.settings.essentialDescription') }}</p>
-            </div>
-            <div class="cookie-toggle">
-              <input
-                type="checkbox"
-                :checked="essentialEnabled"
-                disabled
-                id="essential-cookies"
-              >
-              <label for="essential-cookies" class="toggle-label disabled">
-                <span class="toggle-slider"></span>
-              </label>
             </div>
           </div>
 
@@ -69,25 +42,19 @@ defineExpose({ openSettings })
               <h4>{{ t('cookie.settings.analyticsTitle') }}</h4>
               <p>{{ t('cookie.settings.analyticsDescription') }}</p>
             </div>
-            <div class="cookie-toggle">
-              <input
-                type="checkbox"
-                v-model="analyticsEnabled"
-                id="analytics-cookies"
-              >
-              <label for="analytics-cookies" class="toggle-label">
-                <span class="toggle-slider"></span>
-              </label>
+          </div>
+
+          <div class="cookie-type">
+            <div class="cookie-info">
+              <h4>{{ t('cookie.settings.functionalTitle') }}</h4>
+              <p>{{ t('cookie.settings.functionalDescription') }}</p>
             </div>
           </div>
         </div>
 
         <div class="settings-actions">
-          <button @click="closeSettings" class="btn btn-secondary">
-            {{ t('common.buttons.cancel') }}
-          </button>
-          <button @click="saveSettings" class="btn btn-primary">
-            {{ t('common.buttons.save') }}
+          <button @click="closeSettings" class="btn btn-primary">
+            {{ t('common.buttons.close') }}
           </button>
         </div>
       </div>
@@ -164,12 +131,15 @@ defineExpose({ openSettings })
   padding: 24px;
 }
 
+.settings-note {
+  margin: 0 0 18px 0;
+  color: #475569;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
 .cookie-type {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 24px;
-  gap: 16px;
 }
 
 .cookie-type:last-child {
@@ -194,53 +164,8 @@ defineExpose({ openSettings })
   line-height: 1.5;
 }
 
-.cookie-toggle {
-  flex-shrink: 0;
-}
-
-.cookie-toggle input[type="checkbox"] {
-  display: none;
-}
-
-.toggle-label {
-  display: inline-block;
-  width: 48px;
-  height: 24px;
-  background: #cbd5e1;
-  border-radius: 12px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.toggle-label.disabled {
-  background: #e2e8f0;
-  cursor: not-allowed;
-}
-
-.toggle-slider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border-radius: 50%;
-  transition: all 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-input[type="checkbox"]:checked + .toggle-label {
-  background: #044877;
-}
-
-input[type="checkbox"]:checked + .toggle-label .toggle-slider {
-  transform: translateX(24px);
-}
-
 .settings-actions {
   display: flex;
-  gap: 12px;
   justify-content: flex-end;
   padding: 20px 24px;
   border-top: 1px solid #e2e8f0;

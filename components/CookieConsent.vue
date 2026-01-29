@@ -28,13 +28,8 @@ onBeforeUnmount(() => {
   }
 })
 
-function acceptAllCookies() {
-  CookieManager.setConsent('all')
-  visible.value = false
-}
-
-function acceptEssentialCookies() {
-  CookieManager.setConsent('essential')
+function acknowledgeCookies() {
+  CookieManager.setConsent()
   visible.value = false
 }
 
@@ -88,11 +83,8 @@ function openSettings() {
           </button>
 
           <div class="cookie-buttons">
-            <button class="cookie-btn cookie-btn-essential" @click="acceptEssentialCookies">
-              {{ t('cookie.banner.actions.acceptEssential') }}
-            </button>
-            <button class="cookie-btn cookie-btn-accept" @click="acceptAllCookies">
-              {{ t('cookie.banner.actions.acceptAll') }}
+            <button class="cookie-btn cookie-btn-accept" @click="acknowledgeCookies">
+              {{ t('cookie.banner.actions.ok') }}
             </button>
           </div>
 
@@ -192,6 +184,7 @@ function openSettings() {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .cookie-btn {
@@ -215,19 +208,6 @@ function openSettings() {
 .cookie-btn-accept:hover {
   background: #03365d;
   transform: translateY(-1px);
-}
-
-.cookie-btn-essential {
-  background: #f1f5f9;
-  color: #475569;
-  border: 1px solid #cbd5e1;
-  flex: 1;
-  min-width: 120px;
-}
-
-.cookie-btn-essential:hover {
-  background: #e2e8f0;
-  color: #334155;
 }
 
 .cookie-btn-secondary {
