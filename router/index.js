@@ -1,5 +1,6 @@
 ﻿import { createRouter, createWebHistory } from 'vue-router';
 
+import { createMemoryHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import OffersView from '@/views/OffersView.vue';
 import ElectricianView from '@/views/ElectricianView.vue';
@@ -150,10 +151,10 @@ export const scrollBehavior = (to, from, savedPosition) => {
   return { top: 0, behavior: 'smooth' };
 };
 
-const router = createRouter({
-  history: createWebHistory('/'),
-  routes,
-  scrollBehavior,
-});
+const history = import.meta.env.SSR
+  ? createMemoryHistory('/')
+  : createWebHistory('/');
+
+const router = createRouter({ history, routes, scrollBehavior });
 
 export default router;
