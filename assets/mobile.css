@@ -537,7 +537,7 @@ body {
   }
   
   /* Better spacing */
-  section {
+  section:not(.hero-root) {
     padding: 2rem 1rem;
   }
   

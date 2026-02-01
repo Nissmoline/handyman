@@ -28,8 +28,13 @@ onBeforeUnmount(() => {
   }
 })
 
-function acknowledgeCookies() {
-  CookieManager.setConsent()
+function acceptCookies() {
+  CookieManager.grantConsent()
+  visible.value = false
+}
+
+function declineCookies() {
+  CookieManager.denyConsent()
   visible.value = false
 }
 
@@ -39,6 +44,10 @@ function toggleDetails() {
 
 function openSettings() {
   cookieSettingsRef.value?.openSettings()
+}
+
+function handleConsentUpdated() {
+  visible.value = false
 }
 </script>
 
@@ -83,7 +92,10 @@ function openSettings() {
           </button>
 
           <div class="cookie-buttons">
-            <button class="cookie-btn cookie-btn-accept" @click="acknowledgeCookies">
+            <button class="cookie-btn cookie-btn-decline" @click="declineCookies">
+              {{ t('cookie.banner.actions.decline') }}
+            </button>
+            <button class="cookie-btn cookie-btn-accept" @click="acceptCookies">
               {{ t('cookie.banner.actions.ok') }}
             </button>
           </div>
@@ -103,7 +115,7 @@ function openSettings() {
     </div>
   </transition>
 
-  <CookieSettings ref="cookieSettingsRef" />
+  <CookieSettings ref="cookieSettingsRef" @consent-updated="handleConsentUpdated" />
 </template>
 <style scoped>
 .cookie-consent {
@@ -208,6 +220,18 @@ function openSettings() {
 .cookie-btn-accept:hover {
   background: #03365d;
   transform: translateY(-1px);
+}
+
+.cookie-btn-decline {
+  background: #f8fafc;
+  color: #044877;
+  border: 1px solid #cbd5e1;
+  flex: 1;
+  min-width: 140px;
+}
+
+.cookie-btn-decline:hover {
+  background: #e2e8f0;
 }
 
 .cookie-btn-secondary {

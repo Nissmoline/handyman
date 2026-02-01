@@ -1,7 +1,8 @@
-﻿<script setup lang="ts">
-import { ref, provide, watch } from 'vue'
+<script setup lang="ts">
+import { ref, provide, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import AppHeader from '@/components/AppHeader.vue'
 import AppBottomBar from '@/components/AppBottomBar.vue'
 import AppFooter from '@/components/AppFooter.vue'
@@ -21,6 +22,7 @@ provide('openAppointmentPopup', openPopup)
 
 const route = useRoute()
 const { t, locale } = useI18n()
+const siteUrl = 'https://handyman24.gr'
 
 const defaultSeo = {
   titleKey: 'seo.default.title',
@@ -29,64 +31,57 @@ const defaultSeo = {
   twitterImage: 'https://handyman24.gr/logoico.svg',
 }
 
-const updateSeoMeta = () => {
-  if (typeof document === 'undefined' || !document.head) return
+const routeMeta = computed(() => route.meta as {
+  titleKey?: string
+  descriptionKey?: string
+  ogImage?: string
+  twitterImage?: string
+})
 
-  const routeMeta = route.meta as {
-    titleKey?: string
-    descriptionKey?: string
-    ogImage?: string
-    twitterImage?: string
-  }
+const titleKey = computed(() => routeMeta.value.titleKey || defaultSeo.titleKey)
+const descriptionKey = computed(() => routeMeta.value.descriptionKey || defaultSeo.descriptionKey)
+const ogImage = computed(() => routeMeta.value.ogImage || defaultSeo.ogImage)
+const twitterImage = computed(() => routeMeta.value.twitterImage || defaultSeo.twitterImage)
 
-  const titleKey = routeMeta.titleKey || defaultSeo.titleKey
-  const descriptionKey = routeMeta.descriptionKey || defaultSeo.descriptionKey
-  const ogImage = routeMeta.ogImage || defaultSeo.ogImage
-  const twitterImage = routeMeta.twitterImage || defaultSeo.twitterImage
-
-  const title = t(titleKey)
-  const description = t(descriptionKey)
-  const canonicalPath = route.path
-  const canonicalUrl = `https://handyman24.gr${canonicalPath === '/' ? '' : canonicalPath}`
-
-  document.title = title
-
-  const ensureMeta = (selector: string, attrs: Record<string, string>) => {
-    let element = document.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null
-    if (!element) {
-      element = selector.startsWith('meta')
-        ? document.createElement('meta')
-        : document.createElement('link')
-      document.head.appendChild(element)
-    }
-    Object.entries(attrs).forEach(([key, value]) => {
-      element!.setAttribute(key, value)
-    })
-    return element
-  }
-
-  ensureMeta('meta[name="description"]', { name: 'description', content: description })
-  ensureMeta('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl })
-  ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
-  ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
-  ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
-  ensureMeta('meta[name="language"]', { name: 'language', content: locale.value })
-  ensureMeta('meta[property="og:locale"]', { property: 'og:locale', content: locale.value === 'el' ? 'el_GR' : 'en_US' })
-
-  if (ogImage) {
-    ensureMeta('meta[property="og:image"]', { property: 'og:image', content: ogImage })
-  }
-
-  if (twitterImage) {
-    ensureMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: twitterImage })
-  }
-}
-
-watch(
-  [() => route.fullPath, () => locale.value],
-  () => updateSeoMeta(),
-  { immediate: true }
+const title = computed(() => t(titleKey.value))
+const description = computed(() => t(descriptionKey.value))
+const canonicalUrl = computed(() =>
+  route.path === '/' ? `${siteUrl}/` : `${siteUrl}${route.path}`
 )
+const ogLocale = computed(() => (locale.value === 'el' ? 'el_GR' : 'en_US'))
+
+const metaTags = computed(() => {
+  const tags = [
+    { name: 'description', content: description.value },
+    { name: 'language', content: locale.value },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:title', content: title.value },
+    { property: 'og:description', content: description.value },
+    { property: 'og:url', content: canonicalUrl.value },
+    { property: 'og:site_name', content: 'Handyman24 - Ηλεκτρολόγος Αθήνα' },
+    { property: 'og:locale', content: ogLocale.value },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title.value },
+    { name: 'twitter:description', content: description.value },
+  ]
+
+  if (ogImage.value) {
+    tags.push({ property: 'og:image', content: ogImage.value })
+  }
+
+  if (twitterImage.value) {
+    tags.push({ name: 'twitter:image', content: twitterImage.value })
+  }
+
+  return tags
+})
+
+useHead(() => ({
+  title: title.value,
+  htmlAttrs: { lang: locale.value },
+  meta: metaTags.value,
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
+}))
 </script>
 
 <template>

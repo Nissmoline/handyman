@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import CookieManager from '@/utils/cookies.js'
 
 const visible = ref(false)
+const emit = defineEmits(['consent-updated'])
 const { t } = useI18n()
 
 function openSettings() {
@@ -11,6 +13,18 @@ function openSettings() {
 
 function closeSettings() {
   visible.value = false
+}
+
+function acceptAll() {
+  CookieManager.grantConsent()
+  emit('consent-updated')
+  closeSettings()
+}
+
+function acceptEssential() {
+  CookieManager.denyConsent()
+  emit('consent-updated')
+  closeSettings()
 }
 
 defineExpose({ openSettings })
@@ -53,8 +67,11 @@ defineExpose({ openSettings })
         </div>
 
         <div class="settings-actions">
-          <button @click="closeSettings" class="btn btn-primary">
-            {{ t('common.buttons.close') }}
+          <button @click="acceptAll" class="btn btn-primary">
+            {{ t('cookie.settings.actions.acceptAll') }}
+          </button>
+          <button @click="acceptEssential" class="btn btn-secondary">
+            {{ t('cookie.settings.actions.essentialOnly') }}
           </button>
         </div>
       </div>
@@ -167,6 +184,8 @@ defineExpose({ openSettings })
 .settings-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
   padding: 20px 24px;
   border-top: 1px solid #e2e8f0;
 }

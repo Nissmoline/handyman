@@ -1,47 +1,126 @@
 // Утилита для управления cookies и согласием пользователя
 
+const CONSENT_KEY = 'cookie_consent'
+const CONSENT_DATE_KEY = 'cookie_consent_date'
+const CONSENT_ALL = 'all'
+const CONSENT_ESSENTIAL = 'essential'
+
+const canUseStorage = () => typeof window !== 'undefined' && typeof localStorage !== 'undefined'
+
+const safeGetItem = (key) => {
+  if (!canUseStorage()) return null
+  try {
+    return localStorage.getItem(key)
+  } catch (e) {
+    return null
+  }
+}
+
+const safeSetItem = (key, value) => {
+  if (!canUseStorage()) return
+  try {
+    localStorage.setItem(key, value)
+  } catch (e) {
+    return
+  }
+}
+
+const safeRemoveItem = (key) => {
+  if (!canUseStorage()) return
+  try {
+    localStorage.removeItem(key)
+  } catch (e) {
+    return
+  }
+}
+
 export const CookieManager = {
-  // Проверяет, дал ли пользователь согласие на cookies
-  hasConsent() {
-    const consent = localStorage.getItem('cookie_consent')
-    return consent === 'all' || consent === 'essential'
+  getConsent() {
+    return safeGetItem(CONSENT_KEY)
   },
 
-  // Устанавливает согласие пользователя
+  // Проверяет, дал ли пользователь согласие на cookies
+  hasConsent() {
+    const consent = this.getConsent()
+    return consent === CONSENT_ALL || consent === CONSENT_ESSENTIAL
+  },
+
+  // Устанавливает согласие пользователя (совместимость)
   setConsent() {
-    localStorage.setItem('cookie_consent', 'all')
-    localStorage.setItem('cookie_consent_date', new Date().toISOString())
+    this.grantConsent()
+  },
+
+  grantConsent() {
+    safeSetItem(CONSENT_KEY, CONSENT_ALL)
+    safeSetItem(CONSENT_DATE_KEY, new Date().toISOString())
     this.enableAnalytics()
+  },
+
+  denyConsent() {
+    safeSetItem(CONSENT_KEY, CONSENT_ESSENTIAL)
+    safeSetItem(CONSENT_DATE_KEY, new Date().toISOString())
+    this.disableAnalytics()
   },
 
   // Включает Google Analytics
   enableAnalytics() {
+    if (typeof window === 'undefined') return
     if (window.gtag) {
       window.gtag('consent', 'update', {
-        'analytics_storage': 'granted',
-        'ad_storage': 'granted',
-        'ad_user_data': 'granted',
-        'ad_personalization': 'granted'
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
       })
     }
-    
+
     if (window.dataLayer) {
       window.dataLayer.push({
-        'event': 'cookie_consent_granted'
+        event: 'cookie_consent_granted'
       })
+    }
+  },
+
+  // Отключает аналитику и рекламные cookies
+  disableAnalytics() {
+    if (typeof window === 'undefined') return
+    if (window.gtag) {
+      window.gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      })
+    }
+
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'cookie_consent_denied'
+      })
+    }
+  },
+
+  applyStoredConsent() {
+    const consent = this.getConsent()
+    if (consent === CONSENT_ALL) {
+      this.enableAnalytics()
+      return
+    }
+    if (consent === CONSENT_ESSENTIAL) {
+      this.disableAnalytics()
     }
   },
 
   // Получает дату согласия
   getConsentDate() {
-    return localStorage.getItem('cookie_consent_date')
+    return safeGetItem(CONSENT_DATE_KEY)
   },
 
   // Удаляет согласие (для тестирования)
   clearConsent() {
-    localStorage.removeItem('cookie_consent')
-    localStorage.removeItem('cookie_consent_date')
-    this.enableAnalytics()
+    safeRemoveItem(CONSENT_KEY)
+    safeRemoveItem(CONSENT_DATE_KEY)
+    this.disableAnalytics()
   },
 
   // Проверяет, нужно ли показать баннер согласия

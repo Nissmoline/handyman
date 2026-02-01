@@ -216,7 +216,7 @@ servicedAreas: {
   cookie: {
     banner: {
       title: '🍪 Cookie usage',
-      description: 'We use mandatory cookies for core site functionality and traffic analytics (Google Analytics). By selecting "OK" you confirm that you have been informed.',
+      description: 'We use essential cookies for core site functionality. With your permission, we also use analytics and advertising cookies (Google Analytics & Google Ads).',
       sections: {
         essential: {
           title: 'Essential cookies',
@@ -224,29 +224,34 @@ servicedAreas: {
         },
         analytics: {
           title: 'Analytics cookies (Google Analytics)',
-          description: 'Used to measure traffic and improve our services. They are always active.',
+          description: 'Used to measure traffic and improve our services. Enabled only if you accept all cookies.',
         },
         functional: {
-          title: 'Functional cookies',
-          description: 'Support core features and improve the overall experience. They are always active.',
+          title: 'Advertising cookies (Google Ads)',
+          description: 'Used for advertising measurement and conversion tracking. Enabled only if you accept all cookies.',
         },
       },
       actions: {
         more: 'More information',
         less: 'Less information',
-        ok: 'OK',
-        settings: 'Cookie information',
+        ok: 'Accept all',
+        decline: 'Only essential',
+        settings: 'Cookie settings',
       },
     },
     settings: {
-      title: '🍪 Cookie information',
-      notice: 'All cookies we use are mandatory and always active.',
+      title: '🍪 Cookie settings',
+      notice: 'You can choose whether to allow optional analytics and advertising cookies.',
       essentialTitle: 'Essential cookies',
       essentialDescription: 'Required for core site functionality and security. They are always active.',
       analyticsTitle: 'Analytics cookies (Google Analytics)',
-      analyticsDescription: 'Used for traffic analysis and service improvement. They are always active.',
-      functionalTitle: 'Functional cookies',
-      functionalDescription: 'Support core features and improve the overall experience. They are always active.',
+      analyticsDescription: 'Used to measure traffic and improve our services. Enabled only if you accept all cookies.',
+      functionalTitle: 'Advertising cookies (Google Ads)',
+      functionalDescription: 'Used for advertising measurement and conversion tracking. Enabled only if you accept all cookies.',
+      actions: {
+        acceptAll: 'Accept all',
+        essentialOnly: 'Only essential',
+      },
     },
   },
   impressum: {

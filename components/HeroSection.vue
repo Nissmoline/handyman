@@ -57,7 +57,7 @@ const handleBookClick = () => {
     <div class="hero-main">
       <div class="hero-content">
         <div class="hero-left">
-          <h1>
+          <h1 class="hero-title">
             {{ t('hero.title.main') }}<br /><span>{{ t('hero.title.highlight') }}</span>
           </h1>
           <div class="hero-desc">
@@ -93,7 +93,15 @@ const handleBookClick = () => {
           </div>
         </div>
         <div class="hero-right">
-          <img src="/heromain.png" :alt="t('hero.alt')" />
+          <img
+            src="/heromain.png"
+            :alt="t('hero.alt')"
+            width="1024"
+            height="1024"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
       </div>
     </div>
@@ -337,90 +345,196 @@ const handleBookClick = () => {
 }
 
 @media (max-width: 750px) {
+  .hero-root {
+    min-height: auto;
+    background: #fff;
+    padding-bottom: 36px;
+  }
+
+  .hero-main {
+    background: linear-gradient(160deg, #044877 0%, #0c5a8a 55%, #0b6fa5 100%);
+  }
+
   .hero-content {
     flex-direction: column;
-    padding: 20px 16px 40px;
+    padding: 96px 0 22px;
     align-items: center;
-    text-align: center;
+    text-align: left;
     justify-content: center;
-    min-height: auto;
+    gap: 10px;
   }
   .hero-left {
-    padding-top: 0;
-    width: 100%;
-    max-width: 100%;
+    display: contents;
+  }
+  .hero-title {
+    order: 1;
+    align-self: stretch;
   }
   .hero-left h1 {
-    font-size: 2rem;
+    font-size: 1.95rem;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     text-align: center;
   }
   .hero-left h1 span {
-    font-size: 1.6rem;
-    margin-top: 0.2em;
+    font-size: 1.28rem;
+    margin-top: 0.3em;
     text-align: center;
+    color: #e0f2ff;
   }
   .hero-desc {
-  font-size: 1.13rem;
-  margin-bottom: 34px;
-  line-height: 1.43;
-  font-weight: 400;
-  letter-spacing: 0.005em;
-}
-.hero-desc-list {
-  list-style: none;
-  margin: 12px 0 0;
-  padding: 0;
-}
-.hero-desc-list li {
-  position: relative;
-  padding-left: 18px;
-  margin-bottom: 6px;
-}
-.hero-desc-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #fff;
-  font-size: 1.1em;
-  line-height: 1;
-}
-.hero-buttons {
+    order: 3;
+    font-size: 0.96rem;
+    margin-bottom: 14px;
+    line-height: 1.45;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 25px;
+  }
+  .hero-desc p {
+    margin: 0 0 8px 0;
+  }
+  .hero-desc-list {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    max-width: none;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 25px;
+  }
+  .hero-desc-list li {
+    position: relative;
+    padding: 8px 10px 8px 30px;
+    margin-bottom: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    text-align: left;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+  .hero-desc-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    color: #e0f2ff;
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .hero-buttons {
+    order: 4;
     flex-direction: column;
     gap: 12px;
     align-items: center;
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 4px;
+    max-width: none;
+    padding-left: 25px;
+    padding-right: 25px;
   }
   .btn {
     width: 100%;
-    max-width: 280px;
+    max-width: none;
     padding: 14px 20px;
     font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 11px;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    box-shadow: none;
+  }
+  .hero-buttons .btn:hover,
+  .hero-buttons .btn:focus-visible {
+    background: #ffffff;
+    color: #044877;
+  }
+  .hero-right {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    min-width: 0;
+    position: relative;
+    margin: 6px 0 16px;
+    align-self: center;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.12) 60%, transparent 70%);
+  }
+  .hero-right img {
+    max-width: 435px;
+    width: min(90vw, 435px);
+    margin: 0 auto 8px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.24));
+    position: relative;
+    z-index: 1;
+    border-radius: 28px;
+  }
+  .hero-offer {
+    margin: 6px 25px 0;
+    padding: 18px 20px;
+    border-radius: 16px;
+    width: auto;
+    background: #c1121c;
+    color: #ffffff;
+    box-shadow: 0 14px 32px rgba(193, 18, 28, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .offer-main {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
     text-align: center;
+    color: #ffffff;
+  }
+  .offer-main span {
+    color: #ffffff;
   }
   .offer-title {
-    font-size: 1rem;
-    line-height: 1.3;
-    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0.01em;
   }
   .offer-note {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     margin-top: 4px;
+    color: rgba(255, 255, 255, 0.85);
   }
   .offer-icons {
     font-size: 0.95rem;
-    margin: 12px 0;
-    text-align: center;
+    margin: 10px 0;
+    text-align: left;
+    color: #ffffff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .offer-check {
+    color: #ffffff;
   }
   .offer-bottom {
     width: 100%;
@@ -429,118 +543,93 @@ const handleBookClick = () => {
   }
   .offer-bottom .btn {
     width: 100%;
-    margin-top: 8px;
+    margin-top: 6px;
+    background: transparent;
+    border-color: #ffffff;
+    color: #fff;
+    box-shadow: none;
   }
 }
 @media (max-width: 500px) {
   .hero-content {
-    padding: 16px 12px 32px;
-    text-align: center;
-  }
-  .hero-left {
-    width: 100%;
-    text-align: center;
+    padding: 88px 0 20px;
   }
   .hero-left h1 {
     font-size: 1.8rem;
-    text-align: center;
   }
   .hero-left h1 span {
-    font-size: 1.4rem;
-    text-align: center;
+    font-size: 1.2rem;
   }
   .hero-desc {
-    font-size: 0.95rem;
-    text-align: center;
+    font-size: 0.94rem;
+    max-width: none;
   }
   .btn {
     padding: 12px 16px;
     font-size: 0.95rem;
   }
-  .hero-right {
-    width: 100%;
-    justify-content: center;
+  .hero-right::before {
+    width: 320px;
+    height: 320px;
   }
   .hero-right img {
-    max-width: 240px;
+    max-width: 360px;
+    width: min(90vw, 360px);
+    border-radius: 26px;
   }
   .hero-offer {
-    margin: -30px 12px 0;
-    padding: 16px 12px;
-    border-radius: 12px;
-    width: calc(100% - 24px);
-    align-items: center;
-  }
-  .offer-main {
-    text-align: center;
+    margin: 6px 25px 0;
+    padding: 16px 20px;
+    width: auto;
   }
   .offer-title {
-    text-align: center;
+    font-size: 1rem;
   }
   .offer-icons {
-    text-align: center;
-  }
-  .offer-bottom {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero-content {
-    padding: 12px 8px 24px;
-    text-align: center;
-  }
-  .hero-left {
-    width: 100%;
-    text-align: center;
+    padding: 82px 0 18px;
   }
   .hero-left h1 {
     font-size: 1.6rem;
-    text-align: center;
   }
   .hero-left h1 span {
-    font-size: 1.3rem;
-    text-align: center;
+    font-size: 1.15rem;
   }
   .hero-desc {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    text-align: center;
+    font-size: 0.88rem;
+    max-width: none;
   }
-  .hero-right {
-    width: 100%;
-    justify-content: center;
+  .hero-desc-list li {
+    padding: 8px 10px 8px 28px;
+    font-size: 0.88rem;
+  }
+  .hero-right::before {
+    width: 290px;
+    height: 290px;
   }
   .hero-right img {
-    max-width: 200px;
+    max-width: 335px;
+    width: min(90vw, 335px);
+    border-radius: 24px;
   }
   .hero-offer {
-    margin: -25px 8px 0;
-    padding: 14px 10px;
-    width: calc(100% - 16px);
-    align-items: center;
-  }
-  .offer-main {
-    font-size: 1rem;
-    text-align: center;
+    padding: 14px 18px;
+    width: auto;
+    margin: 4px 25px 0;
   }
   .offer-title {
-    font-size: 0.9rem;
-    text-align: center;
+    font-size: 0.95rem;
   }
   .offer-note {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
   .offer-icons {
     font-size: 0.85rem;
-    text-align: center;
-  }
-  .offer-bottom {
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 }
 </style>

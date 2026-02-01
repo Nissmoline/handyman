@@ -14,7 +14,7 @@ import CarpentryView from '@/views/CarpentryView.vue';
 // import RenovationsView from '@/views/RenovationsView.vue';
 import MaintenanceView from '@/views/MaintenanceView.vue';
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'home',
@@ -138,20 +138,22 @@ const routes = [
   },
 ];
 
+export const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition;
+  }
+
+  if (to.hash) {
+    return { el: to.hash, behavior: 'smooth' };
+  }
+
+  return { top: 0, behavior: 'smooth' };
+};
+
 const router = createRouter({
   history: createWebHistory('/'),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    }
-
-    if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' };
-    }
-
-    return { top: 0, behavior: 'smooth' };
-  },
+  scrollBehavior,
 });
 
 export default router;
