@@ -25,8 +25,8 @@ const { t, locale } = useI18n()
 const defaultSeo = {
   titleKey: 'seo.default.title',
   descriptionKey: 'seo.default.description',
-  ogImage: 'https://handyman24.gr/logoico.svg',
-  twitterImage: 'https://handyman24.gr/logoico.svg',
+  ogImage: 'https://handyman24.gr/metaimg.jpg',
+  twitterImage: 'https://handyman24.gr/metaimg.jpg',
 }
 
 const updateSeoMeta = () => {
@@ -50,6 +50,7 @@ const updateSeoMeta = () => {
   const canonicalUrl = `https://handyman24.gr${canonicalPath === '/' ? '' : canonicalPath}`
 
   document.title = title
+  document.documentElement.lang = locale.value
 
   const ensureMeta = (selector: string, attrs: Record<string, string>) => {
     let element = document.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null
@@ -70,8 +71,11 @@ const updateSeoMeta = () => {
   ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
   ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
   ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
+  ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
   ensureMeta('meta[name="language"]', { name: 'language', content: locale.value })
   ensureMeta('meta[property="og:locale"]', { property: 'og:locale', content: locale.value === 'el' ? 'el_GR' : 'en_US' })
+  ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: title })
+  ensureMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: description })
 
   if (ogImage) {
     ensureMeta('meta[property="og:image"]', { property: 'og:image', content: ogImage })

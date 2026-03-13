@@ -2,10 +2,11 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ServiceItem from './ServiceItem.vue'
-import { Plug, Hammer, House } from 'lucide-vue-next'
+import { Plug, Hammer, House, Anchor } from 'lucide-vue-next'
 
 const serviceDefinitions = [
   { icon: Plug, titleKey: 'services.list.electrician.title', descriptionKey: 'services.list.electrician.description', link: '/electrician' },
+  { icon: Anchor, titleKey: 'services.list.yachtRepair.title', descriptionKey: 'services.list.yachtRepair.description', link: '/yacht-repair' },
   { icon: Hammer, titleKey: 'services.list.carpentry.title', descriptionKey: 'services.list.carpentry.description', link: '/carpentry' },
   { icon: House, titleKey: 'services.list.maintenance.title', descriptionKey: 'services.list.maintenance.description', link: '/maintenance' },
 ]
@@ -50,7 +51,7 @@ const services = computed(() =>
 }
 .services-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem 1.2rem;
   list-style: none;
   padding: 25px;

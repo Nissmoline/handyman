@@ -13,6 +13,7 @@ import ImpressumView from '@/views/ImpressumView.vue';
 import CarpentryView from '@/views/CarpentryView.vue';
 // import RenovationsView from '@/views/RenovationsView.vue';
 import MaintenanceView from '@/views/MaintenanceView.vue';
+import YachtRepairView from '@/views/YachtRepairView.vue';
 
 const routes = [
   {
@@ -121,6 +122,15 @@ const routes = [
     meta: {
       titleKey: 'seo.maintenance.title',
       descriptionKey: 'seo.maintenance.description',
+    },
+  },
+  {
+    path: '/yacht-repair',
+    name: 'yacht-repair',
+    component: YachtRepairView,
+    meta: {
+      titleKey: 'seo.yachtRepair.title',
+      descriptionKey: 'seo.yachtRepair.description',
     },
   },
   {

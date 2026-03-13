@@ -3,7 +3,7 @@
 @media (max-width: 480px) {
   /* Header optimizations */
   .app-header {
-    position: sticky !important;
+    position: fixed !important;
     top: 0 !important;
     padding: 0 8px;
     min-height: 56px;

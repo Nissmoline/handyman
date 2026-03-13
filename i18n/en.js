@@ -27,6 +27,7 @@
       electrician: 'Electrician',
       carpentry: 'Carpentry',
       maintenance: 'Maintenance',
+      yachtRepair: 'Yacht Repair',
     },
     languageLabel: 'Language selection',
     aria: {
@@ -64,6 +65,80 @@
       'Experience – Reliability – Immediate response',
       'Small fixes and major projects without delays',
     ],
+    slides: [
+      {
+        serviceLabel: 'Electrician',
+        path: '/electrician',
+        title: {
+          main: 'Electrician',
+          highlight: 'Athens Electrician 24/7',
+        },
+        description: [
+          '<strong>Electrician Athens</strong> – <strong>24-hour electrician</strong> across Attica for faults, installations, renovations, and small repairs.',
+          '<strong>Electrician near me</strong> with fast response for any electrical need in homes and businesses.',
+        ],
+        bullets: [
+          'Experience - Consistency - Immediate attendance across Athens and Attica',
+          '24/7 electrician for both small and large electrical works without delays',
+        ],
+        image: '/electrician.png',
+        alt: 'Handyman24 electrician Athens - electrician 24 hours in Attica',
+      },
+      {
+        serviceLabel: 'Yacht Repair',
+        path: '/yacht-repair',
+        title: {
+          main: 'Yacht Repair',
+          highlight: 'Electrical checks, furniture and flooring replacement',
+        },
+        description: [
+          'Specialized <strong>yacht repair</strong> including electrical diagnostics, socket checks, and onboard troubleshooting.',
+          'We also handle furniture replacement and <strong>full flooring replacement</strong> (wooden or other materials) for marine use.',
+        ],
+        bullets: [
+          'Technical solutions for private and professional vessels',
+          'Careful execution focused on safety, function, and durability',
+        ],
+        image: '/yacht-repair.png',
+        alt: 'Yacht repair with electrical and carpentry works',
+      },
+      {
+        serviceLabel: 'Carpentry',
+        path: '/carpentry',
+        title: {
+          main: 'Carpentry Services',
+          highlight: 'Custom carpentry and furniture repair in Athens',
+        },
+        description: [
+          'Professional <strong>carpentry services</strong> for repairs, custom builds, cabinets, and practical interior upgrades.',
+          'We replace and adapt furniture with attention to durability, clean finish, and proper fit for your space.',
+        ],
+        bullets: [
+          'On-site measurements and tailored installation',
+          'Reliable timelines and quality workmanship',
+        ],
+        image: '/carpentry.png',
+        alt: 'Carpentry services and furniture restoration in Athens',
+      },
+      {
+        serviceLabel: 'Maintenance',
+        path: '/maintenance',
+        title: {
+          main: 'General Maintenance',
+          highlight: 'Technical support for homes and businesses',
+        },
+        description: [
+          'We deliver <strong>general maintenance</strong> and planned technical support for apartment buildings, offices, and retail spaces.',
+          'From quick repairs to preventive checks, we keep your property in stable operating condition.',
+        ],
+        bullets: [
+          'Structured scheduling and consistent follow-through',
+          'Support for urgent issues and long-term upkeep',
+        ],
+        image: '/maintenance.png',
+        alt: 'Building maintenance and technical support services',
+      },
+    ],
     buttons: {
       call: 'CALL US NOW',
       callAria: 'Call us now',
@@ -84,8 +159,8 @@
   about: {
     title: 'About us',
     intro: [
-      'Handyman 24/7 is a team of certified <strong>electricians in Athens & Piraeus</strong> with one goal: restore power and deliver safe installations any hour of the day. We specialise exclusively in <strong>electrical diagnostics, installations, upgrades, and preventive maintenance</strong>.',
-      'Searching for an <strong>electrician Athens 24 hours</strong>, an <strong>emergency electrician</strong> after midnight, or an <strong>electrician near me</strong> for a renovation? From Nikea to Glyfada and from Kifissia to Piraeus we respond within 30-60 minutes with transparent pricing.',
+      'Handyman 24/7 is a team of certified <strong>professional technicians</strong> delivering <strong>electrical services</strong>, <strong>carpentry work</strong>, <strong>general maintenance</strong>, and <strong>yacht repair</strong> across Athens, Piraeus, and Attica.',
+      'If you are searching for an <strong>electrician near me</strong>, a reliable <strong>carpenter in Athens</strong>, ongoing <strong>property maintenance</strong>, or specialized <strong>yacht repair services</strong>, we provide fast response, clear diagnosis, and professional execution.',
     ],
     cta: {
       readMore: 'Read more',
@@ -95,40 +170,40 @@
     },
     expanded: {
       list: [
-        'Emergency electrical repairs 24/7 (power failures, burnt cables, short circuits)',
-        'Installations & upgrades (new wiring, panels, EV chargers, smart home automation)',
-        'Preventive maintenance & inspections for homes, offices, stores, and HOAs',
+        '24/7 electrician support for faults, installations, panels, lighting, and sockets',
+        'Carpentry services for furniture repair, custom fitting, and woodwork upgrades',
+        'General maintenance and specialized yacht repair (electrical, furniture, and flooring)',
       ],
-      heading: 'Electrician Athens 24/7 – Urgent electrical solutions with one call',
+      heading: 'Technical Services in Athens 24/7 – Electrician, Carpentry, Maintenance, Yacht Repair',
       lead: [
-        'Need an <strong>electrician Athens</strong> right now? We provide <strong>electrician call 24 hours</strong> and <strong>electrician contact 24/7</strong> for every need: <strong>emergency electrician</strong>, <strong>urgent electrician</strong>, <strong>available electrician 24/7</strong>, <strong>electrician around the clock</strong>, <strong>24-hour electrician</strong>, <strong>night electrician</strong> and <strong>after-midnight electrician</strong>. We promptly serve homes and commercial spaces in the centre and the suburbs.',
-        'We undertake <strong>electrical installations</strong> and <strong>electrical systems</strong>, <strong>electrical renovation</strong>, <strong>electrical faults</strong> and <strong>electrical fault repair</strong>. If you need an <strong>electrician near me immediately</strong> or an <strong>electrician Athens nearby</strong>, call us now.',
+        'We cover multiple high-intent local searches in one place: <strong>electrician Athens</strong>, <strong>carpentry services Athens</strong>, <strong>handyman maintenance</strong>, and <strong>yacht repair in Piraeus</strong>. One call gives you complete technical support for home, office, or marine needs.',
+        'From <strong>emergency electrical repairs</strong> and <strong>furniture carpentry</strong> to <strong>preventive maintenance plans</strong> and full yacht restoration tasks, our team works with speed, consistency, and measurable quality standards.',
       ],
       features: [
         {
           title: '24/7 Immediate Response',
-          description: 'Rapid intervention for <strong>power outage</strong>, <strong>power outage restoration</strong>, <strong>short circuit</strong> and <strong>short-circuit repair</strong>, as well as any <strong>fault restoration</strong>—safely and professionally.',
+          description: 'We respond day and night for urgent issues and scheduled jobs, with fast arrival and structured on-site execution.',
         },
         {
-          title: 'Certified & Experienced',
-          description: 'Our crew includes a <strong>certified electrician</strong>, an <strong>electrician technician</strong> and a <strong>master electrician</strong> delivering dependable work with a quality guarantee.',
+          title: 'Certified Professional Technicians',
+          description: 'Our crews include <strong>electricians</strong>, <strong>carpenters</strong>, and maintenance specialists who deliver dependable outcomes with quality assurance.',
         },
         {
-          title: 'Coverage Across Attica',
-          description: 'Service in Athens, Nikea, Piraeus, Glyfada, Chalandri, Kifissia, Peristeri and more. We find an <strong>electrician near you</strong> for fast arrival.',
+          title: 'Coverage Across Attica & Piraeus',
+          description: 'We serve central Athens, suburbs, and port areas with coordinated teams for residential, commercial, and marine projects.',
         },
         {
           title: 'Transparent & Affordable Prices',
-          description: 'Clear pricing: <strong>cheap electrician Athens</strong>, <strong>economical electrician Athens</strong> and <strong>electrician 24 hours price</strong>—always confirmed before work begins.',
+          description: 'Clear quoting before work starts, no hidden costs, and practical options for different budgets and project scopes.',
         },
         {
-          title: 'Advanced electrical solutions',
-          description: 'From surge protection and load balancing to automation, EV charging, and business SLAs, we cover every electrical scenario with specialised crews.',
+          title: 'Integrated Multi-Service Delivery',
+          description: 'We combine electrical, carpentry, maintenance, and yacht-repair tasks in one workflow to save time and keep quality consistent.',
         },
       ],
       closing: [
-        'Sample electrical tasks: <strong>electrical panel installation / repair</strong>, <strong>fuse replacement</strong>, <strong>RCD/relay repair</strong>, <strong>socket replacement</strong>, <strong>socket installation</strong> and <strong>socket change</strong>, <strong>light fixture installation</strong> and <strong>ceiling light connection</strong>, <strong>water-heater repair</strong>, <strong>water-heater connection</strong> and <strong>water-heater element replacement</strong>, <strong>electric cooker connection</strong>, <strong>intercom repair</strong>, <strong>TV antenna installation</strong> and <strong>antenna repair</strong>, plus <strong>electrical installation maintenance</strong> and <strong>minor electrician repairs</strong>.',
-        'Available on <strong>Sundays</strong>, <strong>holidays</strong>, <strong>weekends</strong> and at <strong>night</strong> – <strong>electrician 365 days</strong>. We are the safe choice for an <strong>electrician for home renovation</strong> and an <strong>electrician for commercial spaces</strong>, as well as for <strong>emergency electrical services</strong>. For an <strong>electrician search</strong> with availability right now, call <strong>Handyman 24/7</strong>.',
+        'Typical projects include <strong>electrical troubleshooting and installations</strong>, <strong>socket and lighting replacement</strong>, <strong>furniture repair and custom carpentry</strong>, <strong>routine technical maintenance</strong>, and <strong>yacht repair services</strong> such as onboard electrical checks, furniture replacement, and full flooring renewal.',
+        'Available on <strong>Sundays</strong>, <strong>holidays</strong>, <strong>weekends</strong>, and late hours, we are built for fast and reliable technical support in Athens. For immediate service across all our specialties, call <strong>Handyman 24/7</strong>.',
       ],
     },
   },
@@ -146,6 +221,10 @@
       maintenance: {
         title: 'General maintenance',
         description: 'Building upkeep, general repairs, and scheduled technical visits.',
+      },
+      yachtRepair: {
+        title: 'Yacht repair',
+        description: 'Electrical diagnostics, socket work, furniture replacement, and complete yacht flooring replacement.',
       },
     },
   },
@@ -200,9 +279,123 @@ servicedAreas: {
   plumber: {},
   tiling: {},
   painting: {},
-  carpentry: {},
+  carpentryPage: {
+    title: 'Carpenter in Athens – Furniture Repair & Custom Woodwork',
+    intro: [
+      'Need a reliable <strong>carpenter in Athens</strong> for precise and durable work? Handyman 24/7 handles <strong>furniture repair</strong>, custom wood solutions, and practical interior improvements for homes and businesses.',
+      'We work on apartments, offices, retail spaces, and rental properties with focus on clean finish, exact fitting, and long-term durability.',
+    ],
+    services: {
+      title: 'Our carpentry services include:',
+      tasks: [
+        '<strong>Furniture repair and restoration</strong> (tables, wardrobes, cabinets, doors)',
+        '<strong>Custom cabinet and storage construction</strong> tailored to your space',
+        '<strong>Bespoke woodwork projects</strong> for kitchens, bathrooms, and commercial interiors',
+        '<strong>Wood flooring and interior wood fitting</strong> with proper leveling and finish',
+        '<strong>Door and window frame adjustments and repairs</strong>',
+        '<strong>Fast wood maintenance tasks</strong> before handover, rental, or seasonal use',
+      ],
+    },
+    whyChoose: {
+      title: 'Why clients choose our carpentry team',
+      items: [
+        '<strong>Smart planning:</strong> on-site measurements and functional recommendations',
+        '<strong>Clean professional finish:</strong> attention to detail in every stage',
+        '<strong>Multi-service support:</strong> carpentry combined with electrical or maintenance work when needed',
+        '<strong>Fast response in Attica:</strong> Athens, Piraeus, and nearby areas',
+      ],
+    },
+    closing: [
+      'If you are searching for a <strong>carpenter near me</strong> or dependable <strong>carpentry services in Athens</strong>, we can take your project from quick repairs to complete custom woodwork with quality assurance.',
+    ],
+    contact: {
+      callNow: 'Call for Carpentry Services',
+      whatsapp: 'WhatsApp',
+    },
+  },
   renovations: {},
-  maintenance: {},
+  maintenancePage: {
+    title: 'Building Maintenance & General Repairs in Athens',
+    intro: [
+      'Consistent <strong>building maintenance in Athens</strong> helps prevent expensive breakdowns and keeps your property safe and operational. We support residential buildings, offices, shops, and managed properties.',
+      'Our crews handle <strong>general repairs and handyman tasks</strong> with fast response and practical execution, so your space stays functional with minimal downtime.',
+    ],
+    services: {
+      title: 'Maintenance and repair services:',
+      tasks: [
+        '<strong>Preventive maintenance checks</strong> for buildings and common areas',
+        '<strong>General repair works</strong> on doors, windows, cabinets, and fittings',
+        '<strong>Moisture-related fixes</strong>, sealing, and minor restoration tasks',
+        '<strong>Furniture assembly and installation</strong>, shelving, curtains, and mirrors',
+        '<strong>Minor electrical and plumbing maintenance</strong> for daily property needs',
+        '<strong>Technical property support</strong> for owners, managers, and business operators',
+      ],
+    },
+    whyChoose: {
+      title: 'Why choose our maintenance services',
+      items: [
+        '<strong>One team for multiple tasks:</strong> fewer delays and easier coordination',
+        '<strong>Reliable standards:</strong> clear communication and consistent quality',
+        '<strong>Flexible scheduling:</strong> support for urgent and planned interventions',
+        '<strong>Wide area coverage:</strong> Athens, suburbs, and Piraeus',
+      ],
+    },
+    closing: [
+      'If you need a <strong>maintenance technician near me</strong> or trusted <strong>handyman repairs in Athens</strong>, contact Handyman 24/7 for fast attendance and transparent pricing.',
+    ],
+    contact: {
+      callNow: 'Contact for Maintenance & Repairs',
+      whatsapp: 'WhatsApp',
+    },
+  },
+  yachtRepairPage: {
+    title: 'Yacht Repair Services',
+    intro: [
+      'We provide focused <strong>yacht repair services</strong> for owners and crews who need reliable technical support for onboard systems and interiors.',
+      'Our team handles electrical checks, socket upgrades, furniture replacement, and full flooring renewal using marine-appropriate materials and methods.',
+    ],
+    electrical: {
+      title: 'Electrical checks & socket work',
+      tasks: [
+        'Inspection of onboard electrical lines and distribution points',
+        'Socket testing, replacement, and safety upgrades',
+        'Troubleshooting for unstable power, damaged outlets, or old components',
+      ],
+    },
+    furniture: {
+      title: 'Furniture replacement',
+      tasks: [
+        'Removal and replacement of worn or damaged yacht furniture',
+        'Adaptation and fitting for cabin, salon, and storage areas',
+        'Practical solutions for durability, comfort, and clean finish',
+      ],
+    },
+    flooring: {
+      title: 'Complete flooring replacement',
+      tasks: [
+        'Full replacement of wooden floors on yachts',
+        'Replacement of other floor types based on vessel requirements',
+        'Surface preparation, fitting, and finishing for long-term use in marine conditions',
+      ],
+    },
+    whyChoose: {
+      title: 'Professional yacht repair approach',
+      items: [
+        '<strong>Focused diagnostics:</strong> fast root-cause identification for electrical and interior issues',
+        '<strong>End-to-end technical scope:</strong> sockets, electrical systems, furniture, and flooring by one coordinated team',
+        '<strong>Marine-appropriate materials:</strong> selected for moisture resistance, safety, and durability',
+        '<strong>Athens & Piraeus service coverage:</strong> private and professional vessels with scheduled or urgent jobs',
+      ],
+    },
+    closing: [
+      'For <strong>yacht repair in Athens and Piraeus</strong>, Handyman 24/7 delivers integrated solutions that reduce downtime and improve onboard safety and functionality.',
+      'If you need immediate <strong>yacht electrical inspection</strong>, <strong>furniture replacement</strong>, or <strong>full flooring renewal</strong>, contact us for a fast technical assessment.',
+    ],
+    contact: {
+      callNow: 'Call for Yacht Repair',
+      whatsapp: 'WhatsApp',
+    },
+  },
   electricianPage: {
     schema: {
       businessName: 'HandyMan 24 – Electrician Athens & Piraeus',
@@ -424,6 +617,10 @@ servicedAreas: {
     maintenance: {
       title: 'Building maintenance & handyman support | Handyman24',
       description: 'Scheduled maintenance and general repairs for apartment buildings, businesses, and homes in Athens.',
+    },
+    yachtRepair: {
+      title: 'Yacht repair services in Athens & Piraeus | Handyman24',
+      description: 'Yacht electrical diagnostics, socket replacement, furniture updates, and complete wooden or other flooring replacement by experienced technicians.',
     },
     privacy: {
       title: 'Privacy policy & cookies | Handyman24',

@@ -77,6 +77,12 @@
   }
 }
 
+@media (max-width: 480px) {
+  #app {
+    padding-top: 56px; /* Match compact mobile header */
+  }
+}
+
 /* Enable smooth anchor scrolling */
 html {
   scroll-behavior: smooth;

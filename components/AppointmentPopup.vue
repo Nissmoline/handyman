@@ -20,6 +20,7 @@ const { t } = useI18n()
 
 const serviceDefinitions = [
   { value: 'electrician', labelKey: 'services.list.electrician.title' },
+  { value: 'yachtRepair', labelKey: 'services.list.yachtRepair.title' },
   { value: 'carpentry', labelKey: 'services.list.carpentry.title' },
   { value: 'maintenance', labelKey: 'services.list.maintenance.title' },
 ]

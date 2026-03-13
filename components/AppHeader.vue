@@ -9,6 +9,7 @@ import { setLocale, supportedLocales } from '@/i18n'
 
 const services = [
   { labelKey: 'header.servicesMenu.electrician', path: '/electrician' },
+  { labelKey: 'header.servicesMenu.yachtRepair', path: '/yacht-repair' },
   { labelKey: 'header.servicesMenu.carpentry', path: '/carpentry' },
   { labelKey: 'header.servicesMenu.maintenance', path: '/maintenance' },
 ]
@@ -285,6 +286,7 @@ watch(menuOpen, (open) => {
   max-width: 1180px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
 }
 .logo-link {
   display: flex;
@@ -304,6 +306,9 @@ watch(menuOpen, (open) => {
   display: flex;
   gap: 32px;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .nav-desktop a,
 .nav-desktop .active {

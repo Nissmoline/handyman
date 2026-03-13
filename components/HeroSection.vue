@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { inject, computed } from 'vue'
+import { inject, computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const openAppointmentPopup = inject('openAppointmentPopup')
@@ -7,9 +7,34 @@ const { t, tm } = useI18n()
 
 const toStringArray = (value) => (Array.isArray(value) ? value : [])
 
-const descriptionParagraphs = computed(() => toStringArray(tm('hero.description')))
-const bulletPoints = computed(() => toStringArray(tm('hero.bullets')))
+const heroSlides = computed(() => {
+  const slides = tm('hero.slides')
+  if (Array.isArray(slides) && slides.length) {
+    return slides
+  }
+
+  return [
+    {
+      serviceLabel: t('header.servicesMenu.electrician'),
+      title: {
+        main: t('hero.title.main'),
+        highlight: t('hero.title.highlight'),
+      },
+      description: toStringArray(tm('hero.description')),
+      bullets: toStringArray(tm('hero.bullets')),
+      image: '/heromain.png',
+      alt: t('hero.alt'),
+    },
+  ]
+})
 const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
+
+const activeServiceIndex = ref(0)
+let slideTimer = null
+const AUTO_SLIDE_DELAY = 6200
+const SWIPE_THRESHOLD = 46
+const touchStartX = ref(0)
+const touchStartY = ref(0)
 
 const phoneNumberUrl = 'tel:+306949214461'
 
@@ -50,50 +75,190 @@ const handleBookClick = () => {
     openAppointmentPopup()
   }
 }
+
+const goToNextSlide = () => {
+  if (!heroSlides.value.length) return
+  activeServiceIndex.value = (activeServiceIndex.value + 1) % heroSlides.value.length
+}
+
+const goToPrevSlide = () => {
+  if (!heroSlides.value.length) return
+  activeServiceIndex.value = (activeServiceIndex.value - 1 + heroSlides.value.length) % heroSlides.value.length
+}
+
+const stopAutoSlide = () => {
+  if (slideTimer) {
+    clearInterval(slideTimer)
+    slideTimer = null
+  }
+}
+
+const startAutoSlide = () => {
+  stopAutoSlide()
+  if (heroSlides.value.length <= 1) return
+  slideTimer = setInterval(() => {
+    goToNextSlide()
+  }, AUTO_SLIDE_DELAY)
+}
+
+const restartAutoSlide = () => {
+  startAutoSlide()
+}
+
+onMounted(() => {
+  startAutoSlide()
+})
+
+onBeforeUnmount(() => {
+  stopAutoSlide()
+})
+
+const activateSlide = (index) => {
+  activeServiceIndex.value = index
+  restartAutoSlide()
+}
+
+const goNextSlideByUser = () => {
+  goToNextSlide()
+  restartAutoSlide()
+}
+
+const goPrevSlideByUser = () => {
+  goToPrevSlide()
+  restartAutoSlide()
+}
+
+const onTouchStart = (event) => {
+  const touch = event.changedTouches?.[0]
+  if (!touch) return
+  touchStartX.value = touch.clientX
+  touchStartY.value = touch.clientY
+}
+
+const onTouchEnd = (event) => {
+  const touch = event.changedTouches?.[0]
+  if (!touch) return
+
+  const deltaX = touch.clientX - touchStartX.value
+  const deltaY = touch.clientY - touchStartY.value
+
+  if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) {
+    return
+  }
+
+  if (deltaX < 0) {
+    goNextSlideByUser()
+  } else {
+    goPrevSlideByUser()
+  }
+}
 </script>
 
 <template>
   <section class="hero-root">
     <div class="hero-main">
-      <div class="hero-content">
-        <div class="hero-left">
-          <h1>
-            {{ t('hero.title.main') }}<br /><span>{{ t('hero.title.highlight') }}</span>
-          </h1>
-          <div class="hero-desc">
-            <p
-              v-for="(paragraph, index) in descriptionParagraphs"
-              :key="'hero-desc-' + index"
-              v-html="paragraph"
-            />
-            <ul v-if="bulletPoints.length" class="hero-desc-list">
-              <li v-for="(point, index) in bulletPoints" :key="'hero-point-' + index">
-                {{ point }}
-              </li>
-            </ul>
-          </div>
+      <div
+        class="hero-carousel"
+        @mouseenter="stopAutoSlide"
+        @mouseleave="startAutoSlide"
+        @touchstart.passive="onTouchStart"
+        @touchend.passive="onTouchEnd"
+      >
+        <div class="hero-track" :style="{ transform: `translateX(-${activeServiceIndex * 100}%)` }">
+          <div
+            v-for="(slide, slideIndex) in heroSlides"
+            :key="slide.serviceLabel || slideIndex"
+            class="hero-content hero-slide"
+          >
+            <div class="hero-left">
+              <h1>
+                {{ slide.title?.main }}<br /><span>{{ slide.title?.highlight }}</span>
+              </h1>
+              <div class="hero-desc">
+                <p
+                  v-for="(paragraph, index) in toStringArray(slide.description)"
+                  :key="`hero-desc-${slideIndex}-${index}`"
+                  v-html="paragraph"
+                />
+                <ul v-if="toStringArray(slide.bullets).length" class="hero-desc-list">
+                  <li
+                    v-for="(point, index) in toStringArray(slide.bullets)"
+                    :key="`hero-point-${slideIndex}-${index}`"
+                  >
+                    {{ point }}
+                  </li>
+                </ul>
+              </div>
 
-          <div class="hero-buttons">
-            <a
-              href="tel:+306949214461"
-              class="btn btn-outline"
-              :aria-label="t('hero.buttons.callAria')"
-              @click.prevent="handleCallClick"
-            >
-              {{ t('hero.buttons.call') }}
-            </a>
-            <button
-              class="btn btn-outline"
-              @click="handleBookClick"
-              type="button"
-              :aria-label="t('hero.buttons.bookAria')"
-            >
-              {{ t('hero.buttons.book') }}
-            </button>
+              <div class="hero-buttons">
+                <a
+                  href="tel:+306949214461"
+                  class="btn btn-outline"
+                  :aria-label="t('hero.buttons.callAria')"
+                  @click.prevent="handleCallClick"
+                >
+                  {{ t('hero.buttons.call') }}
+                </a>
+                <button
+                  class="btn btn-outline"
+                  @click="handleBookClick"
+                  type="button"
+                  :aria-label="t('hero.buttons.bookAria')"
+                >
+                  {{ t('hero.buttons.book') }}
+                </button>
+              </div>
+            </div>
+            <div class="hero-right">
+              <router-link
+                v-if="slide.path"
+                :to="slide.path"
+                class="hero-image-link"
+                :aria-label="slide.serviceLabel || 'Open service page'"
+              >
+                <img
+                  class="hero-slide-image"
+                  :src="slide.image || '/heromain.png'"
+                  :alt="slide.alt || t('hero.alt')"
+                />
+              </router-link>
+              <img
+                v-else
+                class="hero-slide-image"
+                :src="slide.image || '/heromain.png'"
+                :alt="slide.alt || t('hero.alt')"
+              />
+            </div>
           </div>
         </div>
-        <div class="hero-right">
-          <img src="/heromain.png" :alt="t('hero.alt')" />
+        <button
+          v-if="heroSlides.length > 1"
+          type="button"
+          class="hero-nav hero-nav--prev"
+          aria-label="Previous service slide"
+          @click="goPrevSlideByUser"
+        >
+          ‹
+        </button>
+        <button
+          v-if="heroSlides.length > 1"
+          type="button"
+          class="hero-nav hero-nav--next"
+          aria-label="Next service slide"
+          @click="goNextSlideByUser"
+        >
+          ›
+        </button>
+        <div class="hero-dots-main" v-if="heroSlides.length > 1">
+          <button
+            v-for="(slide, index) in heroSlides"
+            :key="'dot-' + index"
+            type="button"
+            class="hero-dot"
+            :class="{ 'hero-dot--active': index === activeServiceIndex }"
+            :aria-label="slide.serviceLabel || `Slide ${index + 1}`"
+            @click="activateSlide(index)"
+          />
         </div>
       </div>
     </div>
@@ -142,6 +307,64 @@ const handleBookClick = () => {
   background: #044877;
   display: flex;
   justify-content: center;
+}
+.hero-carousel {
+  width: 100%;
+  max-width: 1060px;
+  overflow: hidden;
+  position: relative;
+  touch-action: pan-y;
+}
+.hero-track {
+  display: flex;
+  transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+.hero-slide {
+  min-width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin: 0;
+}
+.hero-dots-main {
+  margin-top: 0;
+  padding-bottom: 20px;
+  padding-top: 8px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.hero-nav {
+  position: absolute;
+  top: auto;
+  bottom: 54px;
+  transform: none;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background: rgba(4, 72, 119, 0.55);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+}
+.hero-nav:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #044877;
+}
+.hero-nav--prev {
+  left: 4px;
+}
+.hero-nav--next {
+  right: 4px;
 }
 .hero-content {
   max-width: 1060px;
@@ -201,6 +424,26 @@ const handleBookClick = () => {
   display: flex;
   gap: 18px;
 }
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 10px;
+  max-height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  flex: 0 0 auto;
+  display: block;
+  opacity: 0.92;
+}
+.hero-dot--active {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.28);
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -238,14 +481,49 @@ const handleBookClick = () => {
   justify-content: flex-end;
   min-width: 290px;
 }
-.hero-right img {
-  max-width: 345px;
+.hero-image-link {
+  display: inline-flex;
   width: 100%;
-  height: auto;
-  border-radius: 0;
-  object-fit: cover;
+  max-width: 624px;
   margin-left: 28px;
   margin-bottom: -12px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(7, 28, 46, 0.22);
+  aspect-ratio: 1 / 1;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.hero-right > .hero-slide-image {
+  width: 100%;
+  max-width: 624px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin-left: 28px;
+  margin-bottom: -12px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 8px 22px rgba(7, 28, 46, 0.22);
+  background: #d6e6f1;
+  display: block;
+  cursor: pointer;
+}
+.hero-right .hero-image-link > .hero-slide-image {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  min-width: 0;
+  flex: 1 1 auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: #d6e6f1;
+  image-rendering: auto;
+}
+.hero-right .hero-slide-image {
+  cursor: pointer;
+  image-rendering: auto;
 }
 
 /* RED OFFER */
@@ -337,6 +615,9 @@ const handleBookClick = () => {
 }
 
 @media (max-width: 750px) {
+  .hero-root {
+    margin-top: -20px;
+  }
   .hero-content {
     flex-direction: column;
     padding: 20px 16px 40px;
@@ -349,6 +630,19 @@ const handleBookClick = () => {
     padding-top: 0;
     width: 100%;
     max-width: 100%;
+  }
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+    min-width: 0;
+  }
+  .hero-image-link,
+  .hero-right > .hero-slide-image {
+    width: 100%;
+    max-width: 493px;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
   }
   .hero-left h1 {
     font-size: 2rem;
@@ -386,13 +680,21 @@ const handleBookClick = () => {
   font-size: 1.1em;
   line-height: 1;
 }
-.hero-buttons {
+  .hero-buttons {
     flex-direction: column;
     gap: 12px;
     align-items: center;
     margin: 0 auto;
     width: 100%;
     padding-top: 10px;
+  }
+  .hero-dots-main {
+    margin-top: 6px;
+    padding-bottom: 14px;
+    gap: 9px;
+  }
+  .hero-nav {
+    display: none;
   }
   .btn {
     width: 100%;
@@ -461,8 +763,12 @@ const handleBookClick = () => {
     width: 100%;
     justify-content: center;
   }
-  .hero-right img {
-    max-width: 240px;
+  .hero-image-link,
+  .hero-right > .hero-slide-image {
+    width: 100%;
+    max-width: 435px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero-offer {
     margin: -30px 12px 0;
@@ -488,6 +794,9 @@ const handleBookClick = () => {
 }
 
 @media (max-width: 480px) {
+  .hero-root {
+    margin-top: -12px;
+  }
   .hero-content {
     padding: 12px 8px 24px;
     text-align: center;
@@ -513,8 +822,12 @@ const handleBookClick = () => {
     width: 100%;
     justify-content: center;
   }
-  .hero-right img {
-    max-width: 200px;
+  .hero-image-link,
+  .hero-right > .hero-slide-image {
+    width: 100%;
+    max-width: 377px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero-offer {
     margin: -25px 8px 0;
@@ -541,6 +854,21 @@ const handleBookClick = () => {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  .hero-dots-main {
+    margin-top: 4px;
+    padding-bottom: 12px;
+  }
+  .hero-dot {
+    width: 9px;
+    height: 9px;
+    min-width: 9px;
+    min-height: 9px;
+    max-width: 9px;
+    max-height: 9px;
+  }
+  .hero-nav {
+    display: none;
   }
 }
 </style>

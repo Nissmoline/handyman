@@ -1,41 +1,44 @@
 <template>
   <div class="service-page">
     <div class="service-container">
-      <h1>Συντήρηση Κτιρίων & Γενικές Επισκευές (Μερεμέτια) στην Αθήνα</h1>
-      <p>
-        Για να διατηρήσετε την αξία και τη λειτουργικότητα του ακινήτου σας, η
-        τακτική <strong>συντήρηση κτιρίων στην Αθήνα</strong> είναι απαραίτητη.
-        Η ομάδα μας προσφέρει ολοκληρωμένα πακέτα συντήρησης για πολυκατοικίες,
-        γραφεία και καταστήματα. Παράλληλα, αναλαμβάνουμε πάσης φύσεως
-        <strong>γενικές επισκευές</strong> και <strong>μερεμέτια</strong>, από
-        τις πιο μικρές εργασίες, όπως το κρέμασμα ενός πίνακα, μέχρι πιο
-        σύνθετες επισκευές σε πόρτες, παράθυρα και ντουλάπια. Οι τεχνικοί μας
-        είναι δίπλα σας για να αντιμετωπίσουν άμεσα προβλήματα υγρασίας, φθορές
-        και ό,τι άλλο χρειάζεται το σπίτι ή ο επαγγελματικός σας χώρος.
-        <strong>Καλέστε μας τώρα</strong> για να βρούμε μαζί τη λύση που σας
-        ταιριάζει.
-      </p>
-      <h2>Υπηρεσίες συντήρησης και επισκευών:</h2>
+      <h1>{{ t('maintenancePage.title') }}</h1>
+
+      <div class="service-intro">
+        <p v-for="(paragraph, index) in introParagraphs" :key="'intro-' + index" v-html="paragraph"></p>
+      </div>
+
+      <h2>{{ t('maintenancePage.services.title') }}</h2>
       <ul>
-        <li>Τακτικός έλεγχος και προληπτική συντήρηση κτιρίων</li>
-        <li>Γενικές επισκευές και πάσης φύσεως μερεμέτια</li>
-        <li>Αντιμετώπιση προβλημάτων υγρασίας, μούχλας και στεγανοποίηση</li>
-        <li>Επισκευές σε πόρτες, παράθυρα, ντουλάπια και κλειδαριές</li>
-        <li>Συναρμολόγηση και τοποθέτηση επίπλων</li>
-        <li>Κρέμασμα κουρτινών, ραφιών, πινάκων και καθρεпτών</li>
-        <li>Μικροεπισκευές σε ηλεκτρολογικά και υδραυλικά</li>
+        <li v-for="(item, index) in serviceTasks" :key="'service-' + index" v-html="item"></li>
       </ul>
-      
+
+      <h2>{{ t('maintenancePage.whyChoose.title') }}</h2>
+      <ul>
+        <li v-for="(item, index) in whyChooseItems" :key="'why-' + index" v-html="item"></li>
+      </ul>
+
+      <p v-for="(paragraph, index) in closingParagraphs" :key="'closing-' + index" v-html="paragraph"></p>
+
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary"
-          >Επικοινωνήστε για Συντήρηση & Μερεμέτια</a
-        >
+        <a href="tel:+306949214461" class="btn btn-primary">{{ t('maintenancePage.contact.callNow') }}</a>
+        <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('maintenancePage.contact.whatsapp') }}</a>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, tm } = useI18n()
+
+const toArray = (value) => (Array.isArray(value) ? value : [])
+
+const introParagraphs = computed(() => toArray(tm('maintenancePage.intro')))
+const serviceTasks = computed(() => toArray(tm('maintenancePage.services.tasks')))
+const whyChooseItems = computed(() => toArray(tm('maintenancePage.whyChoose.items')))
+const closingParagraphs = computed(() => toArray(tm('maintenancePage.closing')))
 </script>
 
 <style scoped>
