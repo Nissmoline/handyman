@@ -16,3 +16,6 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Production
+Production deployments are triggered from the `main` branch.
