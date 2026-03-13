@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { Menu as LucideMenu, X as LucideX, ChevronDown } from 'lucide-vue-next'
 import { Phone } from 'lucide-vue-next'
-import logoUrl from '/logoico.svg'
+import logoUrl from '/icons/favicon.svg'
 import { setLocale, supportedLocales } from '@/i18n'
 
 const services = [

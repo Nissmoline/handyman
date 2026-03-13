@@ -101,7 +101,7 @@ const structuredData = computed(() => {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Electrician', 'ProfessionalService'],
     name: schema.businessName || 'HandyMan 24 – Ηλεκτρολόγος Αθήνα & Πειραιάς',
-    image: 'https://handyman24.gr/logoico.svg',
+    image: 'https://handyman24.gr/icons/favicon.svg',
     url: 'https://handyman24.gr/electrician',
     telephone: '+30-694-9214461',
     email: 'handyman24gr@gmail.com',
