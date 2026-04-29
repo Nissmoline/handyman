@@ -20,6 +20,7 @@ const route = useRoute();
 const openAppointmentPopup = inject("openAppointmentPopup") as () => void;
 const cookieSettingsRef = ref<InstanceType<typeof CookieSettings> | null>(null);
 const { t } = useI18n();
+const contactEmail = "handyman24gr@gmail.com";
 
 const linkGroups: readonly FooterGroup[] = [
   {
@@ -108,7 +109,7 @@ function openCookieSettings() {
         </router-link>
         <address class="footer__contact">
           <a href="tel:+306949214461">{{ t('footer.contact.phone') }}</a>
-          <a href="mailto:handyman24gr@gmail.com">{{ t('footer.contact.email') }}</a>
+          <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a>
           <span>{{ t('footer.contact.address') }}</span>
         </address>
       </div>
