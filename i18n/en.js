@@ -230,8 +230,8 @@
     intro: 'Technical support for homes, businesses, managed properties, and boats across Athens, Piraeus, and Attica, with clear communication before work begins.',
     list: {
       electrician: {
-        title: 'Electrician Athens 24/7',
-        description: 'Emergency electrical faults, panels, sockets, switches, lighting, water heaters, cooker connections, and new installations.',
+        title: '24-hour electrician in Athens',
+        description: 'Urgent electrician for faults, panels, sockets, switches, fuses, lighting, water heaters, cooker connections, and new installations.',
         cta: 'View electrical services',
       },
       plumber: {
@@ -302,8 +302,13 @@ servicedAreas: {
       items: [
         {
           path: '/electrician',
-          heading: 'Electrician Athens 24/7',
+          heading: '24-hour electrician Athens',
           body: 'Electrical faults, panels, sockets, lighting, appliances, and urgent support',
+        },
+        {
+          path: '/ilektrologos-24-ores',
+          heading: '24-hour electrician',
+          body: 'Urgent help for short circuits, tripping breakers, power loss, and unsafe electrical faults',
         },
         {
           path: '/electrician-faq',
@@ -358,6 +363,92 @@ servicedAreas: {
       description: 'Call us for an electrical fault, installation, or scheduled service in Athens, Piraeus, and Attica.',
       callNow: 'Call an Electrician',
       whatsapp: 'WhatsApp Electrician'
+    }
+  },
+  urgentElectricianPage: {
+    schema: {
+      businessName: 'Handyman24 - 24-hour electrician in Athens',
+      serviceName: '24-hour electrician in Athens for urgent electrical faults',
+      serviceType: 'Emergency electrical services',
+    },
+    eyebrow: 'Urgent electrical fault',
+    title: '24-hour electrician in Athens - urgent help for electrical faults',
+    intro: [
+      'When you need a <strong>24-hour electrician</strong> in Athens or Piraeus, Handyman24 helps organize urgent technical support for unsafe and time-sensitive electrical faults.',
+      'This page targets searches such as <strong>ηλεκτρολόγος 24 ώρες</strong>, <strong>ηλεκτρολόγος άμεσα</strong>, and <strong>emergency electrician near me</strong>, with practical guidance on when to call and what to expect.',
+      'Before work begins, the issue is described, priority is assessed, and the next steps are explained clearly so the fault can be handled safely.'
+    ],
+    when: {
+      title: 'When to call an electrician immediately',
+      description: 'Do not wait when there is a safety risk or an essential circuit has failed. Turn off the main switch only if it is safe and call technical support if you notice:',
+      items: [
+        '<strong>Short circuit</strong> or a breaker that trips repeatedly',
+        '<strong>Burning smell</strong>, sparks, or overheating at a socket, switch, or electrical panel',
+        '<strong>Power loss</strong> at home or work that is not caused by the utility provider',
+        '<strong>Water heater, cooker, or oven problem</strong> that needs an electrician inspection',
+        '<strong>Panel, RCD, fuse, or grounding issue</strong> affecting electrical safety'
+      ]
+    },
+    services: {
+      title: 'Urgent electrical services we handle',
+      tasks: [
+        '<strong>Electrical fault finding</strong> for homes, offices, shops, and short-term rentals',
+        '<strong>Short-circuit troubleshooting</strong> and circuit checks before restoring power',
+        '<strong>Electrical panel inspection</strong>, fuses, RCDs, and basic grounding checks',
+        '<strong>Socket or switch repair</strong> when there is loose contact, overheating, or failure',
+        '<strong>Appliance electrical checks</strong> for water heaters, cookers, ovens, hobs, and extractor hoods',
+        '<strong>Temporary safe solution</strong> where a planned repair or parts replacement is required'
+      ]
+    },
+    process: {
+      title: 'How urgent support is organized',
+      items: [
+        '<strong>First contact:</strong> you describe the fault, area, and whether there is smell, sparking, or total power loss.',
+        '<strong>Safety first:</strong> we explain what to avoid until the visit, without giving unsafe remote instructions.',
+        '<strong>Technical inspection:</strong> the electrician checks the likely cause, such as panel, lines, sockets, or appliances.',
+        '<strong>Clear explanation:</strong> the proposed repair, materials, and estimated cost are discussed before the work starts.'
+      ]
+    },
+    areas: {
+      title: 'Areas covered for 24-hour electrician support',
+      description: 'Handyman24 serves Athens, Piraeus, and many Attica areas. For night calls, weekends, or holidays, availability is confirmed by phone.',
+      items: [
+        'Athens centre, Pangrati, Zografou, Galatsi, and nearby areas',
+        'Piraeus, Nikaia, Korydallos, and western suburbs',
+        'Glyfada, Nea Smyrni, Kallithea, and southern suburbs',
+        'Chalandri, Marousi, Kifissia, and northern suburbs',
+        'Peristeri, Aigaleo, Ilion, and selected Attica areas'
+      ]
+    },
+    safety: {
+      title: 'Important safety note',
+      description: 'If there is smoke, a strong burning smell, water near an electrical point, or active sparking, move away from the area and call the appropriate emergency services immediately if people or property are at risk.'
+    },
+    faq: {
+      title: '24-hour electrician FAQs',
+      items: [
+        {
+          question: 'Can I call an electrician urgently at night?',
+          answer: 'Yes, you can call for an urgent electrical fault. Availability and the service approach are confirmed by phone depending on the area and the incident.'
+        },
+        {
+          question: 'What should I do if the breaker keeps tripping?',
+          answer: 'Do not keep resetting it without inspection. Disconnect appliances if safe and call an electrician to check whether the issue is in a circuit, appliance, panel, or RCD.'
+        },
+        {
+          question: 'Which areas are covered for urgent electrician support?',
+          answer: 'Athens, Piraeus, and many Attica areas are covered. For distant areas or peak hours, availability is confirmed before arranging the visit.'
+        },
+        {
+          question: 'How much does a 24-hour electrician cost?',
+          answer: 'Cost depends on the time, area, access, fault, and materials. Before work begins, the proposed solution and estimated cost are explained.'
+        }
+      ]
+    },
+    contact: {
+      callNow: 'Call an electrician now',
+      whatsapp: 'WhatsApp electrician',
+      mainPage: 'View all electrical services'
     }
   },
   electricianReviews: {
@@ -760,6 +851,11 @@ servicedAreas: {
       title: 'Emergency electrician for faults and power problems',
       description: 'For burning smells, sparks, short circuits, power loss, or repeated breaker trips, call immediately and avoid improvised repairs. We prioritize urgent electrical issues in Athens and Piraeus.'
     },
+    urgentLanding: {
+      title: '24-hour electrician - urgent service',
+      description: 'For searches such as <strong>ηλεκτρολόγος 24 ώρες</strong>, <strong>ηλεκτρολόγος άμεσα</strong>, or <strong>emergency electrician Athens</strong>, we created a dedicated page with guidance, services, and service areas for urgent electrical faults.',
+      cta: 'View 24-hour electrician page'
+    },
     services: {
       title: 'Electrical services we handle',
       list: [
@@ -983,12 +1079,12 @@ servicedAreas: {
   },
   seo: {
     default: {
-      title: 'Handyman24 | Electrician, Plumber & Technical Services Athens',
-      description: 'Technical services in Athens, Piraeus, and Attica: electrician 24/7, plumber, tiling, painting, carpentry, renovations, maintenance, and yacht repair.',
+      title: '24-Hour Electrician Athens | Urgent Electrician Handyman24',
+      description: '24-hour electrician in Athens, Piraeus, and Attica for urgent faults, panels, sockets, fuses, lighting, maintenance, and technical services.',
     },
     home: {
-      title: 'Handyman24 Athens | Electrician, Plumber, Maintenance & Renovations',
-      description: 'Handyman24 for electricians, plumbing, carpentry, tiling, painting, building maintenance, renovations, and yacht repair in Athens and Piraeus.',
+      title: '24-Hour Electrician Athens | Urgent Electrician Handyman24',
+      description: 'Urgent electrician in Athens, Piraeus, and Attica for electrical faults, panels, sockets, fuses, lighting, maintenance, and technical work.',
     },
     offers: {
       title: 'Electrician Offers Athens | Oven, Cooktop & Extractor Hood',
@@ -997,6 +1093,10 @@ servicedAreas: {
     electrician: {
       title: 'Electrician Athens 24/7 | Faults, Panels, Sockets & Installations',
       description: 'Electrician in Athens and Piraeus for urgent faults, panels, sockets, lighting, water heaters, cookers, EV charger preparation, and renovation work.',
+    },
+    urgentElectrician: {
+      title: '24-Hour Electrician Athens | Urgent Electrical Fault Help',
+      description: '24-hour electrician in Athens and Piraeus for urgent electrical faults, short circuits, panels, fuses, sockets, and power loss.',
     },
     electricianFaq: {
       title: 'Electrician FAQs in Athens | Handyman24',

@@ -9,6 +9,7 @@ Crawl-delay: 1
 
 # Allow key electrician pages
 Allow: /electrician
+Allow: /ilektrologos-24-ores
 Allow: /plumber
 Allow: /tiling
 Allow: /painting

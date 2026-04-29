@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import OffersView from '@/views/OffersView.vue';
 import ElectricianView from '@/views/ElectricianView.vue';
+import EmergencyElectricianView from '@/views/EmergencyElectricianView.vue';
 import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
 import ElectricianReviews from '@/views/ElectricianReviews.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
@@ -41,6 +42,15 @@ const routes = [
     meta: {
       titleKey: 'seo.electrician.title',
       descriptionKey: 'seo.electrician.description',
+    },
+  },
+  {
+    path: '/ilektrologos-24-ores',
+    name: 'urgent-electrician',
+    component: EmergencyElectricianView,
+    meta: {
+      titleKey: 'seo.urgentElectrician.title',
+      descriptionKey: 'seo.urgentElectrician.description',
     },
   },
   {

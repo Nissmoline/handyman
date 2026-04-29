@@ -5,7 +5,7 @@
 ### Technical SEO
 - Added route-specific titles, descriptions, canonical URLs, Open Graph metadata, and Twitter Card metadata.
 - Installed Vue head management so client-side routes can expose correct SEO metadata.
-- Added static SEO HTML generation for important routes after the Vite build.
+- Added static SEO HTML generation for important routes after the Vite build, now sourcing Greek metadata directly from `i18n/el.js`.
 - Updated robots.txt and sitemap.xml to include all active service pages.
 - Added reusable JSON-LD helpers for LocalBusiness, Electrician, Service, BreadcrumbList, opening hours, address, and service area data.
 - Removed unverifiable AggregateRating, Review, and SearchAction schema from the public site.
@@ -13,6 +13,7 @@
 ### Service SEO
 - Expanded the homepage service section so users and search engines can discover every active service.
 - Added or reactivated SEO-focused pages for electrician, plumbing, tiling, painting, carpentry, renovations, maintenance, and yacht repair.
+- Added `/ilektrologos-24-ores` for the high-intent searches "ηλεκτρολόγος 24 ώρες", "ηλεκτρολόγος άμεσα", and urgent electrical faults.
 - Improved service text with clearer headings, local intent, customer-focused explanations, and calls to action.
 - Added related-service links between service pages to improve crawl paths and user discovery.
 

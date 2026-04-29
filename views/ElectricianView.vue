@@ -13,6 +13,14 @@
         <h2>{{ t('electricianPage.emergency.title') }}</h2>
         <p v-html="t('electricianPage.emergency.description')"></p>
       </div>
+
+      <section class="emergency-section" id="urgent-electrician">
+        <h2>{{ t('electricianPage.urgentLanding.title') }}</h2>
+        <p v-html="t('electricianPage.urgentLanding.description')"></p>
+        <router-link to="/ilektrologos-24-ores" class="btn btn-primary">
+          {{ t('electricianPage.urgentLanding.cta') }}
+        </router-link>
+      </section>
       
       <section id="installations">
         <h2>{{ t('electricianPage.services.title') }}</h2>
