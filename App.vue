@@ -10,11 +10,15 @@ import CookieConsent from '@/components/CookieConsent.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 
 const popupOpen = ref(false)
+const mobileMenuOpen = ref(false)
 const openPopup = () => {
   popupOpen.value = true
 }
 const closePopup = () => {
   popupOpen.value = false
+}
+const setMobileMenuOpen = (open: boolean) => {
+  mobileMenuOpen.value = open
 }
 
 provide('openAppointmentPopup', openPopup)
@@ -99,9 +103,9 @@ watch(
 </script>
 
 <template>
-  <AppHeader @contact="openPopup" />
+  <AppHeader @contact="openPopup" @mobile-menu-change="setMobileMenuOpen" />
   <router-view />
-  <AppBottomBar @contact="openPopup" :popup-open="popupOpen" />
+  <AppBottomBar @contact="openPopup" :popup-open="popupOpen" :menu-open="mobileMenuOpen" />
   <AppFooter />
   <CookieConsent />
   <AppointmentPopup v-model:isOpen="popupOpen" />

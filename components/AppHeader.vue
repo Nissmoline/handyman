@@ -29,6 +29,7 @@ const socialLinksMobile = [
 
 const tel = '+30 694 921 4461'
 const telLink = 'tel:+306949214461'
+const emit = defineEmits(['mobile-menu-change'])
 
 const menuOpen = ref(false)
 const isMobile = ref(false)
@@ -112,6 +113,14 @@ watch(menuOpen, (open) => {
     servicesMenuOpen.value = false
   }
 })
+
+watch(
+  [menuOpen, isMobile],
+  ([open, mobile]) => {
+    emit('mobile-menu-change', Boolean(open && mobile))
+  },
+  { immediate: true }
+)
 </script>
 
 <template>

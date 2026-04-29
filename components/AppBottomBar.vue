@@ -9,6 +9,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  menuOpen: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const { t } = useI18n()
@@ -38,7 +42,7 @@ onMounted(() => {
 
 <template>
   <nav
-    v-if="!props.popupOpen"
+    v-if="!props.popupOpen && !props.menuOpen"
     class="bottom-bar"
     :style="{ transform: isFooterVisible ? 'translateY(100%)' : 'translateY(0)' }"
   >
