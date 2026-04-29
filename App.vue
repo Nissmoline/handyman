@@ -104,18 +104,42 @@ watch(
 
 <template>
   <AppHeader @contact="openPopup" @mobile-menu-change="setMobileMenuOpen" />
-  <router-view />
-  <AppBottomBar @contact="openPopup" :popup-open="popupOpen" :menu-open="mobileMenuOpen" />
+  <main class="app-main">
+    <router-view />
+  </main>
   <AppFooter />
+  <AppBottomBar @contact="openPopup" :popup-open="popupOpen" :menu-open="mobileMenuOpen" />
   <CookieConsent />
   <AppointmentPopup v-model:isOpen="popupOpen" />
   <SpeedInsights />
 </template>
 
 <style>
-.app-main {
+#app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1 0 auto;
+  width: 100%;
+  min-height: 0;
   padding-bottom: 56px;
+}
+
+.footer {
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1025px) {
+  .app-main {
+    padding-bottom: 0;
+  }
 }
 </style>
 

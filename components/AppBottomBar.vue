@@ -25,18 +25,22 @@ const openAppointment = () => {
 }
 
 const isFooterVisible = ref(false)
+let footerObserver = null
 
 onMounted(() => {
   const footer = document.querySelector('footer')
   if (!footer) return
-  const observer = new window.IntersectionObserver(
+  footerObserver = new window.IntersectionObserver(
     ([entry]) => {
       isFooterVisible.value = entry.isIntersecting
     },
     { threshold: 0.1 }
   )
-  observer.observe(footer)
-  onBeforeUnmount(() => observer.disconnect())
+  footerObserver.observe(footer)
+})
+
+onBeforeUnmount(() => {
+  footerObserver?.disconnect()
 })
 </script>
 

@@ -60,7 +60,7 @@
         <div class="contact-info">
           <p><strong>Τηλέφωνο:</strong> <a href="tel:+306949214461">+30 694 921 4461</a></p>
           <p><strong>Email:</strong> <a href="mailto:handyman24gr@gmail.com">handyman24gr@gmail.com</a></p>
-          <p><strong>Έδρα:</strong> Πλ. Ιπποδαμείας 8, Γραφείο Δ8, 18531 Πειραιάς</p>
+          <p><strong>Έδρα:</strong> Φυλής 153, 11251 Άγιος Παντελεήμονας, Αθήνα, Αττική</p>
         </div>
       </section>
 

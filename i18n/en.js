@@ -58,7 +58,7 @@
     contact: {
       phone: '+30 694 921 4461',
       email: 'handyman24gr@gmail.com',
-      address: 'Pl. Ippodameias 8, Office D8, 18531 Piraeus',
+      address: 'Fylis 153, 11251 Agios Panteleimonas, Athens, Attica',
     },
     info: {
       title: 'Information',
@@ -956,7 +956,7 @@ servicedAreas: {
       title: 'Legal Notice (Impressum)',
       subtitle: 'Statutory business information for HandyMan 24 and how our coordination service operates.',
       highlights: [
-        'Registered office: Pl. Ippodameias 8, Office D8, 18531 Piraeus',
+        'Registered office: Fylis 153, 11251 Agios Panteleimonas, Athens, Attica',
         'Owner: Konstantinos Kolpaxidis – VAT 146264597',
       ],
     },
@@ -967,7 +967,7 @@ servicedAreas: {
         rows: [
           { label: 'Trading name', value: 'HandyMan 24' },
           { label: 'Legal form', value: 'Sole proprietorship' },
-          { label: 'Registered office', value: 'Pl. Ippodameias 8, Office D8, 18531 Piraeus, Attica, Greece' },
+          { label: 'Registered office', value: 'Fylis 153, 11251 Agios Panteleimonas, Athens, Attica, Greece' },
           { label: 'Telephone', value: '+30 694 921 4461', type: 'phone', href: 'tel:+306949214461' },
           { label: 'Email', value: 'handyman24gr@gmail.com', type: 'email', href: 'mailto:handyman24gr@gmail.com' },
           { label: 'Website', value: 'www.handyman24.gr', type: 'link', href: 'https://www.handyman24.gr', target: '_blank', rel: 'noopener noreferrer' },

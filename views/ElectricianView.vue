@@ -118,9 +118,9 @@ const structuredData = computed(() => {
     areaServed: areas,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Πλ. Ιπποδαμείας 8, Γραφείο Δ8',
-      postalCode: '18531',
-      addressLocality: 'Πειραιάς',
+      streetAddress: 'Φυλής 153, Άγιος Παντελεήμονας',
+      postalCode: '11251',
+      addressLocality: 'Αθήνα',
       addressRegion: 'Αττική',
       addressCountry: 'GR',
     },
