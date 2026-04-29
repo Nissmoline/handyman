@@ -1,6 +1,6 @@
 <template>
-  <div class="service-page">
-    <div class="service-container">
+  <main class="service-page">
+    <article class="service-container">
       <h1>{{ t('yachtRepairPage.title') }}</h1>
 
       <div class="service-intro">
@@ -41,17 +41,23 @@
         <a href="tel:+306949214461" class="btn btn-primary">{{ t('yachtRepairPage.contact.callNow') }}</a>
         <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('yachtRepairPage.contact.whatsapp') }}</a>
       </div>
-    </div>
-  </div>
+
+      <RelatedServices />
+    </article>
+  </main>
 </template>
 
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
+import RelatedServices from '@/components/RelatedServices.vue'
+import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 
 const toArray = (value) => (Array.isArray(value) ? value : [])
+const path = '/yacht-repair'
 
 const introParagraphs = computed(() => toArray(tm('yachtRepairPage.intro')))
 const electricalTasks = computed(() => toArray(tm('yachtRepairPage.electrical.tasks')))
@@ -59,6 +65,36 @@ const furnitureTasks = computed(() => toArray(tm('yachtRepairPage.furniture.task
 const flooringTasks = computed(() => toArray(tm('yachtRepairPage.flooring.tasks')))
 const whyChooseItems = computed(() => toArray(tm('yachtRepairPage.whyChoose.items')))
 const closingParagraphs = computed(() => toArray(tm('yachtRepairPage.closing')))
+
+const serviceTasks = computed(() => [
+  ...electricalTasks.value,
+  ...furnitureTasks.value,
+  ...flooringTasks.value,
+])
+
+const structuredData = computed(() => [
+  createServiceSchema({
+    name: t('yachtRepairPage.schema.serviceName'),
+    serviceType: t('yachtRepairPage.schema.serviceType'),
+    description: introParagraphs.value.map(stripTags).join(' '),
+    path,
+    services: serviceTasks.value,
+  }),
+  createBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: t('yachtRepairPage.title'), path },
+  ]),
+])
+
+useHead(() => ({
+  script: [
+    {
+      key: 'yacht-repair-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(structuredData.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>

@@ -10,9 +10,7 @@
       <div class="reviews-section">
         <div v-for="(review, index) in reviewsList" :key="index" class="review-item">
           <div class="review-header">
-            <div class="review-stars">{{ review.stars }}</div>
-            <div class="review-author">{{ review.author }}</div>
-            <div class="review-date">{{ review.date }}</div>
+            <h2>{{ review.label }}</h2>
           </div>
           <div class="review-content">
             <p v-html="review.content"></p>
@@ -70,18 +68,11 @@ const reviewsList = computed(() => {
   gap: 10px;
 }
 
-.review-stars {
-  font-size: 1.2rem;
-}
-
-.review-author {
+.review-header h2 {
   font-weight: 600;
   color: #044877;
-}
-
-.review-date {
-  color: #666;
-  font-size: 0.9rem;
+  font-size: 1.25rem;
+  margin: 0;
 }
 
 .review-content p {
@@ -135,7 +126,7 @@ const reviewsList = computed(() => {
     gap: 6px;
   }
   
-  .review-stars {
+  .review-header h2 {
     font-size: 1rem;
   }
   
@@ -143,4 +134,4 @@ const reviewsList = computed(() => {
     padding: 20px 15px;
   }
 }
-</style> 
+</style>

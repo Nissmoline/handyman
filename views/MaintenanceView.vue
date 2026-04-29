@@ -1,6 +1,6 @@
 <template>
-  <div class="service-page">
-    <div class="service-container">
+  <main class="service-page">
+    <article class="service-container">
       <h1>{{ t('maintenancePage.title') }}</h1>
 
       <div class="service-intro">
@@ -23,22 +23,52 @@
         <a href="tel:+306949214461" class="btn btn-primary">{{ t('maintenancePage.contact.callNow') }}</a>
         <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('maintenancePage.contact.whatsapp') }}</a>
       </div>
-    </div>
-  </div>
+
+      <RelatedServices />
+    </article>
+  </main>
 </template>
 
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
+import RelatedServices from '@/components/RelatedServices.vue'
+import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 
 const toArray = (value) => (Array.isArray(value) ? value : [])
+const path = '/maintenance'
 
 const introParagraphs = computed(() => toArray(tm('maintenancePage.intro')))
 const serviceTasks = computed(() => toArray(tm('maintenancePage.services.tasks')))
 const whyChooseItems = computed(() => toArray(tm('maintenancePage.whyChoose.items')))
 const closingParagraphs = computed(() => toArray(tm('maintenancePage.closing')))
+
+const structuredData = computed(() => [
+  createServiceSchema({
+    name: t('maintenancePage.schema.serviceName'),
+    serviceType: t('maintenancePage.schema.serviceType'),
+    description: introParagraphs.value.map(stripTags).join(' '),
+    path,
+    services: serviceTasks.value,
+  }),
+  createBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: t('maintenancePage.title'), path },
+  ]),
+])
+
+useHead(() => ({
+  script: [
+    {
+      key: 'maintenance-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(structuredData.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>

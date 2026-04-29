@@ -1,4 +1,4 @@
-﻿<script setup>
+<script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -8,18 +8,22 @@ const areas = computed(() => {
   const value = tm('servicedAreas.areas')
   return Array.isArray(value) ? value : []
 })
-</script>\n<template>
-  <div class="serviced-areas">
-    <h2>{{ t('servicedAreas.title') }}</h2>
+</script>
+
+<template>
+  <section class="serviced-areas" id="service-areas" aria-labelledby="service-areas-heading">
+    <h2 id="service-areas-heading">{{ t('servicedAreas.title') }}</h2>
     <p v-html="t('servicedAreas.intro')" />
     <ul class="areas-list">
-      <li v-for="(area, index) in areas" :key="area">
+      <li v-for="area in areas" :key="area">
         {{ area }}
       </li>
     </ul>
     <p v-html="t('servicedAreas.outro')" />
-  </div>
-</template>\n<style scoped>
+  </section>
+</template>
+
+<style scoped>
 .serviced-areas {
   padding: 40px 20px;
   background: #f1f5f9;
@@ -44,81 +48,34 @@ p {
 .areas-list {
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   max-width: 800px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .areas-list li {
   background: #fff;
   color: #044877;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.areas-list li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
   .serviced-areas {
     padding: 2rem 1rem;
   }
-  
+
   h2 {
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
   }
-  
+
   p {
     font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .areas-list {
-    gap: 12px;
-  }
-  
-  .areas-list li {
-    padding: 12px 16px;
-    font-size: 0.95rem;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-}
-
-@media (max-width: 480px) {
-  .serviced-areas {
-    padding: 1.5rem 0.5rem;
-  }
-  
-  h2 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-  }
-  
-  p {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
-  
-  .areas-list {
-    gap: 8px;
-  }
-  
-  .areas-list li {
-    padding: 10px 12px;
-    font-size: 0.9rem;
   }
 }
 </style>
-

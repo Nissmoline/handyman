@@ -6,7 +6,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  const consentState = 'granted';
+  const consentState = 'denied';
   gtag('consent', 'default', {
     'analytics_storage': consentState,
     'ad_storage': consentState,
@@ -77,16 +77,17 @@ function gtag_report_conversion(url) {
   <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
   <link rel="shortcut icon" href="/icons/favicon.ico">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" as="image" href="/electrician.png" fetchpriority="high">
   <link rel="canonical" href="https://handyman24.gr/">
   <link rel="alternate" hreflang="el" href="https://handyman24.gr/">
   <link rel="alternate" hreflang="x-default" href="https://handyman24.gr/">
 
   <!-- SEO - Title and Description will be injected by Vue -->
-      <title>Ηλεκτρολόγος Αθήνα - Ηλεκτρολόγος 24 ώρες | Επείγον Ηλεκτρολόγος Κοντά Μου</title>
-      <meta name="description" content="Ηλεκτρολόγος Αθήνα με διαθεσιμότητα 24 ώρες στην Αττική. Ηλεκτρολόγος κοντά σας για βλάβες, εγκαταστάσεις, ανακαινίσεις και μικροεπισκευές με άμεση εξυπηρέτηση και οικονομικές τιμές.">
+      <title>Handyman24 Αθήνα | Ηλεκτρολόγος, Υδραυλικός, Συντηρήσεις & Ανακαινίσεις</title>
+      <meta name="description" content="Handyman24 για ηλεκτρολόγο, υδραυλικό, ξυλουργικές εργασίες, συντηρήσεις, ανακαινίσεις και επισκευή σκαφών σε Αθήνα, Πειραιά και Αττική. Καλέστε για άμεση τεχνική εξυπηρέτηση.">
   
   <!-- Additional SEO Meta Tags -->
-  <meta name="keywords" content="Ηλεκτρολόγος Αθήνα, Ηλεκτρολόγος Πειραιά, ηλεκτρολόγος 24 ώρες, επείγον ηλεκτρολόγος, ηλεκτρολόγος κοντά μου, αποκατάσταση βραχυκυκλώματος, διακοπή ρεύματος, ηλεκτρολογικές εγκαταστάσεις, αναβάθμιση πίνακα, φορτιστής EV, σύνδεση κουζίνας, σύνδεση θερμοσίφωνα, εγκατάσταση φωτιστικών, RCD, δοκιμές γείωσης, προληπτική συντήρηση, electrician Athens, emergency electrician Athens, electrician Piraeus, EV charger installation Athens, panel upgrade Athens">
+  <meta name="keywords" content="ηλεκτρολόγος Αθήνα, υδραυλικός Αθήνα, ξυλουργός Αθήνα, συντήρηση κτιρίων, ανακαινίσεις Αθήνα, επισκευή σκαφών Πειραιάς">
   <meta name="author" content="Handyman24 - Ηλεκτρολόγος Αθήνα">
   <meta name="robots" content="index, follow">
   <meta name="language" content="el">
@@ -100,17 +101,17 @@ function gtag_report_conversion(url) {
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-      <meta property="og:title" content="Ηλεκτρολόγος Αθήνα | Ηλεκτρολόγος 24 ώρες Αττικής">
-      <meta property="og:description" content="Ηλεκτρολόγος Αθήνα διαθέσιμος 24 ώρες στην Αττική για επείγουσες βλάβες, ηλεκτρολογικές εγκαταστάσεις, μικροεπισκευές και ανακαινίσεις με άμεση εξυπηρέτηση και οικονομικές τιμές.">
+      <meta property="og:title" content="Handyman24 Αθήνα | Τεχνικές Υπηρεσίες σε Αθήνα & Πειραιά">
+      <meta property="og:description" content="Τεχνικές υπηρεσίες σε Αθήνα, Πειραιά και Αττική: ηλεκτρολόγος, υδραυλικός, ξυλουργικές εργασίες, συντηρήσεις, ανακαινίσεις και επισκευή σκαφών.">
   <meta property="og:url" content="https://handyman24.gr/">
   <meta property="og:image" content="https://handyman24.gr/metaimg.jpg">
-  <meta property="og:site_name" content="Handyman24 - Ηλεκτρολόγος Αθήνα">
+  <meta property="og:site_name" content="Handyman24">
   <meta property="og:locale" content="el_GR">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ηλεκτρολόγος Αθήνα | Ηλεκτρολόγος 24 ώρες Αττικής">
-  <meta name="twitter:description" content="Ηλεκτρολόγος Αθήνα διαθέσιμος 24 ώρες στην Αττική για βλάβες, εγκαταστάσεις και μικροεπισκευές με άμεση εξυπηρέτηση και οικονομικές τιμές.">
+  <meta name="twitter:title" content="Handyman24 Αθήνα | Τεχνικές Υπηρεσίες σε Αθήνα & Πειραιά">
+  <meta name="twitter:description" content="Handyman24 για ηλεκτρολόγο, υδραυλικό, συντήρηση, ανακαινίσεις και επισκευή σκαφών σε Αθήνα, Πειραιά και Αττική.">
   <meta name="twitter:image" content="https://handyman24.gr/metaimg.jpg">
 
   <!-- JSON-LD, Fonts, etc. -->
@@ -125,7 +126,7 @@ function gtag_report_conversion(url) {
     "image": "https://handyman24.gr/metaimg.jpg",
     "telephone": "+30-694-9214461",
     "email": "handyman24gr@gmail.com",
-    "description": "Ηλεκτρολόγος Αθήνα 24/7 για βλάβες, εγκαταστάσεις, πίνακες και φορτιστές EV με άμεση ανταπόκριση και διαφανείς τιμές.",
+    "description": "Τεχνικές υπηρεσίες σε Αθήνα, Πειραιά και Αττική: ηλεκτρολόγος, υδραυλικός, ξυλουργικές εργασίες, συντηρήσεις, ανακαινίσεις και επισκευή σκαφών.",
     "priceRange": "€€",
     "address": {
       "@type": "PostalAddress",
@@ -148,7 +149,21 @@ function gtag_report_conversion(url) {
       "https://www.facebook.com/share/1FyUjq1AGd/",
       "https://instagram.com/handyman24.gr",
       "https://wa.me/306949214461"
-    ]
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Τεχνικές υπηρεσίες Handyman24",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ηλεκτρολόγος Αθήνα 24/7", "url": "https://handyman24.gr/electrician" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Υδραυλικός Αθήνα", "url": "https://handyman24.gr/plumber" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Τοποθέτηση πλακιδίων", "url": "https://handyman24.gr/tiling" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Βαψίματα Αθήνα", "url": "https://handyman24.gr/painting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ξυλουργικές εργασίες", "url": "https://handyman24.gr/carpentry" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ανακαινίσεις", "url": "https://handyman24.gr/renovations" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Συντήρηση κτιρίων", "url": "https://handyman24.gr/maintenance" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Επισκευή σκαφών", "url": "https://handyman24.gr/yacht-repair" } }
+      ]
+    }
   },
   {
     "@context": "https://schema.org",
@@ -169,7 +184,7 @@ function gtag_report_conversion(url) {
       }
     },
     "areaServed": "Αθήνα & Πειραιάς",
-    "description": "Επείγουσες ηλεκτρολογικές βλάβες, εγκαταστάσεις και αναβαθμίσεις με άφιξη σε 30-60 λεπτά.",
+    "description": "Επείγουσες ηλεκτρολογικές βλάβες, εγκαταστάσεις, πίνακες, πρίζες, φωτισμός, συσκευές και αναβαθμίσεις σε Αθήνα και Πειραιά.",
     "offers": {
       "@type": "Offer",
       "priceCurrency": "EUR",
@@ -179,54 +194,17 @@ function gtag_report_conversion(url) {
   },
   {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Πώς βρίσκω ηλεκτρολόγο Αθήνα 24 ώρες;",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Καλώντας στο +30 694 921 4461 στέλνουμε ηλεκτρολόγο στην Αθήνα και τον Πειραιά μέσα σε 30-60 λεπτά, 24 ώρες το 24ωρο."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ποιες εργασίες αναλαμβάνετε;",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Αναλαμβάνουμε αποκατάσταση βλαβών, νέες γραμμές, αναβαθμίσεις πινάκων, φορτιστές EV, κουζίνες, θερμοσίφωνες και συμβόλαια συντήρησης."
-        }
-      }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Handyman24 - Ηλεκτρολόγος Αθήνα",
     "url": "https://handyman24.gr/",
-    "inLanguage": ["el", "en"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://handyman24.gr/electrician",
-      "query-input": "required name=search_term_string"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Αρχική", "item": "https://handyman24.gr/" },
-      { "@type": "ListItem", "position": 2, "name": "Ηλεκτρολόγος Αθήνα", "item": "https://handyman24.gr/electrician" },
-      { "@type": "ListItem", "position": 3, "name": "FAQ Ηλεκτρολόγου", "item": "https://handyman24.gr/electrician-faq" },
-      { "@type": "ListItem", "position": 4, "name": "Κριτικές Ηλεκτρολόγου", "item": "https://handyman24.gr/electrician-reviews" }
-    ]
+    "inLanguage": ["el", "en"]
   },
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Handyman24",
     "url": "https://handyman24.gr/",
-    "logo": "https://handyman24.gr/icons/favicon.svg",
+    "logo": "https://handyman24.gr/icons/android-chrome-192x192.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+30-694-9214461",
@@ -240,6 +218,7 @@ function gtag_report_conversion(url) {
 
 
   <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>

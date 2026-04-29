@@ -1,4 +1,4 @@
-﻿import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import HomeView from '@/views/HomeView.vue';
 import OffersView from '@/views/OffersView.vue';
@@ -7,11 +7,11 @@ import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
 import ElectricianReviews from '@/views/ElectricianReviews.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
 import ImpressumView from '@/views/ImpressumView.vue';
-// import PlumberView from '@/views/PlumberView.vue';
-// import TilingView from '@/views/TilingView.vue';
-// import PaintingView from '@/views/PaintingView.vue';
+import PlumberView from '@/views/PlumberView.vue';
+import TilingView from '@/views/TilingView.vue';
+import PaintingView from '@/views/PaintingView.vue';
 import CarpentryView from '@/views/CarpentryView.vue';
-// import RenovationsView from '@/views/RenovationsView.vue';
+import RenovationsView from '@/views/RenovationsView.vue';
 import MaintenanceView from '@/views/MaintenanceView.vue';
 import YachtRepairView from '@/views/YachtRepairView.vue';
 
@@ -62,41 +62,32 @@ const routes = [
     },
   },
   {
-    path: '/privacy-policy',
-    name: 'privacy-policy',
-    component: PrivacyPolicy,
+    path: '/plumber',
+    name: 'plumber',
+    component: PlumberView,
     meta: {
-      titleKey: 'seo.privacy.title',
-      descriptionKey: 'seo.privacy.description',
+      titleKey: 'seo.plumber.title',
+      descriptionKey: 'seo.plumber.description',
     },
   },
-  // {
-  //   path: '/plumber',
-  //   name: 'plumber',
-  //   component: PlumberView,
-  //   meta: {
-  //     titleKey: 'seo.plumber.title',
-  //     descriptionKey: 'seo.plumber.description',
-  //   },
-  // },
-  // {
-  //   path: '/tiling',
-  //   name: 'tiling',
-  //   component: TilingView,
-  //   meta: {
-  //     titleKey: 'seo.tiling.title',
-  //     descriptionKey: 'seo.tiling.description',
-  //   },
-  // },
-  // {
-  //   path: '/painting',
-  //   name: 'painting',
-  //   component: PaintingView,
-  //   meta: {
-  //     titleKey: 'seo.painting.title',
-  //     descriptionKey: 'seo.painting.description',
-  //   },
-  // },
+  {
+    path: '/tiling',
+    name: 'tiling',
+    component: TilingView,
+    meta: {
+      titleKey: 'seo.tiling.title',
+      descriptionKey: 'seo.tiling.description',
+    },
+  },
+  {
+    path: '/painting',
+    name: 'painting',
+    component: PaintingView,
+    meta: {
+      titleKey: 'seo.painting.title',
+      descriptionKey: 'seo.painting.description',
+    },
+  },
   {
     path: '/carpentry',
     name: 'carpentry',
@@ -106,15 +97,15 @@ const routes = [
       descriptionKey: 'seo.carpentry.description',
     },
   },
-  // {
-  //   path: '/renovations',
-  //   name: 'renovations',
-  //   component: RenovationsView,
-  //   meta: {
-  //     titleKey: 'seo.renovations.title',
-  //     descriptionKey: 'seo.renovations.description',
-  //   },
-  // },
+  {
+    path: '/renovations',
+    name: 'renovations',
+    component: RenovationsView,
+    meta: {
+      titleKey: 'seo.renovations.title',
+      descriptionKey: 'seo.renovations.description',
+    },
+  },
   {
     path: '/maintenance',
     name: 'maintenance',
@@ -131,6 +122,15 @@ const routes = [
     meta: {
       titleKey: 'seo.yachtRepair.title',
       descriptionKey: 'seo.yachtRepair.description',
+    },
+  },
+  {
+    path: '/privacy-policy',
+    name: 'privacy-policy',
+    component: PrivacyPolicy,
+    meta: {
+      titleKey: 'seo.privacy.title',
+      descriptionKey: 'seo.privacy.description',
     },
   },
   {

@@ -72,17 +72,22 @@ const updateSeoMeta = () => {
   ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
   ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
   ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
+  ensureMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'Handyman24' })
   ensureMeta('meta[name="language"]', { name: 'language', content: locale.value })
+  ensureMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow' })
   ensureMeta('meta[property="og:locale"]', { property: 'og:locale', content: locale.value === 'el' ? 'el_GR' : 'en_US' })
+  ensureMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
   ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: title })
   ensureMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: description })
 
   if (ogImage) {
     ensureMeta('meta[property="og:image"]', { property: 'og:image', content: ogImage })
+    ensureMeta('meta[property="og:image:alt"]', { property: 'og:image:alt', content: title })
   }
 
   if (twitterImage) {
     ensureMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: twitterImage })
+    ensureMeta('meta[name="twitter:image:alt"]', { name: 'twitter:image:alt', content: title })
   }
 }
 

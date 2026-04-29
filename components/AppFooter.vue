@@ -30,6 +30,20 @@ const linkGroups: readonly FooterGroup[] = [
     ],
   },
   {
+    titleKey: "footer.services.title",
+    links: [
+      { type: "route", route: "/electrician", labelKey: "footer.services.electrician" },
+      { type: "route", route: "/yacht-repair", labelKey: "footer.services.yachtRepair" },
+      { type: "route", route: "/carpentry", labelKey: "footer.services.carpentry" },
+      { type: "route", route: "/maintenance", labelKey: "footer.services.maintenance" },
+      // SEO pages kept active, but hidden from the footer services list for now:
+      // { type: "route", route: "/plumber", labelKey: "footer.services.plumber" },
+      // { type: "route", route: "/tiling", labelKey: "footer.services.tiling" },
+      // { type: "route", route: "/painting", labelKey: "footer.services.painting" },
+      // { type: "route", route: "/renovations", labelKey: "footer.services.renovations" },
+    ],
+  },
+  {
     titleKey: "footer.info.title",
     links: [
       { type: "action", action: "appointment", labelKey: "footer.info.contact" },
@@ -92,6 +106,11 @@ function openCookieSettings() {
             loading="lazy"
           />
         </router-link>
+        <address class="footer__contact">
+          <a href="tel:+306949214461">{{ t('footer.contact.phone') }}</a>
+          <a href="mailto:handyman24gr@gmail.com">{{ t('footer.contact.email') }}</a>
+          <span>{{ t('footer.contact.address') }}</span>
+        </address>
       </div>
             <nav class="footer__nav" aria-label="Footer navigation">
         <ul
@@ -174,10 +193,32 @@ function openCookieSettings() {
 
 .footer__brand {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  min-width: 150px;
+  min-width: 220px;
   margin-bottom: 14px;
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-style: normal;
+  line-height: 1.35;
+  max-width: 240px;
+}
+
+.footer__contact a,
+.footer__contact span {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.footer__contact a:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 .footer__logo {
   border-radius: 12px;

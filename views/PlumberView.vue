@@ -1,34 +1,78 @@
 <template>
-  <div class="service-page">
-    <div class="service-container">
-      <h1>Υδραυλικός Αθήνα 24/7 – Άμεση Αντιμετώπιση για Διαρροές & Αποφράξεις</h1>
-      
+  <main class="service-page">
+    <article class="service-container">
+      <h1>{{ t('plumberPage.title') }}</h1>
+
       <div class="service-intro">
-        <p>
-          Αντιμετωπίζετε μια επείγουσα <strong>υδραυλική βλάβη</strong>; Ο <strong>υδραυλικός στην Αθήνα</strong> από την ομάδα του Handyman24.gr είναι διαθέσιμος 24 ώρες το 24ωρο, 7 ημέρες την εβδομάδα, για να δώσει λύση σε κάθε πρόβλημα. Είτε πρόκειται για μια ξαφνική <strong>διαρροή</strong>, είτε για <strong>ξεβούλωμα αποχέτευσης</strong>, είμαστε δίπλα σας με ένα τηλεφώνημα. Εξυπηρετούμε όλες τις περιοχές της Αθήνας και της Αττικής, προσφέροντας οικονομικές λύσεις χωρίς κρυφές χρεώσεις. Αναλαμβάνουμε από τις πιο μικρές επισκευές, όπως μια βρύση που στάζει, μέχρι σύνθετες υδραυλικές εγκαταστάσεις σε κατοικίες και επαγγελματικούς χώρους. <strong>Καλέστε μας τώρα</strong> για να στείλουμε άμεσα έναν έμπειρο τεχνικό στον χώρο σας.
-        </p>
+        <p v-for="(paragraph, index) in introParagraphs" :key="'intro-' + index" v-html="paragraph"></p>
       </div>
 
-      <h2>Οι υδραυλικές υπηρεσίες που προσφέρουμε:</h2>
-      <ul>
-        <li>Άμεση επισκευή για κάθε είδους διαρροή (βρύσες, καζανάκια, σωληνώσεις)</li>
-        <li>Απόφραξη (ξεβούλωμα) αποχετεύσεων, νιπτήρων, και λεκανών</li>
-        <li>Εγκατάσταση, επισκευή και συντήρηση θερμοσίφωνα (ηλεκτρικού και ηλιακού)</li>
-        <li>Εγκατάσταση και συντήρηση σωμάτων καλοριφέρ</li>
-        <li>Πλήρεις υδραυλικές εγκαταστάσεις για μπάνιο και κουζίνα</li>
-        <li>Αντικατάσταση και τοποθέτηση ειδών υγιεινής (λεκάνες, νιπτήρες, μπαταρίες)</li>
-        <li>Εντοπισμός και επισκευή κρυφών διαρροών με ειδικό εξοπλισμό</li>
-        <li>Υδραυλικές εργασίες για επιχειρήσεις και καταστήματα</li>
-      </ul>
+      <section>
+        <h2>{{ t('plumberPage.services.title') }}</h2>
+        <ul>
+          <li v-for="(item, index) in serviceTasks" :key="'service-' + index" v-html="item"></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>{{ t('plumberPage.whyChoose.title') }}</h2>
+        <ul>
+          <li v-for="(item, index) in whyChooseItems" :key="'why-' + index" v-html="item"></li>
+        </ul>
+      </section>
+
+      <p v-for="(paragraph, index) in closingParagraphs" :key="'closing-' + index" v-html="paragraph"></p>
 
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary">Καλέστε για Υδραυλικό Άμεσα</a>
+        <a href="tel:+306949214461" class="btn btn-primary">{{ t('plumberPage.contact.callNow') }}</a>
+        <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('plumberPage.contact.whatsapp') }}</a>
       </div>
-    </div>
-  </div>
+
+      <RelatedServices />
+    </article>
+  </main>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
+import RelatedServices from '@/components/RelatedServices.vue'
+import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
+
+const { t, tm } = useI18n()
+const pageKey = 'plumberPage'
+const path = '/plumber'
+const toArray = (value) => (Array.isArray(value) ? value : [])
+
+const introParagraphs = computed(() => toArray(tm(`${pageKey}.intro`)))
+const serviceTasks = computed(() => toArray(tm(`${pageKey}.services.tasks`)))
+const whyChooseItems = computed(() => toArray(tm(`${pageKey}.whyChoose.items`)))
+const closingParagraphs = computed(() => toArray(tm(`${pageKey}.closing`)))
+
+const structuredData = computed(() => [
+  createServiceSchema({
+    name: t(`${pageKey}.schema.serviceName`),
+    serviceType: t(`${pageKey}.schema.serviceType`),
+    description: introParagraphs.value.map(stripTags).join(' '),
+    path,
+    services: serviceTasks.value,
+  }),
+  createBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: t(pageKey + '.title'), path },
+  ]),
+])
+
+useHead(() => ({
+  script: [
+    {
+      key: 'plumber-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(structuredData.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>

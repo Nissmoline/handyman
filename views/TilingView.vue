@@ -1,45 +1,78 @@
 <template>
-  <div class="service-page">
-    <div class="service-container">
-      <h1>Τοποθέτηση Πλακιδίων Αθήνα – Πλακάς για Δάπεδα & Τοίχους</h1>
-      <p>
-        Αναζητάτε έναν επαγγελματία <strong>πλακά στην Αθήνα</strong> για την
-        <strong>τοποθέτηση πλακιδίων</strong>; Οι εξειδικευμένοι τεχνίτες μας
-        αναλαμβάνουν την άρτια τοποθέτηση κάθε τύπου πλακιδίου σε δάπεδα και
-        τοίχους, για οικιακούς και επαγγελματικούς χώρους. Εξασφαλίζουμε τέλεια
-        ευθυγράμμιση, αντοχή και αισθητική σε μπάνια, κουζίνες, δάπεδα και
-        βεράντες. Επιπλέον, προσφέρουμε υπηρεσίες για
-        <strong>επισκευή πλακιδίων</strong>, αντικαθιστώντας σπασμένα πλακάκια
-        και πραγματοποιώντας <strong>αρμολόγηση</strong> για ένα άψογο
-        φινίρισμα. Το αποτέλεσμα είναι ένας χώρος αισθητικά άψογος και
-        λειτουργικός. <strong>Ζητήστε δωρεάν εκτίμηση</strong> για την εργασία
-        σας σήμερα.
-      </p>
-      <h2>Οι υπηρεσίες πλακιδίων μας:</h2>
-      <ul>
-        <li>
-          Τοποθέτηση πλακιδίων δαπέδου και τοίχου (κεραμικά, γρανιτοπλακάκια
-          κ.ά.)
-        </li>
-        <li>Επισκευή και αντικατάσταση για σπασμένα ή φθαρμένα πλακάκια</li>
-        <li>Προσεκτική αρμολόγηση και φινίρισμα</li>
-        <li>Τοποθέτηση πλακιδίων σε μπάνια, κουζίνες, βεράντες και σκάλες</li>
-        <li>Αδιαβροχοποίηση και προστασία αρμών</li>
-        <li>
-          Συμβουλές για την επιλογή των κατάλληλων υλικών για τον χώρο σας
-        </li>
-      </ul>
-      
-      <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary"
-          >Καλέστε για Προσφορά Πλακιδίων</a
-        >
+  <main class="service-page">
+    <article class="service-container">
+      <h1>{{ t('tilingPage.title') }}</h1>
+
+      <div class="service-intro">
+        <p v-for="(paragraph, index) in introParagraphs" :key="'intro-' + index" v-html="paragraph"></p>
       </div>
-    </div>
-  </div>
+
+      <section>
+        <h2>{{ t('tilingPage.services.title') }}</h2>
+        <ul>
+          <li v-for="(item, index) in serviceTasks" :key="'service-' + index" v-html="item"></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>{{ t('tilingPage.whyChoose.title') }}</h2>
+        <ul>
+          <li v-for="(item, index) in whyChooseItems" :key="'why-' + index" v-html="item"></li>
+        </ul>
+      </section>
+
+      <p v-for="(paragraph, index) in closingParagraphs" :key="'closing-' + index" v-html="paragraph"></p>
+
+      <div class="contact-buttons">
+        <a href="tel:+306949214461" class="btn btn-primary">{{ t('tilingPage.contact.callNow') }}</a>
+        <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('tilingPage.contact.whatsapp') }}</a>
+      </div>
+
+      <RelatedServices />
+    </article>
+  </main>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
+import RelatedServices from '@/components/RelatedServices.vue'
+import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
+
+const { t, tm } = useI18n()
+const pageKey = 'tilingPage'
+const path = '/tiling'
+const toArray = (value) => (Array.isArray(value) ? value : [])
+
+const introParagraphs = computed(() => toArray(tm(`${pageKey}.intro`)))
+const serviceTasks = computed(() => toArray(tm(`${pageKey}.services.tasks`)))
+const whyChooseItems = computed(() => toArray(tm(`${pageKey}.whyChoose.items`)))
+const closingParagraphs = computed(() => toArray(tm(`${pageKey}.closing`)))
+
+const structuredData = computed(() => [
+  createServiceSchema({
+    name: t(`${pageKey}.schema.serviceName`),
+    serviceType: t(`${pageKey}.schema.serviceType`),
+    description: introParagraphs.value.map(stripTags).join(' '),
+    path,
+    services: serviceTasks.value,
+  }),
+  createBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: t(pageKey + '.title'), path },
+  ]),
+])
+
+useHead(() => ({
+  script: [
+    {
+      key: 'tiling-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(structuredData.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>

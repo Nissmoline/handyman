@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { Menu as LucideMenu, X as LucideX, ChevronDown } from 'lucide-vue-next'
 import { Phone } from 'lucide-vue-next'
-import logoUrl from '/icons/favicon.svg'
+import logoUrl from '/icons/favicon-48x48.png'
 import { setLocale, supportedLocales } from '@/i18n'
 
 const services = [
@@ -12,13 +12,18 @@ const services = [
   { labelKey: 'header.servicesMenu.yachtRepair', path: '/yacht-repair' },
   { labelKey: 'header.servicesMenu.carpentry', path: '/carpentry' },
   { labelKey: 'header.servicesMenu.maintenance', path: '/maintenance' },
+  // SEO pages kept active, but hidden from the public services menu for now:
+  // { labelKey: 'header.servicesMenu.plumber', path: '/plumber' },
+  // { labelKey: 'header.servicesMenu.tiling', path: '/tiling' },
+  // { labelKey: 'header.servicesMenu.painting', path: '/painting' },
+  // { labelKey: 'header.servicesMenu.renovations', path: '/renovations' },
 ]
 
 const socialLinksMobile = [
   { href: 'https://www.facebook.com/share/1FyUjq1AGd/', icon: ['fab', 'facebook'], label: 'Facebook' },
   { href: 'https://instagram.com/handyman24.gr', icon: ['fab', 'instagram'], label: 'Instagram' },
   { href: 'viber://chat?number=+306949214461', icon: ['fab', 'viber'], label: 'Viber' },
-  { href: 'https://wa.me/+306949214461', icon: ['fab', 'whatsapp'], label: 'WhatsApp' },
+  { href: 'https://wa.me/306949214461', icon: ['fab', 'whatsapp'], label: 'WhatsApp' },
   { href: 'https://t.me/+306949214461', icon: ['fab', 'telegram'], label: 'Telegram' },
 ]
 
@@ -121,7 +126,12 @@ watch(menuOpen, (open) => {
           {{ t('header.nav.about') }}
         </router-link>
         <div class="dropdown" @mouseenter="servicesMenuOpen = true" @mouseleave="servicesMenuOpen = false">
-          <button class="dropdown-toggle">
+          <button
+            class="dropdown-toggle"
+            type="button"
+            aria-haspopup="true"
+            :aria-expanded="servicesMenuOpen"
+          >
             {{ t('header.nav.services') }}
             <ChevronDown size="16" />
           </button>
@@ -210,12 +220,18 @@ watch(menuOpen, (open) => {
           >
             {{ t('header.nav.about') }}
           </router-link>
-          <div class="drawer-link" @click="servicesMenuOpen = !servicesMenuOpen">
+          <button
+            type="button"
+            class="drawer-link drawer-link--button"
+            :aria-expanded="servicesMenuOpen"
+            aria-controls="mobile-services-menu"
+            @click="servicesMenuOpen = !servicesMenuOpen"
+          >
             {{ t('header.nav.services') }}
             <ChevronDown :class="{ 'rotate-180': servicesMenuOpen }" size="16" />
-          </div>
+          </button>
           <transition name="fade">
-            <div v-if="servicesMenuOpen" class="mobile-submenu">
+            <div v-if="servicesMenuOpen" id="mobile-services-menu" class="mobile-submenu">
               <router-link
                 v-for="service in services"
                 :key="service.path"
@@ -579,6 +595,17 @@ watch(menuOpen, (open) => {
   transform: translateX(0);
   opacity: 1;
 }
+.drawer-link--button {
+  width: 100%;
+  border: 1px solid rgba(4, 72, 119, 0.1);
+  background: #fff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .drawer-link:hover,
 .drawer-link.active {
   background: #eaf3f7;
@@ -586,14 +613,34 @@ watch(menuOpen, (open) => {
   transform: translateX(4px);
 }
 .drawer-link.submenu-item {
-  font-size: 1.05rem;
+  position: relative;
+  margin-bottom: 10px;
+  border: 1px solid rgba(17, 121, 191, 0.12);
+  background: #f8fcff;
+  font-size: 1.02rem;
   font-weight: 500;
-  padding: 10px 16px 10px 28px;
+  padding: 11px 16px 11px 20px;
+  box-shadow: none;
+}
+.drawer-link.submenu-item::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  width: 10px;
+  height: 2px;
+  background: rgba(17, 121, 191, 0.42);
+  transform: translateY(-50%);
 }
 .mobile-submenu {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin: -8px 0 18px 18px;
+  padding: 6px 0 2px 18px;
+  border-left: 2px solid rgba(17, 121, 191, 0.25);
+}
+.mobile-submenu .submenu-item:last-child {
+  margin-bottom: 0;
 }
 .rotate-180 {
   transform: rotate(180deg);

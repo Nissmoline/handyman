@@ -1,124 +1,113 @@
 <script setup>
-import { RouterLink } from 'vue-router'
-
 defineProps({
   icon: Object,
   title: String,
   description: String,
+  cta: String,
   link: String,
 })
 </script>
 
 <template>
-  <component :is="link ? RouterLink : 'li'" :to="link" class="service-item-component">
-    <li class="service-item">
-      <span class="service-icon">
+  <li class="service-item">
+    <router-link
+      v-if="link"
+      :to="link"
+      class="service-item-link"
+      :aria-label="title + '. ' + cta"
+    >
+      <span class="service-icon" aria-hidden="true">
         <component :is="icon" size="38" stroke-width="2.2" />
       </span>
-      <div>
+      <div class="service-copy">
         <h3 class="service-title">{{ title }}</h3>
         <p class="service-description">{{ description }}</p>
+        <span class="service-cta">{{ cta }}</span>
       </div>
-    </li>
-  </component>
+    </router-link>
+  </li>
 </template>
 
-
 <style scoped>
-.service-item-component {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
 .service-item {
+  min-height: 100%;
+}
+
+.service-item-link {
   display: flex;
+  min-height: 100%;
   align-items: flex-start;
   gap: 1rem;
   padding: 1.2rem;
-  border-radius: 12px;
+  border: 1px solid rgba(4, 72, 119, 0.1);
+  border-radius: 8px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(22, 54, 77, 0.412);
-  transition: all 0.3s ease;
-  height: 100%; /* Ensure all items have the same height */
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(22, 54, 77, 0.18);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.service-item:hover {
-  box-shadow: 0 4px 18px rgba(22, 54, 77, 0.811);
+
+.service-item-link:hover,
+.service-item-link:focus-visible {
+  border-color: #044877;
+  box-shadow: 0 8px 22px rgba(22, 54, 77, 0.22);
   transform: translateY(-2px);
+  outline: none;
 }
 
-@media (max-width: 768px) {
-  .service-item {
-    padding: 1.5rem 1rem;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-  
-  .service-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  }
-  
-  .service-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #eaf3f7 0%, #d4e9f4 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .service-title {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: #164087;
-  }
-  
-  .service-description {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #4a5568;
-  }
-}
-
-@media (max-width: 480px) {
-  .service-item {
-    padding: 1rem 0.75rem;
-  }
-  
-  .service-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .service-title {
-    font-size: 1rem;
-  }
-  
-  .service-description {
-    font-size: 0.9rem;
-  }
-}
 .service-icon {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  display: flex;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #164087;
+  border-radius: 8px;
+  background: #eaf3f7;
 }
+
+.service-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .service-title {
-  font-size: 1.05rem;
-  font-weight: bold;
+  margin: 0;
   color: #164087;
-  margin-bottom: 0.3em;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
+
 .service-description {
+  margin: 0;
   color: #233245;
-  font-size: 0.97rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.service-cta {
+  color: #0b6ea8;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .service-item-link {
+    padding: 1.1rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+
+  .service-description,
+  .service-cta {
+    font-size: 0.92rem;
+  }
 }
 </style>

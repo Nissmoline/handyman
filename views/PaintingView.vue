@@ -1,43 +1,78 @@
 <template>
-  <div class="service-page">
-    <div class="service-container">
-      <h1>Βάψιμο Σπιτιού & Επαγγελματικοί Χρωματισμοί στην Αθήνα</h1>
-      
+  <main class="service-page">
+    <article class="service-container">
+      <h1>{{ t('paintingPage.title') }}</h1>
+
       <div class="service-intro">
-        <p>
-          Αναζητάτε έναν έμπειρο
-          <strong>ελαιοχρωματιστή (μπογιατζή) στην Αθήνα</strong> για να
-          ανανεώσετε τον χώρο σας; Η ομάδα μας αναλαμβάνει το
-          <strong>βάψιμο σπιτιού</strong>, γραφείου ή καταστήματος, προσφέροντας
-          υψηλής ποιότητας <strong>επαγγελματικούς χρωματισμούς</strong> σε όλη
-          την Αττική. Οι τεχνίτες μας φροντίζουν για την άψογη προετοιμασία των
-          επιφανειών (τρίψιμο, στοκάρισμα) και χρησιμοποιούν μόνο ανθεκτικές,
-          οικολογικές βαφές. Εγγυόμαστε ένα καθαρό, ομοιόμορφο και εντυπωσιακό
-          αποτέλεσμα, χωρίς καθυστερήσεις. Είτε πρόκειται για ένα δωμάτιο είτε για
-          ολόκληρο το κτίριο, είμαστε η ιδανική επιλογή.
-          <strong>Κλείστε ραντεβού σήμερα</strong> για να σας δώσουμε μια
-          οικονομική προσφορά.
-        </p>
+        <p v-for="(paragraph, index) in introParagraphs" :key="'intro-' + index" v-html="paragraph"></p>
       </div>
-      
-      <h2>Οι υπηρεσίες ελαιοχρωματισμών περιλαμβάνουν:</h2>
-      <ul>
-        <li>Εσωτερικοί και εξωτερικοί χρωματισμοί κτιρίων</li>
-        <li>Βάψιμο σπιτιών, διαμερισμάτων, καταστημάτων και γραφείων</li>
-        <li>Στοκάρισμα, σπατουλάρισμα και προετοιμασία τοίχων</li>
-        <li>Τεχνοτροπίες και ειδικές τεχνικές βαφής (π.χ. πατίνες)</li>
-        <li>Βάψιμο σε πόρτες, παράθυρα, κάγκελα και ντουλάπες</li>
-        <li>Χρήση οικολογικών και πλενόμενων χρωμάτων κορυφαίας ποιότητας</li>
-      </ul>
-      
+
+      <section>
+        <h2>{{ t('paintingPage.services.title') }}</h2>
+        <ul>
+          <li v-for="(item, index) in serviceTasks" :key="'service-' + index" v-html="item"></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>{{ t('paintingPage.whyChoose.title') }}</h2>
+        <ul>
+          <li v-for="(item, index) in whyChooseItems" :key="'why-' + index" v-html="item"></li>
+        </ul>
+      </section>
+
+      <p v-for="(paragraph, index) in closingParagraphs" :key="'closing-' + index" v-html="paragraph"></p>
+
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary">Ζητήστε Προσφορά για Βάψиμο</a>
+        <a href="tel:+306949214461" class="btn btn-primary">{{ t('paintingPage.contact.callNow') }}</a>
+        <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('paintingPage.contact.whatsapp') }}</a>
       </div>
-    </div>
-  </div>
+
+      <RelatedServices />
+    </article>
+  </main>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
+import RelatedServices from '@/components/RelatedServices.vue'
+import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
+
+const { t, tm } = useI18n()
+const pageKey = 'paintingPage'
+const path = '/painting'
+const toArray = (value) => (Array.isArray(value) ? value : [])
+
+const introParagraphs = computed(() => toArray(tm(`${pageKey}.intro`)))
+const serviceTasks = computed(() => toArray(tm(`${pageKey}.services.tasks`)))
+const whyChooseItems = computed(() => toArray(tm(`${pageKey}.whyChoose.items`)))
+const closingParagraphs = computed(() => toArray(tm(`${pageKey}.closing`)))
+
+const structuredData = computed(() => [
+  createServiceSchema({
+    name: t(`${pageKey}.schema.serviceName`),
+    serviceType: t(`${pageKey}.schema.serviceType`),
+    description: introParagraphs.value.map(stripTags).join(' '),
+    path,
+    services: serviceTasks.value,
+  }),
+  createBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: t(pageKey + '.title'), path },
+  ]),
+])
+
+useHead(() => ({
+  script: [
+    {
+      key: 'painting-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(structuredData.value),
+    },
+  ],
+}))
 </script>
 
 <style scoped>

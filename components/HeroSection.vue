@@ -42,26 +42,27 @@ const triggerConversion = (url) => {
   if (typeof window === 'undefined') {
     return
   }
-  let navigationHandled = false
+  let fallbackTimer = null
+
+  if (typeof url === 'string') {
+    fallbackTimer = window.setTimeout(() => {
+      window.location.href = url
+    }, 700)
+  }
 
   const eventFn = window.gtagSendEvent
   if (typeof eventFn === 'function') {
-    const eventResult = eventFn(url)
-    if (eventResult === false) {
-      navigationHandled = true
-    }
+    eventFn(url)
   }
 
   const conversionFn = window.gtag_report_conversion
   if (typeof conversionFn === 'function') {
-    const conversionResult = conversionFn(url)
-    if (conversionResult === false) {
-      navigationHandled = true
-    }
+    conversionFn(url)
   }
 
-  if (!navigationHandled && typeof url === 'string') {
-    window.location = url
+  if (!eventFn && !conversionFn && fallbackTimer) {
+    window.clearTimeout(fallbackTimer)
+    window.location.href = url
   }
 }
 
@@ -169,11 +170,12 @@ const onTouchEnd = (event) => {
             v-for="(slide, slideIndex) in heroSlides"
             :key="slide.serviceLabel || slideIndex"
             class="hero-content hero-slide"
+            :aria-hidden="slideIndex !== activeServiceIndex"
           >
             <div class="hero-left">
-              <h1>
+              <component :is="slideIndex === 0 ? 'h1' : 'h2'" class="hero-title">
                 {{ slide.title?.main }}<br /><span>{{ slide.title?.highlight }}</span>
-              </h1>
+              </component>
               <div class="hero-desc">
                 <p
                   v-for="(paragraph, index) in toStringArray(slide.description)"
@@ -220,6 +222,11 @@ const onTouchEnd = (event) => {
                   class="hero-slide-image"
                   :src="slide.image || '/heromain.png'"
                   :alt="slide.alt || t('hero.alt')"
+                  width="624"
+                  height="624"
+                  decoding="async"
+                  :loading="slideIndex === 0 ? 'eager' : 'lazy'"
+                  :fetchpriority="slideIndex === 0 ? 'high' : 'auto'"
                 />
               </router-link>
               <img
@@ -227,6 +234,11 @@ const onTouchEnd = (event) => {
                 class="hero-slide-image"
                 :src="slide.image || '/heromain.png'"
                 :alt="slide.alt || t('hero.alt')"
+                width="624"
+                height="624"
+                decoding="async"
+                :loading="slideIndex === 0 ? 'eager' : 'lazy'"
+                :fetchpriority="slideIndex === 0 ? 'high' : 'auto'"
               />
             </div>
           </div>
@@ -383,13 +395,13 @@ const onTouchEnd = (event) => {
   color: #fff;
   padding-top: 8px;
 }
-.hero-left h1 {
+.hero-title {
   font-size: 2.65rem;
   font-weight: 700;
   margin: 0 0 24px 0;
   line-height: 1.08;
 }
-.hero-left h1 span {
+.hero-title span {
   font-weight: 700;
   font-size: 2.05rem;
   display: block;
@@ -644,13 +656,13 @@ const onTouchEnd = (event) => {
     margin-bottom: 0;
     margin-right: 0;
   }
-  .hero-left h1 {
+  .hero-title {
     font-size: 2rem;
     line-height: 1.1;
     margin-bottom: 20px;
     text-align: center;
   }
-  .hero-left h1 span {
+  .hero-title span {
     font-size: 1.6rem;
     margin-top: 0.2em;
     text-align: center;
@@ -743,11 +755,11 @@ const onTouchEnd = (event) => {
     width: 100%;
     text-align: center;
   }
-  .hero-left h1 {
+  .hero-title {
     font-size: 1.8rem;
     text-align: center;
   }
-  .hero-left h1 span {
+  .hero-title span {
     font-size: 1.4rem;
     text-align: center;
   }
@@ -805,11 +817,11 @@ const onTouchEnd = (event) => {
     width: 100%;
     text-align: center;
   }
-  .hero-left h1 {
+  .hero-title {
     font-size: 1.6rem;
     text-align: center;
   }
-  .hero-left h1 span {
+  .hero-title span {
     font-size: 1.3rem;
     text-align: center;
   }

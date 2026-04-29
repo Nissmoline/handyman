@@ -23,6 +23,11 @@ const serviceDefinitions = [
   { value: 'yachtRepair', labelKey: 'services.list.yachtRepair.title' },
   { value: 'carpentry', labelKey: 'services.list.carpentry.title' },
   { value: 'maintenance', labelKey: 'services.list.maintenance.title' },
+  // SEO pages kept active, but hidden from the public appointment selector for now:
+  // { value: 'plumber', labelKey: 'services.list.plumber.title' },
+  // { value: 'tiling', labelKey: 'services.list.tiling.title' },
+  // { value: 'painting', labelKey: 'services.list.painting.title' },
+  // { value: 'renovations', labelKey: 'services.list.renovations.title' },
 ]
 
 const serviceOptions = computed(() =>

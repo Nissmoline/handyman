@@ -1,7 +1,9 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import { CheckCircle } from 'lucide-vue-next'
+import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 
@@ -16,21 +18,54 @@ const hoodVentilationCards = computed(() => tm('offersPage.sections.hoodVentilat
 
 // Helper function to ensure arrays
 const toArray = (value) => (Array.isArray(value) ? value : [])
+
+const offerNames = computed(() => [
+  t('offersPage.sections.kitchenHood.cards.kitchenConnection.title'),
+  t('offersPage.sections.kitchenHood.cards.hoodConnection.title'),
+  t('offersPage.sections.kitchenHood.cards.comboSet.title'),
+  t('offersPage.sections.hoodVentilation.cards.hoodInstallation.title'),
+  t('offersPage.sections.hoodVentilation.cards.hoodReplacement.title'),
+])
+
+const offersSchema = computed(() => [
+  createServiceSchema({
+    name: t('offersPage.title'),
+    serviceType: 'Electrician offers and appliance connection packages',
+    description: stripTags(t('offersPage.disclaimer')),
+    path: '/offers',
+    services: offerNames.value,
+    providerType: 'Electrician',
+  }),
+  createBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: t('offersPage.title'), path: '/offers' },
+  ]),
+])
+
+useHead(() => ({
+  script: [
+    {
+      key: 'offers-jsonld',
+      type: 'application/ld+json',
+      children: JSON.stringify(offersSchema.value),
+    },
+  ],
+}))
 </script>
 
 <template>
   <main class="offers-root">
-    <h2 class="offers-title">{{ t('offersPage.title') }}</h2>
+    <h1 class="offers-title">{{ t('offersPage.title') }}</h1>
     <div class="offers-container">
 
       <!-- Kitchen & Hood Section -->
       <section class="offers-section">
-        <h3 class="offers-section-title">{{ t('offersPage.sections.kitchenHood.title') }}</h3>
+        <h2 class="offers-section-title">{{ t('offersPage.sections.kitchenHood.title') }}</h2>
         <div class="offers-cards-row">
 
           <!-- Kitchen Connection Card -->
           <div class="offer-card">
-            <h4>{{ t('offersPage.sections.kitchenHood.cards.kitchenConnection.title') }}</h4>
+            <h3>{{ t('offersPage.sections.kitchenHood.cards.kitchenConnection.title') }}</h3>
             <div class="offer-price" v-html="t('offersPage.sections.kitchenHood.cards.kitchenConnection.price')"></div>
             <ul class="offer-features">
               <li v-for="feature in toArray(tm('offersPage.sections.kitchenHood.cards.kitchenConnection.features'))" :key="feature">
@@ -41,7 +76,7 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
 
           <!-- Hood Connection Card -->
           <div class="offer-card">
-            <h4>{{ t('offersPage.sections.kitchenHood.cards.hoodConnection.title') }}</h4>
+            <h3>{{ t('offersPage.sections.kitchenHood.cards.hoodConnection.title') }}</h3>
             <div class="offer-price" v-html="t('offersPage.sections.kitchenHood.cards.hoodConnection.price')"></div>
             <ul class="offer-features">
               <li v-for="feature in toArray(tm('offersPage.sections.kitchenHood.cards.hoodConnection.features'))" :key="feature">
@@ -58,7 +93,7 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
 
         <!-- Combo Set Card -->
         <div class="offer-card offer-set">
-          <h4>{{ t('offersPage.sections.kitchenHood.cards.comboSet.title') }}</h4>
+          <h3>{{ t('offersPage.sections.kitchenHood.cards.comboSet.title') }}</h3>
           <div class="offer-price-set" v-html="t('offersPage.sections.kitchenHood.cards.comboSet.price')"></div>
           <div class="offer-set-desc" v-html="t('offersPage.sections.kitchenHood.cards.comboSet.description')">
           </div>
@@ -67,12 +102,12 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
 
       <!-- Hood Ventilation Section -->
       <section class="offers-section">
-        <h3 class="offers-section-title">{{ t('offersPage.sections.hoodVentilation.title') }}</h3>
+        <h2 class="offers-section-title">{{ t('offersPage.sections.hoodVentilation.title') }}</h2>
         <div class="offers-cards-row">
           
           <!-- Hood Installation Card -->
           <div class="offer-card">
-            <h4>{{ t('offersPage.sections.hoodVentilation.cards.hoodInstallation.title') }}</h4>
+            <h3>{{ t('offersPage.sections.hoodVentilation.cards.hoodInstallation.title') }}</h3>
             <div class="offer-price" v-html="t('offersPage.sections.hoodVentilation.cards.hoodInstallation.price')"></div>
             <ul class="offer-features">
               <li v-for="feature in toArray(tm('offersPage.sections.hoodVentilation.cards.hoodInstallation.features'))" :key="feature">
@@ -83,7 +118,7 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
 
           <!-- Hood Replacement Card -->
           <div class="offer-card">
-            <h4>{{ t('offersPage.sections.hoodVentilation.cards.hoodReplacement.title') }}</h4>
+            <h3>{{ t('offersPage.sections.hoodVentilation.cards.hoodReplacement.title') }}</h3>
             <div class="offer-price" v-html="t('offersPage.sections.hoodVentilation.cards.hoodReplacement.price')"></div>
             <ul class="offer-features">
               <li v-for="feature in toArray(tm('offersPage.sections.hoodVentilation.cards.hoodReplacement.features'))" :key="feature">
@@ -96,6 +131,11 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
 
       <!-- Disclaimer -->
       <div class="offers-disclaimer" v-html="t('offersPage.disclaimer')">
+      </div>
+
+      <div class="contact-buttons">
+        <a href="tel:+306949214461" class="btn btn-primary">{{ t('common.buttons.callNow') }}</a>
+        <a href="https://wa.me/306949214461" class="btn btn-secondary">WhatsApp</a>
       </div>
     </div>
   </main>
@@ -154,7 +194,7 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
   flex-direction: column;
   gap: 11px;
 }
-.offer-card h4 {
+.offer-card h3 {
   color: #044877;
   font-size: 1.13rem;
   font-weight: 700;
@@ -219,6 +259,44 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
   opacity: 0.9;
 }
 
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 190px;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.btn-primary {
+  background: #e92127;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(233, 33, 39, 0.22);
+}
+
+.btn-secondary {
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.22);
+}
+
 @media (max-width: 900px) {
   .offers-cards-row {
     flex-direction: column;
@@ -248,7 +326,7 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
     padding: 11px 8px;
     margin-bottom: 11px;
   }
-  .offer-card h4 {
+  .offer-card h3 {
     font-size: 1.01rem;
   }
 }

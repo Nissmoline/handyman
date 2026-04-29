@@ -14,6 +14,8 @@ onMounted(() => {
     setTimeout(() => {
       visible.value = true
     }, 1000)
+  } else {
+    CookieManager.enableAnalytics()
   }
 })
 
