@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import el from '../i18n/el.js'
+import { electricianSeoContent } from '../data/electricianSeoContent.js'
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(rootDir, 'dist')
@@ -30,6 +31,8 @@ const routes = [
     seoKey: 'electrician',
     serviceKey: 'electricianPage.schema.serviceName',
     serviceTypeKey: 'electricianPage.schema.serviceType',
+    faqItems: electricianSeoContent.faq.items,
+    images: electricianSeoContent.photos.map((photo) => `${siteUrl}${photo.src}`),
   },
   {
     path: '/ilektrologos-24-ores',
@@ -75,7 +78,7 @@ const routeMeta = (route) => ({
   description: get(el, `seo.${route.seoKey}.description`, get(el, 'seo.default.description')),
   serviceName: route.serviceName || get(el, route.serviceKey || '', ''),
   serviceType: route.serviceType || get(el, route.serviceTypeKey || '', ''),
-  faqItems: route.faqKey ? get(el, route.faqKey, []) : [],
+  faqItems: route.faqItems || (route.faqKey ? get(el, route.faqKey, []) : []),
 })
 
 const routeSchema = (route) => {
@@ -99,6 +102,7 @@ const routeSchema = (route) => {
       name: route.serviceName,
       serviceType: route.serviceType || route.serviceName,
       description: route.description,
+      image: route.images?.length ? route.images : imageUrl,
       url: canonical,
       areaServed: ['Αθήνα', 'Πειραιάς', 'Αττική'],
       provider: {
