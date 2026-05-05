@@ -2,6 +2,18 @@
   <div class="service-page">
     <div class="service-container">
       <h1>{{ t('electricianPage.title') }}</h1>
+
+      <figure v-if="topElectricianPhoto" class="electrician-top-photo">
+        <img
+          :src="topElectricianPhoto.src"
+          :alt="topElectricianPhoto.alt"
+          :width="topElectricianPhoto.width"
+          :height="topElectricianPhoto.height"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        >
+      </figure>
       
       <div class="service-intro">
         <p v-html="t('electricianPage.intro.paragraph1')"></p>
@@ -245,8 +257,11 @@ const serviceAreasList = computed(() => toStringArray(tm('electricianPage.servic
 const whyChooseReasons = computed(() => toStringArray(tm('electricianPage.whyChoose.reasons')))
 const emergencyServicesList = computed(() => toStringArray(tm('electricianPage.emergencyInfo.services')))
 const showElectricianSeoContent = computed(() => locale.value === 'el')
+const topElectricianPhoto = computed(() => electricianSeoContent.photos.find((photo) => photo.src.includes('Electrichandyman8')))
 const featuredElectricianPhoto = computed(() => electricianSeoContent.photos[0])
-const electricianGalleryPhotos = computed(() => electricianSeoContent.photos.slice(1))
+const electricianGalleryPhotos = computed(() =>
+  electricianSeoContent.photos.slice(1).filter((photo) => photo.src !== topElectricianPhoto.value?.src)
+)
 const electricianPhotoUrls = computed(() =>
   electricianSeoContent.photos.map((photo) => `https://handyman24.gr${photo.src}`)
 )
@@ -409,6 +424,21 @@ useHead(() => ({
   box-shadow: 0 8px 24px rgba(4, 72, 119, 0.07);
 }
 
+.electrician-top-photo {
+  margin: 0 0 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dbe5ef;
+  box-shadow: 0 14px 34px rgba(4, 72, 119, 0.12);
+  background: #eef5fb;
+}
+
+.electrician-top-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .electrician-seo-section {
   border-left: 4px solid #044877;
 }
@@ -551,6 +581,10 @@ useHead(() => ({
   .electrician-seo-summary,
   .electrician-final-cta {
     padding: 20px;
+  }
+
+  .electrician-top-photo {
+    margin-bottom: 24px;
   }
 
   .seo-content-grid,

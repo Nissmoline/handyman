@@ -50,11 +50,15 @@ onBeforeUnmount(() => {
     class="bottom-bar"
     :style="{ transform: isFooterVisible ? 'translateY(100%)' : 'translateY(0)' }"
   >
-    <a :href="telLink" class="bar-btn" :aria-label="t('header.aria.call')">
-      <LucidePhone :size="28" />
+    <a :href="telLink" class="bar-btn bar-btn--call" :aria-label="t('header.aria.call')">
+      <span class="bar-btn__icon">
+        <LucidePhone :size="28" />
+      </span>
     </a>
     <button class="bar-btn" @click="openAppointment" :aria-label="t('common.buttons.requestAppointment')">
-      <LucideMessageSquare :size="28" />
+      <span class="bar-btn__icon">
+        <LucideMessageSquare :size="28" />
+      </span>
     </button>
   </nav>
 </template>
@@ -93,6 +97,40 @@ onBeforeUnmount(() => {
     position: relative;
     overflow: hidden;
   }
+
+  .bar-btn svg {
+    position: relative;
+    z-index: 2;
+  }
+
+  .bar-btn__icon {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+  }
+
+  .bar-btn--call .bar-btn__icon {
+    background: rgba(17, 121, 191, 0.07);
+    animation: call-icon-glow 2.2s ease-in-out infinite;
+  }
+
+  .bar-btn--call .bar-btn__icon::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    background: linear-gradient(45deg, #1179bf, #20ba7c, #1179bf);
+    background-size: 200% 200%;
+    animation: call-ring-shift 3s ease infinite;
+    opacity: 0.55;
+    z-index: -1;
+  }
   
   .bar-btn::before {
     content: '';
@@ -105,6 +143,34 @@ onBeforeUnmount(() => {
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease, height 0.3s ease;
+    z-index: 0;
+  }
+
+  .bar-btn::after {
+    content: '';
+    position: absolute;
+    top: -45%;
+    left: -35%;
+    width: 42%;
+    height: 190%;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(17, 121, 191, 0) 28%,
+      rgba(17, 121, 191, 0.16) 46%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(17, 121, 191, 0.18) 54%,
+      rgba(17, 121, 191, 0) 72%,
+      transparent 100%
+    );
+    transform: translateX(-180%) rotate(18deg);
+    animation: button-shine 3.2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .bar-btn:nth-child(2)::after {
+    animation-delay: 1.4s;
   }
   
   .bar-btn:hover::before,
@@ -159,6 +225,75 @@ onBeforeUnmount(() => {
       transform: translateY(0); 
       opacity: 1;
     } 
+  }
+
+  @keyframes button-shine {
+    0%,
+    38% {
+      transform: translateX(-180%) rotate(18deg);
+      opacity: 0;
+    }
+
+    48% {
+      opacity: 1;
+    }
+
+    64% {
+      transform: translateX(420%) rotate(18deg);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(420%) rotate(18deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes call-icon-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 4px 12px rgba(17, 121, 191, 0.18),
+        0 0 0 rgba(17, 121, 191, 0);
+      transform: scale(1);
+    }
+
+    50% {
+      box-shadow:
+        0 6px 16px rgba(17, 121, 191, 0.28),
+        0 0 22px rgba(17, 121, 191, 0.28),
+        0 0 34px rgba(32, 186, 124, 0.2);
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes call-ring-shift {
+    0% {
+      background-position: 0% 50%;
+      opacity: 0.38;
+    }
+
+    50% {
+      background-position: 100% 50%;
+      opacity: 0.72;
+    }
+
+    100% {
+      background-position: 0% 50%;
+      opacity: 0.38;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar-btn::after {
+      animation: none;
+      opacity: 0;
+    }
+
+    .bar-btn--call .bar-btn__icon,
+    .bar-btn--call .bar-btn__icon::before {
+      animation: none;
+    }
   }
   </style>
   
