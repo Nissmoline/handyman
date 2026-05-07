@@ -274,6 +274,37 @@
       </div>
     </section>
 
+    <section
+      v-if="showElectricianSeoContent"
+      class="electrician-seo-section electrician-review-guide"
+      aria-labelledby="electrician-review-guide-title"
+    >
+      <div class="electrician-section-inner">
+        <h2 id="electrician-review-guide-title">{{ electricianSeoContent.reviewGuide.title }}</h2>
+        <p
+          v-for="(paragraph, index) in electricianSeoContent.reviewGuide.intro"
+          :key="'review-guide-p-' + index"
+        >
+          {{ paragraph }}
+        </p>
+        <p class="review-guide-note">{{ electricianSeoContent.reviewGuide.note }}</p>
+        <div class="review-guide-grid">
+          <article
+            v-for="item in electricianSeoContent.reviewGuide.items"
+            :key="`${item.area}-${item.service}`"
+            class="review-guide-card"
+          >
+            <div class="review-guide-card__meta">
+              <span class="review-guide-area">{{ item.area }}</span>
+              <span class="review-guide-service">{{ item.service }}</span>
+            </div>
+            <h3>{{ item.heading }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section v-if="showElectricianSeoContent" class="electrician-seo-section faq-seo-section electrician-seo-section--soft">
       <div class="electrician-section-inner">
         <h2>{{ electricianSeoContent.faq.title }}</h2>
@@ -472,6 +503,22 @@ const structuredData = computed(() => {
   }
 
   const graph = [localBusiness, electricianService]
+
+  if (showElectricianSeoContent.value && electricianSeoContent.reviewGuide.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': 'https://handyman24.gr/electrician#review-guide',
+      name: electricianSeoContent.reviewGuide.title,
+      description: stripTags(electricianSeoContent.reviewGuide.note),
+      itemListElement: electricianSeoContent.reviewGuide.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(`${item.area} - ${item.service}`),
+        description: stripTags(`${item.heading}. ${item.text}`),
+      })),
+    })
+  }
 
   if (showElectricianSeoContent.value && electricianSeoContent.faq.items.length) {
     graph.push({
@@ -981,6 +1028,7 @@ useHead(() => ({
 .seo-content-card p,
 .area-group p,
 .local-area-card p,
+.review-guide-card p,
 .faq-item p {
   color: #263241;
   font-size: 1.03rem;
@@ -990,6 +1038,7 @@ useHead(() => ({
 .seo-content-card,
 .area-group,
 .local-area-card,
+.review-guide-card,
 .faq-item {
   padding: 18px;
 }
@@ -1001,23 +1050,75 @@ useHead(() => ({
 .seo-content-grid,
 .area-groups,
 .local-area-grid,
+.review-guide-grid,
 .faq-list {
   display: grid;
   gap: 16px;
 }
 
 .seo-content-grid,
-.local-area-grid {
+.local-area-grid,
+.review-guide-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .seo-content-card h3,
 .area-group h3,
 .local-area-card h3,
+.review-guide-card h3,
 .faq-item h3 {
   margin-top: 0;
   color: #164087;
   line-height: 1.3;
+}
+
+.electrician-review-guide {
+  background: #fff;
+}
+
+.review-guide-note {
+  border-left: 4px solid #0a7fd0;
+  margin: 18px 0 22px;
+  padding: 12px 16px;
+  background: #f1f8ff;
+  border-radius: 0 8px 8px 0;
+  font-weight: 700;
+}
+
+.review-guide-card {
+  border: 1px solid rgba(4, 72, 119, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(22, 54, 77, 0.14);
+}
+
+.review-guide-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.review-guide-area,
+.review-guide-service {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.review-guide-area {
+  background: #eaf7ff;
+  color: #044877;
+}
+
+.review-guide-service {
+  background: #eef7f2;
+  color: #14613d;
 }
 
 .electrician-seo-summary {
@@ -1131,6 +1232,7 @@ useHead(() => ({
   .electrician-info-grid,
   .seo-content-grid,
   .local-area-grid,
+  .review-guide-grid,
   .electrician-photo-grid {
     grid-template-columns: 1fr;
   }
@@ -1166,6 +1268,7 @@ useHead(() => ({
   .seo-content-card,
   .area-group,
   .local-area-card,
+  .review-guide-card,
   .faq-item {
     padding: 16px;
   }

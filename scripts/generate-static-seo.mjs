@@ -32,6 +32,7 @@ const routes = [
     serviceKey: 'electricianPage.schema.serviceName',
     serviceTypeKey: 'electricianPage.schema.serviceType',
     faqItems: electricianSeoContent.faq.items,
+    reviewGuide: electricianSeoContent.reviewGuide,
     images: electricianSeoContent.photos.map((photo) => `${siteUrl}${photo.src}`),
   },
   {
@@ -125,6 +126,22 @@ const routeSchema = (route) => {
           '@type': 'Answer',
           text: stripTags(item.answer),
         },
+      })),
+    })
+  }
+
+  if (Array.isArray(route.reviewGuide?.items) && route.reviewGuide.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${canonical}#review-guide`,
+      name: stripTags(route.reviewGuide.title),
+      description: stripTags(route.reviewGuide.note),
+      itemListElement: route.reviewGuide.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(`${item.area} - ${item.service}`),
+        description: stripTags(`${item.heading}. ${item.text}`),
       })),
     })
   }
