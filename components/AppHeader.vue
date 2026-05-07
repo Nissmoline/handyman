@@ -876,7 +876,17 @@ watch(
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 520px) {
+  .phone-link {
+    min-width: 44px;
+    padding: 8px 10px;
+    justify-content: center;
+  }
+
+  .phone-link .phone-text {
+    display: none;
+  }
+
   .mobile-drawer {
     max-width: 95vw;
     padding: 24px 20px 20px;

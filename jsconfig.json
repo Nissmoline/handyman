@@ -6,7 +6,11 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
-    "checkJs": false
+    "checkJs": false,
+    "types": []
+  },
+  "typeAcquisition": {
+    "enable": false
   },
   "include": ["**/*", "vite-env.d.ts"],
   "exclude": ["node_modules", "dist"]
