@@ -37,6 +37,8 @@ const updateSeoMeta = () => {
   if (typeof document === 'undefined' || !document.head) return
 
   const routeMeta = route.meta as {
+    title?: string
+    description?: string
     titleKey?: string
     descriptionKey?: string
     ogImage?: string
@@ -48,8 +50,8 @@ const updateSeoMeta = () => {
   const ogImage = routeMeta.ogImage || defaultSeo.ogImage
   const twitterImage = routeMeta.twitterImage || defaultSeo.twitterImage
 
-  const title = t(titleKey)
-  const description = t(descriptionKey)
+  const title = routeMeta.title || t(titleKey)
+  const description = routeMeta.description || t(descriptionKey)
   const canonicalPath = route.path
   const canonicalUrl = `https://handyman24.gr${canonicalPath === '/' ? '' : canonicalPath}`
 

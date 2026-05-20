@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import OffersView from '@/views/OffersView.vue';
 import ElectricianView from '@/views/ElectricianView.vue';
+import ElectricianAreaView from '@/views/ElectricianAreaView.vue';
 import EmergencyElectricianView from '@/views/EmergencyElectricianView.vue';
 import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
 import ElectricianReviews from '@/views/ElectricianReviews.vue';
@@ -15,6 +16,18 @@ import CarpentryView from '@/views/CarpentryView.vue';
 import RenovationsView from '@/views/RenovationsView.vue';
 import MaintenanceView from '@/views/MaintenanceView.vue';
 import YachtRepairView from '@/views/YachtRepairView.vue';
+import { electricianAreas } from '@/data/electricianAreas';
+
+const electricianAreaRoutes = electricianAreas.map((area) => ({
+  path: area.path,
+  name: `electrician-area-${area.slug}`,
+  component: ElectricianAreaView,
+  props: { slug: area.slug },
+  meta: {
+    title: area.metaTitle,
+    description: area.metaDescription,
+  },
+}));
 
 const routes = [
   {
@@ -53,6 +66,7 @@ const routes = [
       descriptionKey: 'seo.urgentElectrician.description',
     },
   },
+  ...electricianAreaRoutes,
   {
     path: '/electrician-faq',
     name: 'electrician-faq',

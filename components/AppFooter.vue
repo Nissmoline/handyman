@@ -33,7 +33,7 @@ const linkGroups: readonly FooterGroup[] = [
   {
     titleKey: "footer.services.title",
     links: [
-      { type: "route", route: "/electrician", labelKey: "footer.services.electrician" },
+      { type: "route", route: "/ilektrologos-athina", labelKey: "footer.services.electrician" },
       { type: "route", route: "/yacht-repair", labelKey: "footer.services.yachtRepair" },
       { type: "route", route: "/carpentry", labelKey: "footer.services.carpentry" },
       { type: "route", route: "/maintenance", labelKey: "footer.services.maintenance" },
@@ -160,7 +160,7 @@ function openCookieSettings() {
           rel="noopener"
           :aria-label="soc.label"
         >
-          <font-awesome-icon :icon="soc.icon" :size="22" />
+          <font-awesome-icon :icon="soc.icon" class="footer__social-icon" />
         </a>
       </div>
     </div>

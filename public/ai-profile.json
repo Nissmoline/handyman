@@ -1,0 +1,154 @@
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "Electrician", "HomeAndConstructionBusiness", "ProfessionalService"],
+  "@id": "https://handyman24.gr/#ai-profile",
+  "name": "Handyman24",
+  "legalName": "HandyMan 24 - Κολπαξίδης Κωνσταντίνος",
+  "url": "https://handyman24.gr/",
+  "mainEntityOfPage": "https://handyman24.gr/llms.txt",
+  "image": [
+    "https://handyman24.gr/metaimg.jpg",
+    "https://handyman24.gr/photos/Electrichandyman8.jpg"
+  ],
+  "logo": "https://handyman24.gr/icons/android-chrome-192x192.png",
+  "telephone": "+30-694-9214461",
+  "email": "handyman24gr@gmail.com",
+  "priceRange": "€€",
+  "inLanguage": ["el", "en"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Φυλής 153, Άγιος Παντελεήμονας",
+    "postalCode": "11251",
+    "addressLocality": "Αθήνα",
+    "addressRegion": "Αττική",
+    "addressCountry": "GR"
+  },
+  "areaServed": [
+    "Αθήνα",
+    "Πειραιάς",
+    "Γλυφάδα",
+    "Χαλάνδρι",
+    "Περιστέρι",
+    "Κηφισιά",
+    "Παγκράτι",
+    "Κυψέλη",
+    "Αμπελόκηποι",
+    "Πατήσια",
+    "Νέα Σμύρνη",
+    "Μαρούσι",
+    "Καλλιθέα",
+    "Άλιμος",
+    "Βούλα",
+    "Ελληνικό",
+    "Αργυρούπολη",
+    "Αγία Παρασκευή",
+    "Ζωγράφου",
+    "Ηλιούπολη",
+    "Αιγάλεω",
+    "Νίκαια",
+    "Κορυδαλλός",
+    "Παλλήνη",
+    "Γέρακας",
+    "Κορωπί",
+    "Ραφήνα",
+    "Ελευσίνα",
+    "Βύρωνας",
+    "Δάφνη",
+    "Αττική"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/share/1FyUjq1AGd/",
+    "https://instagram.com/handyman24.gr",
+    "https://wa.me/306949214461"
+  ],
+  "knowsAbout": [
+    "ηλεκτρολόγος Αθήνα",
+    "ηλεκτρολόγοι Αθήνα",
+    "ηλεκτρολόγος 24 ώρες",
+    "επείγον ηλεκτρολόγος",
+    "ηλεκτρολογικές βλάβες Αθήνα",
+    "ηλεκτρολόγος κοντά μου",
+    "ηλεκτρολογικός πίνακας",
+    "αλλαγή πρίζας",
+    "αλλαγή διακόπτη",
+    "σύνδεση ηλεκτρικής κουζίνας",
+    "σύνδεση φούρνου",
+    "σύνδεση εστιών",
+    "σύνδεση απορροφητήρα",
+    "έλεγχος ρελέ διαρροής",
+    "βραχυκύκλωμα",
+    "φωτιστικά",
+    "θυροτηλέφωνο",
+    "κουδούνι"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Υπηρεσίες ηλεκτρολόγου Handyman24",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ηλεκτρολόγος Αθήνα",
+          "url": "https://handyman24.gr/ilektrologos-athina"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ηλεκτρολόγος 24 ώρες",
+          "url": "https://handyman24.gr/ilektrologos-24-ores"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Εντοπισμός και αποκατάσταση ηλεκτρολογικής βλάβης"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Έλεγχος και επισκευή ηλεκτρολογικού πίνακα"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Αλλαγή πρίζας, διακόπτη και φωτιστικού"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Σύνδεση φούρνου, εστιών, απορροφητήρα και ηλεκτρικής κουζίνας"
+        }
+      }
+    ]
+  },
+  "potentialAction": [
+    {
+      "@type": "ContactAction",
+      "target": "tel:+306949214461",
+      "name": "Call Handyman24"
+    },
+    {
+      "@type": "CommunicateAction",
+      "target": "https://wa.me/306949214461",
+      "name": "Contact Handyman24 on WhatsApp"
+    }
+  ]
+}

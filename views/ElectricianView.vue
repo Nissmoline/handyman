@@ -242,9 +242,11 @@
       <div class="electrician-section-inner">
         <h2>Ηλεκτρολόγος ανά περιοχή</h2>
         <div class="local-area-grid">
-          <article v-for="area in electricianSeoContent.localAreas" :key="area[0]" class="local-area-card">
-            <h3>{{ area[0] }}</h3>
-            <p>{{ area[1] }}</p>
+          <article v-for="area in linkedElectricianAreas" :key="area.slug" class="local-area-card">
+            <router-link :to="area.path" class="local-area-card__link">
+              <h3>{{ area.title }}</h3>
+            </router-link>
+            <p>{{ area.cardText }}</p>
           </article>
         </div>
       </div>
@@ -369,6 +371,7 @@ import {
   Siren,
 } from 'lucide-vue-next'
 import ElectricianLinks from '@/components/ElectricianLinks.vue'
+import { electricianAreas } from '@/data/electricianAreas'
 import { electricianSeoContent } from '@/data/electricianSeoContent'
 
 const { t, tm, locale } = useI18n()
@@ -381,6 +384,7 @@ const serviceAreasList = computed(() => toStringArray(tm('electricianPage.servic
 const whyChooseReasons = computed(() => toStringArray(tm('electricianPage.whyChoose.reasons')))
 const emergencyServicesList = computed(() => toStringArray(tm('electricianPage.emergencyInfo.services')))
 const showElectricianSeoContent = computed(() => locale.value === 'el')
+const linkedElectricianAreas = computed(() => electricianAreas)
 const topElectricianPhoto = computed(() => electricianSeoContent.photos.find((photo) => photo.src.includes('Electrichandyman8')))
 const featuredElectricianPhoto = computed(() => electricianSeoContent.photos[0])
 const electricianGalleryPhotos = computed(() =>
@@ -1070,6 +1074,22 @@ useHead(() => ({
   margin-top: 0;
   color: #164087;
   line-height: 1.3;
+}
+
+.local-area-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.local-area-card__link:hover h3,
+.local-area-card__link:focus-visible h3 {
+  color: #0a7fd0;
+}
+
+.local-area-card__link:focus-visible {
+  outline: 2px solid #0a7fd0;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .electrician-review-guide {
