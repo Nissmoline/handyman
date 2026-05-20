@@ -18,7 +18,7 @@ import MaintenanceView from '@/views/MaintenanceView.vue';
 import YachtRepairView from '@/views/YachtRepairView.vue';
 import { electricianAreas } from '@/data/electricianAreas';
 
-const electricianAreaRoutes = electricianAreas.map((area) => ({
+const electricianAreaRoutes = electricianAreas.filter((area) => area.slug !== 'athina').map((area) => ({
   path: area.path,
   name: `electrician-area-${area.slug}`,
   component: ElectricianAreaView,
@@ -56,6 +56,10 @@ const routes = [
       titleKey: 'seo.electrician.title',
       descriptionKey: 'seo.electrician.description',
     },
+  },
+  {
+    path: '/ilektrologos-athina',
+    redirect: '/electrician',
   },
   {
     path: '/ilektrologos-24-ores',

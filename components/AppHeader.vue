@@ -8,7 +8,7 @@ import logoUrl from '/icons/favicon-48x48.png'
 import { setLocale, supportedLocales } from '@/i18n'
 
 const services = [
-  { labelKey: 'header.servicesMenu.electrician', path: '/ilektrologos-athina' },
+  { labelKey: 'header.servicesMenu.electrician', path: '/electrician' },
   { labelKey: 'header.servicesMenu.yachtRepair', path: '/yacht-repair' },
   { labelKey: 'header.servicesMenu.carpentry', path: '/carpentry' },
   { labelKey: 'header.servicesMenu.maintenance', path: '/maintenance' },

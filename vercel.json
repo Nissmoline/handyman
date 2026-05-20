@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/ilektrologos-athina",
+      "destination": "/electrician",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

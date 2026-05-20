@@ -1079,67 +1079,71 @@ servicedAreas: {
   },
   seo: {
     default: {
-      title: '24-Hour Electrician Athens | Urgent Electrician Handyman24',
+      title: '24-Hour Electrician Athens - Urgent Electrician Handyman24',
       description: '24-hour electrician in Athens, Piraeus, and Attica for urgent faults, panels, sockets, fuses, lighting, maintenance, and technical services.',
     },
     home: {
-      title: '24-Hour Electrician Athens | Urgent Electrician Handyman24',
+      title: '24-Hour Electrician Athens - Urgent Electrician Handyman24',
       description: 'Urgent electrician in Athens, Piraeus, and Attica for electrical faults, panels, sockets, fuses, lighting, maintenance, and technical work.',
     },
     offers: {
-      title: 'Electrician Offers Athens | Oven, Cooktop & Extractor Hood',
+      title: 'Electrician Offers Athens - Oven, Cooktop & Extractor Hood',
       description: 'Electrician offers for built-in oven, cooktop, and extractor hood connection in Athens and Attica.',
     },
     electrician: {
-      title: 'Electrician Athens 24/7 | Faults, Panels, Sockets & Installations',
+      title: 'Electrician Athens 24/7 - Faults, Panels, Sockets & Installations',
       description: 'Electrician in Athens and Piraeus for urgent faults, panels, sockets, lighting, water heaters, cookers, EV charger preparation, and renovation work.',
     },
+    electricianServices: {
+      title: 'Electrical Services Athens - Panels, Sockets & Faults',
+      description: 'Detailed electrical services in Athens: faults, panels, sockets, switches, lighting, appliance connections, service areas, and FAQs.',
+    },
     urgentElectrician: {
-      title: '24-Hour Electrician Athens | Urgent Electrical Fault Help',
+      title: '24-Hour Electrician Athens - Urgent Electrical Fault Help',
       description: '24-hour electrician in Athens and Piraeus for urgent electrical faults, short circuits, panels, fuses, sockets, and power loss.',
     },
     electricianFaq: {
-      title: 'Electrician FAQs in Athens | Handyman24',
+      title: 'Electrician FAQs in Athens - Handyman24',
       description: 'Answers about pricing, response times, and our electrical services throughout Athens.',
     },
     electricianReviews: {
-      title: 'Electrician Service Standards Athens | Handyman24',
+      title: 'Electrician Service Standards Athens - Handyman24',
       description: 'How electrician service is organized in Athens: first contact, safety diagnosis, cost communication, and work coordination.',
     },
     plumber: {
-      title: 'Plumber in Athens | Leaks, Drain Unblocking & Installations',
+      title: 'Plumber in Athens - Leaks, Drain Unblocking & Installations',
       description: 'Plumber in Athens for leaks, drain unblocking, water heaters, cisterns, taps, sanitary ware, and plumbing installations.',
     },
     tiling: {
-      title: 'Tiling in Athens | Bathroom, Kitchen, Wall & Floor Tiles',
+      title: 'Tiling in Athens - Bathroom, Kitchen, Wall & Floor Tiles',
       description: 'Tiler in Athens for tile installation, broken tile repair, grouting, joint sealing, and flooring in bathrooms, kitchens, balconies, and stairs.',
     },
     painting: {
-      title: 'Painting in Athens | Interior & Exterior Decorating',
+      title: 'Painting in Athens - Interior & Exterior Decorating',
       description: 'Painting services in Athens for homes and businesses with wall preparation, filling, sanding, and clean professional finishes.',
     },
     carpentry: {
-      title: 'Carpentry Services Athens | Furniture Repair & Custom Woodwork',
+      title: 'Carpentry Services Athens - Furniture Repair & Custom Woodwork',
       description: 'Carpentry in Athens for furniture repair, cabinets, custom woodwork, doors, frames, storage solutions, and wood flooring.',
     },
     renovations: {
-      title: 'Renovations in Athens | Bathroom, Kitchen, Home & Commercial Spaces',
+      title: 'Renovations in Athens - Bathroom, Kitchen, Home & Commercial Spaces',
       description: 'Renovations in Athens with coordinated electrical, plumbing, tiling, painting, carpentry, and flooring work.',
     },
     maintenance: {
-      title: 'Building maintenance & handyman support | Handyman24',
+      title: 'Building maintenance & handyman support - Handyman24',
       description: 'Scheduled maintenance and general repairs for apartment buildings, businesses, and homes in Athens.',
     },
     yachtRepair: {
-      title: 'Yacht repair services in Athens & Piraeus | Handyman24',
+      title: 'Yacht repair services in Athens & Piraeus - Handyman24',
       description: 'Yacht electrical diagnostics, socket replacement, furniture updates, and complete wooden or other flooring replacement by experienced technicians.',
     },
     privacy: {
-      title: 'Privacy policy & cookies | Handyman24',
+      title: 'Privacy policy & cookies - Handyman24',
       description: 'Understand how Handyman24 handles your personal data and cookies and protects your privacy.',
     },
     impressum: {
-      title: 'Impressum & legal notice | Handyman24',
+      title: 'Impressum & legal notice - Handyman24',
       description: 'Legal disclosure, registered contact details, and responsibilities for Handyman24 in Athens and Attica.',
     },
   },

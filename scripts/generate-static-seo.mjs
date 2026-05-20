@@ -57,6 +57,10 @@ const translatedRoute = ({
   faqKey,
   faqItems,
   reviewGuide,
+  problemGuides,
+  costFactors,
+  callChecklist,
+  scenarioGuides,
   images,
   priority = 0.8,
   changefreq = 'weekly',
@@ -69,13 +73,17 @@ const translatedRoute = ({
   serviceType: serviceTypeKey ? get(el, serviceTypeKey, '') : '',
   faqItems: faqItems || (faqKey ? get(el, faqKey, []) : []),
   reviewGuide,
+  problemGuides,
+  costFactors,
+  callChecklist,
+  scenarioGuides,
   images,
   priority,
   changefreq,
   keywords,
 })
 
-const areaRoutes = electricianAreas.map((area) => ({
+const areaRoutes = electricianAreas.filter((area) => area.slug !== 'athina').map((area) => ({
   path: area.path,
   title: area.metaTitle,
   description: area.metaDescription,
@@ -88,6 +96,8 @@ const areaRoutes = electricianAreas.map((area) => ({
   keywords: area.searchTerms,
   areaServed: [area.name, area.region, 'Αττική'],
 }))
+
+const areaPathBySlug = new Map(electricianAreas.map((area) => [area.slug, area.path]))
 
 const routes = [
   {
@@ -106,6 +116,10 @@ const routes = [
     serviceTypeKey: 'electricianPage.schema.serviceType',
     faqItems: electricianSeoContent.faq.items,
     reviewGuide: electricianSeoContent.reviewGuide,
+    problemGuides: electricianSeoContent.problemGuides,
+    costFactors: electricianSeoContent.costFactors,
+    callChecklist: electricianSeoContent.callChecklist,
+    scenarioGuides: electricianSeoContent.scenarioGuides,
     images: electricianImages,
     priority: 0.96,
     changefreq: 'daily',
@@ -256,6 +270,71 @@ const routeSchema = (route) => {
         position: index + 1,
         name: stripTags(`${item.area} - ${item.service}`),
         description: stripTags(`${item.heading}. ${item.text}`),
+      })),
+    })
+  }
+
+  if (Array.isArray(route.problemGuides?.items) && route.problemGuides.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${canonical}#common-electrical-problems`,
+      name: stripTags(route.problemGuides.title),
+      description: stripTags((route.problemGuides.intro || []).join(' ')),
+      itemListElement: route.problemGuides.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(item.title),
+        description: stripTags((item.paragraphs || []).join(' ')),
+      })),
+    })
+  }
+
+  if (Array.isArray(route.costFactors?.items) && route.costFactors.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${canonical}#electrician-cost-factors`,
+      name: stripTags(route.costFactors.title),
+      description: stripTags((route.costFactors.intro || []).join(' ')),
+      itemListElement: route.costFactors.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(item.title),
+        description: stripTags(item.text),
+      })),
+    })
+  }
+
+  if (Array.isArray(route.callChecklist?.items) && route.callChecklist.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${canonical}#electrician-call-checklist`,
+      name: stripTags(route.callChecklist.title),
+      description: stripTags((route.callChecklist.intro || []).join(' ')),
+      itemListElement: route.callChecklist.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(item.title),
+        description: stripTags(item.text),
+      })),
+    })
+  }
+
+  if (Array.isArray(route.scenarioGuides?.items) && route.scenarioGuides.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${canonical}#area-electrical-services`,
+      name: stripTags(route.scenarioGuides.title),
+      description: stripTags((route.scenarioGuides.intro || []).join(' ')),
+      itemListElement: route.scenarioGuides.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(`${item.area} - ${item.issue}`),
+        url: `${siteUrl}${areaPathBySlug.get(item.slug) || '/electrician'}`,
+        description: stripTags(item.text),
       })),
     })
   }

@@ -238,6 +238,37 @@
       </div>
     </section>
 
+    <section
+      v-if="showElectricianSeoContent"
+      class="electrician-seo-section pillar-area-search"
+      aria-labelledby="electrician-area-search-title"
+    >
+      <div class="electrician-section-inner">
+        <h2 id="electrician-area-search-title">{{ electricianSeoContent.areaSearchGuide.title }}</h2>
+        <p
+          v-for="(paragraph, index) in electricianSeoContent.areaSearchGuide.intro"
+          :key="'area-search-p-' + index"
+        >
+          {{ paragraph }}
+        </p>
+        <div class="pillar-area-clusters">
+          <article v-for="cluster in serviceAreaClusters" :key="cluster.region" class="pillar-area-cluster">
+            <h3>{{ cluster.region }}</h3>
+            <div class="pillar-area-links">
+              <router-link
+                v-for="area in cluster.areas"
+                :key="area.slug"
+                :to="area.path"
+                class="pillar-area-link"
+              >
+                {{ area.title }}
+              </router-link>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section v-if="showElectricianSeoContent" class="electrician-seo-section">
       <div class="electrician-section-inner">
         <h2>Ηλεκτρολόγος ανά περιοχή</h2>
@@ -273,6 +304,102 @@
         <ul>
           <li v-for="item in electricianSeoContent.priceGuide.list" :key="item">{{ item }}</li>
         </ul>
+      </div>
+    </section>
+
+    <section v-if="showElectricianSeoContent" class="electrician-seo-section electrician-seo-section--soft">
+      <div class="electrician-section-inner">
+        <h2>{{ electricianSeoContent.problemGuides.title }}</h2>
+        <p
+          v-for="(paragraph, index) in electricianSeoContent.problemGuides.intro"
+          :key="'problem-intro-' + index"
+        >
+          {{ paragraph }}
+        </p>
+        <div class="pillar-problem-grid">
+          <article
+            v-for="item in electricianSeoContent.problemGuides.items"
+            :key="item.title"
+            class="pillar-problem-card"
+          >
+            <h3>{{ item.title }}</h3>
+            <p v-for="(paragraph, index) in item.paragraphs" :key="item.title + '-p-' + index">
+              {{ paragraph }}
+            </p>
+            <ul>
+              <li v-for="point in item.list" :key="point">{{ point }}</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section v-if="showElectricianSeoContent" class="electrician-seo-section">
+      <div class="electrician-section-inner">
+        <h2>{{ electricianSeoContent.costFactors.title }}</h2>
+        <p
+          v-for="(paragraph, index) in electricianSeoContent.costFactors.intro"
+          :key="'cost-factor-p-' + index"
+        >
+          {{ paragraph }}
+        </p>
+        <div class="pillar-factor-grid">
+          <article
+            v-for="item in electricianSeoContent.costFactors.items"
+            :key="item.title"
+            class="pillar-factor-card"
+          >
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section v-if="showElectricianSeoContent" class="electrician-seo-section electrician-seo-section--soft">
+      <div class="electrician-section-inner">
+        <h2>{{ electricianSeoContent.callChecklist.title }}</h2>
+        <p
+          v-for="(paragraph, index) in electricianSeoContent.callChecklist.intro"
+          :key="'call-checklist-p-' + index"
+        >
+          {{ paragraph }}
+        </p>
+        <div class="pillar-factor-grid">
+          <article
+            v-for="item in electricianSeoContent.callChecklist.items"
+            :key="item.title"
+            class="pillar-factor-card"
+          >
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section v-if="showElectricianSeoContent" class="electrician-seo-section">
+      <div class="electrician-section-inner">
+        <h2>{{ electricianSeoContent.scenarioGuides.title }}</h2>
+        <p
+          v-for="(paragraph, index) in electricianSeoContent.scenarioGuides.intro"
+          :key="'scenario-intro-' + index"
+        >
+          {{ paragraph }}
+        </p>
+        <div class="pillar-scenario-grid">
+          <article
+            v-for="item in electricianSeoContent.scenarioGuides.items"
+            :key="`${item.area}-${item.issue}`"
+            class="pillar-scenario-card"
+          >
+            <router-link :to="getAreaPath(item.slug)" class="pillar-scenario-area">
+              {{ item.area }}
+            </router-link>
+            <h3>{{ item.issue }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -384,7 +511,20 @@ const serviceAreasList = computed(() => toStringArray(tm('electricianPage.servic
 const whyChooseReasons = computed(() => toStringArray(tm('electricianPage.whyChoose.reasons')))
 const emergencyServicesList = computed(() => toStringArray(tm('electricianPage.emergencyInfo.services')))
 const showElectricianSeoContent = computed(() => locale.value === 'el')
-const linkedElectricianAreas = computed(() => electricianAreas)
+const linkedElectricianAreas = computed(() => electricianAreas.filter((area) => area.slug !== 'athina'))
+const serviceAreaClusters = computed(() => {
+  const clusters = new Map()
+
+  linkedElectricianAreas.value.forEach((area) => {
+    if (!clusters.has(area.region)) {
+      clusters.set(area.region, [])
+    }
+    clusters.get(area.region).push(area)
+  })
+
+  return [...clusters.entries()].map(([region, areas]) => ({ region, areas }))
+})
+const getAreaPath = (slug) => linkedElectricianAreas.value.find((area) => area.slug === slug)?.path || '/electrician'
 const topElectricianPhoto = computed(() => electricianSeoContent.photos.find((photo) => photo.src.includes('Electrichandyman8')))
 const featuredElectricianPhoto = computed(() => electricianSeoContent.photos[0])
 const electricianGalleryPhotos = computed(() =>
@@ -398,15 +538,24 @@ const seoTextDescription = computed(() => {
 
   return stripTags([
     electricianSeoContent.intro[0],
+    ...electricianSeoContent.problemGuides.intro,
+    ...electricianSeoContent.problemGuides.items.flatMap((item) => [item.title, ...item.paragraphs]),
+    ...electricianSeoContent.costFactors.intro,
+    ...electricianSeoContent.callChecklist.intro,
+    ...electricianSeoContent.scenarioGuides.intro,
     ...electricianSeoContent.summary.paragraphs,
-  ].join(' ')).slice(0, 900)
+  ].join(' ')).slice(0, 1400)
 })
 const seoServiceNames = computed(() => {
   if (!showElectricianSeoContent.value) return []
 
   return [
     ...electricianSeoContent.serviceSections.map((section) => section.title),
+    ...electricianSeoContent.problemGuides.items.map((item) => item.title),
     ...electricianSeoContent.priceGuide.list,
+    ...electricianSeoContent.costFactors.items.map((item) => item.title),
+    ...electricianSeoContent.callChecklist.items.map((item) => item.title),
+    ...electricianSeoContent.scenarioGuides.items.map((item) => `${item.area}: ${item.issue}`),
   ]
 })
 
@@ -524,6 +673,71 @@ const structuredData = computed(() => {
     })
   }
 
+  if (showElectricianSeoContent.value && electricianSeoContent.problemGuides.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': 'https://handyman24.gr/electrician#common-electrical-problems',
+      name: electricianSeoContent.problemGuides.title,
+      description: stripTags(electricianSeoContent.problemGuides.intro.join(' ')),
+      itemListElement: electricianSeoContent.problemGuides.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(item.title),
+        description: stripTags(item.paragraphs.join(' ')),
+      })),
+    })
+  }
+
+  if (showElectricianSeoContent.value && electricianSeoContent.costFactors.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': 'https://handyman24.gr/electrician#electrician-cost-factors',
+      name: electricianSeoContent.costFactors.title,
+      description: stripTags(electricianSeoContent.costFactors.intro.join(' ')),
+      itemListElement: electricianSeoContent.costFactors.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(item.title),
+        description: stripTags(item.text),
+      })),
+    })
+  }
+
+  if (showElectricianSeoContent.value && electricianSeoContent.callChecklist.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': 'https://handyman24.gr/electrician#electrician-call-checklist',
+      name: electricianSeoContent.callChecklist.title,
+      description: stripTags(electricianSeoContent.callChecklist.intro.join(' ')),
+      itemListElement: electricianSeoContent.callChecklist.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(item.title),
+        description: stripTags(item.text),
+      })),
+    })
+  }
+
+  if (showElectricianSeoContent.value && electricianSeoContent.scenarioGuides.items.length) {
+    graph.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': 'https://handyman24.gr/electrician#area-electrical-services',
+      name: electricianSeoContent.scenarioGuides.title,
+      description: stripTags(electricianSeoContent.scenarioGuides.intro.join(' ')),
+      itemListElement: electricianSeoContent.scenarioGuides.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: stripTags(`${item.area} - ${item.issue}`),
+        url: `https://handyman24.gr${getAreaPath(item.slug)}`,
+        description: stripTags(item.text),
+      })),
+    })
+  }
+
   if (showElectricianSeoContent.value && electricianSeoContent.faq.items.length) {
     graph.push({
       '@context': 'https://schema.org',
@@ -548,7 +762,7 @@ useHead(() => ({
     {
       key: 'electrician-jsonld',
       type: 'application/ld+json',
-      children: JSON.stringify(structuredData.value),
+      innerHTML: JSON.stringify(structuredData.value),
     },
   ],
 }))
@@ -769,6 +983,10 @@ useHead(() => ({
 .seo-content-card,
 .area-group,
 .local-area-card,
+.pillar-area-cluster,
+.pillar-problem-card,
+.pillar-factor-card,
+.pillar-scenario-card,
 .faq-item {
   border: 1px solid rgba(4, 72, 119, 0.1);
   border-radius: 8px;
@@ -1032,6 +1250,10 @@ useHead(() => ({
 .seo-content-card p,
 .area-group p,
 .local-area-card p,
+.pillar-area-cluster p,
+.pillar-problem-card p,
+.pillar-factor-card p,
+.pillar-scenario-card p,
 .review-guide-card p,
 .faq-item p {
   color: #263241;
@@ -1042,6 +1264,10 @@ useHead(() => ({
 .seo-content-card,
 .area-group,
 .local-area-card,
+.pillar-area-cluster,
+.pillar-problem-card,
+.pillar-factor-card,
+.pillar-scenario-card,
 .review-guide-card,
 .faq-item {
   padding: 18px;
@@ -1054,6 +1280,10 @@ useHead(() => ({
 .seo-content-grid,
 .area-groups,
 .local-area-grid,
+.pillar-area-clusters,
+.pillar-problem-grid,
+.pillar-factor-grid,
+.pillar-scenario-grid,
 .review-guide-grid,
 .faq-list {
   display: grid;
@@ -1062,18 +1292,87 @@ useHead(() => ({
 
 .seo-content-grid,
 .local-area-grid,
+.pillar-area-clusters,
+.pillar-problem-grid,
+.pillar-scenario-grid,
 .review-guide-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pillar-factor-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .seo-content-card h3,
 .area-group h3,
 .local-area-card h3,
+.pillar-area-cluster h3,
+.pillar-problem-card h3,
+.pillar-factor-card h3,
+.pillar-scenario-card h3,
 .review-guide-card h3,
 .faq-item h3 {
   margin-top: 0;
   color: #164087;
   line-height: 1.3;
+}
+
+.pillar-area-search {
+  background: #fff;
+}
+
+.pillar-area-cluster h3 {
+  margin-bottom: 12px;
+}
+
+.pillar-area-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pillar-area-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 11px;
+  border: 1px solid rgba(10, 127, 208, 0.2);
+  border-radius: 5px;
+  color: #0b5f98;
+  background: #eef7fc;
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.pillar-area-link:hover,
+.pillar-area-link:focus-visible,
+.pillar-scenario-area:hover,
+.pillar-scenario-area:focus-visible {
+  color: #fff;
+  background: #0a7fd0;
+  border-color: #0a7fd0;
+  outline: none;
+}
+
+.pillar-scenario-area {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 7px 10px;
+  border: 1px solid rgba(38, 155, 124, 0.28);
+  border-radius: 5px;
+  color: #0e725d;
+  background: #ecfaf5;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.pillar-problem-card ul {
+  margin-top: 14px;
 }
 
 .local-area-card__link {
@@ -1252,6 +1551,10 @@ useHead(() => ({
   .electrician-info-grid,
   .seo-content-grid,
   .local-area-grid,
+  .pillar-area-clusters,
+  .pillar-problem-grid,
+  .pillar-factor-grid,
+  .pillar-scenario-grid,
   .review-guide-grid,
   .electrician-photo-grid {
     grid-template-columns: 1fr;
@@ -1288,6 +1591,10 @@ useHead(() => ({
   .seo-content-card,
   .area-group,
   .local-area-card,
+  .pillar-area-cluster,
+  .pillar-problem-card,
+  .pillar-factor-card,
+  .pillar-scenario-card,
   .review-guide-card,
   .faq-item {
     padding: 16px;

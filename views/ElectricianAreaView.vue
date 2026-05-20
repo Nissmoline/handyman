@@ -167,7 +167,7 @@ const structuredData = computed(() => [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Αρχική', item: 'https://handyman24.gr/' },
-      { '@type': 'ListItem', position: 2, name: 'Ηλεκτρολόγος', item: 'https://handyman24.gr/electrician' },
+      { '@type': 'ListItem', position: 2, name: 'Ηλεκτρολόγος Αθήνα', item: 'https://handyman24.gr/electrician' },
       { '@type': 'ListItem', position: 3, name: area.value.title, item: canonicalUrl.value },
     ],
   },

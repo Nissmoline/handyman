@@ -33,7 +33,7 @@ const linkGroups: readonly FooterGroup[] = [
   {
     titleKey: "footer.services.title",
     links: [
-      { type: "route", route: "/ilektrologos-athina", labelKey: "footer.services.electrician" },
+      { type: "route", route: "/electrician", labelKey: "footer.services.electrician" },
       { type: "route", route: "/yacht-repair", labelKey: "footer.services.yachtRepair" },
       { type: "route", route: "/carpentry", labelKey: "footer.services.carpentry" },
       { type: "route", route: "/maintenance", labelKey: "footer.services.maintenance" },
