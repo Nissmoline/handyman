@@ -94,7 +94,7 @@ function openCookieSettings() {
 </script>
 
 <template>
-  <footer class="footer">
+  <footer id="footer" class="footer">
     <div class="footer__container">
       <div class="footer__brand">
         <router-link to="/" class="footer__logo-link" @click="handleLogoClick">
@@ -113,7 +113,7 @@ function openCookieSettings() {
           <span>{{ t('footer.contact.address') }}</span>
         </address>
       </div>
-            <nav class="footer__nav" aria-label="Footer navigation">
+      <nav class="footer__nav" aria-label="Footer navigation">
         <ul
           v-for="(group, idx) in linkGroups"
           :key="group.titleKey ?? idx"
@@ -151,7 +151,7 @@ function openCookieSettings() {
           </li>
         </ul>
       </nav>
-<div class="footer__social">
+      <div class="footer__social">
         <a
           v-for="(soc, i) in socialLinks"
           :key="i"
@@ -325,60 +325,151 @@ function openCookieSettings() {
 
 @media (max-width: 768px) {
   .footer {
-    padding: 2rem 0 1rem 0;
+    padding: 24px 0 14px;
   }
   
   .footer__container {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
   }
   
   .footer__brand {
-    justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 12px;
     margin-bottom: 0;
+    padding: 18px 16px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 10px 28px rgba(3, 34, 57, 0.18);
+    box-sizing: border-box;
+  }
+
+  .footer__logo-link {
+    display: inline-flex;
+    line-height: 0;
+  }
+
+  .footer__contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 440px;
+    gap: 8px;
   }
   
+  .footer__contact a,
+  .footer__contact span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.065);
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    opacity: 0.96;
+    box-sizing: border-box;
+  }
+
+  .footer__contact span {
+    grid-column: 1 / -1;
+  }
+
   .footer__logo {
-    width: 100px !important;
+    width: 110px !important;
     height: auto !important;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.72), 0 6px 18px rgba(0, 0, 0, 0.16);
   }
   
   .footer__nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
     width: 100%;
-    text-align: center;
+    min-width: 0;
+    text-align: left;
   }
   
   .footer__nav-group {
+    min-width: 0;
+    align-items: stretch;
+    gap: 7px;
+    margin-bottom: 0;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.055);
+    box-sizing: border-box;
+  }
+
+  .footer__nav-group:nth-child(3) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .footer__nav-group:nth-child(3) .footer__nav-title {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .footer__nav-group:nth-child(3) li:not(.footer__nav-title) {
+    display: flex;
+  }
+
+  .footer__nav-group:nth-child(3) a,
+  .footer__nav-group:nth-child(3) button {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.055);
   }
   
   .footer__nav-title {
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 4px;
+    line-height: 1.2;
   }
   
   .footer__nav-group a,
   .footer__nav-group button {
     font-size: 0.95rem;
-    padding: 0.25rem 0;
+    width: 100%;
+    padding: 4px 0;
+    line-height: 1.25;
+    text-align: left;
+    overflow-wrap: anywhere;
   }
   
   .footer__social {
     justify-content: center;
     width: 100%;
-    gap: 1.5rem;
-    margin: 0.5rem 0 0 0;
+    gap: 12px;
+    margin: 2px 0 0;
   }
   
   .footer__social a {
-    font-size: 1.3em;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 1.12em;
   }
   
   .footer__bottom {
@@ -392,16 +483,33 @@ function openCookieSettings() {
 
 @media (max-width: 480px) {
   .footer {
-    padding: 1.5rem 0 0.75rem 0;
+    padding: 20px 0 12px;
   }
   
   .footer__container {
-    padding: 0 0.75rem;
-    gap: 1rem;
+    padding: 0 12px;
+    gap: 14px;
+  }
+
+  .footer__brand {
+    padding: 14px 12px;
+  }
+
+  .footer__contact {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
   
   .footer__logo {
-    width: 90px !important;
+    width: 104px !important;
+  }
+
+  .footer__nav {
+    gap: 10px;
+  }
+
+  .footer__nav-group {
+    padding: 12px;
   }
   
   .footer__nav-title {
@@ -410,21 +518,29 @@ function openCookieSettings() {
   
   .footer__nav-group a,
   .footer__nav-group button {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
   
   .footer__social {
-    gap: 1.25rem;
+    gap: 10px;
   }
   
   .footer__social a {
-    font-size: 1.2em;
+    width: 38px;
+    height: 38px;
+    font-size: 1.06em;
   }
   
   .footer__bottom {
     font-size: 0.85rem;
     margin-top: 1rem;
     padding-top: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .footer__nav-group:nth-child(3) {
+    grid-template-columns: 1fr;
   }
 }
 </style>
