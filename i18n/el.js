@@ -73,6 +73,7 @@
       cookies: 'Πληροφορίες Cookies',
     },
     bottom: '© {year} Handyman24. Όλα τα δικαιώματα διατηρούνται.',
+    creditPrefix: 'Κατασκευή ιστοσελίδας:',
   },
   hero: {
     title: {

@@ -165,7 +165,11 @@ function openCookieSettings() {
       </div>
     </div>
     <div class="footer__bottom">
-      {{ t('footer.bottom', { year }) }}
+      <span>{{ t('footer.bottom', { year }) }}</span>
+      <span class="footer__credit">
+        {{ t('footer.creditPrefix') }}
+        <a href="https://impacttech.gr/" target="_blank" rel="noopener">ImpactTech.gr</a>
+      </span>
     </div>
   </footer>
   
@@ -295,12 +299,28 @@ function openCookieSettings() {
 }
 
 .footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 18px;
   text-align: center;
   font-size: 0.99em;
   opacity: 0.8;
   margin-top: 32px;
   border-top: 1px solid var(--color-border, #294054);
   padding-top: 14px;
+}
+
+.footer__credit a {
+  color: var(--color-accent, #20ba7c);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer__credit a:hover,
+.footer__credit a:focus-visible {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -362,6 +382,8 @@ function openCookieSettings() {
   }
   
   .footer__bottom {
+    flex-direction: column;
+    gap: 0.35rem;
     font-size: 0.9rem;
     margin-top: 1.5rem;
     padding-top: 1rem;

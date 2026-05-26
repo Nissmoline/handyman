@@ -69,6 +69,7 @@
       cookies: 'Cookie information',
     },
     bottom: '© {year} Handyman24. All rights reserved.',
+    creditPrefix: 'Website created by:',
   },
   hero: {
     title: {
