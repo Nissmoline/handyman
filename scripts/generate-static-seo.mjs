@@ -1,18 +1,19 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import el from '../i18n/el.js'
-import { createElectricianAreaFaq, electricianAreas } from '../data/electricianAreas.js'
 import { electricianSeoContent } from '../data/electricianSeoContent.js'
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(rootDir, 'dist')
 const indexPath = path.join(distDir, 'index.html')
+const serverEntryPath = path.join(rootDir, 'dist-ssr', 'entry-server.js')
+const { render } = await import(pathToFileURL(serverEntryPath).href)
 const rawBaseHtml = await readFile(indexPath, 'utf8')
 const baseHtml = rawBaseHtml.replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>\s*/gi, '\n')
 
-const siteUrl = 'https://handyman24.gr'
-const lastmod = '2026-05-20'
+const siteUrl = 'https://www.handyman24.gr'
+const lastmod = new Date().toISOString().slice(0, 10)
 const imageUrl = `${siteUrl}/metaimg.jpg`
 const electricianImages = electricianSeoContent.photos.map((photo) => `${siteUrl}${photo.src}`)
 
@@ -64,7 +65,6 @@ const translatedRoute = ({
   images,
   priority = 0.8,
   changefreq = 'weekly',
-  keywords = [],
 }) => ({
   path: routePath,
   title: get(el, `seo.${seoKey}.title`, get(el, 'seo.default.title')),
@@ -80,24 +80,7 @@ const translatedRoute = ({
   images,
   priority,
   changefreq,
-  keywords,
 })
-
-const areaRoutes = electricianAreas.filter((area) => area.slug !== 'athina').map((area) => ({
-  path: area.path,
-  title: area.metaTitle,
-  description: area.metaDescription,
-  serviceName: `${area.title} 24 ώρες`,
-  serviceType: `Ηλεκτρολογικές υπηρεσίες σε ${area.name}`,
-  faqItems: createElectricianAreaFaq(area),
-  images: [`${siteUrl}/photos/Electrichandyman8.jpg`, imageUrl],
-  priority: area.priority ?? 0.8,
-  changefreq: area.slug === 'athina' ? 'daily' : 'weekly',
-  keywords: area.searchTerms,
-  areaServed: [area.name, area.region, 'Αττική'],
-}))
-
-const areaPathBySlug = new Map(electricianAreas.map((area) => [area.slug, area.path]))
 
 const routes = [
   {
@@ -107,7 +90,6 @@ const routes = [
     images: [imageUrl, `${siteUrl}/electrician.png`],
     priority: 1,
     changefreq: 'daily',
-    keywords: ['ηλεκτρολόγος Αθήνα', 'ηλεκτρολόγος 24 ώρες', 'ηλεκτρολόγοι Αθήνα'],
   },
   translatedRoute({
     path: '/electrician',
@@ -123,20 +105,7 @@ const routes = [
     images: electricianImages,
     priority: 0.96,
     changefreq: 'daily',
-    keywords: ['ηλεκτρολόγος Αθήνα', 'ηλεκτρολόγοι Αθήνα', 'ηλεκτρολόγος κοντά μου'],
   }),
-  translatedRoute({
-    path: '/ilektrologos-24-ores',
-    seoKey: 'urgentElectrician',
-    serviceKey: 'urgentElectricianPage.schema.serviceName',
-    serviceTypeKey: 'urgentElectricianPage.schema.serviceType',
-    faqKey: 'urgentElectricianPage.faq.items',
-    images: electricianImages,
-    priority: 0.95,
-    changefreq: 'daily',
-    keywords: ['ηλεκτρολόγος 24 ώρες', 'ηλεκτρολόγος άμεσα', 'επείγον ηλεκτρολόγος Αθήνα'],
-  }),
-  ...areaRoutes,
   translatedRoute({ path: '/offers', seoKey: 'offers', priority: 0.72, changefreq: 'weekly' }),
   translatedRoute({ path: '/electrician-faq', seoKey: 'electricianFaq', faqKey: 'electricianFaq.faqs', priority: 0.72, changefreq: 'weekly' }),
   translatedRoute({ path: '/electrician-reviews', seoKey: 'electricianReviews', priority: 0.62, changefreq: 'monthly' }),
@@ -151,14 +120,7 @@ const routes = [
   translatedRoute({ path: '/impressum', seoKey: 'impressum', priority: 0.35, changefreq: 'yearly' }),
 ]
 
-const sitemapOnlyRoutes = [
-  { path: '/llms.txt', priority: 0.82, changefreq: 'weekly' },
-  { path: '/llms-full.txt', priority: 0.82, changefreq: 'weekly' },
-  { path: '/ai-profile.json', priority: 0.78, changefreq: 'weekly' },
-  { path: '/sitemap_images.xml', priority: 0.5, changefreq: 'weekly' },
-]
-
-const sitemapEntries = [...routes, ...sitemapOnlyRoutes]
+const sitemapEntries = routes
 
 const routeSchema = (route) => {
   const canonical = canonicalFor(route.path)
@@ -212,13 +174,18 @@ const routeSchema = (route) => {
       availableLanguage: ['el', 'en'],
     },
   }
+  const breadcrumbItems = [
+    { '@type': 'ListItem', position: 1, name: 'Αρχική', item: `${siteUrl}/` },
+  ]
+
+  if (route.path !== '/') {
+    breadcrumbItems.push({ '@type': 'ListItem', position: 2, name: route.serviceName || route.title, item: canonical })
+  }
+
   const breadcrumb = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Αρχική', item: `${siteUrl}/` },
-      { '@type': 'ListItem', position: 2, name: route.serviceName || route.title, item: canonical },
-    ],
+    itemListElement: breadcrumbItems,
   }
 
   const graph = [localBusiness, website, organization, breadcrumb]
@@ -333,7 +300,6 @@ const routeSchema = (route) => {
         '@type': 'ListItem',
         position: index + 1,
         name: stripTags(`${item.area} - ${item.issue}`),
-        url: `${siteUrl}${areaPathBySlug.get(item.slug) || '/electrician'}`,
         description: stripTags(item.text),
       })),
     })
@@ -348,7 +314,8 @@ const applyRouteMeta = (html, route) => {
 
   output = replaceOrInsert(output, /<title>[\s\S]*?<\/title>/i, `<title>${escapeAttr(route.title)}</title>`)
   output = replaceOrInsert(output, /<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${escapeAttr(route.description)}">`)
-  output = replaceOrInsert(output, /<meta name="keywords" content="[^"]*"\s*\/?>/i, `<meta name="keywords" content="${escapeAttr((route.keywords || []).join(', '))}">`)
+  output = output.replace(/\s*<meta name="keywords" content="[^"]*"\s*\/?>/i, '')
+  output = replaceOrInsert(output, /<meta name="robots" content="[^"]*"\s*\/?>/i, '<meta name="robots" content="index, follow, max-image-preview:large">')
   output = replaceOrInsert(output, /<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${canonical}">`)
   output = replaceOrInsert(output, /<link rel="alternate" hreflang="el" href="[^"]*"\s*\/?>/i, `<link rel="alternate" hreflang="el" href="${canonical}">`)
   output = replaceOrInsert(output, /<link rel="alternate" hreflang="x-default" href="[^"]*"\s*\/?>/i, `<link rel="alternate" hreflang="x-default" href="${canonical}">`)
@@ -360,12 +327,13 @@ const applyRouteMeta = (html, route) => {
   output = replaceOrInsert(output, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${escapeAttr(route.description)}">`)
   output = replaceOrInsert(output, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${route.images?.[0] || imageUrl}">`)
 
-  output = output.replace('</head>', `<script type="application/ld+json">${JSON.stringify(routeSchema(route))}</script>\n</head>`)
+  output = output.replace('</head>', `<script id="static-seo-jsonld" type="application/ld+json">${JSON.stringify(routeSchema(route))}</script>\n</head>`)
   return output
 }
 
 for (const route of routes) {
-  const routeHtml = applyRouteMeta(baseHtml, route)
+  const appHtml = await render(route.path)
+  const routeHtml = applyRouteMeta(baseHtml, route).replace('<div id="app"></div>', `<div id="app">${appHtml}</div>`)
 
   if (route.path === '/') {
     await writeFile(indexPath, routeHtml, 'utf8')
@@ -376,6 +344,20 @@ for (const route of routes) {
   await mkdir(routeDir, { recursive: true })
   await writeFile(path.join(routeDir, 'index.html'), routeHtml, 'utf8')
 }
+
+const notFoundRoute = {
+  path: '/__not-found__',
+  title: '404 | Handyman24',
+  description: 'Η σελίδα που ζητήσατε δεν βρέθηκε.',
+}
+const notFoundAppHtml = await render(notFoundRoute.path)
+let notFoundHtml = applyRouteMeta(baseHtml, notFoundRoute)
+  .replace('<div id="app"></div>', `<div id="app">${notFoundAppHtml}</div>`)
+  .replace(/\s*<link rel="canonical"[^>]*>/i, '')
+  .replace(/\s*<link rel="alternate" hreflang="(?:el|x-default)"[^>]*>/gi, '')
+  .replace(/<meta name="robots" content="[^"]*"\s*\/?>/i, '<meta name="robots" content="noindex, follow">')
+  .replace(/\s*<script id="static-seo-jsonld"[\s\S]*?<\/script>/i, '')
+await writeFile(path.join(distDir, '404.html'), notFoundHtml, 'utf8')
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -419,5 +401,5 @@ ${page.images
 await writeFile(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf8')
 await writeFile(path.join(distDir, 'sitemap_images.xml'), imageSitemapXml, 'utf8')
 
-console.log(`Generated static SEO HTML for ${routes.length} routes.`)
-console.log(`Generated sitemap.xml with ${sitemapEntries.length} URLs and sitemap_images.xml.`)
+console.log(`Generated prerendered SEO HTML for ${routes.length} routes plus 404.html.`)
+console.log(`Generated sitemap.xml with ${sitemapEntries.length} canonical URLs and sitemap_images.xml.`)

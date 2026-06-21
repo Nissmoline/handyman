@@ -8,6 +8,7 @@ import AppFooter from '@/components/AppFooter.vue'
 import AppointmentPopup from '@/components/AppointmentPopup.vue'
 import CookieConsent from '@/components/CookieConsent.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
+import { SITE_URL } from '@/utils/seo'
 
 const popupOpen = ref(false)
 const mobileMenuOpen = ref(false)
@@ -29,8 +30,8 @@ const { t, locale } = useI18n()
 const defaultSeo = {
   titleKey: 'seo.default.title',
   descriptionKey: 'seo.default.description',
-  ogImage: 'https://handyman24.gr/metaimg.jpg',
-  twitterImage: 'https://handyman24.gr/metaimg.jpg',
+  ogImage: `${SITE_URL}/metaimg.jpg`,
+  twitterImage: `${SITE_URL}/metaimg.jpg`,
 }
 
 const updateSeoMeta = () => {
@@ -43,6 +44,8 @@ const updateSeoMeta = () => {
     descriptionKey?: string
     ogImage?: string
     twitterImage?: string
+    robots?: string
+    indexable?: boolean
   }
 
   const titleKey = routeMeta.titleKey || defaultSeo.titleKey
@@ -53,7 +56,9 @@ const updateSeoMeta = () => {
   const title = routeMeta.title || t(titleKey)
   const description = routeMeta.description || t(descriptionKey)
   const canonicalPath = route.path
-  const canonicalUrl = `https://handyman24.gr${canonicalPath === '/' ? '' : canonicalPath}`
+  const canonicalUrl = `${SITE_URL}${canonicalPath === '/' ? '/' : canonicalPath}`
+  const indexable = routeMeta.indexable !== false
+  const robots = routeMeta.robots || (indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow')
 
   document.title = title
   document.documentElement.lang = locale.value
@@ -73,14 +78,26 @@ const updateSeoMeta = () => {
   }
 
   ensureMeta('meta[name="description"]', { name: 'description', content: description })
-  ensureMeta('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl })
+  if (indexable) {
+    ensureMeta('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl })
+    ensureMeta('link[rel="alternate"][hreflang="el"]', { rel: 'alternate', hreflang: 'el', href: canonicalUrl })
+    ensureMeta('link[rel="alternate"][hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: canonicalUrl })
+  } else {
+    document.querySelector('link[rel="canonical"]')?.remove()
+    document.querySelector('link[rel="alternate"][hreflang="el"]')?.remove()
+    document.querySelector('link[rel="alternate"][hreflang="x-default"]')?.remove()
+  }
   ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
   ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
-  ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
+  if (indexable) {
+    ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
+  } else {
+    document.querySelector('meta[property="og:url"]')?.remove()
+  }
   ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
   ensureMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'Handyman24' })
   ensureMeta('meta[name="language"]', { name: 'language', content: locale.value })
-  ensureMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow' })
+  ensureMeta('meta[name="robots"]', { name: 'robots', content: robots })
   ensureMeta('meta[property="og:locale"]', { property: 'og:locale', content: locale.value === 'el' ? 'el_GR' : 'en_US' })
   ensureMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
   ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: title })

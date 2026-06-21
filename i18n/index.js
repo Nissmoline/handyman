@@ -42,13 +42,17 @@ const resolveInitialLocale = () => {
 
 const initialLocale = resolveInitialLocale();
 
-const i18n = createI18n({
-  legacy: false,
-  globalInjection: true,
-  locale: initialLocale,
-  fallbackLocale: 'el',
-  messages: { el, en },
-});
+export const createI18nInstance = (locale = initialLocale) =>
+  createI18n({
+    legacy: false,
+    globalInjection: true,
+    locale,
+    fallbackLocale: 'el',
+    warnHtmlMessage: false,
+    messages: { el, en },
+  });
+
+const i18n = createI18nInstance();
 
 if (typeof document !== 'undefined') {
   document.documentElement.setAttribute('lang', initialLocale);

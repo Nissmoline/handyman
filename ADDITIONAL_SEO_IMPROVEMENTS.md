@@ -53,7 +53,7 @@
 
 1. Verify the final business name, phone, email, address, service areas, opening hours, and license information.
 2. Deploy the production build.
-3. Open `https://handyman24.gr/sitemap.xml` and confirm it is accessible.
+3. Open `https://www.handyman24.gr/sitemap.xml` and confirm it is accessible.
 4. Submit the sitemap in Google Search Console.
 5. Request indexing for the homepage and main service pages.
 6. Test key URLs with Google Rich Results Test and PageSpeed Insights.
@@ -64,6 +64,6 @@
 - Phone: +30 694 921 4461
 - WhatsApp: +30 694 921 4461
 - Email: handyman24gr@gmail.com
-- Website: https://handyman24.gr
+- Website: https://www.handyman24.gr
 
 The site is now structured around crawlable, service-specific content instead of relying on one broad electrician page.

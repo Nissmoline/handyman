@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://handyman24.gr'
+export const SITE_URL = 'https://www.handyman24.gr'
 
 export const BUSINESS = {
   name: 'HandyMan 24',

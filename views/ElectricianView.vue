@@ -41,10 +41,10 @@
         <h2>{{ t('electricianPage.urgentLanding.title') }}</h2>
         <p v-html="t('electricianPage.urgentLanding.description')"></p>
       </div>
-      <router-link to="/ilektrologos-24-ores" class="btn btn-light">
+      <a href="tel:+306949214461" class="btn btn-light">
         {{ t('electricianPage.urgentLanding.cta') }}
         <ArrowRight :size="20" aria-hidden="true" />
-      </router-link>
+      </a>
     </section>
 
     <section class="electrician-band electrician-band--white" id="emergency">
@@ -238,50 +238,7 @@
       </div>
     </section>
 
-    <section
-      v-if="showElectricianSeoContent"
-      class="electrician-seo-section pillar-area-search"
-      aria-labelledby="electrician-area-search-title"
-    >
-      <div class="electrician-section-inner">
-        <h2 id="electrician-area-search-title">{{ electricianSeoContent.areaSearchGuide.title }}</h2>
-        <p
-          v-for="(paragraph, index) in electricianSeoContent.areaSearchGuide.intro"
-          :key="'area-search-p-' + index"
-        >
-          {{ paragraph }}
-        </p>
-        <div class="pillar-area-clusters">
-          <article v-for="cluster in serviceAreaClusters" :key="cluster.region" class="pillar-area-cluster">
-            <h3>{{ cluster.region }}</h3>
-            <div class="pillar-area-links">
-              <router-link
-                v-for="area in cluster.areas"
-                :key="area.slug"
-                :to="area.path"
-                class="pillar-area-link"
-              >
-                {{ area.title }}
-              </router-link>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section v-if="showElectricianSeoContent" class="electrician-seo-section">
-      <div class="electrician-section-inner">
-        <h2>Ηλεκτρολόγος ανά περιοχή</h2>
-        <div class="local-area-grid">
-          <article v-for="area in linkedElectricianAreas" :key="area.slug" class="local-area-card">
-            <router-link :to="area.path" class="local-area-card__link">
-              <h3>{{ area.title }}</h3>
-            </router-link>
-            <p>{{ area.cardText }}</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- Individual /ilektrologos-* landing-page links are intentionally disabled. -->
 
     <section v-if="showElectricianSeoContent" class="electrician-seo-section electrician-seo-section--soft">
       <div class="electrician-section-inner">
@@ -393,9 +350,9 @@
             :key="`${item.area}-${item.issue}`"
             class="pillar-scenario-card"
           >
-            <router-link :to="getAreaPath(item.slug)" class="pillar-scenario-area">
+            <span class="pillar-scenario-area">
               {{ item.area }}
-            </router-link>
+            </span>
             <h3>{{ item.issue }}</h3>
             <p>{{ item.text }}</p>
           </article>
@@ -452,9 +409,6 @@
         <p v-for="(paragraph, index) in electricianSeoContent.summary.paragraphs" :key="'summary-p-' + index">
           {{ paragraph }}
         </p>
-        <div class="related-searches" aria-label="Σχετικές αναζητήσεις ηλεκτρολόγου">
-          <span v-for="search in electricianSeoContent.relatedSearches" :key="search">{{ search }}</span>
-        </div>
       </div>
     </section>
 
@@ -467,10 +421,10 @@
             <Phone :size="20" aria-hidden="true" />
             {{ electricianSeoContent.cta.call }}
           </a>
-          <router-link to="/ilektrologos-24-ores" class="btn btn-secondary">
+          <a href="https://wa.me/306949214461" class="btn btn-secondary">
             {{ electricianSeoContent.cta.urgent }}
             <ArrowRight :size="20" aria-hidden="true" />
-          </router-link>
+          </a>
         </div>
       </div>
     </section>
@@ -498,7 +452,6 @@ import {
   Siren,
 } from 'lucide-vue-next'
 import ElectricianLinks from '@/components/ElectricianLinks.vue'
-import { electricianAreas } from '@/data/electricianAreas'
 import { electricianSeoContent } from '@/data/electricianSeoContent'
 
 const { t, tm, locale } = useI18n()
@@ -511,27 +464,13 @@ const serviceAreasList = computed(() => toStringArray(tm('electricianPage.servic
 const whyChooseReasons = computed(() => toStringArray(tm('electricianPage.whyChoose.reasons')))
 const emergencyServicesList = computed(() => toStringArray(tm('electricianPage.emergencyInfo.services')))
 const showElectricianSeoContent = computed(() => locale.value === 'el')
-const linkedElectricianAreas = computed(() => electricianAreas.filter((area) => area.slug !== 'athina'))
-const serviceAreaClusters = computed(() => {
-  const clusters = new Map()
-
-  linkedElectricianAreas.value.forEach((area) => {
-    if (!clusters.has(area.region)) {
-      clusters.set(area.region, [])
-    }
-    clusters.get(area.region).push(area)
-  })
-
-  return [...clusters.entries()].map(([region, areas]) => ({ region, areas }))
-})
-const getAreaPath = (slug) => linkedElectricianAreas.value.find((area) => area.slug === slug)?.path || '/electrician'
 const topElectricianPhoto = computed(() => electricianSeoContent.photos.find((photo) => photo.src.includes('Electrichandyman8')))
 const featuredElectricianPhoto = computed(() => electricianSeoContent.photos[0])
 const electricianGalleryPhotos = computed(() =>
   electricianSeoContent.photos.slice(1).filter((photo) => photo.src !== topElectricianPhoto.value?.src)
 )
 const electricianPhotoUrls = computed(() =>
-  electricianSeoContent.photos.map((photo) => `https://handyman24.gr${photo.src}`)
+  electricianSeoContent.photos.map((photo) => `https://www.handyman24.gr${photo.src}`)
 )
 const seoTextDescription = computed(() => {
   if (!showElectricianSeoContent.value) return ''
@@ -585,8 +524,8 @@ const structuredData = computed(() => {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Electrician', 'ProfessionalService'],
     name: schema.businessName || 'HandyMan 24 – Ηλεκτρολόγος Αθήνα & Πειραιάς',
-    image: ['https://handyman24.gr/metaimg.jpg', ...electricianPhotoUrls.value],
-    url: 'https://handyman24.gr/electrician',
+    image: ['https://www.handyman24.gr/metaimg.jpg', ...electricianPhotoUrls.value],
+    url: 'https://www.handyman24.gr/electrician',
     telephone: '+30-694-9214461',
     email: 'handyman24gr@gmail.com',
     description,
@@ -631,7 +570,7 @@ const structuredData = computed(() => {
     description,
     offers: {
       '@type': 'Offer',
-      url: 'https://handyman24.gr/electrician',
+      url: 'https://www.handyman24.gr/electrician',
       availability: 'https://schema.org/InStock',
       priceCurrency: 'EUR',
       priceSpecification: {
@@ -661,7 +600,7 @@ const structuredData = computed(() => {
     graph.push({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      '@id': 'https://handyman24.gr/electrician#review-guide',
+      '@id': 'https://www.handyman24.gr/electrician#review-guide',
       name: electricianSeoContent.reviewGuide.title,
       description: stripTags(electricianSeoContent.reviewGuide.note),
       itemListElement: electricianSeoContent.reviewGuide.items.map((item, index) => ({
@@ -677,7 +616,7 @@ const structuredData = computed(() => {
     graph.push({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      '@id': 'https://handyman24.gr/electrician#common-electrical-problems',
+      '@id': 'https://www.handyman24.gr/electrician#common-electrical-problems',
       name: electricianSeoContent.problemGuides.title,
       description: stripTags(electricianSeoContent.problemGuides.intro.join(' ')),
       itemListElement: electricianSeoContent.problemGuides.items.map((item, index) => ({
@@ -693,7 +632,7 @@ const structuredData = computed(() => {
     graph.push({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      '@id': 'https://handyman24.gr/electrician#electrician-cost-factors',
+      '@id': 'https://www.handyman24.gr/electrician#electrician-cost-factors',
       name: electricianSeoContent.costFactors.title,
       description: stripTags(electricianSeoContent.costFactors.intro.join(' ')),
       itemListElement: electricianSeoContent.costFactors.items.map((item, index) => ({
@@ -709,7 +648,7 @@ const structuredData = computed(() => {
     graph.push({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      '@id': 'https://handyman24.gr/electrician#electrician-call-checklist',
+      '@id': 'https://www.handyman24.gr/electrician#electrician-call-checklist',
       name: electricianSeoContent.callChecklist.title,
       description: stripTags(electricianSeoContent.callChecklist.intro.join(' ')),
       itemListElement: electricianSeoContent.callChecklist.items.map((item, index) => ({
@@ -725,14 +664,13 @@ const structuredData = computed(() => {
     graph.push({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      '@id': 'https://handyman24.gr/electrician#area-electrical-services',
+      '@id': 'https://www.handyman24.gr/electrician#area-electrical-services',
       name: electricianSeoContent.scenarioGuides.title,
       description: stripTags(electricianSeoContent.scenarioGuides.intro.join(' ')),
       itemListElement: electricianSeoContent.scenarioGuides.items.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         name: stripTags(`${item.area} - ${item.issue}`),
-        url: `https://handyman24.gr${getAreaPath(item.slug)}`,
         description: stripTags(item.text),
       })),
     })
@@ -742,7 +680,7 @@ const structuredData = computed(() => {
     graph.push({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      '@id': 'https://handyman24.gr/electrician#faq',
+      '@id': 'https://www.handyman24.gr/electrician#faq',
       mainEntity: electricianSeoContent.faq.items.map((item) => ({
         '@type': 'Question',
         name: item.question,

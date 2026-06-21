@@ -1,10 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router';
 
 import HomeView from '@/views/HomeView.vue';
 import OffersView from '@/views/OffersView.vue';
 import ElectricianView from '@/views/ElectricianView.vue';
-import ElectricianAreaView from '@/views/ElectricianAreaView.vue';
-import EmergencyElectricianView from '@/views/EmergencyElectricianView.vue';
 import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
 import ElectricianReviews from '@/views/ElectricianReviews.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
@@ -16,20 +14,16 @@ import CarpentryView from '@/views/CarpentryView.vue';
 import RenovationsView from '@/views/RenovationsView.vue';
 import MaintenanceView from '@/views/MaintenanceView.vue';
 import YachtRepairView from '@/views/YachtRepairView.vue';
-import { electricianAreas } from '@/data/electricianAreas';
+import NotFoundView from '@/views/NotFoundView.vue';
 
-const electricianAreaRoutes = electricianAreas.filter((area) => area.slug !== 'athina').map((area) => ({
-  path: area.path,
-  name: `electrician-area-${area.slug}`,
-  component: ElectricianAreaView,
-  props: { slug: area.slug },
-  meta: {
-    title: area.metaTitle,
-    description: area.metaDescription,
-  },
-}));
+// Local electrician landing pages are intentionally disabled until each page
+// has enough genuinely unique local content. Their public URLs are permanently
+// redirected to /electrician by vercel.json so search signals are consolidated.
+// import ElectricianAreaView from '@/views/ElectricianAreaView.vue';
+// import EmergencyElectricianView from '@/views/EmergencyElectricianView.vue';
+// import { electricianAreas } from '@/data/electricianAreas';
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'home',
@@ -57,20 +51,7 @@ const routes = [
       descriptionKey: 'seo.electrician.description',
     },
   },
-  {
-    path: '/ilektrologos-athina',
-    redirect: '/electrician',
-  },
-  {
-    path: '/ilektrologos-24-ores',
-    name: 'urgent-electrician',
-    component: EmergencyElectricianView,
-    meta: {
-      titleKey: 'seo.urgentElectrician.title',
-      descriptionKey: 'seo.urgentElectrician.description',
-    },
-  },
-  ...electricianAreaRoutes,
+  // All /ilektrologos-* routes are disabled and redirected at the CDN layer.
   {
     path: '/electrician-faq',
     name: 'electrician-faq',
@@ -172,24 +153,34 @@ const routes = [
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/',
+    name: 'not-found',
+    component: NotFoundView,
+    meta: {
+      title: '404 | Handyman24',
+      description: 'Η σελίδα που ζητήσατε δεν βρέθηκε.',
+      robots: 'noindex, follow',
+      indexable: false,
+    },
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory('/'),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    }
+export const createAppRouter = ({ ssr = false } = {}) =>
+  createRouter({
+    history: ssr ? createMemoryHistory('/') : createWebHistory('/'),
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      }
 
-    if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' };
-    }
+      if (to.hash) {
+        return { el: to.hash, behavior: 'smooth' };
+      }
 
-    return { top: 0, behavior: 'smooth' };
-  },
-});
+      return { top: 0, behavior: 'smooth' };
+    },
+  });
+
+const router = typeof window === 'undefined' ? undefined : createAppRouter();
 
 export default router;

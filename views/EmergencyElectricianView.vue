@@ -89,7 +89,7 @@ const faqItems = computed(() => toArray(tm(`${pageKey}.faq.items`)))
 
 const structuredData = computed(() => [
   createLocalBusinessSchema({
-    '@id': 'https://handyman24.gr/#urgent-electrician',
+    '@id': 'https://www.handyman24.gr/#urgent-electrician',
     name: t(`${pageKey}.schema.businessName`),
     description: introParagraphs.value.map(stripTags).join(' '),
   }),
@@ -108,7 +108,7 @@ const structuredData = computed(() => [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': `https://handyman24.gr${path}#faq`,
+    '@id': `https://www.handyman24.gr${path}#faq`,
     mainEntity: faqItems.value.map((item) => ({
       '@type': 'Question',
       name: item.question,

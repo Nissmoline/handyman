@@ -302,16 +302,6 @@ servicedAreas: {
       title: 'Related electrician and handyman services',
       items: [
         {
-          path: '/electrician',
-          heading: '24-hour electrician Athens',
-          body: 'Electrical faults, panels, sockets, lighting, appliances, and urgent support',
-        },
-        {
-          path: '/ilektrologos-24-ores',
-          heading: '24-hour electrician',
-          body: 'Urgent help for short circuits, tripping breakers, power loss, and unsafe electrical faults',
-        },
-        {
           path: '/electrician-faq',
           heading: 'Frequently Asked Questions',
           body: 'Answers about pricing, urgent faults, installations, and service areas',
@@ -854,8 +844,8 @@ servicedAreas: {
     },
     urgentLanding: {
       title: '24-hour electrician - urgent service',
-      description: 'For searches such as <strong>ηλεκτρολόγος 24 ώρες</strong>, <strong>ηλεκτρολόγος άμεσα</strong>, or <strong>emergency electrician Athens</strong>, we created a dedicated page with guidance, services, and service areas for urgent electrical faults.',
-      cta: 'View 24-hour electrician page'
+      description: 'For <strong>urgent electrical faults</strong>, repeated RCD trips, short circuits, or burning smells, call immediately. We will record the problem, location, and availability so the safest possible visit can be arranged.',
+      cta: 'Call now'
     },
     services: {
       title: 'Electrical services we handle',

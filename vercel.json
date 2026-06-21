@@ -1,15 +1,22 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
   "redirects": [
     {
-      "source": "/ilektrologos-athina",
-      "destination": "/electrician",
+      "source": "/ilektrologos-:slug",
+      "destination": "https://www.handyman24.gr/electrician",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "handyman24.gr"
+        }
+      ],
+      "destination": "https://www.handyman24.gr/:path*",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
   ]
-} 
+}

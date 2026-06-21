@@ -159,25 +159,25 @@ const props = defineProps({
 const area = computed(() => getElectricianAreaBySlug(props.slug))
 const relatedAreas = computed(() => getRelatedElectricianAreas(area.value, 10))
 const faqItems = computed(() => createElectricianAreaFaq(area.value))
-const canonicalUrl = computed(() => `https://handyman24.gr${area.value.path}`)
+const canonicalUrl = computed(() => `https://www.handyman24.gr${area.value.path}`)
 
 const structuredData = computed(() => [
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Αρχική', item: 'https://handyman24.gr/' },
-      { '@type': 'ListItem', position: 2, name: 'Ηλεκτρολόγος Αθήνα', item: 'https://handyman24.gr/electrician' },
+      { '@type': 'ListItem', position: 1, name: 'Αρχική', item: 'https://www.handyman24.gr/' },
+      { '@type': 'ListItem', position: 2, name: 'Ηλεκτρολόγος Αθήνα', item: 'https://www.handyman24.gr/electrician' },
       { '@type': 'ListItem', position: 3, name: area.value.title, item: canonicalUrl.value },
     ],
   },
   {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Electrician', 'ProfessionalService'],
-    '@id': 'https://handyman24.gr/#localbusiness',
+    '@id': 'https://www.handyman24.gr/#localbusiness',
     name: 'HandyMan 24 - Ηλεκτρολόγος Αθήνα',
-    url: 'https://handyman24.gr/',
-    image: ['https://handyman24.gr/metaimg.jpg', 'https://handyman24.gr/photos/Electrichandyman8.jpg'],
+    url: 'https://www.handyman24.gr/',
+    image: ['https://www.handyman24.gr/metaimg.jpg', 'https://www.handyman24.gr/photos/Electrichandyman8.jpg'],
     telephone: '+30-694-9214461',
     email: 'handyman24gr@gmail.com',
     priceRange: '€€',
@@ -207,11 +207,11 @@ const structuredData = computed(() => [
     serviceType: `Ηλεκτρολογικές υπηρεσίες σε ${area.value.name}`,
     description: area.value.metaDescription,
     url: canonicalUrl.value,
-    image: 'https://handyman24.gr/photos/Electrichandyman8.jpg',
+    image: 'https://www.handyman24.gr/photos/Electrichandyman8.jpg',
     areaServed: [area.value.name, area.value.region, 'Αττική'],
     provider: {
       '@type': 'LocalBusiness',
-      '@id': 'https://handyman24.gr/#localbusiness',
+      '@id': 'https://www.handyman24.gr/#localbusiness',
       name: 'HandyMan 24',
       telephone: '+30-694-9214461',
     },
@@ -251,7 +251,7 @@ useHead(() => ({
     { property: 'og:title', content: area.value.metaTitle },
     { property: 'og:description', content: area.value.metaDescription },
     { property: 'og:url', content: canonicalUrl.value },
-    { property: 'og:image', content: 'https://handyman24.gr/metaimg.jpg' },
+    { property: 'og:image', content: 'https://www.handyman24.gr/metaimg.jpg' },
     { name: 'twitter:title', content: area.value.metaTitle },
     { name: 'twitter:description', content: area.value.metaDescription },
   ],

@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  icon: Object,
+  icon: [Object, Function],
   title: String,
   description: String,
   cta: String,

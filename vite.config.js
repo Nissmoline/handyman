@@ -4,6 +4,13 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
+  ssr: {
+    noExternal: [
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-brands-svg-icons',
+      '@fortawesome/vue-fontawesome',
+    ],
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('.', import.meta.url))
