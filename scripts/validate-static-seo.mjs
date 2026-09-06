@@ -25,6 +25,7 @@ const walk = async (directory) => {
 }
 
 const allFiles = await walk(distDir)
+const outputFiles = new Set(allFiles.map((file) => '/' + path.relative(distDir, file).split(path.sep).join('/')))
 const pageFiles = allFiles.filter((file) => path.basename(file) === 'index.html')
 const titles = new Map()
 const canonicals = new Map()
@@ -46,6 +47,11 @@ for (const file of pageFiles) {
     .trim()
   const h1Count = (body.match(/<h1\b/gi) || []).length
   const jsonLdBlocks = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+  const stylesheets = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/gi)].map((match) => match[1])
+  for (const href of stylesheets.filter((href) => href.startsWith('/'))) {
+    assert(outputFiles.has(href), `${relative}: stylesheet does not exist: ${href}`)
+  }
+  assert(stylesheets.some((href) => /assets\/(?:HomeView|ElectricianView|ElectricianFAQ|ElectricianReviews|OffersView|PlumberView|TilingView|PaintingView|CarpentryView|RenovationsView|MaintenanceView|YachtRepairView|PrivacyPolicy|ImpressumView)-/.test(href)), `${relative}: missing prerendered route stylesheet`)
 
   assert(title.length >= 20 && title.length <= 75, `${relative}: title length is ${title.length}`)
   assert(description.length >= 70 && description.length <= 180, `${relative}: description length is ${description.length}`)
@@ -83,6 +89,8 @@ assert(!/<link\s+rel="canonical"/i.test(notFoundHtml), '404.html: canonical must
 
 const sitemap = await readFile(path.join(distDir, 'sitemap.xml'), 'utf8')
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
+assert(new Set(sitemapUrls).size === sitemapUrls.length, 'Sitemap contains duplicate URLs')
+assert(sitemapUrls.every((url) => canonicals.has(url)), 'Sitemap URL has no matching generated canonical page')
 assert(sitemapUrls.length === pageFiles.length, `Sitemap has ${sitemapUrls.length} URLs for ${pageFiles.length} pages`)
 assert(sitemapUrls.every((url) => url.startsWith(`https://${expectedHost}/`)), 'Sitemap contains a non-canonical host')
 assert(sitemapUrls.every((url) => !url.includes('/ilektrologos-')), 'Sitemap contains disabled local pages')

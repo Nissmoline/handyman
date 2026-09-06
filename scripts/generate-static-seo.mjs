@@ -9,11 +9,17 @@ const distDir = path.join(rootDir, 'dist')
 const indexPath = path.join(distDir, 'index.html')
 const serverEntryPath = path.join(rootDir, 'dist-ssr', 'entry-server.js')
 const { render } = await import(pathToFileURL(serverEntryPath).href)
+const assetManifest = JSON.parse(await readFile(path.join(distDir, '.vite', 'ssr-manifest.json'), 'utf8'))
+const renderPage = async (routePath) => {
+  const { html, modules } = await render(routePath)
+  // Lazy route CSS must be present before JavaScript runs, including for crawlers.
+  const styles = new Set(modules.flatMap((module) => assetManifest[module] || []).filter((asset) => asset.endsWith('.css')))
+  return { html, styles: [...styles].map((href) => `<link rel="stylesheet" href="${href}">`).join('\n') }
+}
 const rawBaseHtml = await readFile(indexPath, 'utf8')
 const baseHtml = rawBaseHtml.replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>\s*/gi, '\n')
 
 const siteUrl = 'https://www.handyman24.gr'
-const lastmod = new Date().toISOString().slice(0, 10)
 const imageUrl = `${siteUrl}/metaimg.jpg`
 const electricianImages = electricianSeoContent.photos.map((photo) => `${siteUrl}${photo.src}`)
 
@@ -332,8 +338,10 @@ const applyRouteMeta = (html, route) => {
 }
 
 for (const route of routes) {
-  const appHtml = await render(route.path)
-  const routeHtml = applyRouteMeta(baseHtml, route).replace('<div id="app"></div>', `<div id="app">${appHtml}</div>`)
+  const page = await renderPage(route.path)
+  const routeHtml = applyRouteMeta(baseHtml, route)
+    .replace('</head>', `${page.styles}\n</head>`)
+    .replace('<div id="app"></div>', `<div id="app">${page.html}</div>`)
 
   if (route.path === '/') {
     await writeFile(indexPath, routeHtml, 'utf8')
@@ -350,9 +358,10 @@ const notFoundRoute = {
   title: '404 | Handyman24',
   description: 'Η σελίδα που ζητήσατε δεν βρέθηκε.',
 }
-const notFoundAppHtml = await render(notFoundRoute.path)
+const notFoundPage = await renderPage(notFoundRoute.path)
 let notFoundHtml = applyRouteMeta(baseHtml, notFoundRoute)
-  .replace('<div id="app"></div>', `<div id="app">${notFoundAppHtml}</div>`)
+  .replace('</head>', `${notFoundPage.styles}\n</head>`)
+  .replace('<div id="app"></div>', `<div id="app">${notFoundPage.html}</div>`)
   .replace(/\s*<link rel="canonical"[^>]*>/i, '')
   .replace(/\s*<link rel="alternate" hreflang="(?:el|x-default)"[^>]*>/gi, '')
   .replace(/<meta name="robots" content="[^"]*"\s*\/?>/i, '<meta name="robots" content="noindex, follow">')
@@ -365,7 +374,6 @@ ${sitemapEntries
   .map(
     (route) => `  <url>
     <loc>${canonicalFor(route.path)}</loc>
-    <lastmod>${lastmod}</lastmod>
     <changefreq>${route.changefreq || 'weekly'}</changefreq>
     <priority>${Number(route.priority ?? 0.8).toFixed(2)}</priority>
   </url>`

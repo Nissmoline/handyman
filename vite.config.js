@@ -20,6 +20,7 @@ export default defineConfig({
     historyApiFallback: true
   },
   build: {
+    ssrManifest: true,
     rollupOptions: {
       output: {
         manualChunks(id) {

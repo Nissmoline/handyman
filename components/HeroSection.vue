@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { inject, computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { inject, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const openAppointmentPopup = inject('openAppointmentPopup')
@@ -10,7 +10,7 @@ const toStringArray = (value) => (Array.isArray(value) ? value : [])
 const heroSlides = computed(() => {
   const slides = tm('hero.slides')
   if (Array.isArray(slides) && slides.length) {
-    return slides
+    return slides.filter((slide) => slide.path === '/electrician').slice(0, 1)
   }
 
   return [
@@ -28,13 +28,6 @@ const heroSlides = computed(() => {
   ]
 })
 const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
-
-const activeServiceIndex = ref(0)
-let slideTimer = null
-const AUTO_SLIDE_DELAY = 6200
-const SWIPE_THRESHOLD = 46
-const touchStartX = ref(0)
-const touchStartY = ref(0)
 
 const phoneNumberUrl = 'tel:+306949214461'
 
@@ -77,82 +70,6 @@ const handleBookClick = () => {
   }
 }
 
-const goToNextSlide = () => {
-  if (!heroSlides.value.length) return
-  activeServiceIndex.value = (activeServiceIndex.value + 1) % heroSlides.value.length
-}
-
-const goToPrevSlide = () => {
-  if (!heroSlides.value.length) return
-  activeServiceIndex.value = (activeServiceIndex.value - 1 + heroSlides.value.length) % heroSlides.value.length
-}
-
-const stopAutoSlide = () => {
-  if (slideTimer) {
-    clearInterval(slideTimer)
-    slideTimer = null
-  }
-}
-
-const startAutoSlide = () => {
-  stopAutoSlide()
-  if (heroSlides.value.length <= 1) return
-  slideTimer = setInterval(() => {
-    goToNextSlide()
-  }, AUTO_SLIDE_DELAY)
-}
-
-const restartAutoSlide = () => {
-  startAutoSlide()
-}
-
-onMounted(() => {
-  startAutoSlide()
-})
-
-onBeforeUnmount(() => {
-  stopAutoSlide()
-})
-
-const activateSlide = (index) => {
-  activeServiceIndex.value = index
-  restartAutoSlide()
-}
-
-const goNextSlideByUser = () => {
-  goToNextSlide()
-  restartAutoSlide()
-}
-
-const goPrevSlideByUser = () => {
-  goToPrevSlide()
-  restartAutoSlide()
-}
-
-const onTouchStart = (event) => {
-  const touch = event.changedTouches?.[0]
-  if (!touch) return
-  touchStartX.value = touch.clientX
-  touchStartY.value = touch.clientY
-}
-
-const onTouchEnd = (event) => {
-  const touch = event.changedTouches?.[0]
-  if (!touch) return
-
-  const deltaX = touch.clientX - touchStartX.value
-  const deltaY = touch.clientY - touchStartY.value
-
-  if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) {
-    return
-  }
-
-  if (deltaX < 0) {
-    goNextSlideByUser()
-  } else {
-    goPrevSlideByUser()
-  }
-}
 </script>
 
 <template>
@@ -160,22 +77,18 @@ const onTouchEnd = (event) => {
     <div class="hero-main">
       <div
         class="hero-carousel"
-        @mouseenter="stopAutoSlide"
-        @mouseleave="startAutoSlide"
-        @touchstart.passive="onTouchStart"
-        @touchend.passive="onTouchEnd"
       >
-        <div class="hero-track" :style="{ transform: `translateX(-${activeServiceIndex * 100}%)` }">
+        <div class="hero-track">
           <div
             v-for="(slide, slideIndex) in heroSlides"
             :key="slide.serviceLabel || slideIndex"
             class="hero-content hero-slide"
-            :aria-hidden="slideIndex !== activeServiceIndex"
+
           >
             <div class="hero-left">
-              <component :is="slideIndex === 0 ? 'h1' : 'h2'" class="hero-title">
+              <h1 class="hero-title">
                 {{ slide.title?.main }}<br /><span>{{ slide.title?.highlight }}</span>
-              </component>
+              </h1>
               <div class="hero-desc">
                 <p
                   v-for="(paragraph, index) in toStringArray(slide.description)"
@@ -243,35 +156,6 @@ const onTouchEnd = (event) => {
             </div>
           </div>
         </div>
-        <button
-          v-if="heroSlides.length > 1"
-          type="button"
-          class="hero-nav hero-nav--prev"
-          aria-label="Previous service slide"
-          @click="goPrevSlideByUser"
-        >
-          ‹
-        </button>
-        <button
-          v-if="heroSlides.length > 1"
-          type="button"
-          class="hero-nav hero-nav--next"
-          aria-label="Next service slide"
-          @click="goNextSlideByUser"
-        >
-          ›
-        </button>
-        <div class="hero-dots-main" v-if="heroSlides.length > 1">
-          <button
-            v-for="(slide, index) in heroSlides"
-            :key="'dot-' + index"
-            type="button"
-            class="hero-dot"
-            :class="{ 'hero-dot--active': index === activeServiceIndex }"
-            :aria-label="slide.serviceLabel || `Slide ${index + 1}`"
-            @click="activateSlide(index)"
-          />
-        </div>
       </div>
     </div>
 
@@ -309,10 +193,10 @@ const onTouchEnd = (event) => {
 .hero-root {
   width: 100%;
   background: #fff;
-  min-height: 100vh;
+  min-height: auto;
   position: relative;
   overflow-x: hidden;
-  padding-bottom: 64px;
+  padding-bottom: 32px;
 }
 .hero-main {
   width: 100vw;

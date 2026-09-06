@@ -26,5 +26,7 @@ export async function render(url) {
   await router.push(url)
   await router.isReady()
 
-  return renderToString(app)
+  const context = {}
+  const html = await renderToString(app, context)
+  return { html, modules: [...(context.modules || [])] }
 }

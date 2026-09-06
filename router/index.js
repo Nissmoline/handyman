@@ -1,20 +1,20 @@
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
-import OffersView from '@/views/OffersView.vue';
-import ElectricianView from '@/views/ElectricianView.vue';
-import ElectricianFAQ from '@/views/ElectricianFAQ.vue';
-import ElectricianReviews from '@/views/ElectricianReviews.vue';
-import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
-import ImpressumView from '@/views/ImpressumView.vue';
-import PlumberView from '@/views/PlumberView.vue';
-import TilingView from '@/views/TilingView.vue';
-import PaintingView from '@/views/PaintingView.vue';
-import CarpentryView from '@/views/CarpentryView.vue';
-import RenovationsView from '@/views/RenovationsView.vue';
-import MaintenanceView from '@/views/MaintenanceView.vue';
-import YachtRepairView from '@/views/YachtRepairView.vue';
-import NotFoundView from '@/views/NotFoundView.vue';
+const HomeView = () => import('@/views/HomeView.vue');
+const OffersView = () => import('@/views/OffersView.vue');
+const ElectricianView = () => import('@/views/ElectricianView.vue');
+const ElectricianFAQ = () => import('@/views/ElectricianFAQ.vue');
+const ElectricianReviews = () => import('@/views/ElectricianReviews.vue');
+const PrivacyPolicy = () => import('@/views/PrivacyPolicy.vue');
+const ImpressumView = () => import('@/views/ImpressumView.vue');
+const PlumberView = () => import('@/views/PlumberView.vue');
+const TilingView = () => import('@/views/TilingView.vue');
+const PaintingView = () => import('@/views/PaintingView.vue');
+const CarpentryView = () => import('@/views/CarpentryView.vue');
+const RenovationsView = () => import('@/views/RenovationsView.vue');
+const MaintenanceView = () => import('@/views/MaintenanceView.vue');
+const YachtRepairView = () => import('@/views/YachtRepairView.vue');
+const NotFoundView = () => import('@/views/NotFoundView.vue');
 
 // Local electrician landing pages are intentionally disabled until each page
 // has enough genuinely unique local content. Their public URLs are permanently
