@@ -48,6 +48,16 @@ for (const file of pageFiles) {
   const h1Count = (body.match(/<h1\b/gi) || []).length
   const jsonLdBlocks = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
   const stylesheets = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/gi)].map((match) => match[1])
+  const imagePreloads = [...html.matchAll(/<link[^>]+rel="preload"[^>]+as="image"[^>]+href="([^"]+)"/gi)].map((match) => match[1])
+  const heroImages = [...body.matchAll(/<img\b[^>]*>/gi)]
+    .map(([tag]) => /fetchpriority="high"/i.test(tag) ? tag.match(/\bsrc="([^"]+)"/i)?.[1] : undefined)
+    .filter(Boolean)
+  const expectsHeroPreload = canonical === `https://${expectedHost}/` || canonical === `https://${expectedHost}/electrician`
+  assert(imagePreloads.length === (expectsHeroPreload ? 1 : 0), `${relative}: unexpected hero image preload count (${imagePreloads.length})`)
+  for (const href of imagePreloads) {
+    assert(outputFiles.has(href), `${relative}: preloaded image does not exist: ${href}`)
+    assert(heroImages.includes(href), `${relative}: preloaded image is not the rendered high-priority hero: ${href}`)
+  }
   for (const href of stylesheets.filter((href) => href.startsWith('/'))) {
     assert(outputFiles.has(href), `${relative}: stylesheet does not exist: ${href}`)
   }

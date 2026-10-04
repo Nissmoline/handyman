@@ -157,7 +157,7 @@
 
     <section v-if="showElectricianSeoContent" class="electrician-seo-section electrician-seo-section--soft">
       <div class="electrician-section-inner">
-        <h2>Ηλεκτρολόγος άμεσα, κοντά μου και 24 ώρες</h2>
+        <h2>Πώς οργανώνεται η επίσκεψη</h2>
         <article
           v-for="section in electricianSeoContent.prioritySections"
           :key="section.title"
@@ -225,9 +225,9 @@
       <div class="electrician-section-inner">
         <h2>Περιοχές εξυπηρέτησης για ηλεκτρολόγο στην Αττική</h2>
         <p>
-          Εξυπηρετούμε μεγάλο αριθμό περιοχών, ώστε όποιος αναζητά ηλεκτρολόγο κοντά μου,
-          ηλεκτρολόγο άμεσα, ηλεκτρολόγο Αθήνα ή ηλεκτρολόγο 24 ώρες να μπορεί να βρει τεχνική
-          υποστήριξη στην περιοχή του.
+          Αναλαμβάνουμε ηλεκτρολογικές εργασίες στις παρακάτω περιοχές της Αττικής.
+          Καλέστε με την τοποθεσία και το είδος της εργασίας για να επιβεβαιώσουμε
+          διαθεσιμότητα και να συνεννοηθούμε για την επίσκεψη.
         </p>
         <div class="area-groups">
           <article v-for="group in electricianSeoContent.areaGroups" :key="group.title" class="area-group">
@@ -438,7 +438,6 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
 import {
   ArrowRight,
   BadgeCheck,
@@ -457,7 +456,6 @@ import { electricianSeoContent } from '@/data/electricianSeoContent'
 const { t, tm, locale } = useI18n()
 
 const toStringArray = (value) => (Array.isArray(value) ? value : [])
-const stripTags = (value = '') => value.toString().replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
 
 const servicesList = computed(() => toStringArray(tm('electricianPage.services.list')))
 const serviceAreasList = computed(() => toStringArray(tm('electricianPage.serviceAreas.areas')))
@@ -469,241 +467,6 @@ const featuredElectricianPhoto = computed(() => electricianSeoContent.photos[0])
 const electricianGalleryPhotos = computed(() =>
   electricianSeoContent.photos.slice(1).filter((photo) => photo.src !== topElectricianPhoto.value?.src)
 )
-const electricianPhotoUrls = computed(() =>
-  electricianSeoContent.photos.map((photo) => `https://www.handyman24.gr${photo.src}`)
-)
-const seoTextDescription = computed(() => {
-  if (!showElectricianSeoContent.value) return ''
-
-  return stripTags([
-    electricianSeoContent.intro[0],
-    ...electricianSeoContent.problemGuides.intro,
-    ...electricianSeoContent.problemGuides.items.flatMap((item) => [item.title, ...item.paragraphs]),
-    ...electricianSeoContent.costFactors.intro,
-    ...electricianSeoContent.callChecklist.intro,
-    ...electricianSeoContent.scenarioGuides.intro,
-    ...electricianSeoContent.summary.paragraphs,
-  ].join(' ')).slice(0, 1400)
-})
-const seoServiceNames = computed(() => {
-  if (!showElectricianSeoContent.value) return []
-
-  return [
-    ...electricianSeoContent.serviceSections.map((section) => section.title),
-    ...electricianSeoContent.problemGuides.items.map((item) => item.title),
-    ...electricianSeoContent.priceGuide.list,
-    ...electricianSeoContent.costFactors.items.map((item) => item.title),
-    ...electricianSeoContent.callChecklist.items.map((item) => item.title),
-    ...electricianSeoContent.scenarioGuides.items.map((item) => `${item.area}: ${item.issue}`),
-  ]
-})
-
-const schemaStrings = computed(() => ({
-  businessName: t('electricianPage.schema.businessName'),
-  serviceName: t('electricianPage.schema.serviceName'),
-  serviceType: t('electricianPage.schema.serviceType'),
-  priceDescription: t('electricianPage.schema.priceDescription'),
-  catalogName: t('electricianPage.schema.catalogName'),
-}))
-
-const structuredData = computed(() => {
-  const baseDescription = [
-    t('electricianPage.intro.paragraph1'),
-    t('electricianPage.intro.paragraph2'),
-    t('electricianPage.intro.paragraph3'),
-  ]
-    .map(stripTags)
-    .join(' ')
-  const description = [baseDescription, seoTextDescription.value].filter(Boolean).join(' ')
-
-  const areas = serviceAreasList.value.map(stripTags).filter(Boolean)
-  const services = [...servicesList.value.map(stripTags), ...seoServiceNames.value.map(stripTags)].filter(Boolean)
-  const schema = schemaStrings.value
-
-  const localBusiness = {
-    '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'Electrician', 'ProfessionalService'],
-    name: schema.businessName || 'HandyMan 24 – Ηλεκτρολόγος Αθήνα & Πειραιάς',
-    image: ['https://www.handyman24.gr/metaimg.jpg', ...electricianPhotoUrls.value],
-    url: 'https://www.handyman24.gr/electrician',
-    telephone: '+30-694-9214461',
-    email: 'handyman24gr@gmail.com',
-    description,
-    priceRange: '€€',
-    areaServed: areas,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Φυλής 153, Άγιος Παντελεήμονας',
-      postalCode: '11251',
-      addressLocality: 'Αθήνα',
-      addressRegion: 'Αττική',
-      addressCountry: 'GR',
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '00:00',
-        closes: '23:59',
-      },
-    ],
-    sameAs: [
-      'https://www.facebook.com/share/1FyUjq1AGd/',
-      'https://instagram.com/handyman24.gr',
-      'https://wa.me/306949214461',
-    ],
-  }
-
-  const electricianService = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: schema.serviceName || 'Επείγον Ηλεκτρολόγος Αθήνα & Πειραιάς 24/7',
-    serviceType: schema.serviceType || 'Ηλεκτρολογικές υπηρεσίες',
-    image: electricianPhotoUrls.value,
-    areaServed: areas,
-    provider: {
-      '@type': 'LocalBusiness',
-      name: 'HandyMan 24',
-      telephone: '+30-694-9214461',
-      address: localBusiness.address,
-    },
-    description,
-    offers: {
-      '@type': 'Offer',
-      url: 'https://www.handyman24.gr/electrician',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'EUR',
-      priceSpecification: {
-        '@type': 'UnitPriceSpecification',
-        priceCurrency: 'EUR',
-        description: schema.priceDescription || 'Διαφανείς τιμές ηλεκτρολόγου Αθήνα & Πειραιάς – ενημέρωση πριν την εργασία',
-      },
-    },
-    hasOfferCatalog: services.length
-      ? {
-          '@type': 'OfferCatalog',
-          name: schema.catalogName || 'Υπηρεσίες Ηλεκτρολόγου',
-          itemListElement: services.map((service) => ({
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: service,
-            },
-          })),
-        }
-      : undefined,
-  }
-
-  const graph = [localBusiness, electricianService]
-
-  if (showElectricianSeoContent.value && electricianSeoContent.reviewGuide.items.length) {
-    graph.push({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      '@id': 'https://www.handyman24.gr/electrician#review-guide',
-      name: electricianSeoContent.reviewGuide.title,
-      description: stripTags(electricianSeoContent.reviewGuide.note),
-      itemListElement: electricianSeoContent.reviewGuide.items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: stripTags(`${item.area} - ${item.service}`),
-        description: stripTags(`${item.heading}. ${item.text}`),
-      })),
-    })
-  }
-
-  if (showElectricianSeoContent.value && electricianSeoContent.problemGuides.items.length) {
-    graph.push({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      '@id': 'https://www.handyman24.gr/electrician#common-electrical-problems',
-      name: electricianSeoContent.problemGuides.title,
-      description: stripTags(electricianSeoContent.problemGuides.intro.join(' ')),
-      itemListElement: electricianSeoContent.problemGuides.items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: stripTags(item.title),
-        description: stripTags(item.paragraphs.join(' ')),
-      })),
-    })
-  }
-
-  if (showElectricianSeoContent.value && electricianSeoContent.costFactors.items.length) {
-    graph.push({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      '@id': 'https://www.handyman24.gr/electrician#electrician-cost-factors',
-      name: electricianSeoContent.costFactors.title,
-      description: stripTags(electricianSeoContent.costFactors.intro.join(' ')),
-      itemListElement: electricianSeoContent.costFactors.items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: stripTags(item.title),
-        description: stripTags(item.text),
-      })),
-    })
-  }
-
-  if (showElectricianSeoContent.value && electricianSeoContent.callChecklist.items.length) {
-    graph.push({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      '@id': 'https://www.handyman24.gr/electrician#electrician-call-checklist',
-      name: electricianSeoContent.callChecklist.title,
-      description: stripTags(electricianSeoContent.callChecklist.intro.join(' ')),
-      itemListElement: electricianSeoContent.callChecklist.items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: stripTags(item.title),
-        description: stripTags(item.text),
-      })),
-    })
-  }
-
-  if (showElectricianSeoContent.value && electricianSeoContent.scenarioGuides.items.length) {
-    graph.push({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      '@id': 'https://www.handyman24.gr/electrician#area-electrical-services',
-      name: electricianSeoContent.scenarioGuides.title,
-      description: stripTags(electricianSeoContent.scenarioGuides.intro.join(' ')),
-      itemListElement: electricianSeoContent.scenarioGuides.items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: stripTags(`${item.area} - ${item.issue}`),
-        description: stripTags(item.text),
-      })),
-    })
-  }
-
-  if (showElectricianSeoContent.value && electricianSeoContent.faq.items.length) {
-    graph.push({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      '@id': 'https://www.handyman24.gr/electrician#faq',
-      mainEntity: electricianSeoContent.faq.items.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: item.answer,
-        },
-      })),
-    })
-  }
-
-  return graph
-})
-
-useHead(() => ({
-  script: [
-    {
-      key: 'electrician-jsonld',
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify(structuredData.value),
-    },
-  ],
-}))
 </script>
 
 <style scoped>

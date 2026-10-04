@@ -36,13 +36,10 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
 import RelatedServices from '@/components/RelatedServices.vue'
-import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 const pageKey = 'renovationsPage'
-const path = '/renovations'
 const toArray = (value) => (Array.isArray(value) ? value : [])
 
 const introParagraphs = computed(() => toArray(tm(`${pageKey}.intro`)))
@@ -50,29 +47,6 @@ const serviceTasks = computed(() => toArray(tm(`${pageKey}.services.tasks`)))
 const whyChooseItems = computed(() => toArray(tm(`${pageKey}.whyChoose.items`)))
 const closingParagraphs = computed(() => toArray(tm(`${pageKey}.closing`)))
 
-const structuredData = computed(() => [
-  createServiceSchema({
-    name: t(`${pageKey}.schema.serviceName`),
-    serviceType: t(`${pageKey}.schema.serviceType`),
-    description: introParagraphs.value.map(stripTags).join(' '),
-    path,
-    services: serviceTasks.value,
-  }),
-  createBreadcrumbSchema([
-    { name: 'Home', path: '/' },
-    { name: t(pageKey + '.title'), path },
-  ]),
-])
-
-useHead(() => ({
-  script: [
-    {
-      key: 'renovations-jsonld',
-      type: 'application/ld+json',
-      children: JSON.stringify(structuredData.value),
-    },
-  ],
-}))
 </script>
 
 <style scoped>

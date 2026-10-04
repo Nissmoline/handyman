@@ -50,14 +50,11 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
 import RelatedServices from '@/components/RelatedServices.vue'
-import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 
 const toArray = (value) => (Array.isArray(value) ? value : [])
-const path = '/yacht-repair'
 
 const introParagraphs = computed(() => toArray(tm('yachtRepairPage.intro')))
 const electricalTasks = computed(() => toArray(tm('yachtRepairPage.electrical.tasks')))
@@ -66,35 +63,6 @@ const flooringTasks = computed(() => toArray(tm('yachtRepairPage.flooring.tasks'
 const whyChooseItems = computed(() => toArray(tm('yachtRepairPage.whyChoose.items')))
 const closingParagraphs = computed(() => toArray(tm('yachtRepairPage.closing')))
 
-const serviceTasks = computed(() => [
-  ...electricalTasks.value,
-  ...furnitureTasks.value,
-  ...flooringTasks.value,
-])
-
-const structuredData = computed(() => [
-  createServiceSchema({
-    name: t('yachtRepairPage.schema.serviceName'),
-    serviceType: t('yachtRepairPage.schema.serviceType'),
-    description: introParagraphs.value.map(stripTags).join(' '),
-    path,
-    services: serviceTasks.value,
-  }),
-  createBreadcrumbSchema([
-    { name: 'Home', path: '/' },
-    { name: t('yachtRepairPage.title'), path },
-  ]),
-])
-
-useHead(() => ({
-  script: [
-    {
-      key: 'yacht-repair-jsonld',
-      type: 'application/ld+json',
-      children: JSON.stringify(structuredData.value),
-    },
-  ],
-}))
 </script>
 
 <style scoped>

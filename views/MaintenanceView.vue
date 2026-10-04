@@ -32,43 +32,17 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
 import RelatedServices from '@/components/RelatedServices.vue'
-import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 
 const toArray = (value) => (Array.isArray(value) ? value : [])
-const path = '/maintenance'
 
 const introParagraphs = computed(() => toArray(tm('maintenancePage.intro')))
 const serviceTasks = computed(() => toArray(tm('maintenancePage.services.tasks')))
 const whyChooseItems = computed(() => toArray(tm('maintenancePage.whyChoose.items')))
 const closingParagraphs = computed(() => toArray(tm('maintenancePage.closing')))
 
-const structuredData = computed(() => [
-  createServiceSchema({
-    name: t('maintenancePage.schema.serviceName'),
-    serviceType: t('maintenancePage.schema.serviceType'),
-    description: introParagraphs.value.map(stripTags).join(' '),
-    path,
-    services: serviceTasks.value,
-  }),
-  createBreadcrumbSchema([
-    { name: 'Home', path: '/' },
-    { name: t('maintenancePage.title'), path },
-  ]),
-])
-
-useHead(() => ({
-  script: [
-    {
-      key: 'maintenance-jsonld',
-      type: 'application/ld+json',
-      children: JSON.stringify(structuredData.value),
-    },
-  ],
-}))
 </script>
 
 <style scoped>

@@ -25,3 +25,13 @@ In Search Console, compare the last 28 days with the previous period and the equ
 Review Google Business Profile separately for accurate primary electrician category, phone, service areas and real customer reviews. Confirm actual staffed hours and credentials before adding new claims. Track calls and organic enquiries as well as position; code changes cannot guarantee rankings or an indexing deadline.
 
 Reference: https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
+
+## Follow-up audit — 2026-10-03
+
+- The previously added homepage electrical-services section is now visible on the public site.
+- Prepared a clearer electrician title and rewrote repetitive search-phrase paragraphs as practical information about arranging a visit. Existing service pages, phone number and local coverage remain available.
+- Removed the global image preload. Generated HTML now preloads the homepage image only on `/` and the actual electrician hero only on `/electrician`. Output validation verifies that each preload matches an existing, rendered high-priority image.
+- Initial Search Console access used the wrong browser profile. On 2026-10-04, the owner identified the authorized profile and the Handyman24 reports were inspected. Findings are recorded in `SEO-AUDIT.md`.
+- Fixed the schema lifecycle: generated HTML and the browser now use `utils/pageSeo.js`. The complete graph updates with the route and language, is removed on unknown pages, and returns on navigation to an indexable page. Removed partial view graphs and the initial-route MutationObserver. Browser navigation and automated regression checks passed. This does not establish the cause of the ranking decline.
+
+The follow-up source changes are local until deployed through the existing production workflow. No ranking improvement is measured or promised by these changes.

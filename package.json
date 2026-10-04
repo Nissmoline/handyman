@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr entry-server.js --outDir dist-ssr && node scripts/generate-static-seo.mjs && node scripts/validate-static-seo.mjs",
-    "check:seo": "node scripts/validate-static-seo.mjs",
+    "check:seo": "node scripts/validate-static-seo.mjs && node --test scripts/page-seo.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

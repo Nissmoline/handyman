@@ -1,9 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
 import { CheckCircle } from 'lucide-vue-next'
-import { createBreadcrumbSchema, createServiceSchema, stripTags } from '@/utils/seo'
 
 const { t, tm } = useI18n()
 
@@ -19,38 +17,6 @@ const hoodVentilationCards = computed(() => tm('offersPage.sections.hoodVentilat
 // Helper function to ensure arrays
 const toArray = (value) => (Array.isArray(value) ? value : [])
 
-const offerNames = computed(() => [
-  t('offersPage.sections.kitchenHood.cards.kitchenConnection.title'),
-  t('offersPage.sections.kitchenHood.cards.hoodConnection.title'),
-  t('offersPage.sections.kitchenHood.cards.comboSet.title'),
-  t('offersPage.sections.hoodVentilation.cards.hoodInstallation.title'),
-  t('offersPage.sections.hoodVentilation.cards.hoodReplacement.title'),
-])
-
-const offersSchema = computed(() => [
-  createServiceSchema({
-    name: t('offersPage.title'),
-    serviceType: 'Electrician offers and appliance connection packages',
-    description: stripTags(t('offersPage.disclaimer')),
-    path: '/offers',
-    services: offerNames.value,
-    providerType: 'Electrician',
-  }),
-  createBreadcrumbSchema([
-    { name: 'Home', path: '/' },
-    { name: t('offersPage.title'), path: '/offers' },
-  ]),
-])
-
-useHead(() => ({
-  script: [
-    {
-      key: 'offers-jsonld',
-      type: 'application/ld+json',
-      children: JSON.stringify(offersSchema.value),
-    },
-  ],
-}))
 </script>
 
 <template>

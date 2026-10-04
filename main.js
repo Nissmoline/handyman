@@ -24,41 +24,6 @@ app.component('font-awesome-icon', FontAwesomeIcon)
 const mountApp = async () => {
   await router.isReady()
   app.mount('#app')
-
-  const routesWithClientStructuredData = new Set([
-    '/electrician',
-    '/electrician-faq',
-    '/offers',
-    '/plumber',
-    '/tiling',
-    '/painting',
-    '/carpentry',
-    '/renovations',
-    '/maintenance',
-    '/yacht-repair',
-  ])
-
-  if (!routesWithClientStructuredData.has(router.currentRoute.value.path)) return
-
-  const removeDuplicateStructuredData = () => {
-    const staticStructuredData = document.querySelector('#static-seo-jsonld')
-    const structuredDataBlocks = document.querySelectorAll('script[type="application/ld+json"]')
-
-    if (staticStructuredData && structuredDataBlocks.length > 1) {
-      staticStructuredData.remove()
-      return true
-    }
-
-    return false
-  }
-
-  if (!removeDuplicateStructuredData()) {
-    const headObserver = new MutationObserver(() => {
-      if (removeDuplicateStructuredData()) headObserver.disconnect()
-    })
-    headObserver.observe(document.head, { childList: true })
-    window.setTimeout(() => headObserver.disconnect(), 1000)
-  }
 }
 
 mountApp()

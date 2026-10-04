@@ -9,6 +9,7 @@ import AppointmentPopup from '@/components/AppointmentPopup.vue'
 import CookieConsent from '@/components/CookieConsent.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 import { SITE_URL } from '@/utils/seo'
+import { schemaForPath, syncPageSchema } from '@/utils/pageSeo'
 
 const popupOpen = ref(false)
 const mobileMenuOpen = ref(false)
@@ -25,7 +26,7 @@ const setMobileMenuOpen = (open: boolean) => {
 provide('openAppointmentPopup', openPopup)
 
 const route = useRoute()
-const { t, locale } = useI18n()
+const { t, locale, messages } = useI18n()
 
 const defaultSeo = {
   titleKey: 'seo.default.title',
@@ -62,6 +63,7 @@ const updateSeoMeta = () => {
 
   document.title = title
   document.documentElement.lang = locale.value
+  syncPageSchema(document, indexable ? schemaForPath(route.path, messages.value[locale.value], locale.value) : [])
 
   const ensureMeta = (selector: string, attrs: Record<string, string>) => {
     let element = document.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null
