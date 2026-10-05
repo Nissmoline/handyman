@@ -7,11 +7,11 @@
           <h1 id="area-electrician-title">{{ area.headline }}</h1>
           <p>{{ area.metaDescription }}</p>
           <div class="area-hero__actions">
-            <a href="tel:+306949214461" class="btn btn-primary">
+            <a href="tel:+306973858321" class="btn btn-primary">
               <Phone :size="20" aria-hidden="true" />
               Καλέστε Ηλεκτρολόγο
             </a>
-            <a href="https://wa.me/306949214461" class="btn btn-secondary">
+            <a href="https://wa.me/306973858321" class="btn btn-secondary">
               <MessageCircle :size="20" aria-hidden="true" />
               WhatsApp
             </a>
@@ -125,7 +125,7 @@
           ηλεκτρολογική εργασία σε {{ area.name }}.
         </p>
         <div class="area-hero__actions">
-          <a href="tel:+306949214461" class="btn btn-primary">
+          <a href="tel:+306973858321" class="btn btn-primary">
             <Phone :size="20" aria-hidden="true" />
             Καλέστε τώρα
           </a>
@@ -178,7 +178,7 @@ const structuredData = computed(() => [
     name: 'HandyMan 24 - Ηλεκτρολόγος Αθήνα',
     url: 'https://www.handyman24.gr/',
     image: ['https://www.handyman24.gr/metaimg.jpg', 'https://www.handyman24.gr/photos/Electrichandyman8.jpg'],
-    telephone: '+30-694-9214461',
+    telephone: '+30-697-3858321',
     email: 'handyman24gr@gmail.com',
     priceRange: '€€',
     address: {
@@ -213,7 +213,7 @@ const structuredData = computed(() => [
       '@type': 'LocalBusiness',
       '@id': 'https://www.handyman24.gr/#localbusiness',
       name: 'HandyMan 24',
-      telephone: '+30-694-9214461',
+      telephone: '+30-697-3858321',
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

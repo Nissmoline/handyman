@@ -17,7 +17,7 @@ const props = defineProps({
 
 const { t } = useI18n()
 
-const telLink = 'tel:+306949214461'
+const telLink = 'tel:+306973858321'
 const emit = defineEmits(['contact'])
 
 const openAppointment = () => {

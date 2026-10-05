@@ -10,11 +10,11 @@
             <p v-html="t('electricianPage.intro.paragraph3')"></p>
           </div>
           <div class="electrician-hero__buttons">
-            <a href="tel:+306949214461" class="btn btn-outline">
+            <a href="tel:+306973858321" class="btn btn-outline">
               <Phone :size="20" aria-hidden="true" />
               {{ t('electricianPage.contact.callNow') }}
             </a>
-            <a href="https://wa.me/306949214461" class="btn btn-outline">
+            <a href="https://wa.me/306973858321" class="btn btn-outline">
               <MessageCircle :size="20" aria-hidden="true" />
               {{ t('electricianPage.contact.whatsapp') }}
             </a>
@@ -41,7 +41,7 @@
         <h2>{{ t('electricianPage.urgentLanding.title') }}</h2>
         <p v-html="t('electricianPage.urgentLanding.description')"></p>
       </div>
-      <a href="tel:+306949214461" class="btn btn-light">
+      <a href="tel:+306973858321" class="btn btn-light">
         {{ t('electricianPage.urgentLanding.cta') }}
         <ArrowRight :size="20" aria-hidden="true" />
       </a>
@@ -116,11 +116,11 @@
 
     <section class="electrician-cta-strip">
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary">
+        <a href="tel:+306973858321" class="btn btn-primary">
           <Phone :size="20" aria-hidden="true" />
           {{ t('electricianPage.contact.callNow') }}
         </a>
-        <a href="https://wa.me/306949214461" class="btn btn-secondary">
+        <a href="https://wa.me/306973858321" class="btn btn-secondary">
           <MessageCircle :size="20" aria-hidden="true" />
           {{ t('electricianPage.contact.whatsapp') }}
         </a>
@@ -417,11 +417,11 @@
         <h2>{{ electricianSeoContent.cta.title }}</h2>
         <p>{{ electricianSeoContent.cta.text }}</p>
         <div class="contact-buttons">
-          <a href="tel:+306949214461" class="btn btn-primary">
+          <a href="tel:+306973858321" class="btn btn-primary">
             <Phone :size="20" aria-hidden="true" />
             {{ electricianSeoContent.cta.call }}
           </a>
-          <a href="https://wa.me/306949214461" class="btn btn-secondary">
+          <a href="https://wa.me/306973858321" class="btn btn-secondary">
             {{ electricianSeoContent.cta.urgent }}
             <ArrowRight :size="20" aria-hidden="true" />
           </a>

@@ -34,4 +34,4 @@ Reference: https://developers.google.com/search/docs/crawling-indexing/javascrip
 - Initial Search Console access used the wrong browser profile. On 2026-10-04, the owner identified the authorized profile and the Handyman24 reports were inspected. Findings are recorded in `SEO-AUDIT.md`.
 - Fixed the schema lifecycle: generated HTML and the browser now use `utils/pageSeo.js`. The complete graph updates with the route and language, is removed on unknown pages, and returns on navigation to an indexable page. Removed partial view graphs and the initial-route MutationObserver. Browser navigation and automated regression checks passed. This does not establish the cause of the ranking decline.
 
-The follow-up source changes are local until deployed through the existing production workflow. No ranking improvement is measured or promised by these changes.
+Publication was confirmed on 2026-10-04. Google accepted recrawl requests for the homepage and `/electrician`; a weekly follow-up was configured in this chat. No ranking improvement is measured or promised by these changes. See `SEO-AUDIT.md` for the request confirmations and baseline metrics.

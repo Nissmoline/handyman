@@ -100,8 +100,8 @@ const toArray = (value) => (Array.isArray(value) ? value : [])
       </div>
 
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary">{{ t('common.buttons.callNow') }}</a>
-        <a href="https://wa.me/306949214461" class="btn btn-secondary">WhatsApp</a>
+        <a href="tel:+306973858321" class="btn btn-primary">{{ t('common.buttons.callNow') }}</a>
+        <a href="https://wa.me/306973858321" class="btn btn-secondary">WhatsApp</a>
       </div>
     </div>
   </main>

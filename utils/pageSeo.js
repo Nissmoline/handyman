@@ -7,7 +7,7 @@ const electricianImages = electricianSeoContent.photos.map((photo) => `${siteUrl
 
 const business = {
   name: 'Handyman24',
-  telephone: '+30-694-9214461',
+  telephone: '+30-697-3858321',
   email: 'handyman24gr@gmail.com',
   address: {
     '@type': 'PostalAddress',
@@ -132,7 +132,7 @@ export const createPageSchema = (route) => {
     sameAs: [
       'https://www.facebook.com/share/1FyUjq1AGd/',
       'https://instagram.com/handyman24.gr',
-      'https://wa.me/306949214461',
+      'https://wa.me/306973858321',
     ],
   }
   const website = {

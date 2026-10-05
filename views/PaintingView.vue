@@ -24,8 +24,8 @@
       <p v-for="(paragraph, index) in closingParagraphs" :key="'closing-' + index" v-html="paragraph"></p>
 
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary">{{ t('paintingPage.contact.callNow') }}</a>
-        <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('paintingPage.contact.whatsapp') }}</a>
+        <a href="tel:+306973858321" class="btn btn-primary">{{ t('paintingPage.contact.callNow') }}</a>
+        <a href="https://wa.me/306973858321" class="btn btn-secondary">{{ t('paintingPage.contact.whatsapp') }}</a>
       </div>
 
       <RelatedServices />

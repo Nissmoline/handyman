@@ -9,8 +9,8 @@
       </div>
 
       <div class="contact-buttons urgent-electrician-page__top-cta">
-        <a href="tel:+306949214461" class="btn btn-primary">{{ t(`${pageKey}.contact.callNow`) }}</a>
-        <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t(`${pageKey}.contact.whatsapp`) }}</a>
+        <a href="tel:+306973858321" class="btn btn-primary">{{ t(`${pageKey}.contact.callNow`) }}</a>
+        <a href="https://wa.me/306973858321" class="btn btn-secondary">{{ t(`${pageKey}.contact.whatsapp`) }}</a>
       </div>
 
       <section>
@@ -59,7 +59,7 @@
       </section>
 
       <div class="contact-buttons">
-        <a href="tel:+306949214461" class="btn btn-primary">{{ t(`${pageKey}.contact.callNow`) }}</a>
+        <a href="tel:+306973858321" class="btn btn-primary">{{ t(`${pageKey}.contact.callNow`) }}</a>
         <router-link to="/electrician" class="btn btn-secondary">{{ t(`${pageKey}.contact.mainPage`) }}</router-link>
       </div>
 

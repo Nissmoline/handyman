@@ -22,13 +22,13 @@ const services = [
 const socialLinksMobile = [
   { href: 'https://www.facebook.com/share/1FyUjq1AGd/', icon: ['fab', 'facebook'], label: 'Facebook' },
   { href: 'https://instagram.com/handyman24.gr', icon: ['fab', 'instagram'], label: 'Instagram' },
-  { href: 'viber://chat?number=+306949214461', icon: ['fab', 'viber'], label: 'Viber' },
-  { href: 'https://wa.me/306949214461', icon: ['fab', 'whatsapp'], label: 'WhatsApp' },
-  { href: 'https://t.me/+306949214461', icon: ['fab', 'telegram'], label: 'Telegram' },
+  { href: 'viber://chat?number=+306973858321', icon: ['fab', 'viber'], label: 'Viber' },
+  { href: 'https://wa.me/306973858321', icon: ['fab', 'whatsapp'], label: 'WhatsApp' },
+  { href: 'https://t.me/+306973858321', icon: ['fab', 'telegram'], label: 'Telegram' },
 ]
 
-const tel = '+30 694 921 4461'
-const telLink = 'tel:+306949214461'
+const tel = '+30 697 385 8321'
+const telLink = 'tel:+306973858321'
 const emit = defineEmits(['mobile-menu-change'])
 
 const menuOpen = ref(false)

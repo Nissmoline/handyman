@@ -29,7 +29,7 @@ const heroSlides = computed(() => {
 })
 const offerFeatures = computed(() => toStringArray(tm('hero.offer.features')))
 
-const phoneNumberUrl = 'tel:+306949214461'
+const phoneNumberUrl = 'tel:+306973858321'
 
 const triggerConversion = (url) => {
   if (typeof window === 'undefined') {
@@ -107,7 +107,7 @@ const handleBookClick = () => {
 
               <div class="hero-buttons">
                 <a
-                  href="tel:+306949214461"
+                  href="tel:+306973858321"
                   class="btn btn-outline"
                   :aria-label="t('hero.buttons.callAria')"
                   @click.prevent="handleCallClick"

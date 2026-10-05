@@ -59,9 +59,9 @@ const linkGroups: readonly FooterGroup[] = [
 const socialLinks = [
   { href: "https://www.facebook.com/share/1FyUjq1AGd/", icon: ["fab", "facebook"] as const, label: "Facebook" },
   { href: "https://instagram.com/handyman24.gr", icon: ["fab", "instagram"] as const, label: "Instagram" },
-  { href: "viber://chat?number=+306949214461", icon: ["fab", "viber"] as const, label: "Viber" },
-  { href: "https://wa.me/+306949214461", icon: ["fab", "whatsapp"] as const, label: "WhatsApp" },
-  { href: "https://t.me/+306949214461", icon: ["fab", "telegram"] as const, label: "Telegram" },
+  { href: "viber://chat?number=+306973858321", icon: ["fab", "viber"] as const, label: "Viber" },
+  { href: "https://wa.me/306973858321", icon: ["fab", "whatsapp"] as const, label: "WhatsApp" },
+  { href: "https://t.me/+306973858321", icon: ["fab", "telegram"] as const, label: "Telegram" },
 ];
 
 const year = new Date().getFullYear();
@@ -108,7 +108,7 @@ function openCookieSettings() {
           />
         </router-link>
         <address class="footer__contact">
-          <a href="tel:+306949214461">{{ t('footer.contact.phone') }}</a>
+          <a href="tel:+306973858321">{{ t('footer.contact.phone') }}</a>
           <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a>
           <span>{{ t('footer.contact.address') }}</span>
         </address>

@@ -23,8 +23,8 @@
         <p v-html="t('electricianReviews.contact.description')"></p>
         
         <div class="contact-buttons">
-          <a href="tel:+306949214461" class="btn btn-primary">{{ t('electricianReviews.contact.callNow') }}</a>
-          <a href="https://wa.me/306949214461" class="btn btn-secondary">{{ t('electricianReviews.contact.whatsapp') }}</a>
+          <a href="tel:+306973858321" class="btn btn-primary">{{ t('electricianReviews.contact.callNow') }}</a>
+          <a href="https://wa.me/306973858321" class="btn btn-secondary">{{ t('electricianReviews.contact.whatsapp') }}</a>
         </div>
       </div>
     </div>

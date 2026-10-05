@@ -56,7 +56,7 @@
       yachtRepair: 'Yacht repair',
     },
     contact: {
-      phone: '+30 694 921 4461',
+      phone: '+30 697 385 8321',
       email: 'handyman24gr@gmail.com',
       address: 'Fylis 153, 11251 Agios Panteleimonas, Athens, Attica',
     },
@@ -959,7 +959,7 @@ servicedAreas: {
           { label: 'Trading name', value: 'HandyMan 24' },
           { label: 'Legal form', value: 'Sole proprietorship' },
           { label: 'Registered office', value: 'Fylis 153, 11251 Agios Panteleimonas, Athens, Attica, Greece' },
-          { label: 'Telephone', value: '+30 694 921 4461', type: 'phone', href: 'tel:+306949214461' },
+          { label: 'Telephone', value: '+30 697 385 8321', type: 'phone', href: 'tel:+306973858321' },
           { label: 'Email', value: 'handyman24gr@gmail.com', type: 'email', href: 'mailto:handyman24gr@gmail.com' },
           { label: 'Website', value: 'www.handyman24.gr', type: 'link', href: 'https://www.handyman24.gr', target: '_blank', rel: 'noopener noreferrer' },
           { label: 'Service hours', value: '24/7' },
@@ -994,7 +994,7 @@ servicedAreas: {
       {
         title: 'Customer service – Complaints',
         paragraphs: [
-          'For questions or complaints please contact +30 694 921 4461 or handyman24gr@gmail.com. Our aim is to resolve every issue promptly and amicably.',
+          'For questions or complaints please contact +30 697 385 8321 or handyman24gr@gmail.com. Our aim is to resolve every issue promptly and amicably.',
         ],
       },
       {
@@ -1035,8 +1035,8 @@ servicedAreas: {
       title: 'Customer support',
       subtitle: 'Reach us for any legal, billing, or coordination questions related to this notice.',
       phoneLabel: 'Phone',
-      phoneValue: '+30 694 921 4461',
-      phoneHref: 'tel:+306949214461',
+      phoneValue: '+30 697 385 8321',
+      phoneHref: 'tel:+306973858321',
       emailLabel: 'Email',
       emailValue: 'handyman24gr@gmail.com',
       emailHref: 'mailto:handyman24gr@gmail.com',

@@ -58,7 +58,7 @@
           Για απορίες σχετικά με την πολιτική απορρήτου ή τα cookies, επικοινωνήστε με την Handyman24.
         </p>
         <div class="contact-info">
-          <p><strong>Τηλέφωνο:</strong> <a href="tel:+306949214461">+30 694 921 4461</a></p>
+          <p><strong>Τηλέφωνο:</strong> <a href="tel:+306973858321">+30 697 385 8321</a></p>
           <p><strong>Email:</strong> <a href="mailto:handyman24gr@gmail.com">handyman24gr@gmail.com</a></p>
           <p><strong>Έδρα:</strong> Φυλής 153, 11251 Άγιος Παντελεήμονας, Αθήνα, Αττική</p>
         </div>

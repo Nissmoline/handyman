@@ -3,8 +3,8 @@ export const SITE_URL = 'https://www.handyman24.gr'
 export const BUSINESS = {
   name: 'HandyMan 24',
   legalName: 'HandyMan 24 - Κολπαξίδης Κωνσταντίνος',
-  telephone: '+30-694-9214461',
-  telephoneDisplay: '+30 694 921 4461',
+  telephone: '+30-697-3858321',
+  telephoneDisplay: '+30 697 385 8321',
   email: 'handyman24gr@gmail.com',
   logo: `${SITE_URL}/icons/android-chrome-192x192.png`,
   image: `${SITE_URL}/metaimg.jpg`,
@@ -20,7 +20,7 @@ export const BUSINESS = {
   sameAs: [
     'https://www.facebook.com/share/1FyUjq1AGd/',
     'https://instagram.com/handyman24.gr',
-    'https://wa.me/306949214461',
+    'https://wa.me/306973858321',
   ],
 }
 

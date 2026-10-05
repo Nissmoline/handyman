@@ -11,7 +11,7 @@
     "https://www.handyman24.gr/photos/Electrichandyman8.jpg"
   ],
   "logo": "https://www.handyman24.gr/icons/android-chrome-192x192.png",
-  "telephone": "+30-694-9214461",
+  "telephone": "+30-697-3858321",
   "email": "handyman24gr@gmail.com",
   "priceRange": "€€",
   "inLanguage": ["el", "en"],
@@ -67,7 +67,7 @@
   "sameAs": [
     "https://www.facebook.com/share/1FyUjq1AGd/",
     "https://instagram.com/handyman24.gr",
-    "https://wa.me/306949214461"
+    "https://wa.me/306973858321"
   ],
   "knowsAbout": [
     "ηλεκτρολόγος Αθήνα",
@@ -134,12 +134,12 @@
   "potentialAction": [
     {
       "@type": "ContactAction",
-      "target": "tel:+306949214461",
+      "target": "tel:+306973858321",
       "name": "Call Handyman24"
     },
     {
       "@type": "CommunicateAction",
-      "target": "https://wa.me/306949214461",
+      "target": "https://wa.me/306973858321",
       "name": "Contact Handyman24 on WhatsApp"
     }
   ]

@@ -60,7 +60,7 @@
       yachtRepair: 'Επισκευή σκαφών',
     },
     contact: {
-      phone: '+30 694 921 4461',
+      phone: '+30 697 385 8321',
       email: 'handyman24gr@gmail.com',
       address: 'Φυλής 153, 11251 Άγιος Παντελεήμονας, Αθήνα, Αττική',
     },
@@ -967,7 +967,7 @@
           { label: 'Επωνυμία / Διακριτικός Τίτλος', value: 'HandyMan 24' },
           { label: 'Νομική Μορφή', value: 'Ατομική Επιχείρηση' },
           { label: 'Έδρα', value: 'Φυλής 153, 11251 Άγιος Παντελεήμονας, Αθήνα, Αττική' },
-          { label: 'Τηλέφωνο', value: '+30 694 921 4461', type: 'phone', href: 'tel:+306949214461' },
+          { label: 'Τηλέφωνο', value: '+30 697 385 8321', type: 'phone', href: 'tel:+306973858321' },
           { label: 'Email', value: 'handyman24gr@gmail.com', type: 'email', href: 'mailto:handyman24gr@gmail.com' },
           { label: 'Ιστότοπος', value: 'www.handyman24.gr', type: 'link', href: 'https://www.handyman24.gr', target: '_blank', rel: 'noopener noreferrer' },
           { label: 'Ώρες εξυπηρέτησης', value: '24/7' },
@@ -1002,7 +1002,7 @@
       {
         title: 'Εξυπηρέτηση Πελατών – Παράπονα',
         paragraphs: [
-          'Για απορίες ή παράπονα επικοινωνήστε στο +30 694 921 4461 ή στο handyman24gr@gmail.com. Στόχος μας είναι η άμεση και φιλική επίλυση.',
+          'Για απορίες ή παράπονα επικοινωνήστε στο +30 697 385 8321 ή στο handyman24gr@gmail.com. Στόχος μας είναι η άμεση και φιλική επίλυση.',
         ],
       },
       {
@@ -1043,8 +1043,8 @@
       title: 'Χρειάζεστε βοήθεια;',
       subtitle: 'Επικοινωνήστε για νομικές, οικονομικές ή οργανωτικές διευκρινίσεις σχετικά με το παρόν.',
       phoneLabel: 'Τηλέφωνο',
-      phoneValue: '+30 694 921 4461',
-      phoneHref: 'tel:+306949214461',
+      phoneValue: '+30 697 385 8321',
+      phoneHref: 'tel:+306973858321',
       emailLabel: 'Email',
       emailValue: 'handyman24gr@gmail.com',
       emailHref: 'mailto:handyman24gr@gmail.com',
